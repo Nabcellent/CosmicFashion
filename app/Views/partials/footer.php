@@ -75,26 +75,31 @@ use Carbon\Carbon;
 								      d="M17 3.5C17 3.224 16.775 3 16.5 3H14C11.238 3 9 5.015 9 7.5V10.2H6.5C6.224 10.2 6 10.424 6 10.7V13.3C6 13.576 6.224 13.8 6.5 13.8H9V20.5C9 20.776 9.224 21 9.5 21H12.5C12.775 21 13 20.776 13 20.5V13.8H15.619C15.844 13.8 16.041 13.65 16.102 13.434L16.823 10.834C16.912 10.516 16.672 10.2 16.342 10.2H13V7.5C13 7.003 13.447 6.6 14 6.6H16.5C16.775 6.6 17 6.376 17 6.1V3.5Z"
 								      fill="currentColor"></path>
 							</mask>
-							<g mask="url(#mask334)">
-								<rect width="24" height="24" fill="currentColor"></rect>
-							</g>
+							<g mask="url(#mask334)"><rect width="24" height="24" fill="currentColor"></rect></g>
 						</svg>
-					</a></div>
+					</a>
+				</div>
 			</div>
 			<div class="col-sm-12 col-md-9 col-xl-7">
 				<div class="Footer_linksRow__sSh1A row">
-					<div class="col-12 col-sm-6 col-md-4"><h5 class="text-white fw-bold text-uppercase mb-4">company</h5><h6
-								class="mb-3 Footer_navigationLink__1OSze">What We Do</h6><h6 class="mb-3 Footer_navigationLink__1OSze">Available
-							Services</h6><h6 class="mb-3 Footer_navigationLink__1OSze">Latest Posts</h6><h6 class="mb-3 Footer_navigationLink__1OSze">
-							FAQs</h6></div>
-					<div class="col-12 col-sm-6 col-md-4"><h5 class="text-white fw-bold text-uppercase mb-4">my account</h5><h6
-								class="mb-3 Footer_navigationLink__1OSze">Sign In</h6><h6 class="mb-3 Footer_navigationLink__1OSze">View Cart</h6><h6
-								class="mb-3 Footer_navigationLink__1OSze">Order Tracking</h6><h6 class="mb-3 Footer_navigationLink__1OSze">Help &amp;
-							Support</h6></div>
-					<div class="col-12 col-sm-6 col-md-4"><h5 class="text-white fw-bold text-uppercase text-nowrap mb-4">customer service</h5><h6
-								class="mb-3 Footer_navigationLink__1OSze">Help &amp; Contact Us</h6><h6 class="mb-3 Footer_navigationLink__1OSze">
-							Returns &amp; Refunds</h6><h6 class="mb-3 Footer_navigationLink__1OSze">Online Stores</h6><h6
-								class="mb-3 Footer_navigationLink__1OSze">Terms &amp; Conditions</h6></div>
+					<div class="col-12 col-sm-6 col-md-4">
+						<h5 class="text-white fw-bold text-uppercase mb-4">company</h5>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">What We Do</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Available Services</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Latest Posts</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">FAQs</h6></div>
+					<div class="col-12 col-sm-6 col-md-4">
+						<h5 class="text-white fw-bold text-uppercase mb-4">my account</h5>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Sign In</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">View Cart</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Order Tracking</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Help &amp; Support</h6></div>
+					<div class="col-12 col-sm-6 col-md-4">
+						<h5 class="text-white fw-bold text-uppercase text-nowrap mb-4">customer service</h5>
+						<h6 class="mb-3 Footer_navigationLink__1OSze"><a href="<?= route_to('contact_us') ?>">Help &amp; Contact Us</a></h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Returns &amp; Refunds</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Online Stores</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze">Terms &amp; Conditions</h6></div>
 				</div>
 			</div>
 		</div>

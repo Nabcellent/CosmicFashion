@@ -1,9 +1,5 @@
-/*@import 'tailwindcss/base';*/
-/*@import 'tailwindcss/components';*/
-/*@import 'tailwindcss/utilities';*/
-
 .Account_promo1__1LP0S {
-    background-image: url(/media/promo1.84ea3d84ebe66cb9c45bd61d74a3ce61.svg)
+    background-image: url(/images/media/promo1.84ea3d84ebe66cb9c45bd61d74a3ce61.svg)
 }
 
 .Account_promo1__1LP0S, .Account_promo2__3jML5 {
@@ -18,7 +14,7 @@
 }
 
 .Account_promo2__3jML5 {
-    background-image: url(/media/clock_1.133772cc3813ebfdac533542cd361b20.png)
+    background-image: url(/images/media/clock_1.133772cc3813ebfdac533542cd361b20.png)
 }
 
 @media (max-width: 768px) {

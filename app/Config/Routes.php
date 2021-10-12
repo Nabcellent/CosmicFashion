@@ -20,7 +20,9 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override();
+$routes->set404Override(function () {
+    return view('errors/html/error');
+});
 $routes->setAutoRoute(true);
 
 /*
@@ -53,34 +55,35 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 /*
  * Myth:Auth routes file.
  */
-$routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($routes) {
+$routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($route) {
     // Login/out
-    $routes->get('login', 'AuthController::login', ['as' => 'login']);
-    $routes->post('login', 'AuthController::attemptLogin');
-    $routes->get('logout', 'AuthController::logout');
+    $route->get('login', 'AuthController::login', ['as' => 'login']);
+    $route->post('login', 'AuthController::attemptLogin');
+    $route->get('logout', 'AuthController::logout');
 
     // Registration
-    $routes->get('register', 'AuthController::register', ['as' => 'register']);
-    $routes->post('register', 'AuthController::attemptRegister');
+    $route->get('register', 'AuthController::register', ['as' => 'register']);
+    $route->post('register', 'AuthController::attemptRegister');
 
     // Activation
-    $routes->get('activate-account', 'AuthController::activateAccount', ['as' => 'activate-account']);
-    $routes->get('resend-activate-account', 'AuthController::resendActivateAccount', ['as' => 'resend-activate-account']);
+    $route->get('activate-account', 'AuthController::activateAccount', ['as' => 'activate-account']);
+    $route->get('resend-activate-account', 'AuthController::resendActivateAccount', ['as' => 'resend-activate-account']);
 
     // Forgot/Resets
-    $routes->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
-    $routes->post('forgot', 'AuthController::attemptForgot');
-    $routes->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
-    $routes->post('reset-password', 'AuthController::attemptReset');
+    $route->get('forgot', 'AuthController::forgotPassword', ['as' => 'forgot']);
+    $route->post('forgot', 'AuthController::attemptForgot');
+    $route->get('reset-password', 'AuthController::resetPassword', ['as' => 'reset-password']);
+    $route->post('reset-password', 'AuthController::attemptReset');
 });
 
+$routes->get('/shop', 'ProductController::index');
+$routes->get('/cart', 'ProductController::cart');
 
-$routes->post('/login', 'Auth/AuthController::attemptLogin', ['filter' => 'loginFilter']);
-$routes->get('/sign-up', 'Auth/RegisterController::index', ['as' => 'get.register']);
-$routes->get('/sign-in', 'Auth/LoginController::index', ['as' => 'get.login']);
-$routes->post('/sign-in', 'Auth/LoginController::login', ['as' => 'post.login']);
-$routes->post('/sign-up', 'Auth/RegisterController::store', ['as' => 'post.register']);
+$routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);
 
-$routes->get('/profile', 'UserController::index',['filter' => 'loginFilter', 'as' => 'profile']);
+$routes->group('/user', function ($route) {
+    $route->get('profile', 'UserController::index', ['as' => 'user.index']);
+    $route->get('account', 'UserController::account', ['as' => 'user.account']);
+});
 
 $routes->get('/test', 'HomeController::test', ['as' => 'test']);

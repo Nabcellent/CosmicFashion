@@ -11,6 +11,8 @@
 	<!-- STYLES -->
     <?= $this->include('partials/links') ?>
 	<link rel="stylesheet" href="/css/second.css">
+	<link rel="stylesheet" href="/css/shop.css">
+	<link rel="stylesheet" href="/css/app.css">
 	<link rel="stylesheet" href="/css/style.css">
 
 	<script src="/vendor/jquery/jquery.js"></script>

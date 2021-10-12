@@ -35,7 +35,7 @@
 									<i class="bi bi-eye"></i></span>
 						</div>
 						<div class="d-flex justify-content-between align-items-center mt-5">
-							<a href="<?= route_to('get.register') ?>">Create an account</a>
+							<a href="<?= route_to('register') ?>">Create an account</a>
 							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary">Login</button>
 						</div>
 					</form>

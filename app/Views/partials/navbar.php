@@ -49,31 +49,35 @@
 	<div class="container"><a class="navbar-brand"><span class="Header_logoStyle__1knHi"><?= env('app.name') ?></span></a>
 		<nav class="Header_nav__csVkV">
 			<ul class="Header_nav__menu__JHVR4">
-				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;"><span class="Header_dropdownItem__6boOk">Home</span></li>
-				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;"><span class="Header_dropdownItem__6boOk">Shop</span></li>
+				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;">
+					<a href="<?= route_to('home') ?>" class="Header_dropdownItem__6boOk">Home</a>
+				</li>
+				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;">
+					<a href="<?= route_to('shop') ?>" class="Header_dropdownItem__6boOk">Shop</a>
+				</li>
 				<li class="Header_nav__menuItem__2jcMl"><span class="Header_dropdownItem__6boOk">About Us</span></li>
 			</ul>
 		</nav>
 		<ul class="nav">
 			<li class="d-flex align-items-center nav-item">
-				<div type="button" class=" border-0 p-3">
-					<i class="fas fa-search"></i>
-				</div>
-				<div type="button" class=" border-0 p-3">
-					<i class="fab fa-opencart"></i>
-				</div>
-				<div class=" border-0 p-3 dropstart">
-					<a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fas fa-user"></i>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Profile</a></li>
-						<li><a class="dropdown-item" href="#">Account</a></li>
-						<li><a class="dropdown-item" href="#">Wishlist</a></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a></li>
-					</ul>
-				</div>
+                <?php if(logged_in()): ?>
+	                <div class="border-0 p-3"><i class="fas fa-search"></i></div>
+	                <div class="border-0 p-3"><a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a></div>
+	                <div class="border-0 p-3 dropstart">
+		                <a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
+			                <i class="fas fa-user"></i>
+		                </a>
+		                <ul class="dropdown-menu">
+			                <li><a class="dropdown-item" href="<?= route_to('user.index') ?>">Profile</a></li>
+			                <li><a class="dropdown-item" href="<?= route_to('user.account') ?>">Account</a></li>
+			                <li><a class="dropdown-item" href="#">Wishlist</a></li>
+			                <li><hr class="dropdown-divider"></li>
+			                <li><a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a></li>
+		                </ul>
+	                </div>
+                <?php else: ?>
+	                <a href="<?= route_to('login') ?>">Sign In</a>
+                <?php endif; ?>
 			</li>
 		</ul>
 	</div>

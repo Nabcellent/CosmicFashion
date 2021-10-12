@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between align-items-center mt-5">
-						<a href="<?= route_to('get.login') ?>">Log In to your account</a>
+						<a href="<?= route_to('login') ?>">Log In to your account</a>
 						<button type="submit" class="fw-bold text-uppercase Register_button__1hHYm btn btn-primary">SIGN UP</button>
 					</div>
 				</form>
