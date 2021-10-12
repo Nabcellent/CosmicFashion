@@ -1,0 +1,67 @@
+.Login_backgroundImage__2j-eI {
+	background-image: url(/images/outdoor_voices_new_york_6037.jpeg);
+	background-size: cover;
+}
+
+.Login_button__28f5q {
+	padding: 14px 70px !important
+}
+
+@media (max-width: 1280px) {
+	.Login_button__28f5q {
+		padding: 14px 37px !important
+	}
+}
+
+.Login_formGroup__3wtgQ {
+	position: relative
+}
+
+.Login_viewPassword__7GpV6 {
+	cursor: pointer;
+	position: absolute;
+	right: 8px;
+	top: 36px
+}
+
+.Login_footer__3RA6w {
+	margin-top: 180px
+}
+
+.Login_footer__3RA6w > a {
+	margin-right: 15px
+}
+
+.Register_backgroundImage__3ZLed {
+	background-image: url(/images/media/bg.e83c840a2831e55145412c04bccf85a6.png);
+	background-size: cover
+}
+
+.Register_button__1hHYm {
+	padding: 14px 70px !important
+}
+
+@media (max-width: 1280px) {
+	.Register_button__1hHYm {
+		padding: 14px 37px !important
+	}
+}
+
+.Register_formGroup__6wvMB {
+	position: relative
+}
+
+.Register_viewPassword__1bVZC {
+	cursor: pointer;
+	position: absolute;
+	right: 8px;
+	top: 36px
+}
+
+.Register_footer__3THtR {
+	margin-top: 180px
+}
+
+.Register_footer__3THtR > a {
+	margin-right: 15px
+}

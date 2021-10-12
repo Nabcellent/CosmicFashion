@@ -1,0 +1,100 @@
+
+:root {
+    --suf-red: rgb(153, 0, 0);
+    --suf-red-l1: rgb(173, 10, 10)
+}
+
+
+img {
+    object-fit: cover !important;
+}
+
+.fs-9 {
+    font-size: 9px!important
+}
+.fs-10 {
+    font-size: 10px !important
+}
+.fs-11 {
+    font-size: 11px !important
+}
+.fs-12 {
+    font-size: 12px !important
+}
+.fs-13 {
+    font-size: 13px !important
+}
+.fs-14 {
+    font-size: 14px !important
+}
+.fs-15 {
+    font-size: 15px !important
+}
+.fs-16 {
+    font-size: 16px !important
+}
+.fs-17 {
+    font-size: 17px !important
+}
+.fs-18 {
+    font-size: 18px !important
+}
+.fs-20 {
+    font-size: 20px !important
+}
+.fs-22 {
+    font-size: 22px !important
+}
+.fs-24 {
+    font-size: 24px !important
+}
+.fw-medium {
+    font-weight: 500
+}
+.fw-semibold {
+    font-weight: 600
+}
+
+.text-red {
+    color: #900 !important;
+}
+.text-blue {
+    color: rgb(173, 216, 230) !important;
+}
+
+.btn-red {
+    color: #fff;
+    background-color: var(--suf-red);
+    border-color: var(--suf-red);
+}
+.btn-red:hover {
+    color: #fff;
+    background-color: var(--suf-red-l1);
+    border-color: var(--suf-red-l1);
+}
+.btn-outline-red {
+    color: var(--suf-red);
+    border-color: var(--suf-red);
+}
+.btn-outline-red:hover {
+    color: #fff;
+    background-color: var(--suf-red);
+    border-color: var(--suf-red);
+}
+
+.toastify {
+    font-weight: bolder;
+}
+.toastify.success {
+    background: linear-gradient(30deg, rgb(10, 170, 30), rgba(10, 170, 100, .8), #73a5ff);
+}
+.toastify.info {
+    background: linear-gradient(30deg, rgb(37, 157, 138), rgba(37, 157, 138, .8), #73a5ff);
+}
+.toastify.warning {
+    background: linear-gradient(30deg, rgb(235, 166, 18), rgba(235, 166, 18, .8), #73a5ff);
+    color: rgb(30, 30, 30);
+}
+.toastify.danger {
+    background: linear-gradient(30deg, rgb(200, 20, 10), rgba(1200, 20, 10, .8), #73a5ff);
+}
