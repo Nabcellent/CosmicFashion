@@ -18,7 +18,8 @@
 					<form class="">
 						<div class="form-group">
 							<label for="exampleEmail" class="fw-bold text-muted">Name</label>
-							<input type="text" name="text" id="exampleEmail" value="" class="w-100 form-control"/></div>
+							<input type="text" name="text" id="exampleEmail" value="" class="w-100 form-control"/>
+						</div>
 						<div class="d-flex form-group">
 							<div class="flex-fill mr-5">
 								<label for="email" class="fw-bold text-muted">Email</label>
@@ -28,6 +29,10 @@
 								<label for="exampleEmail" class="fw-bold text-muted">Phone</label>
 								<input type="tel" name="text" id="exampleEmail" value="" class="form-control"/>
 							</div>
+						</div>
+						<div class="form-group">
+							<label for="subject" class="fw-bold text-muted">Subject</label>
+							<input type="text" name="text" id="subject" value="<?= old('subject') ?>" class="w-100 form-control"/>
 						</div>
 						<div class="form-group">
 							<label for="exampleEmail" class="fw-bold text-muted">Your Message</label>

@@ -55,7 +55,6 @@
 				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;">
 					<a href="<?= route_to('shop') ?>" class="Header_dropdownItem__6boOk">Shop</a>
 				</li>
-				<li class="Header_nav__menuItem__2jcMl"><span class="Header_dropdownItem__6boOk">About Us</span></li>
 			</ul>
 		</nav>
 		<ul class="nav">

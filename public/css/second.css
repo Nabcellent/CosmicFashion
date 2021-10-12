@@ -338,7 +338,9 @@
     left: 0
 }
 
-.index_viewMoreBtn__JTu_3:active .index_arrowRight__2oGnW, .index_viewMoreBtn__JTu_3:focus .index_arrowRight__2oGnW, .index_viewMoreBtn__JTu_3:hover .index_arrowRight__2oGnW {
+.index_viewMoreBtn__JTu_3:active .index_arrowRight__2oGnW,
+.index_viewMoreBtn__JTu_3:focus .index_arrowRight__2oGnW,
+.index_viewMoreBtn__JTu_3:hover .index_arrowRight__2oGnW {
     left: 8px;
     background: url(/images/media/arrow-right-hover.45261f4ebf15cacd1ce58ca5a7e07e8c.svg)
 }

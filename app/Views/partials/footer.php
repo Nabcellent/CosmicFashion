@@ -91,8 +91,8 @@ use Carbon\Carbon;
 					<div class="col-12 col-sm-6 col-md-4">
 						<h5 class="text-white fw-bold text-uppercase mb-4">my account</h5>
 						<h6 class="mb-3 Footer_navigationLink__1OSze">Sign In</h6>
-						<h6 class="mb-3 Footer_navigationLink__1OSze">View Cart</h6>
-						<h6 class="mb-3 Footer_navigationLink__1OSze">Order Tracking</h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze"><a href="<?= route_to('cart') ?>">View Cart</a></h6>
+						<h6 class="mb-3 Footer_navigationLink__1OSze"><a href="<?= route_to('user.account') ?>">Account</a></h6>
 						<h6 class="mb-3 Footer_navigationLink__1OSze">Help &amp; Support</h6></div>
 					<div class="col-12 col-sm-6 col-md-4">
 						<h5 class="text-white fw-bold text-uppercase text-nowrap mb-4">customer service</h5>

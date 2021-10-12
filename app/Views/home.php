@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 	<div id="home">
-		<div id="banner" class="carousel slide" data-bs-ride="carousel">
+		<div id="banner" class="carousel slide mt-5" data-bs-ride="carousel">
 			<ol class="carousel-indicators">
 				<li data-bs-target="#banner" data-bs-slide-to="0" aria-current="true"></li>
 				<li data-bs-target="#banner" data-bs-slide-to="1" class="active" aria-current="true"></li>
@@ -15,7 +15,7 @@
 						<div class="h-100 container">
 							<div class="h-100 row px-5">
 								<div class="h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start col-sm-12"><p
-											class="text-uppercase text-primary fw-bold mb-2">chair</p>
+											class="text-uppercase text-primary fw-bold mb-2">Dress</p>
 									<h3 class="mb-2">get all</h3>
 									<h2 class="text-uppercase fw-bold mt-1">the good stuff</h2>
 									<button type="button"
@@ -33,7 +33,7 @@
 						<div class="h-100 container">
 							<div class="h-100 row px-5">
 								<div class="h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start col-sm-12"><p
-											class="text-uppercase text-primary fw-bold mb-2">chair</p>
+											class="text-uppercase text-primary fw-bold mb-2">Dress</p>
 									<h3 class="mb-2">get all</h3>
 									<h2 class="text-uppercase fw-bold mt-1">the good stuff</h2>
 									<button type="button"
@@ -51,7 +51,7 @@
 						<div class="h-100 container">
 							<div class="h-100 row px-5">
 								<div class="h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start col-sm-12"><p
-											class="text-uppercase text-primary fw-bold mb-2">chair</p>
+											class="text-uppercase text-primary fw-bold mb-2">Dress</p>
 									<h2 class="mb-2">get all</h2>
 									<h1 class="text-uppercase fw-bold mt-1">the good stuff</h1>
 									<button type="button"
@@ -189,7 +189,7 @@
 	</div>
 
 	<script>
-        let countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
+        let countDownDate = new Date("Jan 5, 2022 17:30:25").getTime();
         let x = setInterval(function () {
             let now = new Date().getTime(); // Get today's date and time
             let distance = countDownDate - now; // Find the distance between now and the count down date
