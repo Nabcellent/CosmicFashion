@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="d-flex justify-content-center row">
 			<div class="col-auto col-lg-8">
-				<h4 class="fw-bold" style="margin-bottom:100px"><?= env('app.name', 'CosmicFashion.') ?></h4>
+				<h4 class="fw-bold" style="margin-bottom:100px"><a href="<?= route_to('home') ?>"><?= env('app.name', 'CosmicFashion.') ?></a></h4>
 				<h5 class="fw-bold mb-5">Sign Up</h5>
 
                 <?php if(session()->getFlashdata('msg')): ?>
