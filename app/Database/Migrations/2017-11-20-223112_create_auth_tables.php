@@ -9,13 +9,13 @@ class CreateAuthTables extends Migration {
          */
         $this->forge->addField([
             'id'               => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'first_name'       => ['type' => 'VARCHAR', 'constraint' => '20'],
-            'last_name'        => ['type' => 'VARCHAR', 'constraint' => '20'],
-            'email'            => ['type' => 'varchar', 'constraint' => 50, 'unique' => true],
+            'role_id'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'first_name'       => ['type' => 'VARCHAR', 'constraint' => '25'],
+            'last_name'        => ['type' => 'VARCHAR', 'constraint' => '25'],
+            'email'            => ['type' => 'varchar', 'constraint' => 60, 'unique' => true, 'null' => false],
             'username'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true, 'unique' => true],
-            'gender'           => ['type' => 'VARCHAR', 'constraint' => '10', 'null' => false],
+            'gender'           => ['type' => 'ENUM', 'constraint' => ['male', 'female'], 'null' => false],
             'image'            => ['type' => 'VARCHAR', 'constraint' => '10', 'null' => true,],
-            'is_admin'         => ['type' => 'BOOLEAN', 'default' => false,],
             'password'         => ['type' => 'varchar', 'constraint' => 255, 'null' => false],
             'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'reset_at'         => ['type' => 'datetime', 'null' => true],
@@ -26,12 +26,12 @@ class CreateAuthTables extends Migration {
             'active'           => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             'force_pass_reset' => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             'created_at datetime default current_timestamp',
-            'updated_at datetime default current_timestamp on update current_timestamp',
+            'updated_at datetime DEFAULT current_timestamp ON UPDATE current_timestamp',
             'deleted_at'       => ['type' => 'datetime', 'null' => true],
         ]);
 
         $this->forge->addKey('id', true);
-
+        $this->forge->addForeignKey('role_id', 'roles', 'id', '', 'CASCADE');
         $this->forge->createTable('users', true);
 
         /*
@@ -39,11 +39,13 @@ class CreateAuthTables extends Migration {
          */
         $this->forge->addField([
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'ip_address' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'email'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => true], // Only for successful logins
-            'date'       => ['type' => 'datetime'],
+            'email'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'ip_address' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
             'success'    => ['type' => 'tinyint', 'constraint' => 1],
+            'logged_in_at datetime default current_timestamp',
+            'logged_out_at datetime',
+            'is_deleted' => ['type' => 'BOOLEAN', 'default' => false]
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addKey('email');
@@ -167,8 +169,9 @@ class CreateAuthTables extends Migration {
 
     public function down() {
         // drop constraints first to prevent errors
-        if($this->db->DBDriver != 'SQLite3') // @phpstan-ignore-line
-        {
+        // @phpstan-ignore-line
+        if($this->db->DBDriver != 'SQLite3') {
+            $this->forge->dropForeignKey('users', 'roles');
             $this->forge->dropForeignKey('auth_tokens', 'auth_tokens_user_id_foreign');
             $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_group_id_foreign');
             $this->forge->dropForeignKey('auth_groups_permissions', 'auth_groups_permissions_permission_id_foreign');

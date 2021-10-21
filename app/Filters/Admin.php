@@ -7,10 +7,11 @@ use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AuthFilter implements FilterInterface {
+class Admin implements FilterInterface
+{
     /**
      * Do whatever processing this filter needs to do.
-     * By default, it should not return anything during
+     * By default it should not return anything during
      * normal execution. However, when an abnormal state
      * is found, it should return an instance of
      * CodeIgniter\HTTP\Response. If it does, script
@@ -19,13 +20,13 @@ class AuthFilter implements FilterInterface {
      * redirects, etc.
      *
      * @param RequestInterface $request
-     * @param array|null       $arguments
+     * @param null             $arguments
      *
      * @return RedirectResponse|void
      */
     public function before(RequestInterface $request, $arguments = null) {
-        if(!session()->get('isLoggedIn')) {
-            return redirect('get.sign-in');
+        if(!isAdmin()) {
+            return redirect()->to(site_url('/'));
         }
     }
 
@@ -41,7 +42,8 @@ class AuthFilter implements FilterInterface {
      *
      * @return mixed
      */
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
+    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
+    {
         //
     }
 }

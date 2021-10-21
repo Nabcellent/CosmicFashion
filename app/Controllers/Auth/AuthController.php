@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\Auth;
 
 use App\Entities\User;
+use App\Models\Role;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -21,6 +22,7 @@ class AuthController extends Controller {
     protected $session;
 
     public function __construct() {
+        service('eloquent');
         // Most services in this controller require
         // the session to be started - so fire it up!
         $this->session = service('session');
@@ -39,8 +41,7 @@ class AuthController extends Controller {
      * they are already logged in.
      */
     public function login(): string|RedirectResponse {
-        // No need to show a login form if the user
-        // is already logged in.
+        // No need to show a login form if the user is already logged in.
         if($this->auth->check()) {
             $redirectURL = session('redirect_url') ?? site_url('/');
             unset($_SESSION['redirect_url']);
@@ -93,7 +94,7 @@ class AuthController extends Controller {
             return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash)->withCookies();
         }
 
-        $redirectURL = session('redirect_url') ?? site_url('/');
+        $redirectURL = site_url('/');
         unset($_SESSION['redirect_url']);
 
         return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
@@ -177,8 +178,11 @@ class AuthController extends Controller {
         }
 
         // Save the user
-        $allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
-        $user = new User($this->request->getPost($allowedPostFields));
+        $allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields, ['role_id']);
+        $newUser = $this->request->getPost($allowedPostFields);
+        $newUser['role_id'] = Role::where('name', 'Customer')->first()->id;
+
+        $user = new User($newUser);
 
         try {
             $this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
@@ -230,7 +234,7 @@ class AuthController extends Controller {
      * Attempts to find a user account with that password
      * and send password reset instructions to them.
      */
-    public function attemptForgot() {
+    public function attemptForgot(): RedirectResponse {
         if($this->config->activeResetter === null) {
             return redirect()->route('login')->with('error', lang('Auth.forgotDisabled'));
         }
@@ -260,7 +264,7 @@ class AuthController extends Controller {
     /**
      * Displays the Reset Password form.
      */
-    public function resetPassword() {
+    public function resetPassword(): string|RedirectResponse {
         if($this->config->activeResetter === null) {
             return redirect()->route('login')->with('error', lang('Auth.forgotDisabled'));
         }
@@ -279,7 +283,7 @@ class AuthController extends Controller {
      *
      * @return mixed
      */
-    public function attemptReset() {
+    public function attemptReset(): mixed {
         if($this->config->activeResetter === null) {
             return redirect()->route('login')->with('error', lang('Auth.forgotDisabled'));
         }
@@ -327,7 +331,7 @@ class AuthController extends Controller {
      *
      * @return mixed
      */
-    public function activateAccount() {
+    public function activateAccount(): mixed {
         $users = model(UserModel::class);
 
         // First things first - log the activation attempt.
@@ -357,7 +361,7 @@ class AuthController extends Controller {
      *
      * @return mixed
      */
-    public function resendActivateAccount() {
+    public function resendActivateAccount(): mixed {
         if($this->config->requireActivation === null) {
             return redirect()->route('login');
         }

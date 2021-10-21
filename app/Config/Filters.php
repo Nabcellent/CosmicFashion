@@ -2,9 +2,11 @@
 
 namespace Config;
 
-use App\Filters\AuthFilter;
+use App\Filters\Admin;
+use App\Filters\Authenticate;
 use App\Filters\LoginFilter;
 use App\Filters\PermissionFilter;
+use App\Filters\RedirectIfAuthenticated;
 use App\Filters\RoleFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -23,7 +25,9 @@ class Filters extends BaseConfig
         'csrf'     => CSRF::class,
         'toolbar'  => DebugToolbar::class,
         'honeypot' => Honeypot::class,
-//        'authFilter' => AuthFilter::class,
+        'admin'      => Admin::class,
+        'auth'      => Authenticate::class,
+        'guest'      => RedirectIfAuthenticated::class,
         'login'      => LoginFilter::class,
         'role'       => RoleFilter::class,
         'permission' => PermissionFilter::class,
@@ -39,7 +43,7 @@ class Filters extends BaseConfig
         'before' => [
             // 'honeypot',
             'csrf' => ['except' => 'api/'],
-            'login' => ['except' => ['', 'home*', 'test', 'login*', 'register*', 'sign-in*', 'sign-up*', 'shop*']]
+            'login' => ['except' => ['', 'home*', 'test', 'login*', 'register*', 'sign-in*', 'sign-up*', 'shop*']],
         ],
         'after' => [
             'toolbar',
@@ -70,6 +74,6 @@ class Filters extends BaseConfig
      * @var array
      */
     public array $filters = [
-        'isLoggedIn' => ['before' => ['admin*', 'account*', 'profile*']]
+        'auth' => ['before' => ['admin*', 'account*', 'profile*']]
     ];
 }

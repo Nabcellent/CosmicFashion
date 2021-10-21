@@ -3,7 +3,7 @@
 		<header class="Sidebar_logo__3dQYJ"><span class="Sidebar_logoStyle__2aDEc mx-1">Flatlogic<i>.</i></span></header>
 		<ul class="Sidebar_nav__B5P8m">
 			<li class="link-wrapper LinksGroup_headerLink__3Z-8d"><a href="index.html"><span class="LinksGroup_iconWrapper__OROnE"></span>Home
-					 </a></li>
+				</a></li>
 			<li class="link-wrapper LinksGroup_headerLink__3Z-8d"><a class="d-flex" style="padding-left:33px"><span
 							class="icon LinksGroup_icon__d1a94"><i class="fi undefined"></i></span>Pages <b
 							class="la la-angle-left LinksGroup_caret__2n6pe"></b></a>
@@ -63,22 +63,27 @@
 		<ul class="nav">
 			<li class="d-flex align-items-center nav-item">
                 <?php if(logged_in()): ?>
-	                <div class="border-0 p-3"><i class="fas fa-search"></i></div>
-	                <div class="border-0 p-3"><a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a></div>
-	                <div class="border-0 p-3 dropstart">
-		                <a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
-			                <i class="fas fa-user"></i>
-		                </a>
-		                <ul class="dropdown-menu">
-			                <li><a class="dropdown-item" href="<?= route_to('user.index') ?>">Profile</a></li>
-			                <li><a class="dropdown-item" href="<?= route_to('user.account') ?>">Account</a></li>
-			                <li><a class="dropdown-item" href="#">Wishlist</a></li>
-			                <li><hr class="dropdown-divider"></li>
-			                <li><a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a></li>
-		                </ul>
-	                </div>
+					<div class="border-0 p-3"><i class="fas fa-search"></i></div>
+					<div class="border-0 p-3"><a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a></div>
+					<div class="border-0 p-3 dropstart">
+						<a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fas fa-user"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a class="dropdown-item" href="<?= route_to('user.index') ?>">Profile</a></li>
+							<li><a class="dropdown-item" href="<?= route_to('user.account') ?>">Account</a></li>
+							<li><a class="dropdown-item" href="#">Wishlist</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+                            <?php if(isRed()): ?>
+								<li><a class="dropdown-item" href="<?= route_to('dashboard') ?>">Dashboard</a></li>
+                            <?php endif ?>
+							<li><a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a></li>
+						</ul>
+					</div>
                 <?php else: ?>
-	                <a href="<?= route_to('login') ?>">Sign In</a>
+					<a href="<?= route_to('login') ?>">Sign In</a>
                 <?php endif; ?>
 			</li>
 		</ul>

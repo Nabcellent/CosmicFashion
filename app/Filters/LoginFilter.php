@@ -7,7 +7,7 @@ use Config\App;
 
 class LoginFilter implements FilterInterface {
     /**
-     * Verifies that a user is logged in, or redirects to login.
+     * Verifies that a user is logged in, or redirects to log in page.
      *
      * @param RequestInterface $request
      * @param array|null       $params

@@ -87,3 +87,7 @@ $routes->group('/user', function ($route) {
 });
 
 $routes->get('/test', 'HomeController::test', ['as' => 'test']);
+
+
+
+require_once ROOTPATH."/Routes/admin.php";

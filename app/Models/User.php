@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use CodeIgniter\Model;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Model {
     protected $DBGroup              = 'default';
@@ -19,6 +19,7 @@ class User extends Model {
         'last_name',
         'email',
         'gender',
+        'role_id',
         'image',
         'password',
         'created_at'
