@@ -6,7 +6,6 @@
 </a>
 
 
-
 <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
 	<ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
 
@@ -14,7 +13,8 @@
         ========================================================================================    TOP DASH
         -->
 
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dashboards">Dashboard</a>
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+		                                 aria-expanded="false" id="dashboards">Dashboard</a>
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="dashboards">
 				<div class="bg-white dark__bg-1000 rounded-3 py-2">
 					<a class="dropdown-item link-600 fw-medium" href="index-2.html">Default</a>
@@ -35,7 +35,7 @@
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="apps">
 				<div class="card navbar-card-app shadow-none dark__bg-1000">
 					<div class="card-body scrollbar max-h-dropdown">
-						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png" width="130" alt=""/>
 						<div class="row">
 							<div class="col-6 col-md-5">
 								<div class="nav flex-column">
@@ -64,19 +64,26 @@
         ========================================================================================    TOP PAGES
         -->
 
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="pagess">Pages</a>
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+		                                 aria-expanded="false" id="pagess">Pages</a>
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
 				<div class="card navbar-card-pages shadow-none dark__bg-1000">
-					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
+					                                                     src="/images/dash/icons/spot-illustrations/authentication-corner.png"
+					                                                     width="130" alt=""/>
 						<div class="row">
 							<div class="col-6 col-xxl-3">
 								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">User</p><a class="nav-link py-1 link-600 fw-medium" href="pages/user/profile.html">Profile</a><a class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
+									<p class="nav-link text-700 mb-0 fw-bold">User</p><a class="nav-link py-1 link-600 fw-medium"
+									                                                     href="pages/user/profile.html">Profile</a><a
+											class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
 								</div>
 							</div>
 							<div class="col-6 col-xxl-3">
 								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-default.html">Pricing default</a><a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
+									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a class="nav-link py-1 link-600 fw-medium"
+									                                                        href="pages/pricing/pricing-default.html">Pricing
+										default</a><a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
 								</div>
 							</div>
 						</div>
@@ -89,10 +96,13 @@
         ========================================================================================    TOP API
         -->
 
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="apps">Api</a>
+		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+		                                 aria-expanded="false" id="apps">Api</a>
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="apps">
 				<div class="card navbar-card-app shadow-none dark__bg-1000">
-					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png" width="130" alt="" />
+					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
+					                                                     src="/images/dash/icons/spot-illustrations/authentication-corner.png"
+					                                                     width="130" alt=""/>
 						<div class="row">
 							<div class="col-6 col-md-5">
 								<div class="nav flex-column">
@@ -121,20 +131,23 @@
 <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
 	<li class="nav-item">
 		<div class="theme-control-toggle fa-icon-wait px-2">
-			<input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme" value="dark" />
-			<label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme">
+			<input class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox" data-theme-control="theme"
+			       value="dark"/>
+			<label class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle" data-bs-toggle="tooltip"
+			       data-bs-placement="left" title="Switch to light theme">
 				<span class="fas fa-sun fs-0"></span>
 			</label>
-			<label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to dark theme">
+			<label class="mb-0 theme-control-toggle-label theme-control-toggle-dark" for="themeControlToggle" data-bs-toggle="tooltip"
+			       data-bs-placement="left" title="Switch to dark theme">
 				<span class="fas fa-moon fs-0"></span>
 			</label>
 		</div>
 	</li>
-	<li class="nav-item">
-		<a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait" href="app/e-commerce/shopping-cart.html"><span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span><span class="notification-indicator-number">1</span></a>
-	</li>
 	<li class="nav-item dropdown">
-		<a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait" id="navbarDropdownNotification" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
+		<a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait" id="navbarDropdownNotification" href="#"
+		   role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span>
+		</a>
 		<div class="dropdown-menu dropdown-menu-end dropdown-menu-card dropdown-menu-notification" aria-labelledby="navbarDropdownNotification">
 			<div class="card card-notification shadow-none">
 				<div class="card-header">
@@ -152,7 +165,7 @@
 							<a class="notification notification-flush notification-unread" href="#!">
 								<div class="notification-avatar">
 									<div class="avatar avatar-2xl me-3">
-										<img class="rounded-circle" src="/images/dash/team/1-thumb.png" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/1-thumb.png" alt=""/>
 									</div>
 								</div>
 								<div class="notification-body">
@@ -179,7 +192,7 @@
 							<a class="notification notification-flush" href="#!">
 								<div class="notification-avatar">
 									<div class="avatar avatar-2xl me-3">
-										<img class="rounded-circle" src="/images/dash/icons/weather-sm.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/icons/weather-sm.jpg" alt=""/>
 									</div>
 								</div>
 								<div class="notification-body">
@@ -192,7 +205,7 @@
 							<a class="border-bottom-0 notification-unread  notification notification-flush" href="#!">
 								<div class="notification-avatar">
 									<div class="avatar avatar-xl me-3">
-										<img class="rounded-circle" src="/images/dash/logos/oxford.png" alt="" />
+										<img class="rounded-circle" src="/images/dash/logos/oxford.png" alt=""/>
 									</div>
 								</div>
 								<div class="notification-body">
@@ -205,11 +218,13 @@
 							<a class="border-bottom-0 notification notification-flush" href="#!">
 								<div class="notification-avatar">
 									<div class="avatar avatar-xl me-3">
-										<img class="rounded-circle" src="/images/dash/team/10.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/10.jpg" alt=""/>
 									</div>
 								</div>
 								<div class="notification-body">
-									<p class="mb-1"><strong>James Cameron</strong> invited to join the group: United Nations International Children's Fund</p>
+									<p class="mb-1">
+										<strong>James Cameron</strong> invited to join the group: United Nations International Children's Fund
+									</p>
 									<span class="notification-time"><span class="me-2" role="img" aria-label="Emoji">🙋‍</span>2d</span>
 								</div>
 							</a>
@@ -220,14 +235,18 @@
 			</div>
 		</div>
 	</li>
-	<li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	<li class="nav-item dropdown">
+		<a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<div class="avatar avatar-xl">
-				<img class="rounded-circle" src="/images/dash/team/3-thumb.png" alt="" />
+				<img class="rounded-circle" src="/images/dash/team/3-thumb.png" alt=""/>
 			</div>
 		</a>
 		<div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">
 			<div class="bg-white dark__bg-1000 rounded-2 py-2">
-				<a class="dropdown-item fw-bold text-warning" href="#!"><span class="fas fa-crown me-1"></span><span>Go Pro</span></a>
+				<span class="dropdown-header fw-bold text-warning py-1">
+					<span class="fas fa-crown me-1"></span>
+					<span><?= env('app.name', 'CosmicFashion.') ?></span>
+				</span>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="#!">Set status</a>
 				<a class="dropdown-item" href="pages/user/profile.html">Profile &amp; account</a>

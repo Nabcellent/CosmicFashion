@@ -1,4 +1,4 @@
-<?= $this->extend('Admin/layouts/guest') ?>
+<?= $this->extend('Admin/layouts/master') ?>
 
 <?= $this->section('content') ?>
 
@@ -188,7 +188,7 @@
 							<div class="card-body py-2">
 								<div class="d-flex align-items-center position-relative mb-3">
 									<div class="avatar avatar-2xl status-online">
-										<img class="rounded-circle" src="assets/img/team/1.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/1.jpg" alt="" />
 									</div>
 									<div class="flex-1 ms-3">
 										<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Emma Watson</a></h6>
@@ -197,7 +197,7 @@
 								</div>
 								<div class="d-flex align-items-center position-relative mb-3">
 									<div class="avatar avatar-2xl status-online">
-										<img class="rounded-circle" src="assets/img/team/2.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/2.jpg" alt="" />
 									</div>
 									<div class="flex-1 ms-3">
 										<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Antony Hopkins</a></h6>
@@ -206,7 +206,7 @@
 								</div>
 								<div class="d-flex align-items-center position-relative mb-3">
 									<div class="avatar avatar-2xl status-away">
-										<img class="rounded-circle" src="assets/img/team/3.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/3.jpg" alt="" />
 									</div>
 									<div class="flex-1 ms-3">
 										<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Anna Karinina</a></h6>
@@ -215,7 +215,7 @@
 								</div>
 								<div class="d-flex align-items-center position-relative mb-3">
 									<div class="avatar avatar-2xl status-offline">
-										<img class="rounded-circle" src="assets/img/team/4.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/4.jpg" alt="" />
 									</div>
 									<div class="flex-1 ms-3">
 										<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">John Lee</a></h6>
@@ -224,7 +224,7 @@
 								</div>
 								<div class="d-flex align-items-center position-relative false">
 									<div class="avatar avatar-2xl status-offline">
-										<img class="rounded-circle" src="assets/img/team/5.jpg" alt="" />
+										<img class="rounded-circle" src="/images/dash/team/5.jpg" alt="" />
 									</div>
 									<div class="flex-1 ms-3">
 										<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="pages/user/profile.html">Rowen Atkinson</a></h6>
