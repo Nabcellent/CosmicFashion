@@ -83,7 +83,7 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+/vendor
 
 #-------------------------
 # IDE / Development Files
@@ -125,5 +125,5 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
-/.run
+
 /y-hide
