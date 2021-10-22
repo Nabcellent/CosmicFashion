@@ -25,8 +25,13 @@ class Admin implements FilterInterface
      * @return RedirectResponse|void
      */
     public function before(RequestInterface $request, $arguments = null) {
-        if(!isAdmin()) {
-            return redirect()->to(site_url('/'));
+        $authenticate = service('authentication');
+        if($authenticate->check()) {
+            if(!isAdmin()) {
+                return redirect()->to(site_url('/'));
+            }
+        } else {
+            return redirect('login');
         }
     }
 
@@ -40,7 +45,7 @@ class Admin implements FilterInterface
      * @param ResponseInterface $response
      * @param array|null        $arguments
      *
-     * @return mixed
+     * @return void
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {

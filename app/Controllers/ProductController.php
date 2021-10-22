@@ -7,7 +7,7 @@ use App\Models\Product;
 class ProductController extends BaseController {
     public function index(): string {
         $data = [
-            'products' => (new Product())->findAll(),
+            'products' => Product::all(),
             'title'    => 'Shop'
         ];
 

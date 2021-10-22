@@ -3,6 +3,7 @@
 namespace App\Filters;
 
 use CodeIgniter\Filters\FilterInterface;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -18,11 +19,12 @@ class Authenticate implements FilterInterface {
      * redirects, etc.
      *
      * @param RequestInterface $request
-     * @param array|null       $arguments
+     * @param null             $arguments
      *
-     * @return mixed
+     * @return RedirectResponse|void
      */
-    public function before(RequestInterface $request, $arguments = null) {
+    public function before(RequestInterface $request, $arguments = null)
+    {
         $authenticate = service('authentication');
         if(!$authenticate->check()) {
             return redirect('login');

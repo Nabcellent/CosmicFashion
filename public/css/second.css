@@ -1,3 +1,5 @@
+@import "root.css";
+
 .InfoBlock_info__2a42M {
     height: 180px
 }
@@ -61,12 +63,12 @@
 }
 
 .index_promo__indication__block__3Vblf h5 {
-    color: #bd744c;
+    color: var(--falcon-primary);
     font-weight: 700
 }
 
 .index_stroke__2BGza {
-    border: 5px solid #bd744c;
+    border: 5px solid var(--falcon-primary);
     width: 64px;
     border-radius: 30px
 }
@@ -89,7 +91,7 @@
 .index_top_first__31BMD .index_stroke__2BGza {
     margin-top: 8px;
     width: 30px;
-    border: 3px solid #bd744c;
+    border: 3px solid var(--falcon-primary);
     border-radius: 30px
 }
 
@@ -387,7 +389,7 @@
 }
 
 .index_product__2R5IL:hover h6:first-child {
-    color: #bd744c
+    color: var(--falcon-primary)
 }
 
 .index_product__2R5IL:hover .index_product__actions__3kChI {
@@ -483,5 +485,5 @@
 }
 
 .index_quantityBtn__3hhC-:focus, .index_quantityBtn__3hhC-:hover {
-    color: #bd744c !important
+    color: var(--falcon-primary) !important
 }
