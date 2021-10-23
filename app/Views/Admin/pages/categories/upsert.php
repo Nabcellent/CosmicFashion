@@ -1,5 +1,4 @@
 <?= $this->extend('Admin/layouts/master') ?>
-
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
