@@ -5,7 +5,7 @@
 	<div class="d-flex flex-column justify-content-center align-items-center h-100 col-12 col-md-6">
 		<div class="container">
 			<div class="d-flex justify-content-center row">
-				<div class="col-auto col-lg-8">
+				<div class="col-auto col-xl-6">
 					<h4 class="fw-bold" style="margin-bottom:100px"><a href="<?= route_to('home') ?>"><?= env('app.name', 'CosmicFashion.') ?></a></h4>
 					<h5 class="fw-bold mb-5">Login</h5>
 
@@ -17,9 +17,9 @@
 						</div>
                     <?php endif; ?>
 
-                    <?= view('App\Auth\_message_block') ?>
+                    <?= view('App\auth\_message_block') ?>
 
-					<form action="<?= route_to('login') ?>" method="POST">
+					<form id="login" action="<?= route_to('login') ?>" method="POST">
                         <?= csrf_field() ?>
 
 						<div class="form-group">
@@ -51,5 +51,20 @@
 
 	<div class="d-none d-md-inline-block h-100 Login_backgroundImage__2j-eI col-sm-6"></div>
 
-
+<?= $this->section('scripts') ?>
+	<script src="/vendor/jquery/jqueryValidation.js"></script>
+	<script>
+		$(() => {
+            $('#login').validate({
+	            rules: {
+                    email: {
+                        required: true,
+	                    email: true
+                    },
+		            password: 'required'
+	            }
+            })
+		})
+	</script>
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

@@ -5,7 +5,7 @@
     "homepage": "https://codeigniter.com",
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1",
         "codeigniter4/framework": "^4",
         "nesbot/carbon": "^2.53",
         "myth/auth": "^1.0",

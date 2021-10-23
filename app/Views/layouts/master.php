@@ -32,6 +32,7 @@
 
 <!-- SCRIPTS -->
 
+<?= $this->include('partials/javascript') ?>
 <?= $this->include('partials/scripts') ?>
 
 <!-- -->

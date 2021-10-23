@@ -2,31 +2,31 @@
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; let target = _objectWithoutPropertiesLoose(source, excluded); let key, i; if (Object.getOwnPropertySymbols) { let sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; let target = {}; let sourceKeys = Object.keys(source); let key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); let n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (let i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { let keys = Object.keys(object); if (Object.getOwnPropertySymbols) { let symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (let i = 1; i < arguments.length; i++) { let source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _defineProperties(target, props) { for (let i = 0; i < props.length; i++) { let descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
@@ -35,7 +35,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 /*                                    Utils                                   */
 
 /* -------------------------------------------------------------------------- */
-var docReady = function docReady(fn) {
+let docReady = function docReady(fn) {
   // see if DOM is already available
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fn);
@@ -44,22 +44,22 @@ var docReady = function docReady(fn) {
   }
 };
 
-var resize = function resize(fn) {
+let resize = function resize(fn) {
   return window.addEventListener('resize', fn);
 };
 
-var isIterableArray = function isIterableArray(array) {
+let isIterableArray = function isIterableArray(array) {
   return Array.isArray(array) && !!array.length;
 };
 
-var camelize = function camelize(str) {
-  var text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
+let camelize = function camelize(str) {
+  let text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
     return c ? c.toUpperCase() : '';
   });
   return "".concat(text.substr(0, 1).toLowerCase()).concat(text.substr(1));
 };
 
-var getData = function getData(el, data) {
+let getData = function getData(el, data) {
   try {
     return JSON.parse(el.dataset[camelize(data)]);
   } catch (e) {
@@ -69,31 +69,31 @@ var getData = function getData(el, data) {
 /* ----------------------------- Colors function ---------------------------- */
 
 
-var hexToRgb = function hexToRgb(hexValue) {
-  var hex;
+let hexToRgb = function hexToRgb(hexValue) {
+  let hex;
   hexValue.indexOf('#') === 0 ? hex = hexValue.substring(1) : hex = hexValue; // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
 
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.replace(shorthandRegex, function (m, r, g, b) {
+  let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   }));
   return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)] : null;
 };
 
-var rgbaColor = function rgbaColor() {
-  var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#fff';
-  var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
+let rgbaColor = function rgbaColor() {
+  let color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#fff';
+  let alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
   return "rgba(".concat(hexToRgb(color), ", ").concat(alpha, ")");
 };
 /* --------------------------------- Colors --------------------------------- */
 
 
-var getColor = function getColor(name) {
-  var dom = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.documentElement;
+let getColor = function getColor(name) {
+  let dom = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.documentElement;
   return getComputedStyle(dom).getPropertyValue("--falcon-".concat(name)).trim();
 };
 
-var getColors = function getColors(dom) {
+let getColors = function getColors(dom) {
   return {
     primary: getColor('primary', dom),
     secondary: getColor('secondary', dom),
@@ -106,7 +106,7 @@ var getColors = function getColors(dom) {
   };
 };
 
-var getSoftColors = function getSoftColors(dom) {
+let getSoftColors = function getSoftColors(dom) {
   return {
     primary: getColor('soft-primary', dom),
     secondary: getColor('soft-secondary', dom),
@@ -119,7 +119,7 @@ var getSoftColors = function getSoftColors(dom) {
   };
 };
 
-var getGrays = function getGrays(dom) {
+let getGrays = function getGrays(dom) {
   return {
     white: getColor('white', dom),
     100: getColor('100', dom),
@@ -137,19 +137,19 @@ var getGrays = function getGrays(dom) {
   };
 };
 
-var hasClass = function hasClass(el, className) {
+let hasClass = function hasClass(el, className) {
   !el && false;
   return el.classList.value.includes(className);
 };
 
-var addClass = function addClass(el, className) {
+let addClass = function addClass(el, className) {
   el.classList.add(className);
 };
 
-var getOffset = function getOffset(el) {
-  var rect = el.getBoundingClientRect();
-  var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+let getOffset = function getOffset(el) {
+  let rect = el.getBoundingClientRect();
+  let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   return {
     top: rect.top + scrollTop,
     left: rect.left + scrollLeft
@@ -157,15 +157,15 @@ var getOffset = function getOffset(el) {
 };
 
 function isScrolledIntoView(el) {
-  var rect = el.getBoundingClientRect();
-  var windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  var windowWidth = window.innerWidth || document.documentElement.clientWidth;
-  var vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
-  var horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
+  let rect = el.getBoundingClientRect();
+  let windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  let windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  let vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
+  let horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
   return vertInView && horInView;
 }
 
-var breakpoints = {
+let breakpoints = {
   xs: 0,
   sm: 576,
   md: 768,
@@ -174,9 +174,9 @@ var breakpoints = {
   xxl: 1540
 };
 
-var getBreakpoint = function getBreakpoint(el) {
-  var classes = el && el.classList.value;
-  var breakpoint;
+let getBreakpoint = function getBreakpoint(el) {
+  let classes = el && el.classList.value;
+  let breakpoint;
 
   if (classes) {
     breakpoint = breakpoints[classes.split(' ').filter(function (cls) {
@@ -189,18 +189,18 @@ var getBreakpoint = function getBreakpoint(el) {
 /* --------------------------------- Cookie --------------------------------- */
 
 
-var setCookie = function setCookie(name, value, expire) {
-  var expires = new Date();
+let setCookie = function setCookie(name, value, expire) {
+  let expires = new Date();
   expires.setTime(expires.getTime() + expire);
   document.cookie = "".concat(name, "=").concat(value, ";expires=").concat(expires.toUTCString());
 };
 
-var getCookie = function getCookie(name) {
-  var keyValue = document.cookie.match("(^|;) ?".concat(name, "=([^;]*)(;|$)"));
+let getCookie = function getCookie(name) {
+  let keyValue = document.cookie.match("(^|;) ?".concat(name, "=([^;]*)(;|$)"));
   return keyValue ? keyValue[2] : keyValue;
 };
 
-var settings = {
+let settings = {
   tinymce: {
     theme: 'oxide'
   },
@@ -210,15 +210,15 @@ var settings = {
 };
 /* -------------------------- Chart Initialization -------------------------- */
 
-var newChart = function newChart(chart, config) {
-  var ctx = chart.getContext('2d');
+let newChart = function newChart(chart, config) {
+  let ctx = chart.getContext('2d');
   return new window.Chart(ctx, config);
 };
 /* ---------------------------------- Store --------------------------------- */
 
 
-var getItemFromStore = function getItemFromStore(key, defaultValue) {
-  var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
+let getItemFromStore = function getItemFromStore(key, defaultValue) {
+  let store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
 
   try {
     return JSON.parse(store.getItem(key)) || defaultValue;
@@ -227,22 +227,22 @@ var getItemFromStore = function getItemFromStore(key, defaultValue) {
   }
 };
 
-var setItemToStore = function setItemToStore(key, payload) {
-  var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
+let setItemToStore = function setItemToStore(key, payload) {
+  let store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
   return store.setItem(key, payload);
 };
 
-var getStoreSpace = function getStoreSpace() {
-  var store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : localStorage;
+let getStoreSpace = function getStoreSpace() {
+  let store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : localStorage;
   return parseFloat((escape(encodeURIComponent(JSON.stringify(store))).length / (1024 * 1024)).toFixed(2));
 };
 /* get Dates between */
 
 
-var getDates = function getDates(startDate, endDate) {
-  var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000 * 60 * 60 * 24;
-  var duration = endDate - startDate;
-  var steps = duration / interval;
+let getDates = function getDates(startDate, endDate) {
+  let interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000 * 60 * 60 * 24;
+  let duration = endDate - startDate;
+  let steps = duration / interval;
   return Array.from({
     length: steps + 1
   }, function (v, i) {
@@ -250,8 +250,8 @@ var getDates = function getDates(startDate, endDate) {
   });
 };
 
-var getPastDates = function getPastDates(duration) {
-  var days;
+let getPastDates = function getPastDates(duration) {
+  let days;
 
   switch (duration) {
     case 'week':
@@ -270,19 +270,19 @@ var getPastDates = function getPastDates(duration) {
       days = duration;
   }
 
-  var date = new Date();
-  var endDate = date;
-  var startDate = new Date(new Date().setDate(date.getDate() - (days - 1)));
+  let date = new Date();
+  let endDate = date;
+  let startDate = new Date(new Date().setDate(date.getDate() - (days - 1)));
   return getDates(startDate, endDate);
 };
 /* Get Random Number */
 
 
-var getRandomNumber = function getRandomNumber(min, max) {
+let getRandomNumber = function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-var utils = {
+let utils = {
   docReady: docReady,
   resize: resize,
   isIterableArray: isIterableArray,
@@ -316,10 +316,10 @@ var utils = {
 
 /* -------------------------------------------------------------------------- */
 
-var detectorInit = function detectorInit() {
-  var _window = window,
+let detectorInit = function detectorInit() {
+  let _window = window,
       is = _window.is;
-  var html = document.querySelector('html');
+  let html = document.querySelector('html');
   is.opera() && addClass(html, 'opera');
   is.mobile() && addClass(html, 'mobile');
   is.firefox() && addClass(html, 'firefox');
@@ -339,7 +339,7 @@ var detectorInit = function detectorInit() {
 -----------------------------------------------*/
 
 
-var DomNode = /*#__PURE__*/function () {
+let DomNode = /*#__PURE__*/function () {
   function DomNode(node) {
     _classCallCheck(this, DomNode);
 
@@ -413,7 +413,7 @@ var DomNode = /*#__PURE__*/function () {
   }, {
     key: "camelize",
     value: function camelize(str) {
-      var text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
+      let text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
         return c ? c.toUpperCase() : '';
       });
       return "".concat(text.substr(0, 1).toLowerCase()).concat(text.substr(1));
@@ -429,7 +429,7 @@ var DomNode = /*#__PURE__*/function () {
 /* -------------------------------------------------------------------------- */
 
 
-var anchors = new window.AnchorJS();
+let anchors = new window.AnchorJS();
 anchors.options = {
   icon: '#'
 };
@@ -438,7 +438,7 @@ anchors.add('[data-anchor]');
 |   Bulk Select
 -----------------------------------------------*/
 
-var BulkSelect = /*#__PURE__*/function () {
+let BulkSelect = /*#__PURE__*/function () {
   function BulkSelect(element, option) {
     _classCallCheck(this, BulkSelect);
 
@@ -458,7 +458,7 @@ var BulkSelect = /*#__PURE__*/function () {
   }, {
     key: "attachNodes",
     value: function attachNodes() {
-      var _this$element$data = this.element.data('bulk-select'),
+      let _this$element$data = this.element.data('bulk-select'),
           body = _this$element$data.body,
           actions = _this$element$data.actions,
           replacedElement = _this$element$data.replacedElement;
@@ -470,7 +470,7 @@ var BulkSelect = /*#__PURE__*/function () {
   }, {
     key: "clickBulkCheckbox",
     value: function clickBulkCheckbox() {
-      var _this = this;
+      let _this = this;
 
       // Handle click event in bulk checkbox
       this.element.on('click', function () {
@@ -482,7 +482,7 @@ var BulkSelect = /*#__PURE__*/function () {
           _this.removeBulkCheck();
 
           _this.bulkSelectRows.forEach(function (el) {
-            var rowCheck = new DomNode(el);
+            let rowCheck = new DomNode(el);
             rowCheck.setProp('checked', false);
             rowCheck.setAttribute('checked', false);
           });
@@ -493,7 +493,7 @@ var BulkSelect = /*#__PURE__*/function () {
         _this.toggleDisplay();
 
         _this.bulkSelectRows.forEach(function (el) {
-          var rowCheck = new DomNode(el);
+          let rowCheck = new DomNode(el);
           rowCheck.setProp('checked', _this.element.attr('checked'));
           rowCheck.setAttribute('checked', _this.element.attr('checked'));
         });
@@ -502,11 +502,11 @@ var BulkSelect = /*#__PURE__*/function () {
   }, {
     key: "clickRowCheckbox",
     value: function clickRowCheckbox() {
-      var _this2 = this;
+      let _this2 = this;
 
       // Handle click event in checkbox of each row
       this.bulkSelectRows.forEach(function (el) {
-        var rowCheck = new DomNode(el);
+        let rowCheck = new DomNode(el);
         rowCheck.on('click', function () {
           if (_this2.element.attr('indeterminate') !== 'indeterminate') {
             _this2.element.setProp('indeterminate', true);
@@ -560,11 +560,11 @@ var BulkSelect = /*#__PURE__*/function () {
 }();
 
 function bulkSelectInit() {
-  var bulkSelects = document.querySelectorAll('[data-bulk-select');
+  let bulkSelects = document.querySelectorAll('[data-bulk-select');
 
   if (bulkSelects.length) {
     bulkSelects.forEach(function (el) {
-      var bulkSelect = new BulkSelect(el);
+      let bulkSelect = new BulkSelect(el);
       bulkSelect.init();
     });
   }
@@ -574,14 +574,14 @@ function bulkSelectInit() {
 -----------------------------------------------*/
 
 
-var chatInit = function chatInit() {
-  var Events = {
+let chatInit = function chatInit() {
+  let Events = {
     CLICK: 'click',
     SHOWN_BS_TAB: 'shown.bs.tab',
     KEYUP: 'keyup',
     EMOJI: 'emoji'
   };
-  var Selector = {
+  let Selector = {
     CHAT_SIDEBAR: '.chat-sidebar',
     CHAT_CONTACT: '.chat-contact',
     CHAT_CONTENT_SCROLL_AREA: '.chat-content-scroll-area',
@@ -593,23 +593,23 @@ var chatInit = function chatInit() {
     CONVERSATION_INFO: '.conversation-info',
     CONTACTS_LIST_SHOW: '.contacts-list-show'
   };
-  var ClassName = {
+  let ClassName = {
     UNREAD_MESSAGE: 'unread-message',
     TEXT_PRIMARY: 'text-primary',
     SHOW: 'show'
   };
-  var DATA_KEY = {
+  let DATA_KEY = {
     INDEX: 'index'
   };
-  var $chatSidebar = document.querySelector(Selector.CHAT_SIDEBAR);
-  var $chatContact = document.querySelectorAll(Selector.CHAT_CONTACT);
-  var $chatEmojiarea = document.querySelector(Selector.CHAT_EMOJIAREA);
-  var $btnSend = document.querySelector(Selector.BTN_SEND);
-  var $currentChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA); // Set scrollbar position
+  let $chatSidebar = document.querySelector(Selector.CHAT_SIDEBAR);
+  let $chatContact = document.querySelectorAll(Selector.CHAT_CONTACT);
+  let $chatEmojiarea = document.querySelector(Selector.CHAT_EMOJIAREA);
+  let $btnSend = document.querySelector(Selector.BTN_SEND);
+  let $currentChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA); // Set scrollbar position
 
-  var setScrollbarPosition = function setScrollbarPosition($chatArea) {
+  let setScrollbarPosition = function setScrollbarPosition($chatArea) {
     if ($chatArea) {
-      var scrollArea = $chatArea;
+      let scrollArea = $chatArea;
       scrollArea.scrollTop = $chatArea.scrollHeight;
     }
   };
@@ -619,7 +619,7 @@ var chatInit = function chatInit() {
   }, 700);
   document.querySelectorAll(Selector.CHAT_CONTACT).forEach(function (el) {
     el.addEventListener(Events.CLICK, function (e) {
-      var $this = e.currentTarget;
+      let $this = e.currentTarget;
       $this.classList.add('active'); // Hide contact list sidebar on responsive
 
       window.innerWidth < 768 && !e.target.classList.contains('hover-actions') && ($chatSidebar.style.left = '-100%'); // Remove unread-message class when read
@@ -631,7 +631,7 @@ var chatInit = function chatInit() {
     el.addEventListener(Events.SHOWN_BS_TAB, function () {
       $chatEmojiarea.innerHTML = '';
       $btnSend.classList.remove(ClassName.TEXT_PRIMARY);
-      var TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
+      let TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
       setScrollbarPosition(TargetChatArea);
     });
   }); // change send button color on
@@ -649,7 +649,7 @@ var chatInit = function chatInit() {
         $btnSend.classList.add(ClassName.TEXT_PRIMARY);
       }
 
-      var TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
+      let TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
       setScrollbarPosition(TargetChatArea);
     });
   } // Open conversation info sidebar
@@ -657,9 +657,9 @@ var chatInit = function chatInit() {
 
   $chatEmojiarea && document.querySelectorAll(Selector.BTN_INFO).forEach(function (el) {
     el.addEventListener(Events.CLICK, function (e) {
-      var $this = e.currentTarget;
-      var dataIndex = utils.getData($this, DATA_KEY.INDEX);
-      var $info = document.querySelector("".concat(Selector.CONVERSATION_INFO, "[data-").concat(DATA_KEY.INDEX, "='").concat(dataIndex, "']"));
+      let $this = e.currentTarget;
+      let dataIndex = utils.getData($this, DATA_KEY.INDEX);
+      let $info = document.querySelector("".concat(Selector.CONVERSATION_INFO, "[data-").concat(DATA_KEY.INDEX, "='").concat(dataIndex, "']"));
       $info.classList.toggle(ClassName.SHOW);
     });
   }); // Show contact list sidebar on responsive
@@ -671,7 +671,7 @@ var chatInit = function chatInit() {
   }); // Set scrollbar area height on resize
 
   utils.resize(function () {
-    var TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
+    let TargetChatArea = document.querySelector(Selector.CHAT_CONTENT_SCROLL_AREA_ACTIVE);
     setScrollbarPosition(TargetChatArea);
   }); // Emoji append in message text
 
@@ -686,12 +686,12 @@ var chatInit = function chatInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var choicesInit = function choicesInit() {
+let choicesInit = function choicesInit() {
   if (window.Choices) {
-    var elements = document.querySelectorAll('.js-choice');
+    let elements = document.querySelectorAll('.js-choice');
     elements.forEach(function (item) {
-      var userOptions = utils.getData(item, 'options');
-      var choices = new window.Choices(item, _objectSpread({
+      let userOptions = utils.getData(item, 'options');
+      let choices = new window.Choices(item, _objectSpread({
         itemSelectText: ''
       }, userOptions));
       return choices;
@@ -703,39 +703,39 @@ var choicesInit = function choicesInit() {
 -----------------------------------------------*/
 
 
-var cookieNoticeInit = function cookieNoticeInit() {
-  var Selector = {
+let cookieNoticeInit = function cookieNoticeInit() {
+  let Selector = {
     NOTICE: '.notice',
     DATA_TOGGLE_Notice: '[data-bs-toggle="notice"]'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     HIDDEN_BS_TOAST: 'hidden.bs.toast'
   };
-  var DataKeys = {
+  let DataKeys = {
     OPTIONS: 'options'
   };
-  var ClassNames = {
+  let ClassNames = {
     HIDE: 'hide'
   };
-  var notices = document.querySelectorAll(Selector.NOTICE);
-  var showNotice = true;
+  let notices = document.querySelectorAll(Selector.NOTICE);
+  let showNotice = true;
   notices.forEach(function (item) {
-    var notice = new window.bootstrap.Toast(item);
+    let notice = new window.bootstrap.Toast(item);
 
-    var options = _objectSpread({
+    let options = _objectSpread({
       autoShow: false,
       autoShowDelay: 0,
       showOnce: false,
       cookieExpireTime: 3600000
     }, utils.getData(item, DataKeys.OPTIONS));
 
-    var showOnce = options.showOnce,
+    let showOnce = options.showOnce,
         autoShow = options.autoShow,
         autoShowDelay = options.autoShowDelay;
 
     if (showOnce) {
-      var hasNotice = utils.getCookie('notice');
+      let hasNotice = utils.getCookie('notice');
       showNotice = hasNotice === null;
     }
 
@@ -746,9 +746,9 @@ var cookieNoticeInit = function cookieNoticeInit() {
     }
 
     item.addEventListener(Events.HIDDEN_BS_TOAST, function (e) {
-      var el = e.currentTarget;
+      let el = e.currentTarget;
 
-      var toastOptions = _objectSpread({
+      let toastOptions = _objectSpread({
         cookieExpireTime: 3600000,
         showOnce: false
       }, utils.getData(el, DataKeys.OPTIONS));
@@ -756,14 +756,14 @@ var cookieNoticeInit = function cookieNoticeInit() {
       toastOptions.showOnce && utils.setCookie('notice', false, toastOptions.cookieExpireTime);
     });
   });
-  var btnNoticeToggle = document.querySelector(Selector.DATA_TOGGLE_Notice);
+  let btnNoticeToggle = document.querySelector(Selector.DATA_TOGGLE_Notice);
   btnNoticeToggle && btnNoticeToggle.addEventListener(Events.CLICK, function (_ref) {
-    var currentTarget = _ref.currentTarget;
-    var id = currentTarget.getAttribute('href');
-    var notice = new window.bootstrap.Toast(document.querySelector(id));
+    let currentTarget = _ref.currentTarget;
+    let id = currentTarget.getAttribute('href');
+    let notice = new window.bootstrap.Toast(document.querySelector(id));
     /*eslint-disable-next-line*/
 
-    var el = notice._element;
+    let el = notice._element;
     utils.hasClass(el, ClassNames.HIDE) ? notice.show() : notice.hide();
   });
 };
@@ -774,15 +774,15 @@ var cookieNoticeInit = function cookieNoticeInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var copyLink = function copyLink() {
-  var copyLinkModal = document.getElementById('copyLinkModal');
+let copyLink = function copyLink() {
+  let copyLinkModal = document.getElementById('copyLinkModal');
   copyLinkModal && copyLinkModal.addEventListener('shown.bs.modal', function () {
-    var invitationLink = document.querySelector('.invitation-link');
+    let invitationLink = document.querySelector('.invitation-link');
     invitationLink.select();
   });
-  var copyButtons = document.querySelectorAll('[data-copy]');
+  let copyButtons = document.querySelectorAll('[data-copy]');
   copyButtons && copyButtons.forEach(function (button) {
-    var tooltip = new window.bootstrap.Tooltip(button);
+    let tooltip = new window.bootstrap.Tooltip(button);
     button.addEventListener('mouseover', function () {
       return tooltip.show();
     });
@@ -791,13 +791,13 @@ var copyLink = function copyLink() {
     });
     button.addEventListener('click', function (e) {
       e.stopPropagation();
-      var el = e.target;
+      let el = e.target;
       el.setAttribute('data-original-title', 'Copied');
       tooltip.show();
       el.setAttribute('data-original-title', 'Copy to clipboard');
       tooltip.update();
-      var inputID = utils.getData(el, 'copy');
-      var input = document.querySelector(inputID);
+      let inputID = utils.getData(el, 'copy');
+      let input = document.querySelector(inputID);
       input.select();
       document.execCommand('copy');
     });
@@ -810,15 +810,15 @@ var copyLink = function copyLink() {
 /* -------------------------------------------------------------------------- */
 
 
-var countupInit = function countupInit() {
+let countupInit = function countupInit() {
   if (window.countUp) {
-    var countups = document.querySelectorAll('[data-countup]');
+    let countups = document.querySelectorAll('[data-countup]');
     countups.forEach(function (node) {
-      var _utils$getData = utils.getData(node, 'countup'),
+      let _utils$getData = utils.getData(node, 'countup'),
           endValue = _utils$getData.endValue,
           options = _objectWithoutProperties(_utils$getData, ["endValue"]);
 
-      var countUp = new window.countUp.CountUp(node, endValue, _objectSpread({
+      let countUp = new window.countUp.CountUp(node, endValue, _objectSpread({
         duration: 5
       }, options));
 
@@ -837,8 +837,8 @@ var countupInit = function countupInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var draggableInit = function draggableInit() {
-  var Selectors = {
+let draggableInit = function draggableInit() {
+  let Selectors = {
     BODY: 'body',
     KANBAN_CONTAINER: '.kanban-container',
     KABNBAN_COLUMN: '.kanban-column',
@@ -846,20 +846,20 @@ var draggableInit = function draggableInit() {
     KANBAN_ITEM: '.kanban-item',
     ADD_CARD_FORM: '.add-card-form'
   };
-  var Events = {
+  let Events = {
     DRAG_START: 'drag:start',
     DRAG_STOP: 'drag:stop'
   };
-  var ClassNames = {
+  let ClassNames = {
     FORM_ADDED: 'form-added'
   };
-  var columns = document.querySelectorAll(Selectors.KABNBAN_COLUMN);
-  var columnContainers = document.querySelectorAll(Selectors.KANBAN_ITEMS_CONTAINER);
-  var container = document.querySelector(Selectors.KANBAN_CONTAINER);
+  let columns = document.querySelectorAll(Selectors.KABNBAN_COLUMN);
+  let columnContainers = document.querySelectorAll(Selectors.KANBAN_ITEMS_CONTAINER);
+  let container = document.querySelector(Selectors.KANBAN_CONTAINER);
 
   if (columnContainers.length) {
     // Initialize Sortable
-    var sortable = new window.Draggable.Sortable(columnContainers, {
+    let sortable = new window.Draggable.Sortable(columnContainers, {
       draggable: Selectors.KANBAN_ITEM,
       delay: 200,
       mirror: {
@@ -879,9 +879,9 @@ var draggableInit = function draggableInit() {
     }); // Place forms and other contents bottom of the sortable container
 
     sortable.on(Events.DRAG_STOP, function (_ref2) {
-      var el = _ref2.data.source;
-      var columnContainer = el.closest(Selectors.KANBAN_ITEMS_CONTAINER);
-      var form = columnContainer.querySelector(Selectors.ADD_CARD_FORM);
+      let el = _ref2.data.source;
+      let columnContainer = el.closest(Selectors.KANBAN_ITEMS_CONTAINER);
+      let form = columnContainer.querySelector(Selectors.ADD_CARD_FORM);
       !el.nextElementSibling && columnContainer.appendChild(form);
     });
   }
@@ -891,20 +891,20 @@ var draggableInit = function draggableInit() {
 -----------------------------------------------*/
 
 
-var dropdownMenuInit = function dropdownMenuInit() {
+let dropdownMenuInit = function dropdownMenuInit() {
   // Only for ios
   if (window.is.ios()) {
-    var Event = {
+    let Event = {
       SHOWN_BS_DROPDOWN: 'shown.bs.dropdown',
       HIDDEN_BS_DROPDOWN: 'hidden.bs.dropdown'
     };
-    var Selector = {
+    let Selector = {
       TABLE_RESPONSIVE: '.table-responsive',
       DROPDOWN_MENU: '.dropdown-menu'
     };
     document.querySelectorAll(Selector.TABLE_RESPONSIVE).forEach(function (table) {
       table.addEventListener(Event.SHOWN_BS_DROPDOWN, function (e) {
-        var t = e.currentTarget;
+        let t = e.currentTarget;
 
         if (t.scrollWidth > t.clientWidth) {
           t.style.paddingBottom = "".concat(e.target.nextElementSibling.clientHeight, "px");
@@ -925,13 +925,13 @@ var dropdownMenuInit = function dropdownMenuInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var dropdownOnHover = function dropdownOnHover() {
-  var navbarArea = document.querySelector('[data-top-nav-dropdowns]');
+let dropdownOnHover = function dropdownOnHover() {
+  let navbarArea = document.querySelector('[data-top-nav-dropdowns]');
 
   if (navbarArea) {
     navbarArea.addEventListener('mouseover', function (e) {
       if (e.target.className.includes('dropdown-toggle') && window.innerWidth > 992) {
-        var dropdownInstance = new window.bootstrap.Dropdown(e.target);
+        let dropdownInstance = new window.bootstrap.Dropdown(e.target);
         /* eslint-disable no-underscore-dangle */
 
         dropdownInstance._element.classList.add('show');
@@ -954,34 +954,34 @@ var dropdownOnHover = function dropdownOnHover() {
 
 window.Dropzone ? window.Dropzone.autoDiscover = false : '';
 
-var dropzoneInit = function dropzoneInit() {
-  var merge = window._.merge;
-  var Selector = {
+let dropzoneInit = function dropzoneInit() {
+  let merge = window._.merge;
+  let Selector = {
     DROPZONE: '[data-dropzone]',
     DZ_ERROR_MESSAGE: '.dz-error-message',
     DZ_PREVIEW: '.dz-preview',
     DZ_PROGRESS: '.dz-preview .dz-preview-cover .dz-progress',
     DZ_PREVIEW_COVER: '.dz-preview .dz-preview-cover'
   };
-  var ClassName = {
+  let ClassName = {
     DZ_FILE_PROCESSING: 'dz-file-processing',
     DZ_FILE_COMPLETE: 'dz-file-complete',
     DZ_COMPLETE: 'dz-complete',
     DZ_PROCESSING: 'dz-processing'
   };
-  var DATA_KEY = {
+  let DATA_KEY = {
     OPTIONS: 'options'
   };
-  var Events = {
+  let Events = {
     ADDED_FILE: 'addedfile',
     COMPLETE: 'complete'
   };
-  var dropzones = document.querySelectorAll(Selector.DROPZONE);
+  let dropzones = document.querySelectorAll(Selector.DROPZONE);
   !!dropzones.length && dropzones.forEach(function (item) {
-    var userOptions = utils.getData(item, DATA_KEY.OPTIONS);
+    let userOptions = utils.getData(item, DATA_KEY.OPTIONS);
     userOptions = userOptions || {};
-    var data = userOptions.data ? userOptions.data : {};
-    var options = merge({
+    let data = userOptions.data ? userOptions.data : {};
+    let options = merge({
       url: '/assets/php/',
       addRemoveLinks: false,
       previewsContainer: item.querySelector(Selector.DZ_PREVIEW),
@@ -991,11 +991,11 @@ var dropzoneInit = function dropzoneInit() {
       maxFilesize: 20,
       filesizeBase: 1000,
       init: function init() {
-        var thisDropzone = this;
+        let thisDropzone = this;
 
         if (data.length) {
           data.forEach(function (v) {
-            var mockFile = {
+            let mockFile = {
               name: v.name,
               size: v.size
             };
@@ -1019,7 +1019,7 @@ var dropzoneInit = function dropzoneInit() {
     }, userOptions); // eslint-disable-next-line
 
     item.querySelector(Selector.DZ_PREVIEW).innerHTML = "";
-    var dropzone = new window.Dropzone(item, options);
+    let dropzone = new window.Dropzone(item, options);
     dropzone.on(Events.ADDED_FILE, function () {
       if (item.querySelector(Selector.DZ_PREVIEW_COVER)) {
         item.querySelector(Selector.DZ_PREVIEW_COVER).classList.remove(ClassName.DZ_FILE_COMPLETE);
@@ -1043,10 +1043,10 @@ var dropzoneInit = function dropzoneInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var formValidationInit = function formValidationInit() {
+let formValidationInit = function formValidationInit() {
   // Example starter JavaScript for disabling form submissions if there are invalid fields
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation'); // Loop over them and prevent submission
+  let forms = document.querySelectorAll('.needs-validation'); // Loop over them and prevent submission
 
   Array.prototype.slice.call(forms).forEach(function (form) {
     form.addEventListener('submit', function (event) {
@@ -1066,12 +1066,12 @@ var formValidationInit = function formValidationInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var merge = window._.merge;
+let merge = window._.merge;
 
-var renderCalendar = function renderCalendar(el, option) {
-  var _document$querySelect;
+let renderCalendar = function renderCalendar(el, option) {
+  let _document$querySelect;
 
-  var options = merge({
+  let options = merge({
     initialView: 'dayGridMonth',
     editable: true,
     direction: document.querySelector('html').getAttribute('dir'),
@@ -1086,7 +1086,7 @@ var renderCalendar = function renderCalendar(el, option) {
       day: 'Day'
     }
   }, option);
-  var calendar = new window.FullCalendar.Calendar(el, options);
+  let calendar = new window.FullCalendar.Calendar(el, options);
   calendar.render();
   (_document$querySelect = document.querySelector('.navbar-vertical-toggle')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.addEventListener('navbar.vertical.toggle', function () {
     return calendar.updateSize();
@@ -1094,15 +1094,15 @@ var renderCalendar = function renderCalendar(el, option) {
   return calendar;
 };
 
-var fullCalendarInit = function fullCalendarInit() {
-  var calendars = document.querySelectorAll('[data-calendar]');
+let fullCalendarInit = function fullCalendarInit() {
+  let calendars = document.querySelectorAll('[data-calendar]');
   calendars.forEach(function (item) {
-    var options = utils.getData(item, 'options');
+    let options = utils.getData(item, 'options');
     renderCalendar(item, options);
   });
 };
 
-var fullCalendar = {
+let fullCalendar = {
   renderCalendar: renderCalendar,
   fullCalendarInit: fullCalendarInit
 };
@@ -1112,7 +1112,7 @@ var fullCalendar = {
 
 /* -------------------------------------------------------------------------- */
 
-var glightboxInit = function glightboxInit() {
+let glightboxInit = function glightboxInit() {
   if (window.GLightbox) {
     window.GLightbox({
       selector: '[data-gallery]'
@@ -1125,12 +1125,12 @@ var glightboxInit = function glightboxInit() {
 
 
 function initMap() {
-  var themeController = document.body;
-  var $googlemaps = document.querySelectorAll('.googlemap');
+  let themeController = document.body;
+  let $googlemaps = document.querySelectorAll('.googlemap');
 
   if ($googlemaps.length && window.google) {
     // Visit https://snazzymaps.com/ for more themes
-    var mapStyles = {
+    let mapStyles = {
       Default: [{
         featureType: 'water',
         elementType: 'geometry',
@@ -2039,16 +2039,16 @@ function initMap() {
       }]
     };
     $googlemaps.forEach(function (itm) {
-      var latLng = utils.getData(itm, 'latlng').split(',');
-      var markerPopup = itm.innerHTML;
-      var icon = utils.getData(itm, 'icon') ? utils.getData(itm, 'icon') : 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png';
-      var zoom = utils.getData(itm, 'zoom');
-      var mapElement = itm;
-      var mapStyle = utils.getData(itm, 'theme');
+      let latLng = utils.getData(itm, 'latlng').split(',');
+      let markerPopup = itm.innerHTML;
+      let icon = utils.getData(itm, 'icon') ? utils.getData(itm, 'icon') : 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png';
+      let zoom = utils.getData(itm, 'zoom');
+      let mapElement = itm;
+      let mapStyle = utils.getData(itm, 'theme');
 
       if (utils.getData(itm, 'theme') === 'streetview') {
-        var pov = utils.getData(itm, 'pov');
-        var _mapOptions = {
+        let pov = utils.getData(itm, 'pov');
+        let _mapOptions = {
           position: {
             lat: Number(latLng[0]),
             lng: Number(latLng[1])
@@ -2061,17 +2061,17 @@ function initMap() {
         return new window.google.maps.StreetViewPanorama(mapElement, _mapOptions);
       }
 
-      var mapOptions = {
+      let mapOptions = {
         zoom: zoom,
         scrollwheel: utils.getData(itm, 'scrollwheel'),
         center: new window.google.maps.LatLng(latLng[0], latLng[1]),
         styles: localStorage.getItem('theme') === 'dark' ? mapStyles.Cobalt : mapStyles[mapStyle]
       };
-      var map = new window.google.maps.Map(mapElement, mapOptions);
-      var infowindow = new window.google.maps.InfoWindow({
+      let map = new window.google.maps.Map(mapElement, mapOptions);
+      let infowindow = new window.google.maps.InfoWindow({
         content: markerPopup
       });
-      var marker = new window.google.maps.Marker({
+      let marker = new window.google.maps.Marker({
         position: new window.google.maps.LatLng(latLng[0], latLng[1]),
         icon: icon,
         map: map
@@ -2080,7 +2080,7 @@ function initMap() {
         infowindow.open(map, marker);
       });
       themeController && themeController.addEventListener('clickControl', function (_ref3) {
-        var _ref3$detail = _ref3.detail,
+        let _ref3$detail = _ref3.detail,
             control = _ref3$detail.control,
             value = _ref3$detail.value;
 
@@ -2099,14 +2099,14 @@ function initMap() {
 /* -------------------------------------------------------------------------- */
 
 
-var iconCopiedInit = function iconCopiedInit() {
-  var iconList = document.getElementById('icon-list');
-  var iconCopiedToast = document.getElementById('icon-copied-toast');
-  var iconCopiedToastInstance = new window.bootstrap.Toast(iconCopiedToast);
+let iconCopiedInit = function iconCopiedInit() {
+  let iconList = document.getElementById('icon-list');
+  let iconCopiedToast = document.getElementById('icon-copied-toast');
+  let iconCopiedToastInstance = new window.bootstrap.Toast(iconCopiedToast);
 
   if (iconList) {
     iconList.addEventListener('click', function (e) {
-      var el = e.target;
+      let el = e.target;
 
       if (el.tagName === 'INPUT') {
         el.select();
@@ -2125,8 +2125,8 @@ var iconCopiedInit = function iconCopiedInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var kanbanInit = function kanbanInit() {
-  var Selectors = {
+let kanbanInit = function kanbanInit() {
+  let Selectors = {
     KANBAN_COLUMN: '.kanban-column',
     KANBAN_ITEMS_CONTAINER: '.kanban-items-container',
     BTN_ADD_CARD: '.btn-add-card',
@@ -2137,26 +2137,26 @@ var kanbanInit = function kanbanInit() {
     INPUT_ADD_CARD: '[data-input="add-card"]',
     INPUT_ADD_LIST: '[data-input="add-list"]'
   };
-  var ClassNames = {
+  let ClassNames = {
     FORM_ADDED: 'form-added',
     D_NONE: 'd-none'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     SHOW_BS_COLLAPSE: 'show.bs.collapse',
     SHOWN_BS_COLLAPSE: 'shown.bs.collapse'
   };
-  var addCardButtons = document.querySelectorAll(Selectors.BTN_ADD_CARD);
-  var formHideButtons = document.querySelectorAll(Selectors.BTN_FORM_HIDE);
-  var addListForm = document.querySelector(Selectors.ADD_LIST_FORM);
-  var collapseDismissButtons = document.querySelectorAll(Selectors.BTN_COLLAPSE_DISMISS); // Show add card form and place scrollbar bottom of the list
+  let addCardButtons = document.querySelectorAll(Selectors.BTN_ADD_CARD);
+  let formHideButtons = document.querySelectorAll(Selectors.BTN_FORM_HIDE);
+  let addListForm = document.querySelector(Selectors.ADD_LIST_FORM);
+  let collapseDismissButtons = document.querySelectorAll(Selectors.BTN_COLLAPSE_DISMISS); // Show add card form and place scrollbar bottom of the list
 
   addCardButtons && addCardButtons.forEach(function (button) {
     button.addEventListener(Events.CLICK, function (_ref4) {
-      var el = _ref4.currentTarget;
-      var column = el.closest(Selectors.KANBAN_COLUMN);
-      var container = column.querySelector(Selectors.KANBAN_ITEMS_CONTAINER);
-      var scrollHeight = container.scrollHeight;
+      let el = _ref4.currentTarget;
+      let column = el.closest(Selectors.KANBAN_COLUMN);
+      let container = column.querySelector(Selectors.KANBAN_ITEMS_CONTAINER);
+      let scrollHeight = container.scrollHeight;
       column.classList.add(ClassNames.FORM_ADDED);
       container.querySelector(Selectors.INPUT_ADD_CARD).focus();
       container.scrollTo({
@@ -2167,7 +2167,7 @@ var kanbanInit = function kanbanInit() {
 
   formHideButtons.forEach(function (button) {
     button.addEventListener(Events.CLICK, function (_ref5) {
-      var el = _ref5.currentTarget;
+      let el = _ref5.currentTarget;
       el.closest(Selectors.KANBAN_COLUMN).classList.remove(ClassNames.FORM_ADDED);
     });
   });
@@ -2175,13 +2175,13 @@ var kanbanInit = function kanbanInit() {
   if (addListForm) {
     // Hide add list button when the form is going to show
     addListForm.addEventListener(Events.SHOW_BS_COLLAPSE, function (_ref6) {
-      var el = _ref6.currentTarget;
-      var nextElement = el.nextElementSibling;
+      let el = _ref6.currentTarget;
+      let nextElement = el.nextElementSibling;
       nextElement && nextElement.classList.add(ClassNames.D_NONE);
     }); // Focus input field when the form is shown
 
     addListForm.addEventListener(Events.SHOWN_BS_COLLAPSE, function (_ref7) {
-      var el = _ref7.currentTarget;
+      let el = _ref7.currentTarget;
       el.querySelector(Selectors.INPUT_ADD_LIST).focus();
     });
   } // Hide add list form when the dismiss button is clicked
@@ -2189,9 +2189,9 @@ var kanbanInit = function kanbanInit() {
 
   collapseDismissButtons.forEach(function (button) {
     button.addEventListener(Events.CLICK, function (_ref8) {
-      var el = _ref8.currentTarget;
-      var collapseElement = el.closest(Selectors.COLLAPSE);
-      var collapse = window.bootstrap.Collapse.getInstance(collapseElement);
+      let el = _ref8.currentTarget;
+      let collapseElement = el.closest(Selectors.COLLAPSE);
+      let collapse = window.bootstrap.Collapse.getInstance(collapseElement);
       utils.hasClass(collapseElement.nextElementSibling, ClassNames.D_NONE) && collapseElement.nextElementSibling.classList.remove(ClassNames.D_NONE);
       collapse.hide();
     });
@@ -2204,8 +2204,8 @@ var kanbanInit = function kanbanInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var leafletActiveUserInit = function leafletActiveUserInit() {
-  var points = [{
+let leafletActiveUserInit = function leafletActiveUserInit() {
+  let points = [{
     lat: 53.958332,
     "long": -1.080278,
     name: 'Diana Meyer',
@@ -3179,22 +3179,22 @@ var leafletActiveUserInit = function leafletActiveUserInit() {
     "long": -72.099998,
     name: '299'
   }];
-  var _window2 = window,
+  let _window2 = window,
       L = _window2.L;
-  var mapContainer = document.getElementById('map');
+  let mapContainer = document.getElementById('map');
 
   if (L && mapContainer) {
-    var getFilterColor = function getFilterColor() {
+    let getFilterColor = function getFilterColor() {
       return localStorage.getItem('theme') === 'dark' ? ['invert:98%', 'grayscale:69%', 'bright:89%', 'contrast:111%', 'hue:205deg', 'saturate:1000%'] : ['bright:101%', 'contrast:101%', 'hue:23deg', 'saturate:225%'];
     };
 
-    var tileLayerTheme = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-    var tiles = L.tileLayer.colorFilter(tileLayerTheme, {
+    let tileLayerTheme = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+    let tiles = L.tileLayer.colorFilter(tileLayerTheme, {
       attribution: null,
       transparent: true,
       filter: getFilterColor()
     });
-    var map = L.map('map', {
+    let map = L.map('map', {
       center: L.latLng(10.737, 0),
       zoom: 0,
       layers: [tiles],
@@ -3203,25 +3203,25 @@ var leafletActiveUserInit = function leafletActiveUserInit() {
       dragging: !L.Browser.mobile,
       tap: !L.Browser.mobile
     });
-    var mcg = L.markerClusterGroup({
+    let mcg = L.markerClusterGroup({
       chunkedLoading: false,
       spiderfyOnMaxZoom: false
     });
     points.map(function (point) {
-      var name = point.name,
+      let name = point.name,
           location = point.location,
           street = point.street;
-      var icon = L.icon({
+      let icon = L.icon({
         iconUrl: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAACXBIWXMAAAFgAAABYAEg2RPaAAADpElEQVRYCZ1XS1LbQBBtybIdiMEJKSpUqihgEW/xDdARyAnirOIl3MBH8NK7mBvkBpFv4Gy9IRSpFIQiRPyNfqkeZkY9HwmFt7Lm06+7p/vN2MmyDIrQ6QebALAHAD4AbFuWfQeAAACGs5H/w5jlsJJw4wMA+GhMFuMA99jIDJJOP+ihZwDQFmNuowWO1wS3viDXpdEdZPEc0odruj0EgN5s5H8tJOEEX8R3rbkMtcU34NTqhe5nSQTJ7Tkk80s6/Gk28scGiULguFBffgdufdEwWoQ0uoXo8hdAlooVH0REjISfwZSlyHGh0V5n6aHAtKTxXI5g6nQnMH0P4bEgwtR18Yw8Pj8QZ4ARUAI0Hl+fQZZGisGEBVwHr7XKzox57DXZ/ij8Cdwe2u057z9/wygOxRl4S2vSUHx1oucaMQGAHTrgtdag9mK5aN+Wx/uAAQ9Zenp/SRce4TpaNbQK4+sTcGqeTB/aIXv3XN5oj2VKqii++U0JunpZ8urxee4hvjqVc2hHpBDXuKKT9XMgVYJ1/1fPGSeaikzgmWWkMIi9bVf8UhotXxzORn5gWFchI8QyttlzjS0qpsaIGY2MMsujV/AUSdcY0dDpB6/EiOPYzclR1CI5mOez3ekHvrFLxa7cR5pTscfrXjk0Vhm5V2PqLUWnH3R5GbPGpMVD7E1ckXesKBQ7AS/vmQ1c0+kHuxpBj98lTCm8pbc5QRJRdZ6qHb/wGryXq3Lxszv+5gySuwvxueXySwYvHEjuQ9ofTGKYlrmK1EsCHMd5SoD7mZ1HHFCBHLNbMEshvrugqWLn01hpVVJhFgVGkDvK7hR6n2B+d9C7xsqWsbkqHv4cCsWezEb+o2SR+SFweUBxfA5wH7kShjKt2vWL57Px3GhIFEezkb8pxvUWHYhotAfCk2AtkEcxoOttrxUWDR5svb1emSQKj0WXK1HYIgFREbiBqmoZcB2RkbE+byMZiosorVgAZF1ID7yQhEs38wa7nUqNDezdlavC2HbBGSQkGgZ8uJVBmzeiKCRRpEa9ilWghORVeGB7BxeSKF5xqbFBkxBrFKUk/JHA7ppENQaCnCjthK+3opCEYyANztXmZN858cDYWSUSHk3A311GAZDvo6deNKUk1EsqnJoQlkYBNlmxQZeaMgmxoUokICoHDce351RCCiuKoirJWEgNOYvQplM2VCLhUqF7jf94rW9kHVUjQeheV4riv0i4ZOzzz/2y/+0KAOAfr4EE4HpCFhwAAAAASUVORK5CYII=\n        "
       });
-      var marker = L.marker(new L.LatLng(point.lat, point["long"]), {
+      let marker = L.marker(new L.LatLng(point.lat, point["long"]), {
         icon: icon
       }, {
         name: name,
         location: location
       });
-      var popupContent = "\n        <h6 class=\"mb-1\">".concat(name, "</h6>\n        <p class=\"m-0 text-500\">").concat(street, ", ").concat(location, "</p>\n      ");
-      var popup = L.popup({
+      let popupContent = "\n        <h6 class=\"mb-1\">".concat(name, "</h6>\n        <p class=\"m-0 text-500\">").concat(street, ", ").concat(location, "</p>\n      ");
+      let popup = L.popup({
         minWidth: 180
       }).setContent(popupContent);
       marker.bindPopup(popup);
@@ -3229,9 +3229,9 @@ var leafletActiveUserInit = function leafletActiveUserInit() {
       return true;
     });
     map.addLayer(mcg);
-    var themeController = document.body;
+    let themeController = document.body;
     themeController.addEventListener('clickControl', function (_ref9) {
-      var _ref9$detail = _ref9.detail,
+      let _ref9$detail = _ref9.detail,
           control = _ref9$detail.control,
           value = _ref9$detail.value;
 
@@ -3250,18 +3250,18 @@ var leafletActiveUserInit = function leafletActiveUserInit() {
 /* eslint-disable no-param-reassign */
 
 
-var togglePaginationButtonDisable = function togglePaginationButtonDisable(button, disabled) {
+let togglePaginationButtonDisable = function togglePaginationButtonDisable(button, disabled) {
   button.disabled = disabled;
   button.classList[disabled ? 'add' : 'remove']('disabled');
 };
 
-var listInit = function listInit() {
+let listInit = function listInit() {
   if (window.List) {
-    var lists = document.querySelectorAll('[data-list]');
+    let lists = document.querySelectorAll('[data-list]');
 
     if (lists.length) {
       lists.forEach(function (el) {
-        var options = utils.getData(el, 'list');
+        let options = utils.getData(el, 'list');
 
         if (options.pagination) {
           options = _objectSpread(_objectSpread({}, options), {}, {
@@ -3271,15 +3271,15 @@ var listInit = function listInit() {
           });
         }
 
-        var paginationButtonNext = el.querySelector('[data-list-pagination="next"]');
-        var paginationButtonPrev = el.querySelector('[data-list-pagination="prev"]');
-        var viewAll = el.querySelector('[data-list-view="*"]');
-        var viewLess = el.querySelector('[data-list-view="less"]');
-        var listInfo = el.querySelector('[data-list-info]');
-        var list = new window.List(el, options); //-------fallback-----------
+        let paginationButtonNext = el.querySelector('[data-list-pagination="next"]');
+        let paginationButtonPrev = el.querySelector('[data-list-pagination="prev"]');
+        let viewAll = el.querySelector('[data-list-view="*"]');
+        let viewLess = el.querySelector('[data-list-view="less"]');
+        let listInfo = el.querySelector('[data-list-info]');
+        let list = new window.List(el, options); //-------fallback-----------
 
         list.on('updated', function (item) {
-          var fallback = el.querySelector('.fallback') || document.getElementById(options.fallback);
+          let fallback = el.querySelector('.fallback') || document.getElementById(options.fallback);
 
           if (fallback) {
             if (item.matchingItems.length === 0) {
@@ -3290,17 +3290,17 @@ var listInit = function listInit() {
           }
         }); // ---------------------------------------
 
-        var totalItem = list.items.length;
-        var itemsPerPage = list.page;
-        var btnDropdownClose = list.listContainer.querySelector('.btn-close');
-        var pageQuantity = Math.ceil(totalItem / itemsPerPage);
-        var numberOfcurrentItems = list.visibleItems.length;
-        var pageCount = 1;
+        let totalItem = list.items.length;
+        let itemsPerPage = list.page;
+        let btnDropdownClose = list.listContainer.querySelector('.btn-close');
+        let pageQuantity = Math.ceil(totalItem / itemsPerPage);
+        let numberOfcurrentItems = list.visibleItems.length;
+        let pageCount = 1;
         btnDropdownClose && btnDropdownClose.addEventListener('search.close', function () {
           list.fuzzySearch('');
         });
 
-        var updateListControls = function updateListControls() {
+        let updateListControls = function updateListControls() {
           listInfo && (listInfo.innerHTML = "".concat(list.i, " to ").concat(numberOfcurrentItems, " of ").concat(totalItem));
           paginationButtonPrev && togglePaginationButtonDisable(paginationButtonPrev, pageCount === 1);
           paginationButtonNext && togglePaginationButtonDisable(paginationButtonNext, pageCount === pageQuantity);
@@ -3318,7 +3318,7 @@ var listInit = function listInit() {
           paginationButtonNext.addEventListener('click', function (e) {
             e.preventDefault();
             pageCount += 1;
-            var nextInitialIndex = list.i + itemsPerPage;
+            let nextInitialIndex = list.i + itemsPerPage;
             nextInitialIndex <= list.size() && list.show(nextInitialIndex, itemsPerPage);
             numberOfcurrentItems += list.visibleItems.length;
             updateListControls();
@@ -3330,13 +3330,13 @@ var listInit = function listInit() {
             e.preventDefault();
             pageCount -= 1;
             numberOfcurrentItems -= list.visibleItems.length;
-            var prevItem = list.i - itemsPerPage;
+            let prevItem = list.i - itemsPerPage;
             prevItem > 0 && list.show(prevItem, itemsPerPage);
             updateListControls();
           });
         }
 
-        var toggleViewBtn = function toggleViewBtn() {
+        let toggleViewBtn = function toggleViewBtn() {
           viewLess.classList.toggle('d-none');
           viewAll.classList.toggle('d-none');
         };
@@ -3377,12 +3377,12 @@ var listInit = function listInit() {
   }
 };
 
-var lottieInit = function lottieInit() {
-  var lotties = document.querySelectorAll('.lottie');
+let lottieInit = function lottieInit() {
+  let lotties = document.querySelectorAll('.lottie');
 
   if (lotties.length) {
     lotties.forEach(function (item) {
-      var options = utils.getData(item, 'options');
+      let options = utils.getData(item, 'options');
       window.bodymovin.loadAnimation(_objectSpread({
         container: item,
         path: '../img/animated-icons/warning-light.json',
@@ -3401,8 +3401,8 @@ var lottieInit = function lottieInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var navbarComboInit = function navbarComboInit() {
-  var Selector = {
+let navbarComboInit = function navbarComboInit() {
+  let Selector = {
     NAVBAR_VERTICAL: '.navbar-vertical',
     NAVBAR_TOP_COMBO: '[data-navbar-top="combo"]',
     COLLAPSE: '.collapse',
@@ -3410,36 +3410,36 @@ var navbarComboInit = function navbarComboInit() {
     NAVBAR_NAV: '.navbar-nav',
     NAVBAR_VERTICAL_DIVIDER: '.navbar-vertical-divider'
   };
-  var ClassName = {
+  let ClassName = {
     FLEX_COLUMN: 'flex-column'
   };
-  var navbarVertical = document.querySelector(Selector.NAVBAR_VERTICAL);
-  var navbarTopCombo = document.querySelector(Selector.NAVBAR_TOP_COMBO);
+  let navbarVertical = document.querySelector(Selector.NAVBAR_VERTICAL);
+  let navbarTopCombo = document.querySelector(Selector.NAVBAR_TOP_COMBO);
 
-  var moveNavContent = function moveNavContent(windowWidth) {
-    var navbarVerticalBreakpoint = utils.getBreakpoint(navbarVertical);
-    var navbarTopBreakpoint = utils.getBreakpoint(navbarTopCombo);
+  let moveNavContent = function moveNavContent(windowWidth) {
+    let navbarVerticalBreakpoint = utils.getBreakpoint(navbarVertical);
+    let navbarTopBreakpoint = utils.getBreakpoint(navbarTopCombo);
 
     if (windowWidth < navbarTopBreakpoint) {
-      var navbarCollapse = navbarTopCombo.querySelector(Selector.COLLAPSE);
-      var navbarTopContent = navbarCollapse.innerHTML;
+      let navbarCollapse = navbarTopCombo.querySelector(Selector.COLLAPSE);
+      let navbarTopContent = navbarCollapse.innerHTML;
 
       if (navbarTopContent) {
-        var targetID = utils.getData(navbarTopCombo, 'move-target');
-        var targetElement = document.querySelector(targetID);
+        let targetID = utils.getData(navbarTopCombo, 'move-target');
+        let targetElement = document.querySelector(targetID);
         navbarCollapse.innerHTML = '';
         targetElement.insertAdjacentHTML('afterend', "\n            <div data-move-container>\n              <div class='navbar-vertical-divider'>\n                <hr class='navbar-vertical-hr' />\n              </div>\n              ".concat(navbarTopContent, "\n            </div>\n          "));
 
         if (navbarVerticalBreakpoint < navbarTopBreakpoint) {
-          var navbarNav = document.querySelector(Selector.DATA_MOVE_CONTAINER).querySelector(Selector.NAVBAR_NAV);
+          let navbarNav = document.querySelector(Selector.DATA_MOVE_CONTAINER).querySelector(Selector.NAVBAR_NAV);
           utils.addClass(navbarNav, ClassName.FLEX_COLUMN);
         }
       }
     } else {
-      var moveableContainer = document.querySelector(Selector.DATA_MOVE_CONTAINER);
+      let moveableContainer = document.querySelector(Selector.DATA_MOVE_CONTAINER);
 
       if (moveableContainer) {
-        var _navbarNav = moveableContainer.querySelector(Selector.NAVBAR_NAV);
+        let _navbarNav = moveableContainer.querySelector(Selector.NAVBAR_NAV);
 
         utils.hasClass(_navbarNav, ClassName.FLEX_COLUMN) && _navbarNav.classList.remove(ClassName.FLEX_COLUMN);
         moveableContainer.querySelector(Selector.NAVBAR_VERTICAL_DIVIDER).remove();
@@ -3461,32 +3461,32 @@ var navbarComboInit = function navbarComboInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
-  var Selector = {
+let navbarDarkenOnScroll = function navbarDarkenOnScroll() {
+  let Selector = {
     NAVBAR: '[data-navbar-darken-on-scroll]',
     NAVBAR_COLLAPSE: '.navbar-collapse',
     NAVBAR_TOGGLER: '.navbar-toggler'
   };
-  var ClassNames = {
+  let ClassNames = {
     COLLAPSED: 'collapsed'
   };
-  var Events = {
+  let Events = {
     SCROLL: 'scroll',
     SHOW_BS_COLLAPSE: 'show.bs.collapse',
     HIDE_BS_COLLAPSE: 'hide.bs.collapse',
     HIDDEN_BS_COLLAPSE: 'hidden.bs.collapse'
   };
-  var DataKey = {
+  let DataKey = {
     NAVBAR_DARKEN_ON_SCROLL: 'navbar-darken-on-scroll'
   };
-  var navbar = document.querySelector(Selector.NAVBAR);
+  let navbar = document.querySelector(Selector.NAVBAR);
 
   function removeNavbarBgClass() {
     navbar.classList.remove('bg-dark');
     navbar.classList.remove('bg-100');
   }
 
-  var toggleThemeClass = function toggleThemeClass(theme) {
+  let toggleThemeClass = function toggleThemeClass(theme) {
     if (theme === 'dark') {
       navbar.classList.remove('navbar-dark');
       navbar.classList.add('navbar-light');
@@ -3497,13 +3497,13 @@ var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
   };
 
   function getBgClassName(name, defaultColorName) {
-    var parent = document.documentElement;
+    let parent = document.documentElement;
 
-    var allColors = _objectSpread(_objectSpread({}, utils.getColors(parent)), utils.getGrays(parent));
+    let allColors = _objectSpread(_objectSpread({}, utils.getColors(parent)), utils.getGrays(parent));
 
-    var colorName = Object.keys(allColors).includes(name) ? name : defaultColorName;
-    var color = allColors[colorName];
-    var bgClassName = "bg-".concat(colorName);
+    let colorName = Object.keys(allColors).includes(name) ? name : defaultColorName;
+    let color = allColors[colorName];
+    let bgClassName = "bg-".concat(colorName);
     return {
       color: color,
       bgClassName: bgClassName
@@ -3511,13 +3511,13 @@ var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
   }
 
   if (navbar) {
-    var theme = localStorage.getItem('theme');
-    var defaultColorName = theme === 'dark' ? '100' : 'dark';
-    var name = utils.getData(navbar, DataKey.NAVBAR_DARKEN_ON_SCROLL);
+    let theme = localStorage.getItem('theme');
+    let defaultColorName = theme === 'dark' ? '100' : 'dark';
+    let name = utils.getData(navbar, DataKey.NAVBAR_DARKEN_ON_SCROLL);
     toggleThemeClass(theme);
-    var themeController = document.body;
+    let themeController = document.body;
     themeController.addEventListener('clickControl', function (_ref10) {
-      var _ref10$detail = _ref10.detail,
+      let _ref10$detail = _ref10.detail,
           control = _ref10$detail.control,
           value = _ref10$detail.value;
 
@@ -3531,27 +3531,27 @@ var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
         }
       }
     });
-    var windowHeight = window.innerHeight;
-    var html = document.documentElement;
-    var navbarCollapse = navbar.querySelector(Selector.NAVBAR_COLLAPSE);
-    var colorRgb = utils.hexToRgb(getBgClassName(name, defaultColorName).color);
+    let windowHeight = window.innerHeight;
+    let html = document.documentElement;
+    let navbarCollapse = navbar.querySelector(Selector.NAVBAR_COLLAPSE);
+    let colorRgb = utils.hexToRgb(getBgClassName(name, defaultColorName).color);
 
-    var _window$getComputedSt = window.getComputedStyle(navbar),
+    let _window$getComputedSt = window.getComputedStyle(navbar),
         backgroundImage = _window$getComputedSt.backgroundImage;
 
-    var transition = 'background-color 0.35s ease';
+    let transition = 'background-color 0.35s ease';
     navbar.style.backgroundImage = 'none'; // Change navbar background color on scroll
 
     window.addEventListener(Events.SCROLL, function () {
-      var scrollTop = html.scrollTop;
-      var alpha = scrollTop / windowHeight * 2;
+      let scrollTop = html.scrollTop;
+      let alpha = scrollTop / windowHeight * 2;
       alpha >= 1 && (alpha = 1);
       navbar.style.backgroundColor = "rgba(".concat(colorRgb[0], ", ").concat(colorRgb[1], ", ").concat(colorRgb[2], ", ").concat(alpha, ")");
       navbar.style.backgroundImage = alpha > 0 || utils.hasClass(navbarCollapse, 'show') ? backgroundImage : 'none';
     }); // Toggle bg class on window resize
 
     utils.resize(function () {
-      var breakPoint = utils.getBreakpoint(navbar);
+      let breakPoint = utils.getBreakpoint(navbar);
 
       if (window.innerWidth > breakPoint) {
         removeNavbarBgClass();
@@ -3587,31 +3587,31 @@ var navbarDarkenOnScroll = function navbarDarkenOnScroll() {
 /* -------------------------------------------------------------------------- */
 
 
-var navbarTopDropShadow = function navbarTopDropShadow() {
-  var Selector = {
+let navbarTopDropShadow = function navbarTopDropShadow() {
+  let Selector = {
     NAVBAR: '.navbar:not(.navbar-vertical)',
     NAVBAR_VERTICAL: '.navbar-vertical',
     NAVBAR_VERTICAL_CONTENT: '.navbar-vertical-content',
     NAVBAR_VERTICAL_COLLAPSE: 'navbarVerticalCollapse'
   };
-  var ClassNames = {
+  let ClassNames = {
     NAVBAR_GLASS_SHADOW: 'navbar-glass-shadow',
     SHOW: 'show'
   };
-  var Events = {
+  let Events = {
     SCROLL: 'scroll',
     SHOW_BS_COLLAPSE: 'show.bs.collapse',
     HIDDEN_BS_COLLAPSE: 'hidden.bs.collapse'
   };
-  var navDropShadowFlag = true;
-  var $navbar = document.querySelector(Selector.NAVBAR);
-  var $navbarVertical = document.querySelector(Selector.NAVBAR_VERTICAL);
-  var $navbarVerticalContent = document.querySelector(Selector.NAVBAR_VERTICAL_CONTENT);
-  var $navbarVerticalCollapse = document.getElementById(Selector.NAVBAR_VERTICAL_COLLAPSE);
-  var html = document.documentElement;
-  var breakPoint = utils.getBreakpoint($navbarVertical);
+  let navDropShadowFlag = true;
+  let $navbar = document.querySelector(Selector.NAVBAR);
+  let $navbarVertical = document.querySelector(Selector.NAVBAR_VERTICAL);
+  let $navbarVerticalContent = document.querySelector(Selector.NAVBAR_VERTICAL_CONTENT);
+  let $navbarVerticalCollapse = document.getElementById(Selector.NAVBAR_VERTICAL_COLLAPSE);
+  let html = document.documentElement;
+  let breakPoint = utils.getBreakpoint($navbarVertical);
 
-  var setDropShadow = function setDropShadow($elem) {
+  let setDropShadow = function setDropShadow($elem) {
     if ($elem.scrollTop > 0 && navDropShadowFlag) {
       $navbar && $navbar.classList.add(ClassNames.NAVBAR_GLASS_SHADOW);
     } else {
@@ -3660,35 +3660,35 @@ var navbarTopDropShadow = function navbarTopDropShadow() {
 /* -------------------------------------------------------------------------- */
 
 
-var handleNavbarVerticalCollapsed = function handleNavbarVerticalCollapsed() {
-  var Selector = {
+let handleNavbarVerticalCollapsed = function handleNavbarVerticalCollapsed() {
+  let Selector = {
     HTML: 'html',
     NAVBAR_VERTICAL_TOGGLE: '.navbar-vertical-toggle',
     NAVBAR_VERTICAL_COLLAPSE: '.navbar-vertical .navbar-collapse',
     ECHART_RESPONSIVE: '[data-echart-responsive]'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     MOUSE_OVER: 'mouseover',
     MOUSE_LEAVE: 'mouseleave',
     NAVBAR_VERTICAL_TOGGLE: 'navbar.vertical.toggle'
   };
-  var ClassNames = {
+  let ClassNames = {
     NAVBAR_VERTICAL_COLLAPSED: 'navbar-vertical-collapsed',
     NAVBAR_VERTICAL_COLLAPSED_HOVER: 'navbar-vertical-collapsed-hover'
   };
-  var navbarVerticalToggle = document.querySelector(Selector.NAVBAR_VERTICAL_TOGGLE);
-  var html = document.querySelector(Selector.HTML);
-  var navbarVerticalCollapse = document.querySelector(Selector.NAVBAR_VERTICAL_COLLAPSE);
+  let navbarVerticalToggle = document.querySelector(Selector.NAVBAR_VERTICAL_TOGGLE);
+  let html = document.querySelector(Selector.HTML);
+  let navbarVerticalCollapse = document.querySelector(Selector.NAVBAR_VERTICAL_COLLAPSE);
 
   if (navbarVerticalToggle) {
     navbarVerticalToggle.addEventListener(Events.CLICK, function (e) {
       navbarVerticalToggle.blur();
       html.classList.toggle(ClassNames.NAVBAR_VERTICAL_COLLAPSED); // Set collapse state on localStorage
 
-      var isNavbarVerticalCollapsed = utils.getItemFromStore('isNavbarVerticalCollapsed');
+      let isNavbarVerticalCollapsed = utils.getItemFromStore('isNavbarVerticalCollapsed');
       utils.setItemToStore('isNavbarVerticalCollapsed', !isNavbarVerticalCollapsed);
-      var event = new CustomEvent(Events.NAVBAR_VERTICAL_TOGGLE);
+      let event = new CustomEvent(Events.NAVBAR_VERTICAL_TOGGLE);
       e.currentTarget.dispatchEvent(event);
     });
   }
@@ -3711,18 +3711,18 @@ var handleNavbarVerticalCollapsed = function handleNavbarVerticalCollapsed() {
 -----------------------------------------------*/
 
 
-var plyrInit = function plyrInit() {
+let plyrInit = function plyrInit() {
   if (window.Plyr) {
-    var plyrs = document.querySelectorAll('.player');
+    let plyrs = document.querySelectorAll('.player');
     plyrs.forEach(function (plyr) {
-      var userOptions = utils.getData(plyr, 'options');
-      var defaultOptions = {
+      let userOptions = utils.getData(plyr, 'options');
+      let defaultOptions = {
         captions: {
           active: true
         }
       };
 
-      var options = window._.merge(defaultOptions, userOptions);
+      let options = window._.merge(defaultOptions, userOptions);
 
       return new window.Plyr(plyr, options);
     });
@@ -3735,8 +3735,8 @@ var plyrInit = function plyrInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var popoverInit = function popoverInit() {
-  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+let popoverInit = function popoverInit() {
+  let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
   popoverTriggerList.map(function (popoverTriggerEl) {
     return new window.bootstrap.Popover(popoverTriggerEl);
   });
@@ -3748,12 +3748,12 @@ var popoverInit = function popoverInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var progressAnimationToggle = function progressAnimationToggle() {
-  var animatedProgress = document.querySelectorAll('[data-progress-animation]');
+let progressAnimationToggle = function progressAnimationToggle() {
+  let animatedProgress = document.querySelectorAll('[data-progress-animation]');
   animatedProgress.forEach(function (progress) {
     progress.addEventListener('click', function (e) {
-      var progressID = utils.getData(e.currentTarget, 'progressAnimation');
-      var $progress = document.getElementById(progressID);
+      let progressID = utils.getData(e.currentTarget, 'progressAnimation');
+      let $progress = document.getElementById(progressID);
       $progress.classList.toggle('progress-bar-animated');
     });
   });
@@ -3763,29 +3763,29 @@ var progressAnimationToggle = function progressAnimationToggle() {
 -----------------------------------------------*/
 
 
-var quantityInit = function quantityInit() {
-  var Selector = {
+let quantityInit = function quantityInit() {
+  let Selector = {
     DATA_QUANTITY_BTN: '[data-quantity] [data-type]',
     DATA_QUANTITY: '[data-quantity]',
     DATA_QUANTITY_INPUT: '[data-quantity] input[type="number"]'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click'
   };
-  var Attributes = {
+  let Attributes = {
     MIN: 'min'
   };
-  var DataKey = {
+  let DataKey = {
     TYPE: 'type'
   };
-  var quantities = document.querySelectorAll(Selector.DATA_QUANTITY_BTN);
+  let quantities = document.querySelectorAll(Selector.DATA_QUANTITY_BTN);
   quantities.forEach(function (quantity) {
     quantity.addEventListener(Events.CLICK, function (e) {
-      var el = e.currentTarget;
-      var type = utils.getData(el, DataKey.TYPE);
-      var numberInput = el.closest(Selector.DATA_QUANTITY).querySelector(Selector.DATA_QUANTITY_INPUT);
-      var min = numberInput.getAttribute(Attributes.MIN);
-      var value = parseInt(numberInput.value, 10);
+      let el = e.currentTarget;
+      let type = utils.getData(el, DataKey.TYPE);
+      let numberInput = el.closest(Selector.DATA_QUANTITY).querySelector(Selector.DATA_QUANTITY_INPUT);
+      let min = numberInput.getAttribute(Attributes.MIN);
+      let value = parseInt(numberInput.value, 10);
 
       if (type === 'plus') {
         value += 1;
@@ -3804,10 +3804,10 @@ var quantityInit = function quantityInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var ratingInit = function ratingInit() {
-  var raters = document.querySelectorAll('[data-rater]');
+let ratingInit = function ratingInit() {
+  let raters = document.querySelectorAll('[data-rater]');
   raters.forEach(function (rater) {
-    var options = _objectSpread({
+    let options = _objectSpread({
       reverse: utils.getItemFromStore('isRTL'),
       starSize: 32,
       step: 0.5,
@@ -3828,14 +3828,14 @@ var ratingInit = function ratingInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var scrollToTop = function scrollToTop() {
+let scrollToTop = function scrollToTop() {
   document.querySelectorAll('[data-anchor] > a, [data-scroll-to]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
-      var _utils$getData2;
+      let _utils$getData2;
 
       e.preventDefault();
-      var el = e.target;
-      var id = utils.getData(el, 'scroll-to') || el.getAttribute('href');
+      let el = e.target;
+      let id = utils.getData(el, 'scroll-to') || el.getAttribute('href');
       window.scroll({
         top: (_utils$getData2 = utils.getData(el, 'offset-top')) !== null && _utils$getData2 !== void 0 ? _utils$getData2 : utils.getOffset(document.querySelector(id)).top - 100,
         left: 0,
@@ -3852,7 +3852,7 @@ var scrollToTop = function scrollToTop() {
 /* -------------------------------------------------------------------------- */
 
 
-var scrollbarInit = function scrollbarInit() {
+let scrollbarInit = function scrollbarInit() {
   Array.prototype.forEach.call(document.querySelectorAll('.scrollbar-overlay'), function (el) {
     return new window.OverlayScrollbars(el, {
       scrollbars: {
@@ -3863,8 +3863,8 @@ var scrollbarInit = function scrollbarInit() {
   });
 };
 
-var searchInit = function searchInit() {
-  var Selectors = {
+let searchInit = function searchInit() {
+  let Selectors = {
     SEARCH_DISMISS: '[data-bs-dismiss="search"]',
     DROPDOWN_TOGGLE: '[data-bs-toggle="dropdown"]',
     DROPDOWN_MENU: '.dropdown-menu',
@@ -3872,42 +3872,42 @@ var searchInit = function searchInit() {
     SEARCH_INPUT: '.search-input',
     SEARCH_TOGGLE: '[data-bs-toggle="search"]'
   };
-  var ClassName = {
+  let ClassName = {
     SHOW: 'show'
   };
-  var Attribute = {
+  let Attribute = {
     ARIA_EXPANDED: 'aria-expanded'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     FOCUS: 'focus',
     SHOW_BS_DROPDOWN: 'show.bs.dropdown',
     SEARCH_CLOSE: 'search.close'
   };
 
-  var hideSearchSuggestion = function hideSearchSuggestion(searchArea) {
-    var el = searchArea.querySelector(Selectors.SEARCH_TOGGLE);
-    var dropdownMenu = searchArea.querySelector(Selectors.DROPDOWN_MENU);
+  let hideSearchSuggestion = function hideSearchSuggestion(searchArea) {
+    let el = searchArea.querySelector(Selectors.SEARCH_TOGGLE);
+    let dropdownMenu = searchArea.querySelector(Selectors.DROPDOWN_MENU);
     el.setAttribute(Attribute.ARIA_EXPANDED, 'false');
     el.classList.remove(ClassName.SHOW);
     dropdownMenu.classList.remove(ClassName.SHOW);
   };
 
-  var searchAreas = document.querySelectorAll(Selectors.SEARCH_BOX);
+  let searchAreas = document.querySelectorAll(Selectors.SEARCH_BOX);
 
-  var hideAllSearchAreas = function hideAllSearchAreas() {
+  let hideAllSearchAreas = function hideAllSearchAreas() {
     searchAreas.forEach(hideSearchSuggestion);
   };
 
   searchAreas.forEach(function (searchArea) {
-    var input = searchArea.querySelector(Selectors.SEARCH_INPUT);
-    var btnDropdownClose = searchArea.querySelector(Selectors.SEARCH_DISMISS);
-    var dropdownMenu = searchArea.querySelector(Selectors.DROPDOWN_MENU);
+    let input = searchArea.querySelector(Selectors.SEARCH_INPUT);
+    let btnDropdownClose = searchArea.querySelector(Selectors.SEARCH_DISMISS);
+    let dropdownMenu = searchArea.querySelector(Selectors.DROPDOWN_MENU);
 
     if (input) {
       input.addEventListener(Events.FOCUS, function () {
         hideAllSearchAreas();
-        var el = searchArea.querySelector(Selectors.SEARCH_TOGGLE);
+        let el = searchArea.querySelector(Selectors.SEARCH_TOGGLE);
         el.setAttribute(Attribute.ARIA_EXPANDED, 'true');
         el.classList.add(ClassName.SHOW);
         dropdownMenu.classList.add(ClassName.SHOW);
@@ -3915,13 +3915,13 @@ var searchInit = function searchInit() {
     }
 
     document.addEventListener(Events.CLICK, function (_ref11) {
-      var target = _ref11.target;
+      let target = _ref11.target;
       !searchArea.contains(target) && hideSearchSuggestion(searchArea);
     });
     btnDropdownClose && btnDropdownClose.addEventListener(Events.CLICK, function (e) {
       hideSearchSuggestion(searchArea);
       input.value = '';
-      var event = new CustomEvent(Events.SEARCH_CLOSE);
+      let event = new CustomEvent(Events.SEARCH_CLOSE);
       e.currentTarget.dispatchEvent(event);
     });
   });
@@ -3936,26 +3936,26 @@ var searchInit = function searchInit() {
 -----------------------------------------------*/
 
 
-var swiperInit = function swiperInit() {
-  var swipers = document.querySelectorAll('[data-swiper]');
-  var navbarVerticalToggle = document.querySelector('.navbar-vertical-toggle');
+let swiperInit = function swiperInit() {
+  let swipers = document.querySelectorAll('[data-swiper]');
+  let navbarVerticalToggle = document.querySelector('.navbar-vertical-toggle');
   swipers.forEach(function (swiper) {
-    var options = utils.getData(swiper, 'swiper');
-    var thumbsOptions = options.thumb;
-    var thumbsInit;
+    let options = utils.getData(swiper, 'swiper');
+    let thumbsOptions = options.thumb;
+    let thumbsInit;
 
     if (thumbsOptions) {
-      var thumbImages = swiper.querySelectorAll('img');
-      var slides = '';
+      let thumbImages = swiper.querySelectorAll('img');
+      let slides = '';
       thumbImages.forEach(function (img) {
         slides += "\n          <div class='swiper-slide '>\n            <img class='img-fluid rounded mt-1' src=".concat(img.src, " alt=''/>\n          </div>\n        ");
       });
-      var thumbs = document.createElement('div');
+      let thumbs = document.createElement('div');
       thumbs.setAttribute('class', 'swiper-container thumb');
       thumbs.innerHTML = "<div class='swiper-wrapper'>".concat(slides, "</div>");
 
       if (thumbsOptions.parent) {
-        var parent = document.querySelector(thumbsOptions.parent);
+        let parent = document.querySelector(thumbsOptions.parent);
         parent.parentNode.appendChild(thumbs);
       } else {
         swiper.parentNode.appendChild(thumbs);
@@ -3964,8 +3964,8 @@ var swiperInit = function swiperInit() {
       thumbsInit = new window.Swiper(thumbs, thumbsOptions);
     }
 
-    var swiperNav = swiper.querySelector('.swiper-nav');
-    var newSwiper = new window.Swiper(swiper, _objectSpread(_objectSpread({}, options), {}, {
+    let swiperNav = swiper.querySelector('.swiper-nav');
+    let newSwiper = new window.Swiper(swiper, _objectSpread(_objectSpread({}, options), {}, {
       navigation: {
         nextEl: swiperNav === null || swiperNav === void 0 ? void 0 : swiperNav.querySelector('.swiper-button-next'),
         prevEl: swiperNav === null || swiperNav === void 0 ? void 0 : swiperNav.querySelector('.swiper-button-prev')
@@ -3991,13 +3991,13 @@ var swiperInit = function swiperInit() {
 /* eslint-disable no-param-reassign */
 
 
-var initialDomSetup = function initialDomSetup(element) {
+let initialDomSetup = function initialDomSetup(element) {
   if (!element) return;
-  var dataUrlDom = element.querySelector('[data-theme-control = "navbarPosition"]');
-  var hasDataUrl = dataUrlDom ? getData(dataUrlDom, 'page-url') : null;
+  let dataUrlDom = element.querySelector('[data-theme-control = "navbarPosition"]');
+  let hasDataUrl = dataUrlDom ? getData(dataUrlDom, 'page-url') : null;
   element.querySelectorAll('[data-theme-control]').forEach(function (el) {
-    var inputDataAttributeValue = getData(el, 'theme-control');
-    var localStorageValue = getItemFromStore(inputDataAttributeValue);
+    let inputDataAttributeValue = getData(el, 'theme-control');
+    let localStorageValue = getItemFromStore(inputDataAttributeValue);
 
     if (inputDataAttributeValue === 'navbarStyle' && !hasDataUrl && getItemFromStore('navbarPosition') === 'top') {
       el.setAttribute('disabled', true);
@@ -4010,16 +4010,16 @@ var initialDomSetup = function initialDomSetup(element) {
         localStorageValue && el.setAttribute('checked', true);
       }
     } else {
-      var isChecked = localStorageValue === el.value;
+      let isChecked = localStorageValue === el.value;
       isChecked && el.setAttribute('checked', true);
     }
   });
 };
 
-var changeTheme = function changeTheme(element) {
+let changeTheme = function changeTheme(element) {
   element.querySelectorAll('[data-theme-control = "theme"]').forEach(function (el) {
-    var inputDataAttributeValue = getData(el, 'theme-control');
-    var localStorageValue = getItemFromStore(inputDataAttributeValue);
+    let inputDataAttributeValue = getData(el, 'theme-control');
+    let localStorageValue = getItemFromStore(inputDataAttributeValue);
 
     if (el.type === 'checkbox') {
       localStorageValue === 'dark' ? el.checked = true : el.checked = false;
@@ -4029,16 +4029,16 @@ var changeTheme = function changeTheme(element) {
   });
 };
 
-var themeControl = function themeControl() {
-  var themeController = new DomNode(document.body);
-  var navbarVertical = document.querySelector('.navbar-vertical');
+let themeControl = function themeControl() {
+  let themeController = new DomNode(document.body);
+  let navbarVertical = document.querySelector('.navbar-vertical');
   initialDomSetup(themeController.node);
   themeController.on('click', function (e) {
-    var target = new DomNode(e.target);
+    let target = new DomNode(e.target);
 
     if (target.data('theme-control')) {
-      var control = target.data('theme-control');
-      var value = e.target[e.target.type === 'radio' ? 'value' : 'checked'];
+      let control = target.data('theme-control');
+      let value = e.target[e.target.type === 'radio' ? 'value' : 'checked'];
 
       if (control === 'theme') {
         typeof value === 'boolean' && (value = value ? 'dark' : 'light');
@@ -4050,7 +4050,7 @@ var themeControl = function themeControl() {
         case 'theme':
           {
             document.documentElement.classList[value === 'dark' ? 'add' : 'remove']('dark');
-            var clickControl = new CustomEvent('clickControl', {
+            let clickControl = new CustomEvent('clickControl', {
               detail: {
                 control: control,
                 value: value
@@ -4076,7 +4076,7 @@ var themeControl = function themeControl() {
 
         case 'navbarPosition':
           {
-            var pageUrl = getData(target.node, 'page-url');
+            let pageUrl = getData(target.node, 'page-url');
             pageUrl ? window.location.replace(pageUrl) : window.location.reload();
             break;
           }
@@ -4094,9 +4094,9 @@ var themeControl = function themeControl() {
 /* -------------------------------------------------------------------------- */
 
 
-var tinymceInit = function tinymceInit() {
+let tinymceInit = function tinymceInit() {
   if (window.tinymce) {
-    var tinymces = document.querySelectorAll('.tinymce');
+    let tinymces = document.querySelectorAll('.tinymce');
 
     if (tinymces.length) {
       window.tinymce.init({
@@ -4117,9 +4117,9 @@ var tinymceInit = function tinymceInit() {
       });
     }
 
-    var themeController = document.body;
+    let themeController = document.body;
     themeController && themeController.addEventListener('clickControl', function (_ref12) {
-      var control = _ref12.detail.control;
+      let control = _ref12.detail.control;
 
       if (control === 'theme') {
         window.tinyMCE.editors.forEach(function (el) {
@@ -4136,15 +4136,15 @@ var tinymceInit = function tinymceInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var toastInit = function toastInit() {
-  var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+let toastInit = function toastInit() {
+  let toastElList = [].slice.call(document.querySelectorAll('.toast'));
   toastElList.map(function (toastEl) {
     return new window.bootstrap.Toast(toastEl);
   });
-  var liveToastBtn = document.getElementById('liveToastBtn');
+  let liveToastBtn = document.getElementById('liveToastBtn');
 
   if (liveToastBtn) {
-    var liveToast = new window.bootstrap.Toast(document.getElementById('liveToast'));
+    let liveToast = new window.bootstrap.Toast(document.getElementById('liveToast'));
     liveToastBtn.addEventListener('click', function () {
       liveToast && liveToast.show();
     });
@@ -4157,8 +4157,8 @@ var toastInit = function toastInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var tooltipInit = function tooltipInit() {
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+let tooltipInit = function tooltipInit() {
+  let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
   tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new window.bootstrap.Tooltip(tooltipTriggerEl, {
       trigger: 'hover'
@@ -4172,8 +4172,8 @@ var tooltipInit = function tooltipInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var typedTextInit = function typedTextInit() {
-  var typedTexts = document.querySelectorAll('.typed-text');
+let typedTextInit = function typedTextInit() {
+  let typedTexts = document.querySelectorAll('.typed-text');
 
   if (typedTexts.length && window.Typed) {
     typedTexts.forEach(function (typedText) {
@@ -4193,41 +4193,41 @@ var typedTextInit = function typedTextInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var wizardInit = function wizardInit() {
-  var wizards = document.querySelectorAll('.theme-wizard');
-  var tabPillEl = document.querySelectorAll('#pill-tab2 [data-bs-toggle="pill"]');
-  var tabProgressBar = document.querySelector('.theme-wizard .progress');
+let wizardInit = function wizardInit() {
+  let wizards = document.querySelectorAll('.theme-wizard');
+  let tabPillEl = document.querySelectorAll('#pill-tab2 [data-bs-toggle="pill"]');
+  let tabProgressBar = document.querySelector('.theme-wizard .progress');
   wizards.forEach(function (wizard) {
-    var tabToggleButtonEl = wizard.querySelectorAll('[data-wizard-step]');
-    var inputEmail = wizard.querySelector('[data-wizard-validate-email]');
-    var emailPattern = inputEmail.getAttribute('pattern');
-    var inputPassword = wizard.querySelector('[data-wizard-validate-password]');
-    var inputConfirmPassword = wizard.querySelector('[data-wizard-validate-confirm-password]');
-    var form = wizard.querySelector('[novalidate]');
-    var nextButton = wizard.querySelector('.next button');
-    var prevButton = wizard.querySelector('.previous button');
-    var cardFooter = wizard.querySelector('.theme-wizard .card-footer');
-    var count = 0;
+    let tabToggleButtonEl = wizard.querySelectorAll('[data-wizard-step]');
+    let inputEmail = wizard.querySelector('[data-wizard-validate-email]');
+    let emailPattern = inputEmail ? inputEmail.getAttribute('pattern') : null;
+    let inputPassword = wizard.querySelector('[data-wizard-validate-password]');
+    let inputConfirmPassword = wizard.querySelector('[data-wizard-validate-confirm-password]');
+    let form = wizard.querySelector('[novalidate]');
+    let nextButton = wizard.querySelector('.next button');
+    let prevButton = wizard.querySelector('.previous button');
+    let cardFooter = wizard.querySelector('.theme-wizard .card-footer');
+    let count = 0;
 
-    var validatePattern = function validatePattern(pattern, value) {
-      var regexPattern = new RegExp(pattern);
+    let validatePattern = function validatePattern(pattern, value) {
+      let regexPattern = new RegExp(pattern);
       return regexPattern.test(String(value).toLowerCase());
     };
 
     prevButton.classList.add('d-none'); // on button click tab change
 
     nextButton.addEventListener('click', function () {
-      if ((!(inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
+      if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
         form.classList.add('was-validated');
       } else {
         count += 1;
-        var tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
+        let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
         tab.show();
       }
     });
     prevButton.addEventListener('click', function () {
       count -= 1;
-      var tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
+      let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
       tab.show();
     });
 
@@ -4235,7 +4235,7 @@ var wizardInit = function wizardInit() {
       tabToggleButtonEl.forEach(function (item, index) {
         /* eslint-disable */
         item.addEventListener('show.bs.tab', function (e) {
-          if ((!(inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
+          if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
             e.preventDefault();
             form.classList.add('was-validated');
             return null;
@@ -4252,12 +4252,12 @@ var wizardInit = function wizardInit() {
           } //add done class
 
 
-          for (var i = 0; i < count; i += 1) {
+          for (let i = 0; i < count; i += 1) {
             tabToggleButtonEl[i].classList.add('done');
           } //remove done class
 
 
-          for (var j = count; j < tabToggleButtonEl.length; j += 1) {
+          for (let j = count; j < tabToggleButtonEl.length; j += 1) {
             tabToggleButtonEl[j].classList.remove('done');
           } // card footer remove at last step
 
@@ -4281,7 +4281,7 @@ var wizardInit = function wizardInit() {
   }); // control wizard progressbar
 
   if (tabPillEl.length) {
-    var dividedProgressbar = 100 / tabPillEl.length;
+    let dividedProgressbar = 100 / tabPillEl.length;
     tabProgressBar.querySelector('.progress-bar').style.width = "".concat(dividedProgressbar, "%");
     tabPillEl.forEach(function (item, index) {
       item.addEventListener('show.bs.tab', function () {
@@ -4291,14 +4291,14 @@ var wizardInit = function wizardInit() {
   }
 };
 
-var _window3 = window,
+let _window3 = window,
     dayjs = _window3.dayjs;
-var currentDay = dayjs && dayjs().format('DD');
-var currentMonth = dayjs && dayjs().format('MM');
-var prevMonth = dayjs && dayjs().subtract(1, 'month').format('MM');
-var nextMonth = dayjs && dayjs().add(1, 'month').format('MM');
-var currentYear = dayjs && dayjs().format('YYYY');
-var events = [{
+let currentDay = dayjs && dayjs().format('DD');
+let currentMonth = dayjs && dayjs().format('MM');
+let prevMonth = dayjs && dayjs().subtract(1, 'month').format('MM');
+let nextMonth = dayjs && dayjs().add(1, 'month').format('MM');
+let currentYear = dayjs && dayjs().format('YYYY');
+let events = [{
   title: 'Boot Camp',
   start: "".concat(currentYear, "-").concat(currentMonth, "-01 10:00:00"),
   end: "".concat(currentYear, "-").concat(currentMonth, "-03 16:00:00"),
@@ -4379,8 +4379,8 @@ var events = [{
 |   Calendar
 -----------------------------------------------*/
 
-var appCalendarInit = function appCalendarInit() {
-  var Selectors = {
+let appCalendarInit = function appCalendarInit() {
+  let Selectors = {
     ACTIVE: '.active',
     ADD_EVENT_FORM: '#addEventForm',
     ADD_EVENT_MODAL: '#addEventModal',
@@ -4394,33 +4394,33 @@ var appCalendarInit = function appCalendarInit() {
     EVENT_START_DATE: '#addEventModal [name="startDate"]',
     INPUT_TITLE: '[name="title"]'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     SHOWN_BS_MODAL: 'shown.bs.modal',
     SUBMIT: 'submit'
   };
-  var DataKeys = {
+  let DataKeys = {
     EVENT: 'event',
     FC_VIEW: 'fc-view'
   };
-  var ClassNames = {
+  let ClassNames = {
     ACTIVE: 'active'
   };
-  var eventList = events.reduce(function (acc, val) {
+  let eventList = events.reduce(function (acc, val) {
     return val.schedules ? acc.concat(val.schedules.concat(val)) : acc.concat(val);
   }, []);
 
-  var updateTitle = function updateTitle(title) {
+  let updateTitle = function updateTitle(title) {
     document.querySelector(Selectors.CALENDAR_TITLE).textContent = title;
   };
 
-  var appCalendar = document.querySelector(Selectors.CALENDAR);
-  var addEventForm = document.querySelector(Selectors.ADD_EVENT_FORM);
-  var addEventModal = document.querySelector(Selectors.ADD_EVENT_MODAL);
-  var eventDetailsModal = document.querySelector(Selectors.EVENT_DETAILS_MODAL);
+  let appCalendar = document.querySelector(Selectors.CALENDAR);
+  let addEventForm = document.querySelector(Selectors.ADD_EVENT_FORM);
+  let addEventModal = document.querySelector(Selectors.ADD_EVENT_MODAL);
+  let eventDetailsModal = document.querySelector(Selectors.EVENT_DETAILS_MODAL);
 
   if (appCalendar) {
-    var calendar = renderCalendar(appCalendar, {
+    let calendar = renderCalendar(appCalendar, {
       headerToolbar: false,
       dayMaxEvents: 2,
       height: 800,
@@ -4442,18 +4442,18 @@ var appCalendarInit = function appCalendarInit() {
           window.open(info.event.url, '_blank');
           info.jsEvent.preventDefault();
         } else {
-          var template = getTemplate(info.event);
+          let template = getTemplate(info.event);
           document.querySelector(Selectors.EVENT_DETAILS_MODAL_CONTENT).innerHTML = template;
-          var modal = new window.bootstrap.Modal(eventDetailsModal);
+          let modal = new window.bootstrap.Modal(eventDetailsModal);
           modal.show();
         }
       },
       dateClick: function dateClick(info) {
-        var modal = new window.bootstrap.Modal(addEventModal);
+        let modal = new window.bootstrap.Modal(addEventModal);
         modal.show();
         /*eslint-disable-next-line*/
 
-        var flatpickr = document.querySelector(Selectors.EVENT_START_DATE)._flatpickr;
+        let flatpickr = document.querySelector(Selectors.EVENT_START_DATE)._flatpickr;
 
         flatpickr.setDate([info.dateStr]);
       }
@@ -4461,8 +4461,8 @@ var appCalendarInit = function appCalendarInit() {
     updateTitle(calendar.currentData.viewTitle);
     document.querySelectorAll(Selectors.DATA_EVENT).forEach(function (button) {
       button.addEventListener(Events.CLICK, function (e) {
-        var el = e.currentTarget;
-        var type = utils.getData(el, DataKeys.EVENT);
+        let el = e.currentTarget;
+        let type = utils.getData(el, DataKeys.EVENT);
 
         switch (type) {
           case 'prev':
@@ -4490,8 +4490,8 @@ var appCalendarInit = function appCalendarInit() {
     document.querySelectorAll(Selectors.DATA_CALENDAR_VIEW).forEach(function (link) {
       link.addEventListener(Events.CLICK, function (e) {
         e.preventDefault();
-        var el = e.currentTarget;
-        var text = el.textContent;
+        let el = e.currentTarget;
+        let text = el.textContent;
         el.parentElement.querySelector(Selectors.ACTIVE).classList.remove(ClassNames.ACTIVE);
         el.classList.add(ClassNames.ACTIVE);
         document.querySelector(Selectors.DATA_VIEW_TITLE).textContent = text;
@@ -4501,7 +4501,7 @@ var appCalendarInit = function appCalendarInit() {
     });
     addEventForm && addEventForm.addEventListener(Events.SUBMIT, function (e) {
       e.preventDefault();
-      var _e$target = e.target,
+      let _e$target = e.target,
           title = _e$target.title,
           startDate = _e$target.startDate,
           endDate = _e$target.endDate,
@@ -4522,7 +4522,7 @@ var appCalendarInit = function appCalendarInit() {
   }
 
   addEventModal && addEventModal.addEventListener(Events.SHOWN_BS_MODAL, function (_ref13) {
-    var currentTarget = _ref13.currentTarget;
+    let currentTarget = _ref13.currentTarget;
     currentTarget.querySelector(Selectors.INPUT_TITLE).focus();
   });
 };
@@ -4531,8 +4531,8 @@ var appCalendarInit = function appCalendarInit() {
 -----------------------------------------------*/
 
 
-var managementCalendarInit = function managementCalendarInit() {
-  var Selectors = {
+let managementCalendarInit = function managementCalendarInit() {
+  let Selectors = {
     ADD_EVENT_FORM: '#addEventForm',
     ADD_EVENT_MODAL: '#addEventModal',
     CALENDAR: '#managementAppCalendar',
@@ -4543,34 +4543,34 @@ var managementCalendarInit = function managementCalendarInit() {
     EVENT_START_DATE: '#addEventModal [name="startDate"]',
     EVENT_MANAGEMENT_INFO: '[data-calendar-events]'
   };
-  var Events = {
+  let Events = {
     CLICK: 'click',
     SUBMIT: 'submit'
   };
-  var managementEventList = [];
-  var DataKeys = {
+  let managementEventList = [];
+  let DataKeys = {
     EVENT: 'event'
   };
-  var managementCalendar = document.querySelector(Selectors.CALENDAR);
+  let managementCalendar = document.querySelector(Selectors.CALENDAR);
 
   if (managementCalendar) {
-    var calendarData = utils.getData(managementCalendar, 'calendar-option');
-    var managementCalendarEvents = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.events);
-    var addEventForm = document.querySelector(Selectors.ADD_EVENT_FORM);
-    var addEventModal = document.querySelector(Selectors.ADD_EVENT_MODAL);
-    var eventDetailsModal = document.querySelector(Selectors.EVENT_DETAILS_MODAL);
+    let calendarData = utils.getData(managementCalendar, 'calendar-option');
+    let managementCalendarEvents = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.events);
+    let addEventForm = document.querySelector(Selectors.ADD_EVENT_FORM);
+    let addEventModal = document.querySelector(Selectors.ADD_EVENT_MODAL);
+    let eventDetailsModal = document.querySelector(Selectors.EVENT_DETAILS_MODAL);
 
-    var updateTitle = function updateTitle(title) {
-      var selectTitle = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.title);
+    let updateTitle = function updateTitle(title) {
+      let selectTitle = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.title);
 
       if (selectTitle) {
         selectTitle.textContent = title;
       }
     };
 
-    var updateDay = function updateDay(day) {
-      var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      var selectDay = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.day);
+    let updateDay = function updateDay(day) {
+      let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let selectDay = document.getElementById(calendarData === null || calendarData === void 0 ? void 0 : calendarData.day);
 
       if (selectDay) {
         selectDay.textContent = days[day];
@@ -4594,32 +4594,32 @@ var managementCalendarInit = function managementCalendarInit() {
       });
     }
 
-    var eventManagementInfo = document.querySelectorAll(Selectors.EVENT_MANAGEMENT_INFO);
+    let eventManagementInfo = document.querySelectorAll(Selectors.EVENT_MANAGEMENT_INFO);
 
     if (eventManagementInfo) {
       eventManagementInfo.forEach(function (li, index) {
         li.addEventListener(Events.CLICK, function () {
-          var event = managementEvents[index];
-          var template = getTemplate(event);
+          let event = managementEvents[index];
+          let template = getTemplate(event);
           document.querySelector(Selectors.EVENT_DETAILS_MODAL_CONTENT).innerHTML = template;
-          var modal = new window.bootstrap.Modal(eventDetailsModal);
+          let modal = new window.bootstrap.Modal(eventDetailsModal);
           modal.show();
         });
       });
     }
 
     if (managementCalendar) {
-      var calendar = renderCalendar(managementCalendar, {
+      let calendar = renderCalendar(managementCalendar, {
         headerToolbar: false,
         dayMaxEvents: 2,
         height: 360,
         stickyHeaderDates: false,
         dateClick: function dateClick(info) {
-          var modal = new window.bootstrap.Modal(addEventModal);
+          let modal = new window.bootstrap.Modal(addEventModal);
           modal.show();
           /*eslint-disable-next-line*/
 
-          var flatpickr = document.querySelector(Selectors.EVENT_START_DATE)._flatpickr;
+          let flatpickr = document.querySelector(Selectors.EVENT_START_DATE)._flatpickr;
 
           flatpickr.setDate([info.dateStr]);
         },
@@ -4629,8 +4629,8 @@ var managementCalendarInit = function managementCalendarInit() {
       updateDay(calendar.currentData.currentDate.getDay());
       document.querySelectorAll(Selectors.DATA_EVENT).forEach(function (button) {
         button.addEventListener(Events.CLICK, function (e) {
-          var el = e.currentTarget;
-          var type = utils.getData(el, DataKeys.EVENT);
+          let el = e.currentTarget;
+          let type = utils.getData(el, DataKeys.EVENT);
 
           switch (type) {
             case 'prev':
@@ -4667,14 +4667,14 @@ var managementCalendarInit = function managementCalendarInit() {
   }
 };
 
-var thisDay = window.dayjs && window.dayjs().format('DD');
-var plus2Day = window.dayjs && window.dayjs().add(2, 'day').format('DD');
-var thisMonthNumber = window.dayjs && window.dayjs().format('MM');
-var thisMonthName = window.dayjs && window.dayjs().format('MMM');
-var upcomingMonthNumber = window.dayjs && window.dayjs().add(1, 'month').format('MM');
-var upcomingMonthName = window.dayjs && window.dayjs().format('MMM');
-var thisYear = window.dayjs && window.dayjs().format('YYYY');
-var managementEvents = [{
+let thisDay = window.dayjs && window.dayjs().format('DD');
+let plus2Day = window.dayjs && window.dayjs().add(2, 'day').format('DD');
+let thisMonthNumber = window.dayjs && window.dayjs().format('MM');
+let thisMonthName = window.dayjs && window.dayjs().format('MMM');
+let upcomingMonthNumber = window.dayjs && window.dayjs().add(1, 'month').format('MM');
+let upcomingMonthName = window.dayjs && window.dayjs().format('MMM');
+let thisYear = window.dayjs && window.dayjs().format('YYYY');
+let managementEvents = [{
   title: 'Monthly team meeting for Falcon React Project',
   start: "".concat(thisYear, "-").concat(thisMonthNumber, "-07"),
   end: "".concat(thisYear, "-").concat(thisMonthNumber, "-09"),
@@ -4733,11 +4733,11 @@ var managementEvents = [{
   }
 }];
 
-var getStackIcon = function getStackIcon(icon, transform) {
+let getStackIcon = function getStackIcon(icon, transform) {
   return "\n  <span class=\"fa-stack ms-n1 me-3\">\n    <i class=\"fas fa-circle fa-stack-2x text-200\"></i>\n    <i class=\"".concat(icon, " fa-stack-1x text-primary\" data-fa-transform=").concat(transform, "></i>\n  </span>\n");
 };
 
-var getTemplate = function getTemplate(event) {
+let getTemplate = function getTemplate(event) {
   return "\n<div class=\"modal-header bg-light ps-card pe-5 border-bottom-0\">\n  <div>\n    <h5 class=\"modal-title mb-0\">".concat(event.title, "</h5>\n    ").concat(event.extendedProps.organizer ? "<p class=\"mb-0 fs--1 mt-1\">\n        by <a href=\"#!\">".concat(event.extendedProps.organizer, "</a>\n      </p>") : '', "\n  </div>\n  <button type=\"button\" class=\"btn-close position-absolute end-0 top-0 mt-3 me-3\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n</div>\n<div class=\"modal-body px-card pb-card pt-1 fs--1\">\n  ").concat(event.extendedProps.description ? "\n      <div class=\"d-flex mt-3\">\n        ".concat(getStackIcon('fas fa-align-left'), "\n        <div class=\"flex-1\">\n          <h6>Description</h6>\n          <p class=\"mb-0\">\n            \n          ").concat(event.extendedProps.description.split(' ').slice(0, 30).join(' '), "\n          </p>\n        </div>\n      </div>\n    ") : '', " \n  <div class=\"d-flex mt-3\">\n    ").concat(getStackIcon('fas fa-calendar-check'), "\n    <div class=\"flex-1\">\n        <h6>Date and Time</h6>\n        <p class=\"mb-1\">\n          ").concat(window.dayjs && window.dayjs(event.start).format('dddd, MMMM D, YYYY, h:mm A'), " \n          ").concat(event.end ? "\u2013 <br/>".concat(window.dayjs && window.dayjs(event.end).subtract(1, 'day').format('dddd, MMMM D, YYYY, h:mm A')) : '', "\n        </p>\n    </div>\n  </div>\n  ").concat(event.extendedProps.location ? "\n        <div class=\"d-flex mt-3\">\n          ".concat(getStackIcon('fas fa-map-marker-alt'), "\n          <div class=\"flex-1\">\n              <h6>Location</h6>\n              <p class=\"mb-0\">").concat(event.extendedProps.location, "</p>\n          </div>\n        </div>\n      ") : '', "\n  ").concat(event.schedules ? "\n        <div class=\"d-flex mt-3\">\n        ".concat(getStackIcon('fas fa-clock'), "\n        <div class=\"flex-1\">\n            <h6>Schedule</h6>\n            \n            <ul class=\"list-unstyled timeline mb-0\">\n              ").concat(event.schedules.map(function (schedule) {
     return "<li>".concat(schedule.title, "</li>");
   }).join(''), "\n            </ul>\n        </div>\n      ") : '', "\n  </div>\n</div>\n<div class=\"modal-footer d-flex justify-content-end bg-light px-card border-top-0\">\n  <a href=\"").concat(document.location.href.split('/').slice(0, 5).join('/'), "/app/events/create-an-event.html\" class=\"btn btn-falcon-default btn-sm\">\n    <span class=\"fas fa-pencil-alt fs--2 mr-2\"></span> Edit\n  </a>\n  <a href='").concat(document.location.href.split('/').slice(0, 5).join('/'), "/app/events/event-detail.html' class=\"btn btn-falcon-primary btn-sm\">\n    See more details\n    <span class=\"fas fa-angle-right fs--2 ml-1\"></span>\n  </a>\n</div>\n");
@@ -4749,10 +4749,10 @@ var getTemplate = function getTemplate(event) {
 /* -------------------------------------------------------------------------- */
 
 
-var barChartInit = function barChartInit() {
-  var barChartElement = document.getElementById('chartjs-bar-chart');
+let barChartInit = function barChartInit() {
+  let barChartElement = document.getElementById('chartjs-bar-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'bar',
       data: {
@@ -4797,10 +4797,10 @@ var barChartInit = function barChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartBubble = function chartBubble() {
-  var pie = document.getElementById('chartjs-bubble-chart');
+let chartBubble = function chartBubble() {
+  let pie = document.getElementById('chartjs-bubble-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'bubble',
       data: {
@@ -4853,10 +4853,10 @@ var chartBubble = function chartBubble() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartCombo = function chartCombo() {
-  var combo = document.getElementById('chartjs-combo-chart');
+let chartCombo = function chartCombo() {
+  let combo = document.getElementById('chartjs-combo-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'bar',
       data: {
@@ -4912,10 +4912,10 @@ var chartCombo = function chartCombo() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartDoughnut = function chartDoughnut() {
-  var doughnut = document.getElementById('chartjs-doughnut-chart');
+let chartDoughnut = function chartDoughnut() {
+  let doughnut = document.getElementById('chartjs-doughnut-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'doughnut',
       data: {
@@ -4945,10 +4945,10 @@ var chartDoughnut = function chartDoughnut() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartLine = function chartLine() {
-  var line = document.getElementById('chartjs-line-chart');
+let chartLine = function chartLine() {
+  let line = document.getElementById('chartjs-line-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'bar',
       data: {
@@ -4992,10 +4992,10 @@ var chartLine = function chartLine() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartPie = function chartPie() {
-  var pie = document.getElementById('chartjs-pie-chart');
+let chartPie = function chartPie() {
+  let pie = document.getElementById('chartjs-pie-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'pie',
       data: {
@@ -5025,10 +5025,10 @@ var chartPie = function chartPie() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartPolar = function chartPolar() {
-  var polar = document.getElementById('chartjs-polar-chart');
+let chartPolar = function chartPolar() {
+  let polar = document.getElementById('chartjs-polar-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'polarArea',
       data: {
@@ -5065,10 +5065,10 @@ var chartPolar = function chartPolar() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartRadar = function chartRadar() {
-  var radar = document.getElementById('chartjs-radar-chart');
+let chartRadar = function chartRadar() {
+  let radar = document.getElementById('chartjs-radar-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'radar',
       data: {
@@ -5110,10 +5110,10 @@ var chartRadar = function chartRadar() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartScatter = function chartScatter() {
-  var scatter = document.getElementById('chartjs-scatter-chart');
+let chartScatter = function chartScatter() {
+  let scatter = document.getElementById('chartjs-scatter-chart');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'scatter',
       data: {
@@ -5230,13 +5230,13 @@ var chartScatter = function chartScatter() {
 /* -------------------------------------------------------------------------- */
 
 
-var chartJsInit = function chartJsInit(chartEl, config) {
+let chartJsInit = function chartJsInit(chartEl, config) {
   if (!chartEl) return;
-  var ctx = chartEl.getContext('2d');
-  var chart = new window.Chart(ctx, config());
-  var themeController = document.body;
+  let ctx = chartEl.getContext('2d');
+  let chart = new window.Chart(ctx, config());
+  let themeController = document.body;
   themeController.addEventListener('clickControl', function (_ref14) {
-    var control = _ref14.detail.control;
+    let control = _ref14.detail.control;
 
     if (control === 'theme') {
       chart.destroy();
@@ -5247,7 +5247,7 @@ var chartJsInit = function chartJsInit(chartEl, config) {
   });
 };
 
-var chartJsDefaultTooltip = function chartJsDefaultTooltip() {
+let chartJsDefaultTooltip = function chartJsDefaultTooltip() {
   return {
     backgroundColor: utils.getGrays()['100'],
     borderColor: utils.getGrays()['300'],
@@ -5261,8 +5261,8 @@ var chartJsDefaultTooltip = function chartJsDefaultTooltip() {
   };
 };
 
-var getBubbleDataset = function getBubbleDataset(count, rmin, rmax, min, max) {
-  var arr = Array.from(Array(count).keys());
+let getBubbleDataset = function getBubbleDataset(count, rmin, rmax, min, max) {
+  let arr = Array.from(Array(count).keys());
   return arr.map(function () {
     return {
       x: utils.getRandomNumber(min, max),
@@ -5280,10 +5280,10 @@ var getBubbleDataset = function getBubbleDataset(count, rmin, rmax, min, max) {
 /* -------------------------------------------------------------------------- */
 
 
-var productShareDoughnutInit = function productShareDoughnutInit() {
-  var marketShareDoughnutElement = document.getElementById('marketShareDoughnut');
+let productShareDoughnutInit = function productShareDoughnutInit() {
+  let marketShareDoughnutElement = document.getElementById('marketShareDoughnut');
 
-  var getOptions = function getOptions() {
+  let getOptions = function getOptions() {
     return {
       type: 'doughnut',
       data: {
@@ -5317,18 +5317,18 @@ var productShareDoughnutInit = function productShareDoughnutInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var activeUsersChartReportInit = function activeUsersChartReportInit() {
-  var $echartsActiveUsersChart = document.querySelector('.echart-active-users-report');
+let activeUsersChartReportInit = function activeUsersChartReportInit() {
+  let $echartsActiveUsersChart = document.querySelector('.echart-active-users-report');
 
   if ($echartsActiveUsersChart) {
-    var userOptions = utils.getData($echartsActiveUsersChart, 'options');
-    var chart = window.echarts.init($echartsActiveUsersChart);
+    let userOptions = utils.getData($echartsActiveUsersChart, 'options');
+    let chart = window.echarts.init($echartsActiveUsersChart);
 
-    var _tooltipFormatter = function _tooltipFormatter(params) {
+    let _tooltipFormatter = function _tooltipFormatter(params) {
       return "\n      <div>\n        <p class='mb-2 text-600'>".concat(window.dayjs(params[0].axisValue).format('MMM DD, YYYY'), "</p>\n        <div class='ms-1'>\n          <h6 class=\"fs--1 text-700\"><span class=\"fas fa-circle text-primary me-2\"></span>").concat(params[0].value, "</h6>\n          <h6 class=\"fs--1 text-700\"><span class=\"fas fa-circle text-success me-2\"></span>").concat(params[1].value, "</h6>\n          <h6 class=\"fs--1 text-700\"><span class=\"fas fa-circle text-info me-2\"></span>").concat(params[2].value, "</h6>\n        </div>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('success'), utils.getColor('info')],
         tooltip: {
@@ -5469,8 +5469,8 @@ var activeUsersChartReportInit = function activeUsersChartReportInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var audienceChartInit = function audienceChartInit() {
-  var data = {
+let audienceChartInit = function audienceChartInit() {
+  let data = {
     dates: utils.getPastDates(7),
     dataset: {
       users: [[504, 333, 400, 606, 451, 685, 404], [237, 229, 707, 575, 420, 536, 258]],
@@ -5480,15 +5480,15 @@ var audienceChartInit = function audienceChartInit() {
     }
   };
 
-  var tooltipFormatter = function tooltipFormatter(params) {
-    var percentage = (params[0].value - params[1].value) / params[1].value * 100;
-    var perTemp = "\n      <div class=\"d-flex align-items-center ms-2\">\n        <span class=\"fas fa-caret-".concat(percentage < 0 ? 'down' : 'up', " text-").concat(percentage < 0 ? 'danger' : 'success', "\"></span>\n        <h6 class=\"fs--2 mb-0 ms-1 fw-semi-bold\">").concat(Math.abs(percentage).toFixed(2), " %</h6>\n      </div>\n    ");
-    var currentDate = new Date(params[0].axisValue);
-    var prevDate = new Date(new Date().setDate(currentDate.getDate() - 7));
+  let tooltipFormatter = function tooltipFormatter(params) {
+    let percentage = (params[0].value - params[1].value) / params[1].value * 100;
+    let perTemp = "\n      <div class=\"d-flex align-items-center ms-2\">\n        <span class=\"fas fa-caret-".concat(percentage < 0 ? 'down' : 'up', " text-").concat(percentage < 0 ? 'danger' : 'success', "\"></span>\n        <h6 class=\"fs--2 mb-0 ms-1 fw-semi-bold\">").concat(Math.abs(percentage).toFixed(2), " %</h6>\n      </div>\n    ");
+    let currentDate = new Date(params[0].axisValue);
+    let prevDate = new Date(new Date().setDate(currentDate.getDate() - 7));
     return "<div>\n          <p class='mb-0 fs--2 text-600'>".concat(window.dayjs(params[0].axisValue).format('MMM DD'), " vs ").concat(window.dayjs(prevDate).format('MMM DD'), "</p>\n          <div class=\"d-flex align-items-center\">\n            <p class='mb-0 text-600 fs--1'>\n              Users: <span class='text-800 fw-semi-bold fs--1'>").concat(params[0].data, "</span>\n            </p>\n            ").concat(perTemp, "\n          </div>\n        </div>");
   };
 
-  var getDefaultOptions = function getDefaultOptions(data1, data2) {
+  let getDefaultOptions = function getDefaultOptions(data1, data2) {
     return function () {
       return {
         color: utils.getGrays().white,
@@ -5603,21 +5603,21 @@ var audienceChartInit = function audienceChartInit() {
     };
   };
 
-  var initChart = function initChart(el, options) {
-    var userOptions = utils.getData(el, 'options');
-    var chart = window.echarts.init(el);
+  let initChart = function initChart(el, options) {
+    let userOptions = utils.getData(el, 'options');
+    let chart = window.echarts.init(el);
     echartSetOption(chart, userOptions, options);
   };
 
-  var tab = document.querySelector('#audience-chart-tab');
+  let tab = document.querySelector('#audience-chart-tab');
 
   if (tab) {
     initChart(document.querySelector('.echart-audience'), getDefaultOptions(data.dataset.users[0], data.dataset.users[1]));
-    var triggerTabList = Array.from(tab.querySelectorAll('[data-bs-toggle="tab"]'));
+    let triggerTabList = Array.from(tab.querySelectorAll('[data-bs-toggle="tab"]'));
     triggerTabList.forEach(function (triggerEl) {
       triggerEl.addEventListener('shown.bs.tab', function () {
-        var key = triggerEl.href.split('#').pop();
-        var $echartAudience = document.getElementById(key).querySelector('.echart-audience');
+        let key = triggerEl.href.split('#').pop();
+        let $echartAudience = document.getElementById(key).querySelector('.echart-audience');
         initChart($echartAudience, getDefaultOptions(data.dataset[key][0], data.dataset[key][1]));
       });
     });
@@ -5630,14 +5630,14 @@ var audienceChartInit = function audienceChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var bandwidthSavedInit = function bandwidthSavedInit() {
-  var $echartsBandwidthSaved = document.querySelector('.echart-bandwidth-saved');
+let bandwidthSavedInit = function bandwidthSavedInit() {
+  let $echartsBandwidthSaved = document.querySelector('.echart-bandwidth-saved');
 
   if ($echartsBandwidthSaved) {
-    var userOptions = utils.getData($echartsBandwidthSaved, 'options');
-    var chart = window.echarts.init($echartsBandwidthSaved);
+    let userOptions = utils.getData($echartsBandwidthSaved, 'options');
+    let chart = window.echarts.init($echartsBandwidthSaved);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         series: [{
           type: 'gauge',
@@ -5705,7 +5705,7 @@ var bandwidthSavedInit = function bandwidthSavedInit() {
       };
     };
 
-    var initChart = function initChart() {
+    let initChart = function initChart() {
       if (utils.isScrolledIntoView($echartsBandwidthSaved)) {
         echartSetOption(chart, userOptions, getDefaultOptions);
         window.removeEventListener('scroll', initChart);
@@ -5722,13 +5722,13 @@ var bandwidthSavedInit = function bandwidthSavedInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var basicEchartsInit = function basicEchartsInit() {
-  var $echartBasicCharts = document.querySelectorAll('[data-echarts]');
+let basicEchartsInit = function basicEchartsInit() {
+  let $echartBasicCharts = document.querySelectorAll('[data-echarts]');
   $echartBasicCharts.forEach(function ($echartBasicChart) {
-    var userOptions = utils.getData($echartBasicChart, 'echarts');
-    var chart = window.echarts.init($echartBasicChart);
+    let userOptions = utils.getData($echartBasicChart, 'echarts');
+    let chart = window.echarts.init($echartBasicChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: utils.getColors().primary,
         tooltip: {
@@ -5797,23 +5797,23 @@ var basicEchartsInit = function basicEchartsInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var bounceRateChartInit = function bounceRateChartInit() {
-  var $echartsBounceRateChart = document.querySelector('.echart-bounce-rate');
+let bounceRateChartInit = function bounceRateChartInit() {
+  let $echartsBounceRateChart = document.querySelector('.echart-bounce-rate');
 
-  var tooltipFormatter = function tooltipFormatter(params) {
+  let tooltipFormatter = function tooltipFormatter(params) {
     return "<div>\n          <p class='mb-0 text-600'>".concat(window.dayjs(params[0].axisValue).format('DD, MMMM'), "</p>\n          <div class=\"d-flex align-items-center\">\n            <p class=\"mb-0 text-600\">\n              Rate : <span class='text-800'>").concat(params[0].value, "%</span>\n            </p>\n          </div>\n        </div>");
   };
 
-  var dataset = {
+  let dataset = {
     week: [41, 45, 37, 44, 35, 39, 43],
     month: [40, 37, 42, 44, 36, 39, 37, 43, 38, 35, 43, 39, 42, 36, 37, 36, 42, 44, 34, 41, 37, 41, 40, 40, 43, 34, 41, 35, 44, 41, 40]
   };
 
   if ($echartsBounceRateChart) {
-    var userOptions = utils.getData($echartsBounceRateChart, 'options');
-    var chart = window.echarts.init($echartsBounceRateChart);
+    let userOptions = utils.getData($echartsBounceRateChart, 'options');
+    let chart = window.echarts.init($echartsBounceRateChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: utils.getGrays().white,
         title: {
@@ -5921,11 +5921,11 @@ var bounceRateChartInit = function bounceRateChartInit() {
     };
 
     echartSetOption(chart, userOptions, getDefaultOptions);
-    var selectMenu = document.querySelector("[data-target='.echart-bounce-rate']");
+    let selectMenu = document.querySelector("[data-target='.echart-bounce-rate']");
 
     if (selectMenu) {
       selectMenu.addEventListener('change', function (e) {
-        var value = e.currentTarget.value;
+        let value = e.currentTarget.value;
         chart.setOption({
           xAxis: {
             data: utils.getPastDates(value).map(function (date) {
@@ -5947,27 +5947,27 @@ var bounceRateChartInit = function bounceRateChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var candleChartInit = function candleChartInit() {
-  var ECHART_CANDLE_CHART = '.echart-candle-chart';
-  var ECHART_ZOOM_IN = "[data-zoom='in']";
-  var ECHART_ZOOM_OUT = "[data-zoom='out']";
-  var $echartsCandleChart = document.querySelector(ECHART_CANDLE_CHART);
+let candleChartInit = function candleChartInit() {
+  let ECHART_CANDLE_CHART = '.echart-candle-chart';
+  let ECHART_ZOOM_IN = "[data-zoom='in']";
+  let ECHART_ZOOM_OUT = "[data-zoom='out']";
+  let $echartsCandleChart = document.querySelector(ECHART_CANDLE_CHART);
 
   if ($echartsCandleChart) {
-    var userOptions = utils.getData($echartsCandleChart, 'options');
-    var chart = window.echarts.init($echartsCandleChart);
-    var $echartsZoomIn = document.getElementById($echartsCandleChart.dataset.actionTarget).querySelector(ECHART_ZOOM_IN);
-    var $echartsZoomOut = document.getElementById($echartsCandleChart.dataset.actionTarget).querySelector(ECHART_ZOOM_OUT);
+    let userOptions = utils.getData($echartsCandleChart, 'options');
+    let chart = window.echarts.init($echartsCandleChart);
+    let $echartsZoomIn = document.getElementById($echartsCandleChart.dataset.actionTarget).querySelector(ECHART_ZOOM_IN);
+    let $echartsZoomOut = document.getElementById($echartsCandleChart.dataset.actionTarget).querySelector(ECHART_ZOOM_OUT);
 
-    var _utils$getColors = utils.getColors(),
+    let _utils$getColors = utils.getColors(),
         warning = _utils$getColors.warning;
 
-    var _utils$getColors2 = utils.getColors(),
+    let _utils$getColors2 = utils.getColors(),
         primary = _utils$getColors2.primary;
 
-    var splitData = function splitData(rawData) {
-      var categoryData = [];
-      var values = [];
+    let splitData = function splitData(rawData) {
+      let categoryData = [];
+      let values = [];
       rawData.forEach(function (item) {
         categoryData.push(item.splice(0, 1)[0]);
         values.push(item);
@@ -5978,11 +5978,11 @@ var candleChartInit = function candleChartInit() {
       };
     };
 
-    var data = splitData([['2013/1/24', 2320.26, 2320.26, 2287.3, 2362.94], ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38], ['2013/1/28', 2295.35, 2346.5, 2295.35, 2346.92], ['2013/1/29', 2347.22, 2358.98, 2337.35, 2363.8], ['2013/1/30', 2360.75, 2382.48, 2347.89, 2383.76], ['2013/1/31', 2383.43, 2385.42, 2371.23, 2391.82], ['2013/2/1', 2377.41, 2419.02, 2369.57, 2421.15], ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38], ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42], ['2013/2/6', 2432.68, 2434.48, 2427.7, 2441.73], ['2013/2/7', 2430.69, 2418.53, 2394.22, 2433.89], ['2013/2/8', 2416.62, 2432.4, 2414.4, 2443.03], ['2013/2/18', 2441.91, 2421.56, 2415.43, 2444.8], ['2013/2/19', 2420.26, 2382.91, 2373.53, 2427.07], ['2013/2/20', 2383.49, 2397.18, 2370.61, 2397.94], ['2013/2/21', 2378.82, 2325.95, 2309.17, 2378.82], ['2013/2/22', 2322.94, 2314.16, 2308.76, 2330.88], ['2013/2/25', 2320.62, 2325.82, 2315.01, 2338.78], ['2013/2/26', 2313.74, 2293.34, 2289.89, 2340.71], ['2013/2/27', 2297.77, 2313.22, 2292.03, 2324.63], ['2013/2/28', 2322.32, 2365.59, 2308.92, 2366.16], ['2013/3/1', 2364.54, 2359.51, 2330.86, 2369.65], ['2013/3/4', 2332.08, 2273.4, 2259.25, 2333.54], ['2013/3/5', 2274.81, 2326.31, 2270.1, 2328.14], ['2013/3/6', 2333.61, 2347.18, 2321.6, 2351.44], ['2013/3/7', 2340.44, 2324.29, 2304.27, 2352.02], ['2013/3/8', 2326.42, 2318.61, 2314.59, 2333.67], ['2013/3/11', 2314.68, 2310.59, 2296.58, 2320.96], ['2013/3/12', 2309.16, 2286.6, 2264.83, 2333.29], ['2013/3/13', 2282.17, 2263.97, 2253.25, 2286.33], ['2013/3/14', 2255.77, 2270.28, 2253.31, 2276.22], ['2013/3/15', 2269.31, 2278.4, 2250, 2312.08], ['2013/3/18', 2267.29, 2240.02, 2239.21, 2276.05], ['2013/3/19', 2244.26, 2257.43, 2232.02, 2261.31], ['2013/3/20', 2257.74, 2317.37, 2257.42, 2317.86], ['2013/3/21', 2318.21, 2324.24, 2311.6, 2330.81], ['2013/3/22', 2321.4, 2328.28, 2314.97, 2332], ['2013/3/25', 2334.74, 2326.72, 2319.91, 2344.89], ['2013/3/26', 2318.58, 2297.67, 2281.12, 2319.99], ['2013/3/27', 2299.38, 2301.26, 2289, 2323.48], ['2013/3/28', 2273.55, 2236.3, 2232.91, 2273.55], ['2013/3/29', 2238.49, 2236.62, 2228.81, 2246.87], ['2013/4/1', 2229.46, 2234.4, 2227.31, 2243.95], ['2013/4/2', 2234.9, 2227.74, 2220.44, 2253.42], ['2013/4/3', 2232.69, 2225.29, 2217.25, 2241.34], ['2013/4/8', 2196.24, 2211.59, 2180.67, 2212.59], ['2013/4/9', 2215.47, 2225.77, 2215.47, 2234.73], ['2013/4/10', 2224.93, 2226.13, 2212.56, 2233.04], ['2013/4/11', 2236.98, 2219.55, 2217.26, 2242.48], ['2013/4/12', 2218.09, 2206.78, 2204.44, 2226.26]]);
-    var zoomStart = 0;
-    var zoomEnd = 70;
+    let data = splitData([['2013/1/24', 2320.26, 2320.26, 2287.3, 2362.94], ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38], ['2013/1/28', 2295.35, 2346.5, 2295.35, 2346.92], ['2013/1/29', 2347.22, 2358.98, 2337.35, 2363.8], ['2013/1/30', 2360.75, 2382.48, 2347.89, 2383.76], ['2013/1/31', 2383.43, 2385.42, 2371.23, 2391.82], ['2013/2/1', 2377.41, 2419.02, 2369.57, 2421.15], ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38], ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42], ['2013/2/6', 2432.68, 2434.48, 2427.7, 2441.73], ['2013/2/7', 2430.69, 2418.53, 2394.22, 2433.89], ['2013/2/8', 2416.62, 2432.4, 2414.4, 2443.03], ['2013/2/18', 2441.91, 2421.56, 2415.43, 2444.8], ['2013/2/19', 2420.26, 2382.91, 2373.53, 2427.07], ['2013/2/20', 2383.49, 2397.18, 2370.61, 2397.94], ['2013/2/21', 2378.82, 2325.95, 2309.17, 2378.82], ['2013/2/22', 2322.94, 2314.16, 2308.76, 2330.88], ['2013/2/25', 2320.62, 2325.82, 2315.01, 2338.78], ['2013/2/26', 2313.74, 2293.34, 2289.89, 2340.71], ['2013/2/27', 2297.77, 2313.22, 2292.03, 2324.63], ['2013/2/28', 2322.32, 2365.59, 2308.92, 2366.16], ['2013/3/1', 2364.54, 2359.51, 2330.86, 2369.65], ['2013/3/4', 2332.08, 2273.4, 2259.25, 2333.54], ['2013/3/5', 2274.81, 2326.31, 2270.1, 2328.14], ['2013/3/6', 2333.61, 2347.18, 2321.6, 2351.44], ['2013/3/7', 2340.44, 2324.29, 2304.27, 2352.02], ['2013/3/8', 2326.42, 2318.61, 2314.59, 2333.67], ['2013/3/11', 2314.68, 2310.59, 2296.58, 2320.96], ['2013/3/12', 2309.16, 2286.6, 2264.83, 2333.29], ['2013/3/13', 2282.17, 2263.97, 2253.25, 2286.33], ['2013/3/14', 2255.77, 2270.28, 2253.31, 2276.22], ['2013/3/15', 2269.31, 2278.4, 2250, 2312.08], ['2013/3/18', 2267.29, 2240.02, 2239.21, 2276.05], ['2013/3/19', 2244.26, 2257.43, 2232.02, 2261.31], ['2013/3/20', 2257.74, 2317.37, 2257.42, 2317.86], ['2013/3/21', 2318.21, 2324.24, 2311.6, 2330.81], ['2013/3/22', 2321.4, 2328.28, 2314.97, 2332], ['2013/3/25', 2334.74, 2326.72, 2319.91, 2344.89], ['2013/3/26', 2318.58, 2297.67, 2281.12, 2319.99], ['2013/3/27', 2299.38, 2301.26, 2289, 2323.48], ['2013/3/28', 2273.55, 2236.3, 2232.91, 2273.55], ['2013/3/29', 2238.49, 2236.62, 2228.81, 2246.87], ['2013/4/1', 2229.46, 2234.4, 2227.31, 2243.95], ['2013/4/2', 2234.9, 2227.74, 2220.44, 2253.42], ['2013/4/3', 2232.69, 2225.29, 2217.25, 2241.34], ['2013/4/8', 2196.24, 2211.59, 2180.67, 2212.59], ['2013/4/9', 2215.47, 2225.77, 2215.47, 2234.73], ['2013/4/10', 2224.93, 2226.13, 2212.56, 2233.04], ['2013/4/11', 2236.98, 2219.55, 2217.26, 2242.48], ['2013/4/12', 2218.09, 2206.78, 2204.44, 2226.26]]);
+    let zoomStart = 0;
+    let zoomEnd = 70;
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -6091,7 +6091,7 @@ var candleChartInit = function candleChartInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions);
 
-    var dispatchZoomAction = function dispatchZoomAction() {
+    let dispatchZoomAction = function dispatchZoomAction() {
       chart.dispatchAction({
         type: 'dataZoom',
         start: zoomStart,
@@ -6142,17 +6142,17 @@ var candleChartInit = function candleChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var closedVsGoalInit = function closedVsGoalInit() {
-  var ECHART_LINE_TOTAL_SALES = '.echart-closed-vs-goal';
-  var $echartsLineTotalSales = document.querySelector(ECHART_LINE_TOTAL_SALES);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let closedVsGoalInit = function closedVsGoalInit() {
+  let ECHART_LINE_TOTAL_SALES = '.echart-closed-vs-goal';
+  let $echartsLineTotalSales = document.querySelector(ECHART_LINE_TOTAL_SALES);
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   if ($echartsLineTotalSales) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsLineTotalSales, 'options');
-    var chart = window.echarts.init($echartsLineTotalSales);
+    let userOptions = utils.getData($echartsLineTotalSales, 'options');
+    let chart = window.echarts.init($echartsLineTotalSales);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getColors().warning],
         tooltip: {
@@ -6215,7 +6215,7 @@ var closedVsGoalInit = function closedVsGoalInit() {
           axisLabel: {
             color: utils.getGrays()['400'],
             formatter: function formatter(value) {
-              var date = new Date(value);
+              let date = new Date(value);
               return "".concat(date.getDate(), " ").concat(months[date.getMonth()], " , 21");
             },
             margin: 20
@@ -6304,8 +6304,8 @@ var closedVsGoalInit = function closedVsGoalInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var revenueChartInit = function revenueChartInit() {
-  var data = {
+let revenueChartInit = function revenueChartInit() {
+  let data = {
     dates: utils.getDates(new Date('5-6-2019'), new Date('5-6-2021'), 1000 * 60 * 60 * 24 * 30),
     dataset: {
       revenue: [[645, 500, 550, 550, 473, 405, 286, 601, 743, 450, 604, 815, 855, 722, 700, 896, 866, 952, 719, 558, 737, 885, 972, 650, 600], [440, 250, 270, 400, 175, 180, 200, 400, 600, 380, 340, 550, 650, 450, 400, 688, 650, 721, 500, 300, 445, 680, 568, 400, 371]],
@@ -6315,11 +6315,11 @@ var revenueChartInit = function revenueChartInit() {
     }
   };
 
-  var tooltipFormatter = function tooltipFormatter(params) {
+  let tooltipFormatter = function tooltipFormatter(params) {
     return "<div class=\"card\">\n                <div class=\"card-header bg-light py-2\">\n                  <h6 class=\"text-600 mb-0\">".concat(params[0].axisValue, "</h6>\n                </div>\n              <div class=\"card-body py-2\">\n                <h6 class=\"text-600 fw-normal\">\n                  <span class=\"fas fa-circle text-primary me-2\"></span>Revenue: \n                  <span class=\"fw-medium\">$").concat(params[0].data, "</span></h6>\n                <h6 class=\"text-600 mb-0 fw-normal\"> \n                  <span class=\"fas fa-circle text-warning me-2\"></span>Revenue Goal: \n                  <span class=\"fw-medium\">$").concat(params[1].data, "</span></h6>\n              </div>\n            </div>");
   };
 
-  var getDefaultOptions = function getDefaultOptions(data1, data2) {
+  let getDefaultOptions = function getDefaultOptions(data1, data2) {
     return function () {
       return {
         color: utils.getGrays().white,
@@ -6420,15 +6420,15 @@ var revenueChartInit = function revenueChartInit() {
     };
   };
 
-  var initChart = function initChart(el, options) {
-    var userOptions = utils.getData(el, 'options');
-    var chart = window.echarts.init(el);
+  let initChart = function initChart(el, options) {
+    let userOptions = utils.getData(el, 'options');
+    let chart = window.echarts.init(el);
     echartSetOption(chart, userOptions, options);
   };
 
-  var chartKeys = ['revenue', 'users', 'deals', 'profit'];
+  let chartKeys = ['revenue', 'users', 'deals', 'profit'];
   chartKeys.forEach(function (key) {
-    var el = document.querySelector(".echart-crm-".concat(key));
+    let el = document.querySelector(".echart-crm-".concat(key));
     el && initChart(el, getDefaultOptions(data.dataset[key][0], data.dataset[key][1]));
   });
 };
@@ -6439,17 +6439,17 @@ var revenueChartInit = function revenueChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var dealStorageFunnelInit = function dealStorageFunnelInit() {
-  var $echartDealStorageFunnel = document.querySelector('.echart-deal-storage-funnel');
+let dealStorageFunnelInit = function dealStorageFunnelInit() {
+  let $echartDealStorageFunnel = document.querySelector('.echart-deal-storage-funnel');
 
   if ($echartDealStorageFunnel) {
-    var userOptions = utils.getData($echartDealStorageFunnel, 'options');
-    var data = userOptions.data,
+    let userOptions = utils.getData($echartDealStorageFunnel, 'options');
+    let data = userOptions.data,
         dataAxis1 = userOptions.dataAxis1,
         dataAxis2 = userOptions.dataAxis2;
-    var chart = window.echarts.init($echartDealStorageFunnel);
+    let chart = window.echarts.init($echartDealStorageFunnel);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         yAxis: [{
           data: dataAxis1,
@@ -6544,19 +6544,19 @@ var dealStorageFunnelInit = function dealStorageFunnelInit() {
 /* eslint-disable */
 
 
-var getPosition = function getPosition(pos, params, dom, rect, size) {
+let getPosition = function getPosition(pos, params, dom, rect, size) {
   return {
     top: pos[1] - size.contentSize[1] - 10,
     left: pos[0] - size.contentSize[0] / 2
   };
 };
 
-var echartSetOption = function echartSetOption(chart, userOptions, getDefaultOptions) {
-  var themeController = document.body; // Merge user options with lodash
+let echartSetOption = function echartSetOption(chart, userOptions, getDefaultOptions) {
+  let themeController = document.body; // Merge user options with lodash
 
   chart.setOption(window._.merge(getDefaultOptions(), userOptions));
   themeController.addEventListener('clickControl', function (_ref15) {
-    var control = _ref15.detail.control;
+    let control = _ref15.detail.control;
 
     if (control === 'theme') {
       chart.setOption(window._.merge(getDefaultOptions(), userOptions));
@@ -6564,16 +6564,16 @@ var echartSetOption = function echartSetOption(chart, userOptions, getDefaultOpt
   });
 };
 
-var tooltipFormatter = function tooltipFormatter(params) {
-  var tooltipItem = "";
+let tooltipFormatter = function tooltipFormatter(params) {
+  let tooltipItem = "";
   params.forEach(function (el) {
     tooltipItem = tooltipItem + "<div class='ms-1'> \n        <h6 class=\"text-700\"><span class=\"fas fa-circle me-1 fs--2\" style=\"color:".concat(el.borderColor ? el.borderColor : el.color, "\"></span>\n          ").concat(el.seriesName, " : ").concat(_typeof(el.value) === 'object' ? el.value[1] : el.value, "\n        </h6>\n      </div>");
   });
   return "<div>\n            <p class='mb-2 text-600'>\n              ".concat(window.dayjs(params[0].axisValue).isValid() ? window.dayjs(params[0].axisValue).format('MMMM DD') : params[0].axisValue, "\n            </p>\n            ").concat(tooltipItem, "\n          </div>");
 };
 
-var resizeEcharts = function resizeEcharts() {
-  var $echarts = document.querySelectorAll('[data-echart-responsive]');
+let resizeEcharts = function resizeEcharts() {
+  let $echarts = document.querySelectorAll('[data-echart-responsive]');
 
   if ($echarts.length) {
     $echarts.forEach(function (item) {
@@ -6589,18 +6589,18 @@ var resizeEcharts = function resizeEcharts() {
 utils.resize(function () {
   return resizeEcharts();
 });
-var navbarVerticalToggle = document.querySelector('.navbar-vertical-toggle');
+let navbarVerticalToggle = document.querySelector('.navbar-vertical-toggle');
 navbarVerticalToggle && navbarVerticalToggle.addEventListener('navbar.vertical.toggle', function () {
   return resizeEcharts();
 });
-var echartTabs = document.querySelectorAll('[data-tab-has-echarts]');
+let echartTabs = document.querySelectorAll('[data-tab-has-echarts]');
 echartTabs && echartTabs.forEach(function (tab) {
   tab.addEventListener('shown.bs.tab', function (e) {
-    var el = e.target;
-    var hash = el.hash;
-    var id = hash || el.dataset.bsTarget;
-    var content = document.getElementById(id.substring(1));
-    var chart = content === null || content === void 0 ? void 0 : content.querySelector('[data-echart-tab]');
+    let el = e.target;
+    let hash = el.hash;
+    let id = hash || el.dataset.bsTarget;
+    let content = document.getElementById(id.substring(1));
+    let chart = content === null || content === void 0 ? void 0 : content.querySelector('[data-echart-tab]');
     chart && window.echarts.init(chart).resize();
   });
 });
@@ -6610,38 +6610,38 @@ echartTabs && echartTabs.forEach(function (tab) {
 
 /* -------------------------------------------------------------------------- */
 
-var grossRevenueChartInit = function grossRevenueChartInit() {
-  var ECHART_GROSS_REVENUE = '.echart-gross-revenue-chart';
-  var $echartsGrossRevenue = document.querySelector(ECHART_GROSS_REVENUE);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let grossRevenueChartInit = function grossRevenueChartInit() {
+  let ECHART_GROSS_REVENUE = '.echart-gross-revenue-chart';
+  let $echartsGrossRevenue = document.querySelector(ECHART_GROSS_REVENUE);
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   if ($echartsGrossRevenue) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsGrossRevenue, 'options');
-    var chart = window.echarts.init($echartsGrossRevenue);
-    var SELECT_MONTH = "#".concat(userOptions.monthSelect);
-    var LEGEND_MONTH_TARGET = userOptions.target;
-    var LEGEND_CURRENT_MONTH = "#".concat(userOptions.optionOne);
-    var LEGEND_PREV_MONTH = "#".concat(userOptions.optionTwo);
-    var $legendCurrentMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_CURRENT_MONTH);
-    var $legendPrevMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_PREV_MONTH);
+    let userOptions = utils.getData($echartsGrossRevenue, 'options');
+    let chart = window.echarts.init($echartsGrossRevenue);
+    let SELECT_MONTH = "#".concat(userOptions.monthSelect);
+    let LEGEND_MONTH_TARGET = userOptions.target;
+    let LEGEND_CURRENT_MONTH = "#".concat(userOptions.optionOne);
+    let LEGEND_PREV_MONTH = "#".concat(userOptions.optionTwo);
+    let $legendCurrentMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_CURRENT_MONTH);
+    let $legendPrevMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_PREV_MONTH);
 
-    var dates = function dates(month) {
+    let dates = function dates(month) {
       return utils.getDates(window.dayjs().month(month).date(1), window.dayjs().month(Number(month) + 1).date(0), 1000 * 60 * 60 * 24 * 3);
     };
 
-    var monthsnumber = [[20, 40, 20, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
+    let monthsnumber = [[20, 40, 20, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
 
-    var _tooltipFormatter2 = function _tooltipFormatter2(params) {
-      var currentDate = window.dayjs(params[0].axisValue);
-      var tooltipItem = '';
+    let _tooltipFormatter2 = function _tooltipFormatter2(params) {
+      let currentDate = window.dayjs(params[0].axisValue);
+      let tooltipItem = '';
       params.forEach(function (el) {
         tooltipItem += "<h6 class=\"fs--1 text-700\"><span class=\"fas fa-circle me-2\" style=\"color:".concat(el.borderColor, "\"></span>\n        ").concat(currentDate.format('MMM DD'), " : ").concat(el.value, "\n      </h6>");
       });
       return "<div class='ms-1'>\n                ".concat(tooltipItem, "\n              </div>");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: {
           text: 'Sales over time',
@@ -6693,7 +6693,7 @@ var grossRevenueChartInit = function grossRevenueChartInit() {
           axisLabel: {
             color: utils.getGrays()['400'],
             formatter: function formatter(value) {
-              var date = new Date(value);
+              let date = new Date(value);
               return "".concat(months[date.getMonth()].substring(0, 3), " ").concat(date.getDate());
             },
             margin: 15
@@ -6769,10 +6769,10 @@ var grossRevenueChartInit = function grossRevenueChartInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions); // Change chart options accordiong to the selected month
 
-    var monthSelect = document.querySelector(SELECT_MONTH);
-    var month = 0;
-    var currentMonthData = monthsnumber[Number(month) + 1];
-    var prevMonthData = monthsnumber[monthSelect.selectedIndex];
+    let monthSelect = document.querySelector(SELECT_MONTH);
+    let month = 0;
+    let currentMonthData = monthsnumber[Number(month) + 1];
+    let prevMonthData = monthsnumber[monthSelect.selectedIndex];
     monthSelect.addEventListener('change', function (e) {
       month = e.currentTarget.value;
       currentMonthData = monthsnumber[Number(month) + 1];
@@ -6813,14 +6813,14 @@ var grossRevenueChartInit = function grossRevenueChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var leadConversionInit = function leadConversionInit() {
-  var $leadConversion = document.querySelector('.echart-lead-conversion');
+let leadConversionInit = function leadConversionInit() {
+  let $leadConversion = document.querySelector('.echart-lead-conversion');
 
   if ($leadConversion) {
-    var userOptions = utils.getData($leadConversion, 'options');
-    var chart = window.echarts.init($leadConversion);
+    let userOptions = utils.getData($leadConversion, 'options');
+    let chart = window.echarts.init($leadConversion);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.rgbaColor(utils.getColors().primary, 0.7), utils.rgbaColor(utils.getColors().info, 0.6), utils.rgbaColor(utils.getColors().secondary, 0.2), utils.rgbaColor(utils.getColors().warning, 0.6)],
         legend: {
@@ -6932,20 +6932,20 @@ var leadConversionInit = function leadConversionInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var linePaymentChartInit = function linePaymentChartInit() {
-  var $echartsLinePaymentChart = document.querySelector('.echart-line-payment');
-  var dataset = {
+let linePaymentChartInit = function linePaymentChartInit() {
+  let $echartsLinePaymentChart = document.querySelector('.echart-line-payment');
+  let dataset = {
     all: [4, 1, 6, 2, 7, 12, 4, 6, 5, 4, 5, 10],
     successful: [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8],
     failed: [1, 0, 2, 1, 2, 1, 1, 0, 0, 1, 0, 2]
   };
-  var labels = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'];
+  let labels = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM'];
 
   if ($echartsLinePaymentChart) {
-    var userOptions = utils.getData($echartsLinePaymentChart, 'options');
-    var chart = window.echarts.init($echartsLinePaymentChart);
+    let userOptions = utils.getData($echartsLinePaymentChart, 'options');
+    let chart = window.echarts.init($echartsLinePaymentChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -7074,11 +7074,11 @@ var linePaymentChartInit = function linePaymentChartInit() {
         });
       }
     });
-    var selectMenu = document.querySelector('#dashboard-chart-select');
+    let selectMenu = document.querySelector('#dashboard-chart-select');
 
     if (selectMenu) {
       selectMenu.addEventListener('change', function (e) {
-        var value = e.currentTarget.value;
+        let value = e.currentTarget.value;
         chart.setOption({
           series: [{
             data: dataset[value].map(function (d) {
@@ -7097,9 +7097,9 @@ var linePaymentChartInit = function linePaymentChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var locationBySessionInit = function locationBySessionInit() {
-  var $locationBySessionMap = document.querySelector('.echart-location-by-session-map');
-  var data = [{
+let locationBySessionInit = function locationBySessionInit() {
+  let $locationBySessionMap = document.querySelector('.echart-location-by-session-map');
+  let data = [{
     name: 'Afghanistan',
     value: 28397.812
   }, {
@@ -7634,17 +7634,17 @@ var locationBySessionInit = function locationBySessionInit() {
     name: 'Zimbabwe',
     value: 13076.978
   }];
-  var total = 6961500;
-  var maxZoomLevel = 5;
-  var minZoomLevel = 1;
+  let total = 6961500;
+  let maxZoomLevel = 5;
+  let minZoomLevel = 1;
 
   if ($locationBySessionMap) {
-    var _document$querySelect2, _document$querySelect3, _document$querySelect4;
+    let _document$querySelect2, _document$querySelect3, _document$querySelect4;
 
-    var userOptions = utils.getData($locationBySessionMap, 'options');
-    var chart = window.echarts.init($locationBySessionMap);
+    let userOptions = utils.getData($locationBySessionMap, 'options');
+    let chart = window.echarts.init($locationBySessionMap);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -7657,7 +7657,7 @@ var locationBySessionInit = function locationBySessionInit() {
           borderWidth: 1,
           transitionDuration: 0,
           formatter: function formatter(params) {
-            var _params$data, _params$data2;
+            let _params$data, _params$data2;
 
             return "<strong>".concat((_params$data = params.data) === null || _params$data === void 0 ? void 0 : _params$data.name, " :</strong> ").concat((((_params$data2 = params.data) === null || _params$data2 === void 0 ? void 0 : _params$data2.value) / total * 100).toFixed(2), "%");
           }
@@ -7700,7 +7700,7 @@ var locationBySessionInit = function locationBySessionInit() {
     };
 
     echartSetOption(chart, userOptions, getDefaultOptions);
-    var zoomLevel = 1;
+    let zoomLevel = 1;
     (_document$querySelect2 = document.querySelector('.location-by-session-map-reset')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.addEventListener('click', function () {
       zoomLevel = 1;
       chart.dispatchAction({
@@ -7743,15 +7743,15 @@ var locationBySessionInit = function locationBySessionInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var marketShareEcommerceInit = function marketShareEcommerceInit() {
-  var ECHART_PRODUCT_SHARE = '.echart-product-share';
-  var $echartProductShare = document.querySelector(ECHART_PRODUCT_SHARE);
+let marketShareEcommerceInit = function marketShareEcommerceInit() {
+  let ECHART_PRODUCT_SHARE = '.echart-product-share';
+  let $echartProductShare = document.querySelector(ECHART_PRODUCT_SHARE);
 
   if ($echartProductShare) {
-    var userOptions = utils.getData($echartProductShare, 'options');
-    var chart = window.echarts.init($echartProductShare);
+    let userOptions = utils.getData($echartProductShare, 'options');
+    let chart = window.echarts.init($echartProductShare);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getColors().info, utils.getColors().warning],
         tooltip: {
@@ -7826,15 +7826,15 @@ var marketShareEcommerceInit = function marketShareEcommerceInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var marketShareInit = function marketShareInit() {
-  var ECHART_MARKET_SHARE = '.echart-market-share';
-  var $echartMarketShare = document.querySelector(ECHART_MARKET_SHARE);
+let marketShareInit = function marketShareInit() {
+  let ECHART_MARKET_SHARE = '.echart-market-share';
+  let $echartMarketShare = document.querySelector(ECHART_MARKET_SHARE);
 
   if ($echartMarketShare) {
-    var userOptions = utils.getData($echartMarketShare, 'options');
-    var chart = window.echarts.init($echartMarketShare);
+    let userOptions = utils.getData($echartMarketShare, 'options');
+    let chart = window.echarts.init($echartMarketShare);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getColors().info, utils.getGrays()[300]],
         tooltip: {
@@ -7909,15 +7909,15 @@ var marketShareInit = function marketShareInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var mostLeadsInit = function mostLeadsInit() {
-  var ECHART_MOST_LEADS = '.echart-most-leads';
-  var $echartMostLeads = document.querySelector(ECHART_MOST_LEADS);
+let mostLeadsInit = function mostLeadsInit() {
+  let ECHART_MOST_LEADS = '.echart-most-leads';
+  let $echartMostLeads = document.querySelector(ECHART_MOST_LEADS);
 
   if ($echartMostLeads) {
-    var userOptions = utils.getData($echartMostLeads, 'options');
-    var chart = window.echarts.init($echartMostLeads);
+    let userOptions = utils.getData($echartMostLeads, 'options');
+    let chart = window.echarts.init($echartMostLeads);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getColors().info, utils.getColors().warning, utils.getColors().info // utils.getGrays()[300],
         ],
@@ -7996,20 +7996,20 @@ var mostLeadsInit = function mostLeadsInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var realTimeUsersChartInit = function realTimeUsersChartInit() {
-  var $echartsRealTimeUsers = document.querySelector('.echart-real-time-users');
+let realTimeUsersChartInit = function realTimeUsersChartInit() {
+  let $echartsRealTimeUsers = document.querySelector('.echart-real-time-users');
 
   if ($echartsRealTimeUsers) {
-    var userOptions = utils.getData($echartsRealTimeUsers, 'options');
-    var chart = window.echarts.init($echartsRealTimeUsers);
-    var data = [921, 950, 916, 913, 909, 962, 926, 936, 977, 976, 999, 981, 998, 1000, 900, 906, 973, 911, 994, 982, 917, 972, 952, 963, 991];
-    var axisData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+    let userOptions = utils.getData($echartsRealTimeUsers, 'options');
+    let chart = window.echarts.init($echartsRealTimeUsers);
+    let data = [921, 950, 916, 913, 909, 962, 926, 936, 977, 976, 999, 981, 998, 1000, 900, 906, 973, 911, 994, 982, 917, 972, 952, 963, 991];
+    let axisData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
 
-    var _tooltipFormatter3 = function _tooltipFormatter3(params) {
+    let _tooltipFormatter3 = function _tooltipFormatter3(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\"><span class=\"fas fa-circle me-1 text-info\"></span>\n            Users : ".concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -8074,9 +8074,9 @@ var realTimeUsersChartInit = function realTimeUsersChartInit() {
     };
 
     echartSetOption(chart, userOptions, getDefaultOptions);
-    var userCounterDom = document.querySelector('.real-time-user');
+    let userCounterDom = document.querySelector('.real-time-user');
     setInterval(function () {
-      var rndData = utils.getRandomNumber(900, 1000);
+      let rndData = utils.getRandomNumber(900, 1000);
       data.shift();
       data.push(rndData);
       axisData.shift();
@@ -8100,19 +8100,19 @@ var realTimeUsersChartInit = function realTimeUsersChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var reportForThisWeekInit = function reportForThisWeekInit() {
-  var ECHART_BAR_REPORT_FOR_THIS_WEEK = '.echart-bar-report-for-this-week';
-  var $echartBarReportForThisWeek = document.querySelector(ECHART_BAR_REPORT_FOR_THIS_WEEK);
+let reportForThisWeekInit = function reportForThisWeekInit() {
+  let ECHART_BAR_REPORT_FOR_THIS_WEEK = '.echart-bar-report-for-this-week';
+  let $echartBarReportForThisWeek = document.querySelector(ECHART_BAR_REPORT_FOR_THIS_WEEK);
 
   if ($echartBarReportForThisWeek) {
-    var selectChart = utils.getData($echartBarReportForThisWeek, 'chart');
-    var legendLastWeek = document.getElementById(selectChart === null || selectChart === void 0 ? void 0 : selectChart.option1);
-    var legendThisWeek = document.getElementById(selectChart === null || selectChart === void 0 ? void 0 : selectChart.option2);
-    var data = [['product', 'This Week', 'Last Week'], ['Sun', 43, 85], ['Mon', 83, 73], ['Tue', 86, 62], ['Wed', 72, 53], ['Thu', 80, 50], ['Fri', 50, 70], ['Sat', 80, 90]];
-    var userOptions = utils.getData($echartBarReportForThisWeek, 'options');
-    var chart = window.echarts.init($echartBarReportForThisWeek);
+    let selectChart = utils.getData($echartBarReportForThisWeek, 'chart');
+    let legendLastWeek = document.getElementById(selectChart === null || selectChart === void 0 ? void 0 : selectChart.option1);
+    let legendThisWeek = document.getElementById(selectChart === null || selectChart === void 0 ? void 0 : selectChart.option2);
+    let data = [['product', 'This Week', 'Last Week'], ['Sun', 43, 85], ['Mon', 83, 73], ['Tue', 86, 62], ['Wed', 72, 53], ['Thu', 80, 50], ['Fri', 50, 70], ['Sat', 80, 90]];
+    let userOptions = utils.getData($echartBarReportForThisWeek, 'options');
+    let chart = window.echarts.init($echartBarReportForThisWeek);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getGrays()['300']],
         dataset: {
@@ -8239,28 +8239,28 @@ var reportForThisWeekInit = function reportForThisWeekInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var returningCustomerRateInit = function returningCustomerRateInit() {
-  var ECHART_LINE_RETURNING_CUSTOMER_RATE = '.echart-line-returning-customer-rate';
-  var $echartsLineReturningCustomerRate = document.querySelector(ECHART_LINE_RETURNING_CUSTOMER_RATE);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let returningCustomerRateInit = function returningCustomerRateInit() {
+  let ECHART_LINE_RETURNING_CUSTOMER_RATE = '.echart-line-returning-customer-rate';
+  let $echartsLineReturningCustomerRate = document.querySelector(ECHART_LINE_RETURNING_CUSTOMER_RATE);
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   if ($echartsLineReturningCustomerRate) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsLineReturningCustomerRate, 'options');
-    var LEGEND_MONTH_TARGET = userOptions.target;
-    var SELECT_MONTH = "#".concat(userOptions.monthSelect);
-    var LEGEND_NEW_MONTH = "#".concat(userOptions.optionOne);
-    var LEGEND_RETURNING_MONTH = "#".concat(userOptions.optionTwo);
-    var $legendNewMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_NEW_MONTH);
-    var $legendReturningMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_RETURNING_MONTH);
-    var chart = window.echarts.init($echartsLineReturningCustomerRate);
-    var monthNumbers = [[20, 40, 20, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
+    let userOptions = utils.getData($echartsLineReturningCustomerRate, 'options');
+    let LEGEND_MONTH_TARGET = userOptions.target;
+    let SELECT_MONTH = "#".concat(userOptions.monthSelect);
+    let LEGEND_NEW_MONTH = "#".concat(userOptions.optionOne);
+    let LEGEND_RETURNING_MONTH = "#".concat(userOptions.optionTwo);
+    let $legendNewMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_NEW_MONTH);
+    let $legendReturningMonth = document.getElementById(LEGEND_MONTH_TARGET).querySelector(LEGEND_RETURNING_MONTH);
+    let chart = window.echarts.init($echartsLineReturningCustomerRate);
+    let monthNumbers = [[20, 40, 20, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
 
-    var dates = function dates(month) {
+    let dates = function dates(month) {
       return utils.getDates(window.dayjs().month(month).date(1), window.dayjs().month(Number(month) + 1).date(0), 1000 * 60 * 60 * 24 * 3);
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: {
           text: 'Customers',
@@ -8312,7 +8312,7 @@ var returningCustomerRateInit = function returningCustomerRateInit() {
           axisLabel: {
             color: utils.getColor('400'),
             formatter: function formatter(value) {
-              var date = new Date(value);
+              let date = new Date(value);
 
               if (date.getDate() === 1) {
                 return "".concat(months[date.getMonth()].substring(0, 3), " ").concat(date.getDate());
@@ -8425,11 +8425,11 @@ var returningCustomerRateInit = function returningCustomerRateInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions); // Change chart options accordiong to the selected month
 
-    var monthSelect = document.querySelector(SELECT_MONTH);
+    let monthSelect = document.querySelector(SELECT_MONTH);
     monthSelect.addEventListener('change', function (e) {
-      var month = e.currentTarget.value;
-      var dataNewMonth = monthNumbers[Number(month) + 1];
-      var dataReturningMonth = monthNumbers[month];
+      let month = e.currentTarget.value;
+      let dataNewMonth = monthNumbers[Number(month) + 1];
+      let dataReturningMonth = monthNumbers[month];
       chart.setOption({
         xAxis: {
           data: dates(month)
@@ -8464,9 +8464,9 @@ var returningCustomerRateInit = function returningCustomerRateInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var salesByPosLocationInit = function salesByPosLocationInit() {
-  var ECHART_RADAR_SALES_BY_POS_LOCATION = '.echart-radar-sales-by-pos-location';
-  var $echartsRadarSalesByPosLocation = document.querySelector(ECHART_RADAR_SALES_BY_POS_LOCATION);
+let salesByPosLocationInit = function salesByPosLocationInit() {
+  let ECHART_RADAR_SALES_BY_POS_LOCATION = '.echart-radar-sales-by-pos-location';
+  let $echartsRadarSalesByPosLocation = document.querySelector(ECHART_RADAR_SALES_BY_POS_LOCATION);
 
   function getformatter(params) {
     //const indicators = ['Marketing','Sales', 'Dev', 'Support', 'Tech', 'Admin']
@@ -8475,10 +8475,10 @@ var salesByPosLocationInit = function salesByPosLocationInit() {
 
   if ($echartsRadarSalesByPosLocation) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsRadarSalesByPosLocation, 'options');
-    var chart = window.echarts.init($echartsRadarSalesByPosLocation);
+    let userOptions = utils.getData($echartsRadarSalesByPosLocation, 'options');
+    let chart = window.echarts.init($echartsRadarSalesByPosLocation);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -8594,13 +8594,13 @@ var salesByPosLocationInit = function salesByPosLocationInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var sessionByBrowserChartInit = function sessionByBrowserChartInit() {
-  var $sessionByBroswser = document.querySelector('.echart-session-by-browser');
+let sessionByBrowserChartInit = function sessionByBrowserChartInit() {
+  let $sessionByBroswser = document.querySelector('.echart-session-by-browser');
 
   if ($sessionByBroswser) {
-    var userOptions = utils.getData($sessionByBroswser, 'options');
-    var chart = window.echarts.init($sessionByBroswser);
-    var dataset = {
+    let userOptions = utils.getData($sessionByBroswser, 'options');
+    let chart = window.echarts.init($sessionByBroswser);
+    let dataset = {
       week: [{
         value: 50.3,
         name: 'Chrome'
@@ -8633,7 +8633,7 @@ var sessionByBrowserChartInit = function sessionByBrowserChartInit() {
       }]
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getColors().success, utils.getColors().info],
         tooltip: {
@@ -8684,11 +8684,11 @@ var sessionByBrowserChartInit = function sessionByBrowserChartInit() {
     };
 
     echartSetOption(chart, userOptions, getDefaultOptions);
-    var selectMenu = document.querySelector("[data-target='.echart-session-by-browser']");
+    let selectMenu = document.querySelector("[data-target='.echart-session-by-browser']");
 
     if (selectMenu) {
       selectMenu.addEventListener('change', function (e) {
-        var value = e.currentTarget.value;
+        let value = e.currentTarget.value;
         chart.setOption({
           series: [{
             data: dataset[value]
@@ -8705,9 +8705,9 @@ var sessionByBrowserChartInit = function sessionByBrowserChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var sessionByCountryMapInit = function sessionByCountryMapInit() {
-  var $sessionByCountryMap = document.querySelector('.echart-session-by-country-map');
-  var data = [{
+let sessionByCountryMapInit = function sessionByCountryMapInit() {
+  let $sessionByCountryMap = document.querySelector('.echart-session-by-country-map');
+  let data = [{
     name: 'Afghanistan',
     value: 28397.812
   }, {
@@ -9242,15 +9242,15 @@ var sessionByCountryMapInit = function sessionByCountryMapInit() {
     name: 'Zimbabwe',
     value: 13076.978
   }];
-  var total = 6961500;
+  let total = 6961500;
 
   if ($sessionByCountryMap) {
-    var _document$querySelect5;
+    let _document$querySelect5;
 
-    var userOptions = utils.getData($sessionByCountryMap, 'options');
-    var chart = window.echarts.init($sessionByCountryMap);
+    let userOptions = utils.getData($sessionByCountryMap, 'options');
+    let chart = window.echarts.init($sessionByCountryMap);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -9263,7 +9263,7 @@ var sessionByCountryMapInit = function sessionByCountryMapInit() {
           borderWidth: 1,
           transitionDuration: 0,
           formatter: function formatter(params) {
-            var _params$data3, _params$data4;
+            let _params$data3, _params$data4;
 
             return "<strong>".concat((_params$data3 = params.data) === null || _params$data3 === void 0 ? void 0 : _params$data3.name, " :</strong> ").concat((((_params$data4 = params.data) === null || _params$data4 === void 0 ? void 0 : _params$data4.value) / total * 100).toFixed(2), "%");
           }
@@ -9326,15 +9326,15 @@ var sessionByCountryMapInit = function sessionByCountryMapInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var sessionByCountryChartInit = function sessionByCountryChartInit() {
-  var $sessionByCountry = document.querySelector('.echart-session-by-country');
-  var data = [['CHINA', 'INDIA', 'USA', 'IRAN', 'BRAZIL', 'PAKISTAN'], [19.53, 17.32, 4.49, 3.46, 2.8, 1.7]];
+let sessionByCountryChartInit = function sessionByCountryChartInit() {
+  let $sessionByCountry = document.querySelector('.echart-session-by-country');
+  let data = [['CHINA', 'INDIA', 'USA', 'IRAN', 'BRAZIL', 'PAKISTAN'], [19.53, 17.32, 4.49, 3.46, 2.8, 1.7]];
 
   if ($sessionByCountry) {
-    var userOptions = utils.getData($sessionByCountry, 'options');
-    var chart = window.echarts.init($sessionByCountry);
+    let userOptions = utils.getData($sessionByCountry, 'options');
+    let chart = window.echarts.init($sessionByCountry);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -9430,16 +9430,16 @@ var sessionByCountryChartInit = function sessionByCountryChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var topProductsInit = function topProductsInit() {
-  var ECHART_BAR_TOP_PRODUCTS = '.echart-bar-top-products';
-  var $echartBarTopProducts = document.querySelector(ECHART_BAR_TOP_PRODUCTS);
+let topProductsInit = function topProductsInit() {
+  let ECHART_BAR_TOP_PRODUCTS = '.echart-bar-top-products';
+  let $echartBarTopProducts = document.querySelector(ECHART_BAR_TOP_PRODUCTS);
 
   if ($echartBarTopProducts) {
-    var data = [['product', '2019', '2018'], ['Boots4', 43, 85], ['Reign Pro', 83, 73], ['Slick', 86, 62], ['Falcon', 72, 53], ['Sparrow', 80, 50], ['Hideway', 50, 70], ['Freya', 80, 90]];
-    var userOptions = utils.getData($echartBarTopProducts, 'options');
-    var chart = window.echarts.init($echartBarTopProducts);
+    let data = [['product', '2019', '2018'], ['Boots4', 43, 85], ['Reign Pro', 83, 73], ['Slick', 86, 62], ['Falcon', 72, 53], ['Sparrow', 80, 50], ['Hideway', 50, 70], ['Freya', 80, 90]];
+    let userOptions = utils.getData($echartBarTopProducts, 'options');
+    let chart = window.echarts.init($echartBarTopProducts);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.getGrays()['300']],
         dataset: {
@@ -9557,19 +9557,19 @@ var topProductsInit = function topProductsInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var totalOrderInit = function totalOrderInit() {
-  var ECHART_LINE_TOTAL_ORDER = '.echart-line-total-order'; //
+let totalOrderInit = function totalOrderInit() {
+  let ECHART_LINE_TOTAL_ORDER = '.echart-line-total-order'; //
   // ─── TOTAL ORDER CHART ──────────────────────────────────────────────────────────
   //
 
-  var $echartLineTotalOrder = document.querySelector(ECHART_LINE_TOTAL_ORDER);
+  let $echartLineTotalOrder = document.querySelector(ECHART_LINE_TOTAL_ORDER);
 
   if ($echartLineTotalOrder) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartLineTotalOrder, 'options');
-    var chart = window.echarts.init($echartLineTotalOrder); // Default options
+    let userOptions = utils.getData($echartLineTotalOrder, 'options');
+    let chart = window.echarts.init($echartLineTotalOrder); // Default options
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           triggerOn: 'mousemove',
@@ -9684,14 +9684,14 @@ var totalOrderInit = function totalOrderInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var totalSalesEcommerce = function totalSalesEcommerce() {
-  var ECHART_LINE_TOTAL_SALES_ECOMM = '.echart-line-total-sales-ecommerce';
-  var $echartsLineTotalSalesEcomm = document.querySelector(ECHART_LINE_TOTAL_SALES_ECOMM);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let totalSalesEcommerce = function totalSalesEcommerce() {
+  let ECHART_LINE_TOTAL_SALES_ECOMM = '.echart-line-total-sales-ecommerce';
+  let $echartsLineTotalSalesEcomm = document.querySelector(ECHART_LINE_TOTAL_SALES_ECOMM);
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   function getFormatter(params) {
     return params.map(function (_ref16, index) {
-      var value = _ref16.value,
+      let value = _ref16.value,
           borderColor = _ref16.borderColor;
       return "<span class= \"fas fa-circle\" style=\"color: ".concat(borderColor, "\"></span>\n    <span class='text-600'>").concat(index === 0 ? 'Last Month' : 'Previous Year', ": ").concat(value, "</span>");
     }).join('<br/>');
@@ -9699,14 +9699,14 @@ var totalSalesEcommerce = function totalSalesEcommerce() {
 
   if ($echartsLineTotalSalesEcomm) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsLineTotalSalesEcomm, 'options');
-    var TOTAL_SALES_LAST_MONTH = "#".concat(userOptions.optionOne);
-    var TOTAL_SALES_PREVIOUS_YEAR = "#".concat(userOptions.optionTwo);
-    var totalSalesLastMonth = document.querySelector(TOTAL_SALES_LAST_MONTH);
-    var totalSalesPreviousYear = document.querySelector(TOTAL_SALES_PREVIOUS_YEAR);
-    var chart = window.echarts.init($echartsLineTotalSalesEcomm);
+    let userOptions = utils.getData($echartsLineTotalSalesEcomm, 'options');
+    let TOTAL_SALES_LAST_MONTH = "#".concat(userOptions.optionOne);
+    let TOTAL_SALES_PREVIOUS_YEAR = "#".concat(userOptions.optionTwo);
+    let totalSalesLastMonth = document.querySelector(TOTAL_SALES_LAST_MONTH);
+    let totalSalesPreviousYear = document.querySelector(TOTAL_SALES_PREVIOUS_YEAR);
+    let chart = window.echarts.init($echartsLineTotalSalesEcomm);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: utils.getGrays()['100'],
         tooltip: {
@@ -9756,7 +9756,7 @@ var totalSalesEcommerce = function totalSalesEcommerce() {
           axisLabel: {
             color: utils.getColor('400'),
             formatter: function formatter(value) {
-              var date = new Date(value);
+              let date = new Date(value);
               return "".concat(months[date.getMonth()], " ").concat(date.getDate());
             },
             margin: 15 // showMaxLabel: false
@@ -9863,27 +9863,27 @@ var totalSalesEcommerce = function totalSalesEcommerce() {
 /* -------------------------------------------------------------------------- */
 
 
-var totalSalesInit = function totalSalesInit() {
-  var ECHART_LINE_TOTAL_SALES = '.echart-line-total-sales';
-  var SELECT_MONTH = '.select-month';
-  var $echartsLineTotalSales = document.querySelector(ECHART_LINE_TOTAL_SALES);
-  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let totalSalesInit = function totalSalesInit() {
+  let ECHART_LINE_TOTAL_SALES = '.echart-line-total-sales';
+  let SELECT_MONTH = '.select-month';
+  let $echartsLineTotalSales = document.querySelector(ECHART_LINE_TOTAL_SALES);
+  let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   function getFormatter(params) {
-    var _params$ = params[0],
+    let _params$ = params[0],
         name = _params$.name,
         value = _params$.value;
-    var date = new Date(name);
+    let date = new Date(name);
     return "".concat(months[0], " ").concat(date.getDate(), ", ").concat(value);
   }
 
   if ($echartsLineTotalSales) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartsLineTotalSales, 'options');
-    var chart = window.echarts.init($echartsLineTotalSales);
-    var monthsnumber = [[60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
+    let userOptions = utils.getData($echartsLineTotalSales, 'options');
+    let chart = window.echarts.init($echartsLineTotalSales);
+    let monthsnumber = [[60, 80, 60, 80, 65, 130, 120, 100, 30, 40, 30, 70], [100, 70, 80, 50, 120, 100, 130, 140, 90, 100, 40, 50], [80, 50, 60, 40, 60, 120, 100, 130, 60, 80, 50, 60], [70, 80, 100, 70, 90, 60, 80, 130, 40, 60, 50, 80], [90, 40, 80, 80, 100, 140, 100, 130, 90, 60, 70, 50], [80, 60, 80, 60, 40, 100, 120, 100, 30, 40, 30, 70], [20, 40, 20, 50, 70, 60, 110, 80, 90, 30, 50, 50], [60, 70, 30, 40, 80, 140, 80, 140, 120, 130, 100, 110], [90, 90, 40, 60, 40, 110, 90, 110, 60, 80, 60, 70], [50, 80, 50, 80, 50, 80, 120, 80, 50, 120, 110, 110], [60, 90, 60, 70, 40, 70, 100, 140, 30, 40, 30, 70], [20, 40, 20, 50, 30, 80, 120, 100, 30, 40, 30, 70]];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: utils.getGrays()['100'],
         tooltip: {
@@ -9929,7 +9929,7 @@ var totalSalesInit = function totalSalesInit() {
           axisLabel: {
             color: utils.getGrays()['400'],
             formatter: function formatter(value) {
-              var date = new Date(value);
+              let date = new Date(value);
               return "".concat(months[date.getMonth()], " ").concat(date.getDate());
             },
             margin: 15
@@ -10001,26 +10001,26 @@ var totalSalesInit = function totalSalesInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions); // Change chart options accordiong to the selected month
 
-    var monthSelect = document.querySelector(SELECT_MONTH);
+    let monthSelect = document.querySelector(SELECT_MONTH);
 
     if (monthSelect) {
       monthSelect.addEventListener('change', function (e) {
-        var month = e.currentTarget.value;
-        var data = monthsnumber[month];
+        let month = e.currentTarget.value;
+        let data = monthsnumber[month];
         chart.setOption({
           tooltip: {
             formatter: function formatter(params) {
-              var _params$2 = params[0],
+              let _params$2 = params[0],
                   name = _params$2.name,
                   value = _params$2.value;
-              var date = new Date(name);
+              let date = new Date(name);
               return "".concat(months[month], " ").concat(date.getDate(), ", ").concat(value);
             }
           },
           xAxis: {
             axisLabel: {
               formatter: function formatter(value) {
-                var date = new Date(value);
+                let date = new Date(value);
                 return "".concat(months[month], " ").concat(date.getDate());
               },
               margin: 15
@@ -10041,12 +10041,12 @@ var totalSalesInit = function totalSalesInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var trafficChannelChartInit = function trafficChannelChartInit() {
-  var $trafficChannels = document.querySelector('.echart-traffic-channels');
+let trafficChannelChartInit = function trafficChannelChartInit() {
+  let $trafficChannels = document.querySelector('.echart-traffic-channels');
 
   if ($trafficChannels) {
-    var userOptions = utils.getData($trafficChannels, 'options');
-    var chart = window.echarts.init($trafficChannels); // const tooltipFormatter = params => {
+    let userOptions = utils.getData($trafficChannels, 'options');
+    let chart = window.echarts.init($trafficChannels); // const tooltipFormatter = params => {
     //   let tooltipItem = ``
     //   params.forEach(el => {
     //     tooltipItem = tooltipItem +`<div class='ms-1'>
@@ -10064,7 +10064,7 @@ var trafficChannelChartInit = function trafficChannelChartInit() {
     //           </div>`;
     // };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColors().primary, utils.rgbaColor(utils.getColors().primary, 0.8), utils.rgbaColor(utils.getColors().primary, 0.6), utils.rgbaColor(utils.getColors().primary, 0.4), utils.rgbaColor(utils.getColors().primary, 0.2)],
         legend: {
@@ -10190,26 +10190,26 @@ var trafficChannelChartInit = function trafficChannelChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var usersByTimeChartInit = function usersByTimeChartInit() {
-  var $echartUsersByTimeChart = document.querySelector('.echart-users-by-time');
-  var hours = ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'];
-  var data = [];
+let usersByTimeChartInit = function usersByTimeChartInit() {
+  let $echartUsersByTimeChart = document.querySelector('.echart-users-by-time');
+  let hours = ['12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM', '1 PM', '2 PM', '3 PM', '4 PM', '5 PM', '6 PM', '7 PM', '8 PM', '9 PM', '10 PM', '11 PM'];
+  let data = [];
 
-  for (var i = 0; i < 24; i += 1) {
-    for (var j = 0; j < 7; j += 1) {
+  for (let i = 0; i < 24; i += 1) {
+    for (let j = 0; j < 7; j += 1) {
       data.push([j, i, utils.getRandomNumber(20, 300)]);
     }
   }
 
-  var tooltipFormatter = function tooltipFormatter(params) {
+  let tooltipFormatter = function tooltipFormatter(params) {
     return "<div>\n          <p class='mb-0 text-600'>".concat(window.dayjs(params.name).format('MMM DD, YYYY'), "</p>\n          <div class=\"d-flex align-items-center\">\n            <p class=\"mb-0 text-600\">\n              ").concat(window.dayjs().hour(params.data[1]).format('hA'), " : <span class='text-800 fw-semi-bold'>").concat(params.data[2], "</span>\n            </p>\n          </div>\n        </div>");
   };
 
   if ($echartUsersByTimeChart) {
-    var userOptions = utils.getData($echartUsersByTimeChart, 'options');
-    var chart = window.echarts.init($echartUsersByTimeChart);
+    let userOptions = utils.getData($echartUsersByTimeChart, 'options');
+    let chart = window.echarts.init($echartUsersByTimeChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         gradientColor: [utils.getColor('info'), utils.getColor('primary')],
         tooltip: {
@@ -10322,22 +10322,22 @@ var usersByTimeChartInit = function usersByTimeChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var weeklySalesInit = function weeklySalesInit() {
-  var ECHART_BAR_WEEKLY_SALES = '.echart-bar-weekly-sales';
-  var $echartBarWeeklySales = document.querySelector(ECHART_BAR_WEEKLY_SALES);
+let weeklySalesInit = function weeklySalesInit() {
+  let ECHART_BAR_WEEKLY_SALES = '.echart-bar-weekly-sales';
+  let $echartBarWeeklySales = document.querySelector(ECHART_BAR_WEEKLY_SALES);
 
   if ($echartBarWeeklySales) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartBarWeeklySales, 'options');
-    var data = [120, 200, 150, 80, 70, 110, 120]; // Max value of data
+    let userOptions = utils.getData($echartBarWeeklySales, 'options');
+    let data = [120, 200, 150, 80, 70, 110, 120]; // Max value of data
 
-    var yMax = Math.max.apply(Math, data);
-    var dataBackground = data.map(function () {
+    let yMax = Math.max.apply(Math, data);
+    let dataBackground = data.map(function () {
       return yMax;
     });
-    var chart = window.echarts.init($echartBarWeeklySales); // Default options
+    let chart = window.echarts.init($echartBarWeeklySales); // Default options
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',

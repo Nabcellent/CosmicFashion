@@ -67,7 +67,7 @@
 					<div class="border-0 p-3"><a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a></div>
 					<div class="border-0 p-3 dropstart">
 						<a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="fas fa-user"></i>
+							<i class="fas fa-user" title="<?= user()->first_name . " " . user()->last_name ?>"></i>
 						</a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<?= route_to('user.index') ?>">Profile</a></li>

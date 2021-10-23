@@ -1,4 +1,4 @@
-<a class="navbar-brand me-1 me-sm-3" href="index-2.html">
+<a class="navbar-brand me-1 me-sm-3" href="<?= route_to('dashboard') ?>">
 	<div class="d-flex align-items-center">
 		<img class="me-2" src="/images/dash/icons/spot-illustrations/falcon.png" alt="" width="40"/>
 		<span class="font-sans-serif"><?= env('app.name', 'CosmicFashion.') ?></span>
@@ -253,7 +253,7 @@
 				<a class="dropdown-item" href="#!">Feedback</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="pages/user/settings.html">Settings</a>
-				<a class="dropdown-item" href="<?= route_to('logout') ?>">Logout</a>
+				<a class="dropdown-item" href="<?= route_to('logout') ?>">Sign out</a>
 			</div>
 		</div>
 	</li>

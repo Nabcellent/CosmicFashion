@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 :root {
     --cf-prmiary: rgb(153, 0, 0);
     --cf-primary: rgb(173, 10, 10)
+}
+
+body {
+    font-family: 'Varela Round', cursive!important;
 }
 
 
@@ -62,25 +67,6 @@ img {
     color: rgb(173, 216, 230) !important;
 }
 
-.btn-red {
-    color: #fff;
-    background-color: var(--suf-red);
-    border-color: var(--suf-red);
-}
-.btn-red:hover {
-    color: #fff;
-    background-color: var(--suf-red-l1);
-    border-color: var(--suf-red-l1);
-}
-.btn-outline-red {
-    color: var(--suf-red);
-    border-color: var(--suf-red);
-}
-.btn-outline-red:hover {
-    color: #fff;
-    background-color: var(--suf-red);
-    border-color: var(--suf-red);
-}
 
 .toastify {
     font-weight: bolder;

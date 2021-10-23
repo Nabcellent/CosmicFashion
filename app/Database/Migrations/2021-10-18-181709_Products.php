@@ -17,8 +17,8 @@ class Products extends Migration {
             'image'           => ['type' => 'VARCHAR', 'constraint' => '40', 'null' => true, 'unique' => true],
             'description'     => ['type' => 'TEXT', 'null' => true],
             'status'          => ['type' => 'BOOLEAN', 'default' => false],
-            'created_at datetime default current_timestamp',
-            'updated_at datetime DEFAULT current_timestamp ON UPDATE current_timestamp',
+            'created_at timestamp default current_timestamp',
+            'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
             'is_deleted'      => ['type' => 'BOOLEAN', 'default' => false]
         ]);
 

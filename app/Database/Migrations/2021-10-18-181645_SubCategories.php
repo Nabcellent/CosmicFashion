@@ -10,7 +10,9 @@ class SubCategories extends Migration {
             'id'          => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'category_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
             'name'        => ['type' => 'VARCHAR', 'constraint' => 25, 'null' => false],
-            'is_deleted'  => ['type' => 'BOOLEAN', 'default' => false]
+            'is_deleted'  => ['type' => 'BOOLEAN', 'default' => false],
+            'created_at timestamp default current_timestamp',
+            'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
         ]);
 
         $this->forge->addPrimaryKey('id');

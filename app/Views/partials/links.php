@@ -7,6 +7,8 @@
 <!--    Fontawesome    -->
 <link rel="stylesheet" type="text/css" href="/vendor/fontawesome/css/all.min.css">
 
+<?= $this->renderSection('links') ?>
+
 <!--    Custom    -->
 <link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/first.css">

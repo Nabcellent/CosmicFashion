@@ -5,7 +5,7 @@
 /*                              Config                                        */
 
 /* -------------------------------------------------------------------------- */
-var CONFIG = {
+let CONFIG = {
   isNavbarVerticalCollapsed: false,
   theme: 'light',
   isRTL: false,

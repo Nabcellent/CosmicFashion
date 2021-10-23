@@ -21,9 +21,9 @@
 					</div>
                 <?php endif; ?>
 
-                <?= view('App\Auth\_message_block') ?>
+                <?= view('App\auth\_message_block') ?>
 
-				<form action="<?= route_to('register') ?>" method="POST" class="w-100">
+				<form id="register" action="<?= route_to('register') ?>" method="POST" class="w-100">
                     <?= csrf_field() ?>
 
 					<div class="row mb-2">
@@ -58,7 +58,7 @@
 						<div class="col">
 							<small class="fw-bold">Password</small>
 							<div class="input-group">
-								<input type="password" name="password" placeholder="Password" required aria-label
+								<input type="password" name="password" placeholder="Password" id="password" required aria-label
 								       class="form-control"/>
 								<span class="input-group-text border-right-0 rounded-0 show-password" title="Show Password" style="cursor: pointer">
 									<i class="bi bi-eye"></i></span>
@@ -75,7 +75,7 @@
 						</div>
 					</div>
 					<div class="d-flex justify-content-between align-items-center mt-5">
-						<a href="<?= route_to('login') ?>">Log In to your account</a>
+						<a href="<?= route_to('login') ?>">Sign In to your account</a>
 						<button type="submit" class="fw-bold text-uppercase Register_button__1hHYm btn btn-primary">SIGN UP</button>
 					</div>
 				</form>
@@ -91,4 +91,34 @@
 
 <div class="d-none d-md-inline-block h-100 Register_backgroundImage__3ZLed col-sm-6"></div>
 
+<?= $this->section('scripts') ?>
+<script src="/vendor/jquery/jqueryValidation.js"></script>
+<script>
+    $(() => {
+        $('#register').validate({
+            rules: {
+                first_name: 'required',
+                last_name: 'required',
+                email: {
+                    required: true,
+                    email: true,
+                    remote: '/check-email',
+                },
+	            gender: 'required',
+                password: { minlength: 8 },
+                password_confirmation: { equalTo: '#password' }
+            },
+            messages: {
+                email: {
+                    remote: 'Email address already in use.',
+                },
+                gender: 'Gender is required.',
+                password_confirmation: {
+                    equalTo: 'Passwords do not match.'
+                }
+            }
+        })
+    })
+</script>
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

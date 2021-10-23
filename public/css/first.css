@@ -97,7 +97,6 @@
 
 .Header_logoStyle__1knHi {
 	color: #000;
-	font-family: Montserrat, sans-serif;
 	font-weight: 700
 }
 
@@ -207,7 +206,6 @@
 }
 
 .Header_nav__submenu__33ZtH {
-	font-weight: 300;
 	text-transform: none;
 	transition: all .35s ease;
 	transform: translateY(40px);
@@ -249,7 +247,6 @@
 	text-decoration: none;
 	cursor: pointer;
 	font-weight: 700;
-	font-family: Montserrat, sans-serif;
 	font-size: 20px
 }
 
@@ -332,7 +329,6 @@
 
 .LinksGroup_headerLink__3Z-8d a.LinksGroup_headerLinkActive__2oljm {
 	font-weight: 600;
-	font-family: Montserrat, sans-serif;
 	color: var(--sidebar-item-active-color)
 }
 
@@ -430,7 +426,6 @@
 }
 
 .Sidebar_dividerText__19X5a {
-	font-family: Montserrat, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
@@ -450,7 +445,6 @@
 
 .Sidebar_logoStyle__2aDEc {
 	color: #fff;
-	font-family: Montserrat, sans-serif;
 	font-weight: 700;
 	font-size: 36px
 }
@@ -488,7 +482,6 @@
 	margin: 15px 0;
 	font-size: 18px;
 	width: 100%;
-	font-weight: 300;
 	text-align: left;
 	transition: width .3s ease-in-out;
 	padding-left: 25px
@@ -641,7 +634,7 @@
 	transition: color .35s ease
 }
 
-.Footer_socialLink__2wEBV > svg {
+.Footer_socialLink__2wEBV > i {
 	margin-right: 12px
 }
 
@@ -1375,7 +1368,6 @@ div .Widget_widget-icon__3EfP3 {
 	text-decoration: none;
 	cursor: pointer;
 	font-weight: 600;
-	font-family: Montserrat, sans-serif;
 	font-size: 16px
 }
 
@@ -1458,7 +1450,6 @@ div .Widget_widget-icon__3EfP3 {
 
 .LinksGroup_headerLink__2HISk a.LinksGroup_headerLinkActive__1dCtJ {
 	font-weight: 600;
-	font-family: Montserrat, sans-serif;
 	color: var(--falcon-primary)
 }
 
@@ -1570,7 +1561,6 @@ div .Widget_widget-icon__3EfP3 {
 }
 
 .Sidebar_dividerText__2PXgw {
-	font-family: Montserrat, sans-serif;
 	font-style: normal;
 	font-weight: 700;
 	font-size: 14px;
@@ -1591,7 +1581,6 @@ div .Widget_widget-icon__3EfP3 {
 .Sidebar_logoStyle__3m9A0 {
 	transition: font-size .3s ease-in-out;
 	color: #000;
-	font-family: Montserrat, sans-serif;
 	font-weight: 700;
 	font-size: 20px
 }
@@ -1645,7 +1634,6 @@ div .Widget_widget-icon__3EfP3 {
 	margin: 15px 0;
 	font-size: 18px;
 	width: 100%;
-	font-weight: 300;
 	text-align: left;
 	transition: width .3s ease-in-out, padding-left .3s ease-in-out;
 	padding-left: 25px;
@@ -9706,7 +9694,6 @@ div .Widget_widget-icon__3EfP3 {
 	justify-content: space-between;
 	max-height: 800px;
 	overflow: hidden;
-	font-family: sans-serif;
 	cursor: pointer;
 	direction: ltr
 }
@@ -10885,7 +10872,6 @@ div .Widget_widget-icon__3EfP3 {
 }
 
 html {
-	font-family: sans-serif;
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
@@ -10897,9 +10883,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
 	margin: 0;
-	font-family: Montserrat, sans-serif;
 	font-size: 1rem;
-	font-weight: 300;
 	line-height: 1.5;
 	color: #29323a;
 	text-align: left;
@@ -11204,7 +11188,6 @@ template {
 }
 
 .display-1, .display-2 {
-	font-weight: 300;
 	line-height: 1.2
 }
 
@@ -11217,7 +11200,6 @@ template {
 }
 
 .display-3, .display-4 {
-	font-weight: 300;
 	line-height: 1.2
 }
 
@@ -12795,7 +12777,6 @@ pre code {
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem 1rem;
 	font-size: 1rem;
-	font-weight: 300;
 	line-height: 1.5;
 	color: #495057;
 	background-color: #fff;
@@ -15052,7 +15033,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	height: calc(1.5em + .75rem + 2px);
 	padding: .375rem 2rem .375rem 1rem;
 	font-size: 1rem;
-	font-weight: 300;
 	line-height: 1.5;
 	color: #495057;
 	vertical-align: middle;
@@ -15150,7 +15130,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	left: 0;
 	z-index: 1;
 	height: calc(1.5em + .75rem + 2px);
-	font-weight: 300;
 	background-color: #fff;
 	border: 1px solid #c1ccd3;
 	border-radius: .3rem;
@@ -17532,7 +17511,6 @@ a.close.disabled {
 	z-index: 1070;
 	display: block;
 	margin: 0;
-	font-family: Montserrat, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 1.5;
@@ -17643,7 +17621,6 @@ a.close.disabled {
 	left: 0;
 	z-index: 1060;
 	max-width: 276px;
-	font-family: Montserrat, sans-serif;
 	font-style: normal;
 	font-weight: 400;
 	line-height: 1.5;
@@ -21310,10 +21287,6 @@ a.close.disabled {
 	background-color: transparent
 }
 
-.text-monospace {
-	font-family: SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace !important
-}
-
 .text-justify {
 	text-align: justify !important
 }
@@ -22459,7 +22432,6 @@ input.blog-search {
 }
 
 .form-control {
-	font-family: Montserrat, sans-serif;
 	box-shadow: none;
 	transition: border-color .15s ease-in-out, background-color .15s ease-in-out;
 	padding: 14px 24px;
@@ -22652,7 +22624,6 @@ legend {
 }
 
 .btn {
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 	border-radius: 0;
 	padding: 14px 42px
 }
@@ -22786,7 +22757,6 @@ legend {
 }
 
 .alert button.close {
-	font-weight: 300;
 	font-size: 18px;
 	text-shadow: none;
 	opacity: 1;
@@ -22965,7 +22935,6 @@ legend {
 }
 
 .h1 .small, .h1 small, .h2 .small, .h2 small, .h3 .small, .h3 small, .h4 .small, .h4 small, .h5 .small, .h5 small, .h6 .small, .h6 small, h1 .small, h1 small, h2 .small, h2 small, h3 .small, h3 small, h4 .small, h4 small, h5 .small, h5 small, h6 .small, h6 small {
-	font-weight: 300;
 	font-size: 75%;
 	color: #555
 }
@@ -23137,7 +23106,6 @@ pre code {
 }
 
 .Toastify .Toastify__toast {
-	font-family: Montserrat, sans-serif;
 	padding: 20px
 }
 
@@ -23441,7 +23409,6 @@ body {
 .btn, .dropdown-item, a {
 	cursor: pointer;
 	transition: color .1s ease-in-out, background-color .1s ease-in-out, border-color .1s ease-in-out;
-	font-family: Montserrat, sans-serif
 }
 
 a {

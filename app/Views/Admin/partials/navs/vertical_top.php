@@ -10,10 +10,10 @@
 			<button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left"
 			        title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
 		</div>
-		<a class="navbar-brand" href="index-2.html">
+		<a class="navbar-brand" href="<?= route_to('dashboard') ?>">
 			<div class="d-flex align-items-center py-3">
 				<img class="me-2" src="/images/dash/icons/spot-illustrations/falcon.png" alt="" width="30"/>
-				<span class="font-sans-serif"><?= env('app.name', 'CosmicFashion.') ?></span>
+				<span class="font-varela"><?= env('app.name', 'CosmicFashion.') ?></span>
 			</div>
 		</a>
 	</div>
@@ -40,10 +40,6 @@
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Analytics</span></div>
 							</a><!-- more inner pages-->
 						</li>
-						<li class="nav-item"><a class="nav-link" href="dashboard/crm.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">CRM</span></div>
-							</a><!-- more inner pages-->
-						</li>
 						<li class="nav-item"><a class="nav-link" href="dashboard/e-commerce.html">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">E commerce</span></div>
 							</a><!-- more inner pages-->
@@ -66,32 +62,7 @@
 						<div class="col ps-0">
 							<hr class="mb-0 navbar-vertical-divider"/>
 						</div>
-					</div><!-- parent pages--><a class="nav-link" href="app/calendar.html" role="button">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span><span
-									class="nav-link-text ps-1">Calendar</span></div>
-					</a><!-- parent pages--><a class="nav-link" href="app/chat.html" role="button">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-comments"></span></span><span
-									class="nav-link-text ps-1">Chat</span></div>
-					</a><!-- parent pages--><a class="nav-link dropdown-indicator" href="#email" role="button" data-bs-toggle="collapse"
-					                           aria-controls="email">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span><span
-									class="nav-link-text ps-1">Email</span></div>
-					</a>
-					<ul class="nav collapse false" id="email">
-						<li class="nav-item"><a class="nav-link" href="app/email/inbox.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Inbox</span></div>
-							</a><!-- more inner pages-->
-						</li>
-						<li class="nav-item"><a class="nav-link" href="app/email/email-detail.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Email detail</span></div>
-							</a><!-- more inner pages-->
-						</li>
-						<li class="nav-item"><a class="nav-link" href="app/email/compose.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Compose</span></div>
-							</a><!-- more inner pages-->
-						</li>
-					</ul>
-
+					</div>
 					<!-- parent pages-->
 					<a class="nav-link dropdown-indicator" href="#e-commerce" role="button" data-bs-toggle="collapse"
 					                            aria-controls="e-commerce">
@@ -104,16 +75,14 @@
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product</span></div>
 							</a><!-- more inner pages-->
 							<ul class="nav collapse false" id="product">
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-list.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product list</span></div>
+								<li class="nav-item">
+									<a class="nav-link" href="<?= route_to('admin.product.index') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">List</span></div>
 									</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-grid.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product grid</span></div>
-									</a>
-								</li>
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/product/product-details.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Product details</span></div>
+								<li class="nav-item">
+									<a class="nav-link" href="<?= route_to('admin.product.create') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create</span></div>
 									</a>
 								</li>
 							</ul>
@@ -125,21 +94,21 @@
 							<!-- more inner pages-->
 							<ul class="nav collapse false" id="categories">
 								<li class="nav-item">
-									<a class="nav-link" href="app/e-commerce/categories/order-list.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Category list</span></div>
+									<a class="nav-link" href="<?= route_to('admin.category.index') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">List categories</span></div>
 									</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/categories/order-details.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Category details</span></div>
+								<li class="nav-item"><a class="nav-link" href="<?= route_to('admin.category.create') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create category</span></div>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="app/e-commerce/sub_categories/order-list.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Sub category list</span></div>
+									<a class="nav-link" href="<?= route_to('admin.subcategory.index') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">List sub categories</span></div>
 									</a>
 								</li>
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/sub_categories/order-details.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Sub category details</span></div>
+								<li class="nav-item"><a class="nav-link" href="<?= route_to('admin.subcategory.create') ?>">
+										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create sub category</span></div>
 									</a>
 								</li>
 							</ul>
@@ -176,16 +145,56 @@
 					<!-- parent pages-->
 					<a class="nav-link dropdown-indicator" href="#user" role="button" data-bs-toggle="collapse"
 					   aria-controls="user">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-user"></span></span><span
-									class="nav-link-text ps-1">Customers</span></div>
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fas fa-user"></span></span>
+							<span class="nav-link-text ps-1">Customers</span>
+						</div>
 					</a>
 					<ul class="nav collapse false" id="user">
-						<li class="nav-item"><a class="nav-link" href="pages/user/profile.html">
+						<li class="nav-item">
+							<a class="nav-link" href="<?= route_to('admin.user.index') ?>">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">List</span></div>
 							</a><!-- more inner pages-->
 						</li>
-						<li class="nav-item"><a class="nav-link" href="pages/user/settings.html">
+						<li class="nav-item">
+							<a class="nav-link" href="<?= route_to('admin.user.create') ?>">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Create</span></div>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= route_to('admin.user.show') ?>">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Details</span></div>
+							</a>
+						</li>
+					</ul>
+
+					<!-- parent pages-->
+					<a class="nav-link" href="app/calendar.html" role="button">
+						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span><span
+									class="nav-link-text ps-1">Calendar</span></div>
+					</a>
+					<!-- parent pages-->
+					<a class="nav-link" href="app/chat.html" role="button">
+						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-comments"></span></span><span
+									class="nav-link-text ps-1">Chat</span></div>
+					</a>
+					<!-- parent pages-->
+					<a class="nav-link dropdown-indicator" href="#email" role="button" data-bs-toggle="collapse"
+					   aria-controls="email">
+						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span><span
+									class="nav-link-text ps-1">Email</span></div>
+					</a>
+					<ul class="nav collapse false" id="email">
+						<li class="nav-item"><a class="nav-link" href="app/email/inbox.html">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Inbox</span></div>
+							</a><!-- more inner pages-->
+						</li>
+						<li class="nav-item"><a class="nav-link" href="app/email/email-detail.html">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Email detail</span></div>
+							</a><!-- more inner pages-->
+						</li>
+						<li class="nav-item"><a class="nav-link" href="app/email/compose.html">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Compose</span></div>
 							</a><!-- more inner pages-->
 						</li>
 					</ul>
@@ -209,16 +218,39 @@
 						</div>
 					</a>
 					<ul class="nav collapse false" id="users">
-						<li class="nav-item"><a class="nav-link" href="app/e-commerce/customers.html">
+						<li class="nav-item">
+							<a class="nav-link" href="app/e-commerce/customers.html">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">User list</span></div>
 							</a><!-- more inner pages-->
 						</li>
-						<li class="nav-item"><a class="nav-link" href="app/e-commerce/customer-details.html">
+						<li class="nav-item">
+							<a class="nav-link" href="app/e-commerce/customer-details.html">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">User details</span></div>
+							</a>
+						</li>
+					</ul>
+					<!-- parent pages-->
+					<a class="nav-link dropdown-indicator" href="#secrets" role="button" data-bs-toggle="collapse" aria-controls="secrets">
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fas fa-user-secret"></span></span>
+							<span class="nav-link-text ps-1">Secrets</span>
+						</div>
+					</a>
+					<ul class="nav collapse false" id="secrets">
+						<li class="nav-item">
+							<a class="nav-link" href="app/e-commerce/customers.html">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Api Keys</span></div>
 							</a><!-- more inner pages-->
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="app/e-commerce/customers.html">
+								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Generate Key</span></div>
+							</a>
 						</li>
 					</ul>
 				</li>
+
+
 				<li class="nav-item">
 					<!-- label-->
 					<div class="row navbar-vertical-label-wrapper mt-3 mb-2">
@@ -228,25 +260,12 @@
 						</div>
 					</div>
 
-					<!-- parent pages--><a class="nav-link dropdown-indicator" href="#faq" role="button" data-bs-toggle="collapse"
-					                            aria-controls="faq">
+					<!-- parent pages-->
+					<a class="nav-link" href="#!" role="button">
 						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-question-circle"></span></span><span
 									class="nav-link-text ps-1">Faq</span></div>
 					</a>
-					<ul class="nav collapse false" id="faq">
-						<li class="nav-item"><a class="nav-link" href="pages/faq/faq-basic.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq basic</span></div>
-							</a><!-- more inner pages-->
-						</li>
-						<li class="nav-item"><a class="nav-link" href="pages/faq/faq-alt.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq alt</span></div>
-							</a><!-- more inner pages-->
-						</li>
-						<li class="nav-item"><a class="nav-link" href="pages/faq/faq-accordion.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Faq accordion</span></div>
-							</a><!-- more inner pages-->
-						</li>
-					</ul><!-- parent pages--><a class="nav-link dropdown-indicator" href="#miscellaneous" role="button" data-bs-toggle="collapse"
+					<!-- parent pages--><a class="nav-link dropdown-indicator" href="#miscellaneous" role="button" data-bs-toggle="collapse"
 					                            aria-controls="miscellaneous">
 						<div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-thumbtack"></span></span><span
 									class="nav-link-text ps-1">Miscellaneous</span></div>
