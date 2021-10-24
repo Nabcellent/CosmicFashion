@@ -1,4 +1,7 @@
 <?= $this->extend('Admin/layouts/master') ?>
+<?= $this->section('title') ?>
+	Users
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
@@ -30,8 +33,7 @@
 					<div class="d-flex align-items-center justify-content-end my-3">
 						<div id="bulk-select-replace-element">
 							<a href="<?= route_to('admin.user.create') ?>" class="btn btn-falcon-success btn-sm" type="button">
-								<i class="fas fa-plus"></i>
-								<span class="ms-1">New</span>
+								<i class="fas fa-plus"></i><span class="ms-1">New</span>
 							</a>
 						</div>
 						<div class="d-none ms-3" id="bulk-select-actions">
@@ -54,44 +56,30 @@
 										       data-bulk-select='{"body":"bulk-select-body","actions":"bulk-select-actions","replacedElement":"bulk-select-replace-element"}'>
 									</div>
 								</th>
+								<th class="align-middle">Id</th>
 								<th class="align-middle">Name</th>
-								<th class="align-middle">Nationality</th>
+								<th class="align-middle">Email</th>
 								<th class="align-middle">Gender</th>
-								<th class="align-middle white-space-nowrap pe-3">Age</th>
+								<th class="align-middle">Date created</th>
 							</tr>
 							</thead>
 							<tbody id="bulk-select-body">
+
+							<?php foreach($users as $user): ?>
 							<tr>
 								<td class="align-middle white-space-nowrap">
 									<div class="form-check mb-0">
-										<input class="form-check-input" type="checkbox" id="checkbox-4" data-bulk-select-row="data-bulk-select-row">
+										<input class="form-check-input" type="checkbox" id="checkbox-<?= $user->id ?>" aria-label data-bulk-select-row="data-bulk-select-row">
 									</div>
 								</td>
-								<th class="align-middle">Sean Bean</th>
-								<td class="align-middle">British</td>
-								<td class="align-middle">Male</td>
-								<td class="align-middle white-space-nowrap text-end pe-3">59</td>
+								<th class="align-middle"><?= $user->id ?></th>
+								<td class="align-middle"><?= $user->full_name ?></td>
+								<td class="align-middle"><?= $user->email ?></td>
+								<td class="align-middle"><?= $user->gender ?></td>
+								<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
 							</tr>
-							<tr>
-								<td class="align-middle white-space-nowrap">
-									<div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="checkbox-5"
-									                                    data-bulk-select-row="data-bulk-select-row"></div>
-								</td>
-								<th class="align-middle">Maisie Williams</th>
-								<td class="align-middle">British</td>
-								<td class="align-middle">Female</td>
-								<td class="align-middle white-space-nowrap text-end pe-3">21</td>
-							</tr>
-							<tr>
-								<td class="align-middle white-space-nowrap">
-									<div class="form-check mb-0"><input class="form-check-input" type="checkbox" id="checkbox-6"
-									                                    data-bulk-select-row="data-bulk-select-row"></div>
-								</td>
-								<th class="align-middle">Sophie Turner</th>
-								<td class="align-middle">British</td>
-								<td class="align-middle">Female</td>
-								<td class="align-middle white-space-nowrap text-end pe-3">23</td>
-							</tr>
+							<?php endforeach; ?>
+
 							</tbody>
 						</table>
 					</div>

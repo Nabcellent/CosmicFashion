@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Session\Session;
+use Exception;
 use Myth\Auth\Config\Auth as AuthConfig;
 
 class AuthController extends Controller {
@@ -186,7 +187,7 @@ class AuthController extends Controller {
 
         try {
             $this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Unable to activate account. Kindly contact Admin' ?? lang('Auth.unknownError'));
         }
 

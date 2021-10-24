@@ -32,6 +32,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
     $routes->group('users', function($routes) {
         $routes->get('/', 'UserController::index', ['as' => 'admin.user.index']);
         $routes->get('create', 'UserController::create', ['as' => 'admin.user.create']);
+        $routes->post('store', 'UserController::store', ['as' => 'admin.user.store']);
     });
 });
 

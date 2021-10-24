@@ -101,7 +101,7 @@
 						<div class="tab-pane px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab2"
 						     id="bootstrap-wizard-validation-tab2">
 							<div id="upload-form">
-								<div class="row g-2 mb-3 align-items-center">
+								<div class="row mb-3 align-items-center">
 									<div class="col-lg-4">
 										<input type="file" class="filepond" id="image" name="image">
 									</div>
@@ -120,9 +120,9 @@
 						</div>
 						<div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab3"
 						     id="bootstrap-wizard-validation-tab3">
-							<i class="fas fa-check-circle text-success fs-24"></i>
-							<h4 class="mb-1">Your product is all set!</h4>
-							<p>Click create to complete.</p>
+							<i class="fas fa-check-circle text-success fs-48 mb-3"></i>
+							<h4 class="mb-1">Product is ready for creation!</h4>
+							<p><i>Click create to complete.</i></p>
 							<button class="btn btn-primary px-5 my-3" type="submit">Create</button>
 						</div>
 					</form>
@@ -151,8 +151,6 @@
 	<script src="/vendor/admin/validator/validator.min.js"></script>
 	<script src="/vendor/jquery/jqueryValidation.js"></script>
 	<script src="/js/jQueryValidation.js"></script>
-	<script src="/js/wizard.js"></script>
-
 	<script src="/vendor/tomselect/tom-select.complete.min.js"></script>
 
 	<script src="/vendor/filepond/js/plugins/image-preview.js"></script>
@@ -161,42 +159,18 @@
 	<script src="/vendor/filepond/js/plugins/file-rename.js"></script>
 	<script src="/vendor/filepond/js/filepond.min.js"></script>
 
+	<script src="/js/wizard.js"></script>
+	<script src="/js/filepond.js"></script>
+
 	<script>
         $(() => {
             wizardInit()
+            filepondInit()
 
             new TomSelect("#sub_category_id");
 
-            FilePond.registerPlugin(
-                FilePondPluginImagePreview,
-                FilePondPluginImageResize,
-                FilePondPluginFileValidateType,
-                FilePondPluginFileRename,
-            );
-
-            const inputElement = document.getElementById('image');
-            const pond = FilePond.create(inputElement, {
-                labelIdle: `Drag & Drop or <span class="filepond--label-action"> Browse </span> your product image`,
-                acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
-                dropOnPage: true,
-                allowDrop: true,
-                storeAsFile: true,
-                instantUpload: false,
-
-                imageCropAspectRatio: '1:1',
-                imageResizeMode: 'cover',
-                imageResizeTargetWidth: 200,
-                imageResizeTargetHeight: 200,
-
-                stylePanelLayout: 'compact circle',
-                styleLoadIndicatorPosition: 'center bottom',
-                styleProgressIndicatorPosition: 'right bottom',
-                styleButtonRemoveItemPosition: 'left bottom',
-                styleButtonProcessItemPosition: 'right bottom',
-            });
-
-            if (<?= isset($user->image) && file_exists("images/users/" . ($user->image ?? 0)) ? : '0' ?>)
-                pond.addFile(`{{ gcs_asset("images/users/$user->image") }}`)
+            if (<?= isset($user->image) && file_exists("images/products/" . ($user->image ?? 0)) ? : '0' ?>)
+                pond.addFile(`{{ gcs_asset("images/products/$user->image") }}`)
                     .then(file => {
                         console.log(file)
                     });

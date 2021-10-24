@@ -4,60 +4,54 @@ namespace App\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model {
-    protected $DBGroup              = 'default';
-    protected $table                = 'users';
-    protected $primaryKey           = 'id';
-    protected $useAutoIncrement     = true;
-    protected $insertID             = 0;
-    protected $returnType           = 'App\Entities\User';
-    protected $useSoftDeletes       = false;
-    protected $protectFields        = true;
-    protected $allowedFields        = [
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
         'first_name',
         'last_name',
-        'email',
         'gender',
         'role_id',
+        'email',
         'image',
         'password',
-        'created_at'
     ];
 
-    // Dates
-    protected $useTimestamps        = true;
-    protected $dateFormat           = 'datetime';
-    protected $createdField         = 'created_at';
-    protected $updatedField         = 'updated_at';
-    protected $deletedField         = 'deleted_at';
-
-    // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
-    protected $skipValidation       = false;
-    protected $cleanValidationRules = true;
-
-    // Callbacks
-    protected $allowCallbacks       = true;
-    protected $beforeInsert         = [];
-    protected $afterInsert          = [];
-    protected $beforeUpdate         = [];
-    protected $afterUpdate          = [];
-    protected $beforeFind           = [];
-    protected $afterFind            = [];
-    protected $beforeDelete         = [];
-    protected $afterDelete          = [];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = ['password'];
 
     /**
-     * @throws Exception
+     * Get the user's full name.
+     *
+     * @return string
      */
-    public function findByEmail(string $emailAddress): object|array {
-        $user = $this->where(['email' => $emailAddress])->first();
+    public function getFullNameAttribute(): string {
+        return "{$this->first_name} {$this->last_name}";
+    }
+    /**
+     * Get the user's gender in CAPS.
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getGenderAttribute(string $value): string {
+        return ucfirst($value);
+    }
 
-        if (!$user)
-            throw new Exception('User does not exist for specified email address');
-
-        return $user;
+    /**
+     * RELATIONSHIP FUNCTIONS
+     */
+    public function role(): BelongsTo {
+        return $this->belongsTo(Role::class);
     }
 }

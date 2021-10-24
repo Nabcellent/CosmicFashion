@@ -5,7 +5,6 @@ let wizardInit = function wizardInit() {
     wizards.forEach(function (wizard) {
         let tabToggleButtonEl = wizard.querySelectorAll('[data-wizard-step]');
         let form = wizard.querySelector('form');
-        let submitBtn = form.querySelector('button[type="submit"]')
         let nextButton = wizard.querySelector('.next button');
         let prevButton = wizard.querySelector('.previous button');
         let cardFooter = wizard.querySelector('.theme-wizard .card-footer');
@@ -19,13 +18,6 @@ let wizardInit = function wizardInit() {
                 let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
                 tab.show();
             }
-            /*if (!form.className.includes('was-validated') && form.className.includes('needs-validation')) {
-                form.classList.add('was-validated');
-            } else {
-                count += 1;
-                let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
-                tab.show();
-            }*/
         });
         prevButton.addEventListener('click', function () {
             count -= 1;

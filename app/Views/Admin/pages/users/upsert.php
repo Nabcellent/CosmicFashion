@@ -3,21 +3,26 @@
 	Create Product
 <?= $this->endSection() ?>
 <?= $this->section('links') ?>
-	<link href="/vendor/admin/flatpickr/flatpickr.min.css" rel="stylesheet">
-	<link href="/vendor/admin/dropzone/dropzone.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/vendor/tomselect/tom-select.bootstrap5.css">
+	<link href="/vendor/filepond/css/style.css" rel="stylesheet"/>
+	<link href="/vendor/filepond/css/plugin-image-preview.css" rel="stylesheet"/>
+	<link href="/vendor/filepond/css/image-edit.css" rel="stylesheet"/>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
+		<div class="bg-holder d-none d-lg-block bg-card"
+		     style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
 		<!--/.bg-holder-->
 		<div class="card-body position-relative">
 			<div class="row">
 				<div class="col-lg-8">
 					<h3>Validation</h3>
-					<p class="mb-0">Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or
+					<p class="mb-0">Provide valuable, actionable feedback to your users with HTML5 form validation, via
+						browser default behaviors or
 						custom styles and JavaScript.</p>
-					<a class="btn btn-link btn-sm ps-0 mt-2" href="https://getbootstrap.com/docs/5.1/forms/validation" target="_blank">
+					<a class="btn btn-link btn-sm ps-0 mt-2" href="https://getbootstrap.com/docs/5.1/forms/validation"
+					   target="_blank">
 						Validation on Bootstrap<span class="fas fa-chevron-right ms-1 fs--2"></span>
 					</a>
 				</div>
@@ -44,14 +49,18 @@
 				<div class="card-header bg-light pt-3 pb-2">
 					<ul class="nav justify-content-between nav-wizard">
 						<li class="nav-item">
-							<a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-validation-tab1" data-bs-toggle="tab"
+							<a class="nav-link active fw-semi-bold" href="#bootstrap-wizard-validation-tab1"
+							   data-bs-toggle="tab"
 							   data-wizard-step="data-wizard-step">
-								<span class="nav-item-circle-parent"><span class="nav-item-circle"><span class="fas fa-lock"></span></span></span>
+								<span class="nav-item-circle-parent">
+									<span class="nav-item-circle"><span class="fas fa-lock"></span></span>
+								</span>
 								<span class="d-none d-md-block mt-1 fs--1">Account</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab2" data-bs-toggle="tab"
+							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab2"
+							   data-bs-toggle="tab"
 							   data-wizard-step="data-wizard-step">
 								<span class="nav-item-circle-parent">
 									<span class="nav-item-circle"><span class="fas fa-user"></span></span>
@@ -60,7 +69,8 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab3" data-bs-toggle="tab"
+							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab3"
+							   data-bs-toggle="tab"
 							   data-wizard-step="data-wizard-step">
 								<span class="nav-item-circle-parent">
 									<span class="nav-item-circle"><span class="fas fa-thumbs-up"></span></span>
@@ -70,116 +80,101 @@
 						</li>
 					</ul>
 				</div>
+
+                <?= view('App\auth\_message_block') ?>
+
 				<div class="card-body py-4" id="wizard-controller">
-					<div class="tab-content">
-						<div class="tab-pane active px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab1"
+					<form id="create-user" action="<?= route_to('admin.user.store') ?>" class="tab-content"
+					      method="POST"
+					      enctype="multipart/form-data">
+                        <?= csrf_field() ?>
+						<div class="tab-pane active px-sm-3 px-md-5" role="tabpanel"
+						     aria-labelledby="bootstrap-wizard-validation-tab1"
 						     id="bootstrap-wizard-validation-tab1">
-							<form class="needs-validation" novalidate="novalidate">
-								<div class="row g-2 mb-3">
-									<div class="col">
-										<label class="form-label" for="bootstrap-wizard-validation-wizard-name">First name*</label>
-										<input class="form-control" type="text" name="first_name" placeholder="John" required
-										       id="bootstrap-wizard-validation-wizard-name">
-									</div>
-									<div class="col">
-										<label class="form-label" for="bootstrap-wizard-validation-wizard-name">Last name *</label>
-										<input class="form-control" type="text" name="last_name" placeholder="Smith" required
-										       id="bootstrap-wizard-validation-wizard-name">
+							<div class="row g-2 mb-3">
+								<div class="col">
+									<label class="form-label" for="first_name">First name*</label>
+									<input class="form-control" type="text" name="first_name" placeholder="John"
+									       required id="first_name" value="<?= old('first_name') ?>">
+								</div>
+								<div class="col">
+									<label class="form-label" for="last_name">Last name *</label>
+									<input class="form-control" type="text" name="last_name" placeholder="Smith"
+									       required value="<?= old('last_name') ?>" id="last_name">
+								</div>
+							</div>
+							<div class="mb-3">
+								<label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email*</label>
+								<input class="form-control" type="email" name="email" placeholder="Email address"
+								       pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
+								       required="required" value="<?= old('email') ?>"
+								       id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true">
+							</div>
+							<div class="row g-2">
+								<div class="col-6">
+									<div class="mb-3">
+										<label class="form-label" for="password">Password*</label>
+										<input class="form-control" type="password" name="password"
+										       placeholder="Password" required="required" id="password">
 									</div>
 								</div>
-								<div class="mb-3">
-									<label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email*</label>
-									<input class="form-control" type="email" name="email" placeholder="Email address"
-											pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" required="required"
-											id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true">
-									<div class="invalid-feedback">You must add email</div>
-								</div>
-								<div class="row g-2">
-									<div class="col-6">
-										<div class="mb-3">
-											<label class="form-label" for="bootstrap-wizard-validation-wizard-password">Password*</label>
-											<input class="form-control" type="password" name="password" placeholder="Password" required="required"
-											       id="bootstrap-wizard-validation-wizard-password" data-wizard-validate-password="true">
-											<div class="invalid-feedback">Please enter password</div>
-										</div>
-									</div>
-									<div class="col-6">
-										<div class="mb-3">
-											<label class="form-label" for="bootstrap-wizard-validation-wizard-confirm-password">Confirm
-												Password*</label>
-											<input class="form-control" type="password" name="password_confirmation" placeholder="Confirm Password"
-											       required id="bootstrap-wizard-validation-wizard-confirm-password"
-											       data-wizard-validate-confirm-password="true">
-											<div class="invalid-feedback">Passwords need to match</div>
-										</div>
+								<div class="col-6">
+									<div class="mb-3">
+										<label class="form-label" for="password_confirmation">Confirm Password*</label>
+										<input class="form-control" type="password" name="password_confirmation"
+										       placeholder="Confirm Password" required id="password_confirmation">
 									</div>
 								</div>
-							</form>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="terms"
+								       id="use_default_pass">
+								<label class="form-check-label" for="use_default_pass">
+									Use the <a href="javascript:void(0)">default </a>password.</a></label>
+							</div>
 						</div>
-						<div class="tab-pane px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab2"
+						<div class="tab-pane px-sm-3 px-md-5" role="tabpanel"
+						     aria-labelledby="bootstrap-wizard-validation-tab2"
 						     id="bootstrap-wizard-validation-tab2">
-							<form>
-								<div class="mb-3">
-									<div class="row" data-dropzone="data-dropzone"
-									     data-options='{"maxFiles":1,"data":[{"name":"avatar.png","size":"54kb","url":"/images/dash/team"}]}'>
-										<div class="fallback"><input type="file" name="image"/></div>
-										<div class="col-md-auto">
-											<div class="dz-preview dz-preview-single">
-												<div class="dz-preview-cover d-flex align-items-center justify-content-center mb-3 mb-md-0 dz-image-preview">
-													<div class="avatar avatar-4xl">
-														<img class="rounded-circle" src="../../assets/img/team/avatar.png" alt="avatar.png"
-														     data-dz-thumbnail="data-dz-thumbnail">
-													</div>
-													<div class="dz-progress">
-														<span class="dz-upload" data-dz-uploadprogress=""></span>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md">
-											<div class="dz-message dropzone-area px-2 py-3" data-dz-message="data-dz-message">
-												<div class="text-center">
-													<img class="me-2" src="../../assets/img/icons/cloud-upload.svg" width="25" alt="">
-													Upload profile picture
-													<p class="mb-0 fs--1 text-400">Upload a 300x300 jpg image with <br>a maximum size of 400KB</p>
-												</div>
-											</div>
-										</div>
-									</div>
+							<div class="row mb-3 align-items-center">
+								<div class="col">
+									<label class="form-label" for="gender">Gender</label>
+									<select class="form-select" name="gender" id="gender">
+										<option selected hidden value="">Select your gender ...</option>
+										<option value="male">Male</option>
+										<option value="female">Female</option>
+									</select>
 								</div>
-								<div class="row g-2 mb-3">
-									<div class="col">
-										<label class="form-label" for="bootstrap-wizard-validation-gender">Gender</label>
-										<select class="form-select" name="gender" id="bootstrap-wizard-validation-gender">
-											<option value="">Select your gender ...</option>
-											<option value="Male">Male</option>
-											<option value="Female">Female</option>
-										</select>
-									</div>
-									<div class="col">
-										<label class="form-label" for="role">Role</label>
-										<select class="form-select" name="role" id="role" required>
-											<option value="">Select user role ...</option>
-											<option value="Male">Male</option>
-											<option value="Female">Female</option>
-											<option value="Other">Other</option>
-										</select>
-									</div>
+								<div class="col-lg-4">
+									<input type="file" class="filepond" id="image" name="image">
 								</div>
-								<div class="mb-3">
-									<label class="form-label" for="bootstrap-wizard-validation-wizard-phone">Phone</label>
+							</div>
+							<div class="row g-2 mb-3">
+								<div class="col">
+									<label class="form-label" for="role">Role</label>
+									<select class="form-select" name="role_id" id="role" required>
+										<option selected hidden value="">Select user role ...</option>
+                                        <?php foreach($roles as $role): ?>
+											<option value="<?= $role->id ?>"><?= $role->name ?></option>
+                                        <?php endforeach; ?>
+									</select>
+								</div>
+								<div class="col">
+									<label class="form-label" for="phone">Phone</label>
 									<input class="form-control" type="text" name="phone" placeholder="Phone"
-									       id="bootstrap-wizard-validation-wizard-phone">
+									       id="phone" value="<?= old('phone') ?>">
 								</div>
-							</form>
+							</div>
 						</div>
-						<div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab3"
+						<div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel"
+						     aria-labelledby="bootstrap-wizard-validation-tab3"
 						     id="bootstrap-wizard-validation-tab3">
-							<i class="fas fa-check-circle text-success fs-24"></i>
-							<h4 class="mb-1">Your product is all set!</h4>
-							<p>Click create to complete.</p><a class="btn btn-primary px-5 my-3" href="javascript:void(0)">Create</a>
+							<i class="fas fa-check-circle text-success fs-48 mb-3"></i>
+							<h4 class="mb-1">User account is ready for creation!</h4>
+							<p><i>Click create to complete.</i></p>
+							<button class="btn btn-primary px-5 my-3" type="submit">Create</button>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="card-footer bg-light">
 					<div class="px-sm-3 px-md-5">
@@ -202,13 +197,34 @@
 	</div>
 
 <?= $this->section('scripts') ?>
-	<script src="/js/admin/flatpickr.js"></script>
-	<script src="/vendor/admin/dropzone/dropzone.min.js"></script>
-	<script src="/vendor/admin/lottie/lottie.min.js"></script>
 	<script src="/vendor/admin/validator/validator.min.js"></script>
+	<script src="/vendor/jquery/jqueryValidation.js"></script>
+	<script src="/js/jQueryValidation.js"></script>
+
+	<script src="/vendor/filepond/js/plugins/image-preview.js"></script>
+	<script src="/vendor/filepond/js/plugins/image-resize.js"></script>
+	<script src="/vendor/filepond/js/plugins/file-validate-type.js"></script>
+	<script src="/vendor/filepond/js/plugins/file-rename.js"></script>
+	<script src="/vendor/filepond/js/filepond.min.js"></script>
+
+	<script src="/js/wizard.js"></script>
+	<script src="/js/filepond.js"></script>
 
 	<script>
+        $(() => {
+            wizardInit()
+            filepondInit()
 
+            if (<?= isset($user->image) && file_exists("images/users/" . ($user->image ?? 0)) ? : '0' ?>)
+                pond.addFile(`{{ gcs_asset("images/users/$user->image") }}`)
+                    .then(file => {
+                        console.log(file)
+                    });
+
+            $('#use_default_pass').on('change', function() {
+                $('input[type="password"]').val($(this).prop("checked") ? 'CosmoDressing!' : '')
+            })
+        })
 	</script>
 <?= $this->endSection() ?>
 

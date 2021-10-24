@@ -53,6 +53,12 @@ img {
 .fs-24 {
     font-size: 24px !important
 }
+.fs-32 {
+    font-size: 32px !important
+}
+.fs-48 {
+    font-size: 48px !important
+}
 .fw-medium {
     font-weight: 500
 }

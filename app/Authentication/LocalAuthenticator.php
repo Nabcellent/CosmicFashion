@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Support\Carbon;
 use Myth\Auth\Authentication\AuthenticationBase;
 use Myth\Auth\Authentication\AuthenticatorInterface;
+use Myth\Auth\Entities\User;
 use Myth\Auth\Exceptions\AuthException;
 use Myth\Auth\Password;
 use ReflectionException;
@@ -127,10 +128,10 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
      * @param array $credentials
      * @param bool  $returnUser
      *
-     * @return \Myth\Auth\Entities\User|bool|array
+     * @return User|bool|array
      * @throws ReflectionException
      */
-    public function validate(array $credentials, bool $returnUser = false): \Myth\Auth\Entities\User|bool|array {
+    public function validate(array $credentials, bool $returnUser = false): User|bool|array {
         // Can't validate without a password.
         if(empty($credentials['password']) || count($credentials) < 2) return false;
 
