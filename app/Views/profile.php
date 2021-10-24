@@ -13,71 +13,6 @@
 
 		<div style="margin-top:32px" class="mb-5 container">
 			<div class="row">
-				<div class="col-12 col-lg-8 col-xl-8"><h3 class="fw-bold mb-4">My Account</h3>
-					<div class="row">
-						<div class="col-12 col-md-6 col-lg-6 col-xl-6">
-							<section class="Account_promo1__1LP0S">
-								<h3 class="text-muted fw-bold mb-0">sale up to</h3>
-								<h1 class="text-primary fw-bold mb-3">30%</h1>
-								<p class="fw-bold">Read More</p></section>
-						</div>
-						<div class="col-12 col-md-6 col-lg-6 col-xl-6">
-							<section class="Account_promo2__3jML5">
-								<h3 class="text-muted fw-bold mb-0">sale up to</h3>
-								<h1 class="text-primary fw-bold mb-3">70%</h1>
-								<p class="fw-bold">Read More</p></section>
-						</div>
-					</div>
-					<div class="mt-5 row">
-						<div style="overflow:auto" class="col-12 col-lg-12 col-xl-12"><h3 class="fw-bold mb-4">My Orders</h3>
-							<table class="Account_accountTable__JZ5eH table table-borderless">
-								<thead>
-								<tr style="border-bottom:1px solid #D9D9D9">
-									<th class="bg-transparent text-dark px-0">Date</th>
-									<th class="bg-transparent text-dark px-0">Product</th>
-									<th class="bg-transparent text-dark px-0">Delivery</th>
-									<th class="bg-transparent text-dark px-0">Price</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr class="mt-2">
-									<td class="px-0 pt-4"><p class="text-muted">16.06.2020</p></td>
-									<td class="px-0 pt-4">
-										<div class="d-flex align-items-center">
-											<img src="/images/flatlogic/products-77a43627fc74be7615449b11943e9be0.svg" width="100" class="mr-4"/>
-											<div><h6 class="text-muted">Delivered</h6><h5 class="fw-bold"># 123345</h5></div>
-										</div>
-									</td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.5</h6></td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.70</h6></td>
-								</tr>
-								<tr>
-									<td class="px-0 pt-4"><p class="text-muted">16.06.2020</p></td>
-									<td class="px-0 pt-4">
-										<div class="d-flex align-items-center">
-											<img src="/images/flatlogic/products-77a43627fc74be7615449b11943e9be0.svg" width="100" class="mr-4"/>
-											<div><h6 class="text-muted">Delivered</h6><h5 class="fw-bold"># 123345</h5></div>
-										</div>
-									</td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.5</h6></td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.70</h6></td>
-								</tr>
-								<tr style="border-bottom:1px solid #D9D9D9">
-									<td class="px-0 pt-4"><p class="text-muted">16.06.2020</p></td>
-									<td class="px-0 pt-4">
-										<div class="d-flex align-items-center">
-											<img src="/images/flatlogic/products-77a43627fc74be7615449b11943e9be0.svg" width="100" class="mr-4"/>
-											<div><h6 class="text-muted">Delivered</h6><h5 class="fw-bold"># 123345</h5></div>
-										</div>
-									</td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.5</h6></td>
-									<td class="px-0 pt-4"><h6 class="fw-bold mb-0">KSH.70</h6></td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
 				<div class="col-12 col-lg-4 col-xl-4">
 					<section class="card Account_profile__TM8Wq">
 						<button class="bg-transparent border-0 p-0 btn btn-secondary">
@@ -132,6 +67,72 @@
 							</div>
 						</div>
 					</section>
+				</div>
+				<div class="col-12 col-lg-8 col-xl-8">
+					<h3 class="fw-bold mb-4">My Profile</h3>
+					<div class="row">
+						<form class="">
+							<div class="row">
+								<div class="form-group col">
+									<label for="exampleEmail" class="fw-bold text-muted">First name</label>
+									<input type="text" name="text" id="exampleEmail" value="<?= user()->first_name ?>" class="w-100 form-control"/>
+								</div>
+								<div class="col">
+									<label for="exampleEmail" class="fw-bold text-muted">Last name</label>
+									<input type="text" name="text" id="exampleEmail" value="<?= user()->last_name ?>" class="w-100 form-control"/>
+								</div>
+							</div>
+							<div class="d-flex form-group">
+								<div class="flex-fill mr-5">
+									<label for="gender" class="fw-bold text-muted">Gender</label>
+									<input type="text" disabled name="gender" value="<?= ucfirst(user()->gender) ?>" id="gender" class="form-control"/>
+								</div>
+								<div class="flex-fill">
+									<label for="exampleEmail" class="fw-bold text-muted">Username</label>
+									<input type="tel" name="text" id="exampleEmail" value="<?= user()->username ?>" class="form-control"/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="email" class="fw-bold text-muted">Email</label>
+								<input type="email" name="email" value="<?= user()->email ?>" id="email" class="form-control"/>
+							</div>
+							<div class="form-group text-end">
+								<button type="submit" class="text-uppercase fw-bold align-self-start btn btn-primary">Update profile</button>
+							</div>
+							<hr>
+							<div class="form-group">
+								<label for="confirm_pass" class="fw-bold text-muted">Current password</label>
+								<input type="password" name="confirm_pass" placeholder="*******" id="confirm_pass" class="form-control"/>
+							</div>
+							<div class="row">
+								<div class="form-group col">
+									<label for="exampleEmail" class="fw-bold text-muted">New password</label>
+									<input type="password" name="password" id="exampleEmail" placeholder="*******" class="w-100 form-control"/>
+								</div>
+								<div class="col">
+									<label for="exampleEmail" class="fw-bold text-muted">Confirm password</label>
+									<input type="password" name="password_confirmation" id="exampleEmail" placeholder="*******" class="w-100 form-control"/>
+								</div>
+							</div>
+							<div class="form-group text-end">
+								<button type="submit" class="text-uppercase fw-bold align-self-start btn btn-primary">Update password</button>
+							</div>
+						</form>
+					</div>
+					<div class="row">
+						<div class="col-12 col-md-6 col-lg-6 col-xl-6">
+							<section class="Account_promo1__1LP0S">
+								<h3 class="text-muted fw-bold mb-0">sale up to</h3>
+								<h1 class="text-primary fw-bold mb-3">30%</h1>
+								<p class="fw-bold">Read More</p></section>
+						</div>
+						<div class="col-12 col-md-6 col-lg-6 col-xl-6">
+							<section class="Account_promo2__3jML5">
+								<h3 class="text-muted fw-bold mb-0">sale up to</h3>
+								<h1 class="text-primary fw-bold mb-3">70%</h1>
+								<p class="fw-bold">Read More</p></section>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

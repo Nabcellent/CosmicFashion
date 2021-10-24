@@ -12771,22 +12771,6 @@ pre code {
 	border: 0
 }
 
-.form-control {
-	display: block;
-	width: 100%;
-	height: calc(1.5em + .75rem + 2px);
-	padding: .375rem 1rem;
-	font-size: 1rem;
-	line-height: 1.5;
-	color: #495057;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid #c1ccd3;
-	border-radius: .3rem;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.form-control {
 		transition: none
@@ -13261,13 +13245,6 @@ select.form-control[multiple], select.form-control[size], textarea.form-control 
 
 a.btn.disabled, fieldset:disabled a.btn {
 	pointer-events: none
-}
-
-.btn-primary {
-	color: #fff;
-	background-color: var(--falcon-primary);
-	border-color: var(--falcon-primary);
-	box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .15), 0 1px 1px rgba(0, 0, 0, .075)
 }
 
 .btn-primary:hover {
@@ -15767,44 +15744,6 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 
 .input-group-no-border.focus .navbar-dark .navbar-text a.input-group-addon, .input-group-no-border .navbar-dark .navbar-text .form-control:focus + a.input-group-addon, .navbar-dark .navbar-text .input-group-no-border.focus a.input-group-addon, .navbar-dark .navbar-text .input-group-no-border .form-control:focus + a.input-group-addon, .navbar-dark .navbar-text a, .navbar-dark .navbar-text a:focus, .navbar-dark .navbar-text a:hover {
 	color: #fff
-}
-
-.card {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, .125);
-	border-radius: .3rem
-}
-
-.card > hr {
-	margin-right: 0;
-	margin-left: 0
-}
-
-.card > .list-group {
-	border-top: inherit;
-	border-bottom: inherit
-}
-
-.card > .list-group:first-child {
-	border-top-width: 0;
-	border-top-left-radius: calc(.3rem - 1px);
-	border-top-right-radius: calc(.3rem - 1px)
-}
-
-.card > .list-group:last-child {
-	border-bottom-width: 0;
-	border-bottom-right-radius: calc(.3rem - 1px);
-	border-bottom-left-radius: calc(.3rem - 1px)
-}
-
-.card > .card-header + .list-group, .card > .list-group + .card-footer {
-	border-top: 0
 }
 
 .card-body {
@@ -22431,17 +22370,6 @@ input.blog-search {
 	height: 5px
 }
 
-.form-control {
-	box-shadow: none;
-	transition: border-color .15s ease-in-out, background-color .15s ease-in-out;
-	padding: 14px 24px;
-	height: 40px;
-	border: 1px solid #d9d9d9;
-	border-radius: 0;
-	background-clip: border-box;
-	background-clip: initial
-}
-
 .form-control:focus, .input-group-no-border.focus .form-control.input-group-addon, .input-group-no-border .form-control:focus, .input-group-no-border .form-control:focus + .form-control.input-group-addon {
 	box-shadow: none;
 	border-color: var(--falcon-primary)
@@ -22621,11 +22549,6 @@ legend {
 
 .btn-secondary.active {
 	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
-}
-
-.btn {
-	border-radius: 0;
-	padding: 14px 42px
 }
 
 .btn.btn-outline-primary {

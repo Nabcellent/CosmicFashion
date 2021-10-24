@@ -10,5 +10,5 @@
 <?= $this->renderSection('links') ?>
 
 <!--    Custom    -->
-<link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/first.css">
+<link rel="stylesheet" href="/css/global.css">

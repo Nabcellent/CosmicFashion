@@ -7,11 +7,23 @@ use App\Models\User;
 
 class UserController extends BaseController {
     public function index() {
-        $session = session();
-        echo "Hello : " . $session->get('first_name');
+        $data = [
+            'title' => "My Profile",
+        ];
+
+        return view('profile', $data);
     }
 
     public function account(): string {
+        $data = [
+            'title' => "My Account",
+            'orders' => Product::all(),
+        ];
+
+        return view('account', $data);
+    }
+
+    public function profile(): string {
         $data = [
             'title' => "My Account",
             'orders' => Product::all(),

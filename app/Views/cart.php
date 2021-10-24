@@ -31,7 +31,7 @@
 					</table>
 				</div>
 				<div class="col-12 col-lg-4">
-					<section class="Cart_cartTotal__2jJho"><h2 class="fw-bold mb-5">Cart Total</h2>
+					<section class="card Cart_cartTotal__2jJho"><h2 class="fw-bold mb-5">Cart Total</h2>
 						<div class="d-flex"><h6 class="fw-bold mr-5 mb-0">Subtotal:</h6><h6 class="fw-bold mb-0">KSH.0</h6></div>
 						<hr class="my-4"/>
 						<div class="d-flex"><h6 class="fw-bold mr-5 mb-0">Shipping:</h6>

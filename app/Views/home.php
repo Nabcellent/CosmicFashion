@@ -106,7 +106,7 @@
 							<div>
 								<a class="mt-3 text-muted mb-0 d-inline-block" href="category/1fcb7ece-6373-405d-92ef-3f3c4e7dc711.html">Furniture</a>
 								<a href="products/afaf98d5-4060-4408-967b-c4f4af3d1863.html">
-									<h6 class="fw-bold font-size-base mt-1" style="font-size:16px"><?= $product->title ?></h6>
+									<h6 class="fw-bold font-size-base mt-1" style="font-size:16px"><?= $product->name ?></h6>
 								</a>
 								<h6 style="font-size:16px">KSH.<?= $product->price ?></h6>
 							</div>
