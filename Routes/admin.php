@@ -25,6 +25,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
     $routes->group('products', function($routes) {
         $routes->get('/', 'ProductController::index', ['as' => 'admin.product.index']);
         $routes->get('create', 'ProductController::create', ['as' => 'admin.product.create']);
+        $routes->post('store', 'ProductController::store', ['as' => 'admin.product.store']);
     });
 
     //  USER ROUTES

@@ -3,27 +3,12 @@
 	Create Product
 <?= $this->endSection() ?>
 <?= $this->section('links') ?>
-	<link href="/vendor/admin/flatpickr/flatpickr.min.css" rel="stylesheet">
-	<link href="/vendor/admin/dropzone/dropzone.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/vendor/tomselect/tom-select.bootstrap5.css">
+	<link href="/vendor/filepond/css/style.css" rel="stylesheet"/>
+	<link href="/vendor/filepond/css/plugin-image-preview.css" rel="stylesheet"/>
+	<link href="/vendor/filepond/css/image-edit.css" rel="stylesheet"/>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-
-	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
-		<!--/.bg-holder-->
-		<div class="card-body position-relative">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3>Validation</h3>
-					<p class="mb-0">Provide valuable, actionable feedback to your users with HTML5 form validation, via browser default behaviors or
-						custom styles and JavaScript.</p>
-					<a class="btn btn-link btn-sm ps-0 mt-2" href="https://getbootstrap.com/docs/5.1/forms/validation" target="_blank">
-						Validation on Bootstrap<span class="fas fa-chevron-right ms-1 fs--2"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="row justify-content-center">
 		<div class="col-lg-8 col-xl-12 col-xxl-8 h-100">
@@ -53,105 +38,94 @@
 						<li class="nav-item">
 							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab2" data-bs-toggle="tab"
 							   data-wizard-step="data-wizard-step">
-								<span class="nav-item-circle-parent"><span class="nav-item-circle"><span
-												class="fas fa-shopping-bag"></span></span></span>
+								<span class="nav-item-circle-parent"><span class="nav-item-circle">
+										<span class="fas fa-shopping-bag"></span></span>
+								</span>
 								<span class="d-none d-md-block mt-1 fs--1">Secondary information</span>
 							</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link fw-semi-bold" href="#bootstrap-wizard-validation-tab3" data-bs-toggle="tab"
 							   data-wizard-step="data-wizard-step">
-								<span class="nav-item-circle-parent"><span class="nav-item-circle"><span
-												class="fas fa-thumbs-up"></span></span></span>
+								<span class="nav-item-circle-parent"><span class="nav-item-circle">
+										<span class="fas fa-thumbs-up"></span></span>
+								</span>
 								<span class="d-none d-md-block mt-1 fs--1">Finish</span>
 							</a>
 						</li>
 					</ul>
 				</div>
+
+                <?= view('App\auth\_message_block') ?>
+
 				<div class="card-body py-4" id="wizard-controller">
-					<div class="tab-content">
+					<form id="create-product" action="<?= route_to('admin.product.store') ?>" class="tab-content" method="POST"
+					      enctype="multipart/form-data">
+                        <?= csrf_field() ?>
 						<div class="tab-pane active px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab1"
 						     id="bootstrap-wizard-validation-tab1">
-							<form novalidate="novalidate">
-								<div class="row g-2 mb-3">
-									<div class="col">
-										<label class="form-label" for="bootstrap-wizard-validation-wizard-name">Title *</label>
-										<input class="form-control" type="text" name="name" placeholder="Product name" required aria-label value="<?= old('name') ?>"/>
-										<div class="invalid-feedback">Title is required.</div>
-									</div>
-									<div class="col">
-										<div class="mb-3">
-											<label class="form-label" for="bootstrap-wizard-card-holder-country">Category *</label>
-											<select class="form-select" name="sub_category_id" id="bootstrap-wizard-card-holder-country" required>
-												<option selected hidden value="">Select a category ...</option>
-												<option value="Afghanistan">Afghanistan</option>
-												<option value="Albania">Albania</option>
-											</select>
-											<div class="invalid-feedback">Category is required.</div>
-										</div>
+							<div class="row g-2 mb-3">
+								<div class="col">
+									<label class="form-label" for="name">Title *</label>
+									<input class="form-control" type="text" name="name" placeholder="Product title" required aria-label
+									       value="<?= old('name') ?>"/>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label" for="sub_category_id">Category *</label>
+										<select name="sub_category_id" id="sub_category_id" required>
+											<option selected hidden value="">Select a category ...</option>
+                                            <?php foreach($categories as $category): ?>
+											<optgroup label="<?= $category->name ?>">
+                                                <?php foreach($category->subCategories as $subCategory): ?>
+													<option value="<?= $subCategory->id ?>"><?= $subCategory->name ?></option>
+                                                <?php endforeach; ?>
+                                            <?php endforeach; ?>
+										</select>
 									</div>
 								</div>
-								<div class="row g-2 mb-3">
-									<div class="col-6">
-										<label class="form-label" for="price">Price *</label>
-										<input class="form-control" type="number" min="1" name="password" placeholder="Price" required id="price" <?= old('price') ?>/>
-										<div class="invalid-feedback">Price is required.</div>
-									</div>
-									<div class="col-6">
-										<label class="form-label" for="stock">Stock *</label>
-										<input class="form-control" type="number" min="1" name="password" placeholder="Stock" required id="stock" value="<?= old('stock') ?>"/>
-										<div class="invalid-feedback">Stock is required.</div>
-									</div>
+							</div>
+							<div class="row g-2 mb-3">
+								<div class="col-6">
+									<label class="form-label" for="price">Price *</label>
+									<input class="form-control" type="number" min="1" name="price" placeholder="Price" required
+									       id="price" <?= old('price') ?>/>
 								</div>
-							</form>
+								<div class="col-6">
+									<label class="form-label" for="stock">Stock *</label>
+									<input class="form-control" type="number" min="1" name="stock" placeholder="Stock" required id="stock"
+									       value="<?= old('stock') ?>"/>
+								</div>
+							</div>
 						</div>
 						<div class="tab-pane px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab2"
 						     id="bootstrap-wizard-validation-tab2">
-							<form>
-								<div class="mb-3">
-									<label class="form-label" for="discount">Discount</label>
-									<input class="form-control" type="text" name="discount" placeholder="discount" id="discount" value="<?= old('discount') ?>"/>
-								</div>
-								<div class="mb-3">
-									<div class="row" data-dropzone="data-dropzone"
-									     data-options='{"maxFiles":1,"data":[{"name":"avatar.png","size":"54kb","url":"/images/dash/team"}]}'>
-										<div class="fallback"><input type="file" name="image"/></div>
-										<div class="col-md-auto">
-											<div class="dz-preview dz-preview-single">
-												<div class="dz-preview-cover d-flex align-items-center justify-content-center mb-3 mb-md-0">
-													<div class="avatar avatar-4xl">
-														<img class="rounded-circle" src="/images/dash/team/avatar.png" alt="..."
-														     data-dz-thumbnail="data-dz-thumbnail"/>
-													</div>
-													<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress=""></span></div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md">
-											<div class="dz-message dropzone-area px-2 py-3" data-dz-message="data-dz-message">
-												<div class="text-center">
-													<img class="me-2" src="/images/dash/icons/cloud-upload.svg" width="25" alt=""/>
-													Upload product image<p class="mb-0 fs--1 text-400">
-														Upload a 300x300 jpg image with <br/>a maximum size of 400KB</p>
-												</div>
-											</div>
-										</div>
+							<div id="upload-form">
+								<div class="row g-2 mb-3 align-items-center">
+									<div class="col-lg-4">
+										<input type="file" class="filepond" id="image" name="image">
+									</div>
+									<div class="col">
+										<label class="form-label" for="discount">Discount</label>
+										<input class="form-control" type="number" name="discount" placeholder="discount" id="discount"
+										       value="<?= old('discount') ?>"/>
 									</div>
 								</div>
 								<div class="mb-3">
 									<label class="form-label" for="description">Descriptions</label>
-									<textarea class="form-control" rows="4" id="description"
+									<textarea class="form-control" rows="4" id="description" name="description"
 									          placeholder="Product descriptions..."><?= old('description') ?></textarea>
 								</div>
-							</form>
+							</div>
 						</div>
 						<div class="tab-pane text-center px-sm-3 px-md-5" role="tabpanel" aria-labelledby="bootstrap-wizard-validation-tab3"
 						     id="bootstrap-wizard-validation-tab3">
 							<i class="fas fa-check-circle text-success fs-24"></i>
 							<h4 class="mb-1">Your product is all set!</h4>
-							<p>Click create to complete.</p><a class="btn btn-primary px-5 my-3" href="javascript:void(0)">Create</a>
+							<p>Click create to complete.</p>
+							<button class="btn btn-primary px-5 my-3" type="submit">Create</button>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="card-footer bg-light">
 					<div class="px-sm-3 px-md-5">
@@ -174,13 +148,59 @@
 	</div>
 
 <?= $this->section('scripts') ?>
-	<script src="/js/admin/flatpickr.js"></script>
-	<script src="/vendor/admin/dropzone/dropzone.min.js"></script>
-	<script src="/vendor/admin/lottie/lottie.min.js"></script>
 	<script src="/vendor/admin/validator/validator.min.js"></script>
+	<script src="/vendor/jquery/jqueryValidation.js"></script>
+	<script src="/js/jQueryValidation.js"></script>
+	<script src="/js/wizard.js"></script>
+
+	<script src="/vendor/tomselect/tom-select.complete.min.js"></script>
+
+	<script src="/vendor/filepond/js/plugins/image-preview.js"></script>
+	<script src="/vendor/filepond/js/plugins/image-resize.js"></script>
+	<script src="/vendor/filepond/js/plugins/file-validate-type.js"></script>
+	<script src="/vendor/filepond/js/plugins/file-rename.js"></script>
+	<script src="/vendor/filepond/js/filepond.min.js"></script>
 
 	<script>
+        $(() => {
+            wizardInit()
 
+            new TomSelect("#sub_category_id");
+
+            FilePond.registerPlugin(
+                FilePondPluginImagePreview,
+                FilePondPluginImageResize,
+                FilePondPluginFileValidateType,
+                FilePondPluginFileRename,
+            );
+
+            const inputElement = document.getElementById('image');
+            const pond = FilePond.create(inputElement, {
+                labelIdle: `Drag & Drop or <span class="filepond--label-action"> Browse </span> your product image`,
+                acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
+                dropOnPage: true,
+                allowDrop: true,
+                storeAsFile: true,
+                instantUpload: false,
+
+                imageCropAspectRatio: '1:1',
+                imageResizeMode: 'cover',
+                imageResizeTargetWidth: 200,
+                imageResizeTargetHeight: 200,
+
+                stylePanelLayout: 'compact circle',
+                styleLoadIndicatorPosition: 'center bottom',
+                styleProgressIndicatorPosition: 'right bottom',
+                styleButtonRemoveItemPosition: 'left bottom',
+                styleButtonProcessItemPosition: 'right bottom',
+            });
+
+            if (<?= isset($user->image) && file_exists("images/users/" . ($user->image ?? 0)) ? : '0' ?>)
+                pond.addFile(`{{ gcs_asset("images/users/$user->image") }}`)
+                    .then(file => {
+                        console.log(file)
+                    });
+        })
 	</script>
 <?= $this->endSection() ?>
 

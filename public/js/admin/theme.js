@@ -4193,103 +4193,104 @@ let typedTextInit = function typedTextInit() {
 /* -------------------------------------------------------------------------- */
 
 
-let wizardInit = function wizardInit() {
-  let wizards = document.querySelectorAll('.theme-wizard');
-  let tabPillEl = document.querySelectorAll('#pill-tab2 [data-bs-toggle="pill"]');
-  let tabProgressBar = document.querySelector('.theme-wizard .progress');
-  wizards.forEach(function (wizard) {
-    let tabToggleButtonEl = wizard.querySelectorAll('[data-wizard-step]');
-    let inputEmail = wizard.querySelector('[data-wizard-validate-email]');
-    let emailPattern = inputEmail ? inputEmail.getAttribute('pattern') : null;
-    let inputPassword = wizard.querySelector('[data-wizard-validate-password]');
-    let inputConfirmPassword = wizard.querySelector('[data-wizard-validate-confirm-password]');
-    let form = wizard.querySelector('[novalidate]');
-    let nextButton = wizard.querySelector('.next button');
-    let prevButton = wizard.querySelector('.previous button');
-    let cardFooter = wizard.querySelector('.theme-wizard .card-footer');
-    let count = 0;
-
-    let validatePattern = function validatePattern(pattern, value) {
-      let regexPattern = new RegExp(pattern);
-      return regexPattern.test(String(value).toLowerCase());
-    };
-
-    prevButton.classList.add('d-none'); // on button click tab change
-
-    nextButton.addEventListener('click', function () {
-      if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
-        form.classList.add('was-validated');
-      } else {
-        count += 1;
-        let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
-        tab.show();
-      }
-    });
-    prevButton.addEventListener('click', function () {
-      count -= 1;
-      let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
-      tab.show();
-    });
-
-    if (tabToggleButtonEl.length) {
-      tabToggleButtonEl.forEach(function (item, index) {
-        /* eslint-disable */
-        item.addEventListener('show.bs.tab', function (e) {
-          if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
-            e.preventDefault();
-            form.classList.add('was-validated');
-            return null;
-            /* eslint-enable */
-          }
-
-          count = index; // can't go back tab
-
-          if (count === tabToggleButtonEl.length - 1) {
-            tabToggleButtonEl.forEach(function (tab) {
-              tab.setAttribute('data-bs-toggle', 'modal');
-              tab.setAttribute('data-bs-target', '#error-modal');
-            });
-          } //add done class
-
-
-          for (let i = 0; i < count; i += 1) {
-            tabToggleButtonEl[i].classList.add('done');
-          } //remove done class
-
-
-          for (let j = count; j < tabToggleButtonEl.length; j += 1) {
-            tabToggleButtonEl[j].classList.remove('done');
-          } // card footer remove at last step
-
-
-          if (count > tabToggleButtonEl.length - 2) {
-            item.classList.add('done');
-            cardFooter.classList.add('d-none');
-          } else {
-            cardFooter.classList.remove('d-none');
-          } // prev-button removing
-
-
-          if (count > 0) {
-            prevButton.classList.remove('d-none');
-          } else {
-            prevButton.classList.add('d-none');
-          }
-        });
-      });
-    }
-  }); // control wizard progressbar
-
-  if (tabPillEl.length) {
-    let dividedProgressbar = 100 / tabPillEl.length;
-    tabProgressBar.querySelector('.progress-bar').style.width = "".concat(dividedProgressbar, "%");
-    tabPillEl.forEach(function (item, index) {
-      item.addEventListener('show.bs.tab', function () {
-        tabProgressBar.querySelector('.progress-bar').style.width = "".concat(dividedProgressbar * (index + 1), "%");
-      });
-    });
-  }
-};
+// let wizardInit = function wizardInit() {
+//   let wizards = document.querySelectorAll('.theme-wizard');
+//   let tabPillEl = document.querySelectorAll('#pill-tab2 [data-bs-toggle="pill"]');
+//   let tabProgressBar = document.querySelector('.theme-wizard .progress');
+//   wizards.forEach(function (wizard) {
+//     let tabToggleButtonEl = wizard.querySelectorAll('[data-wizard-step]');
+//     let inputEmail = wizard.querySelector('[data-wizard-validate-email]');
+//     let emailPattern = inputEmail ? inputEmail.getAttribute('pattern') : null;
+//     let inputPassword = wizard.querySelector('[data-wizard-validate-password]');
+//     let inputConfirmPassword = wizard.querySelector('[data-wizard-validate-confirm-password]');
+//     let form = wizard.querySelector('[novalidate]');
+//     let nextButton = wizard.querySelector('.next button');
+//     let prevButton = wizard.querySelector('.previous button');
+//     let cardFooter = wizard.querySelector('.theme-wizard .card-footer');
+//     let count = 0;
+//
+//     let validatePattern = function validatePattern(pattern, value) {
+//       let regexPattern = new RegExp(pattern);
+//       return regexPattern.test(String(value).toLowerCase());
+//     };
+//
+//     prevButton.classList.add('d-none'); // on button click tab change
+//
+//     nextButton.addEventListener('click', function () {
+//       console.log((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation'))
+//       if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
+//         form.classList.add('was-validated');
+//       } else {
+//         count += 1;
+//         let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
+//         tab.show();
+//       }
+//     });
+//     prevButton.addEventListener('click', function () {
+//       count -= 1;
+//       let tab = new window.bootstrap.Tab(tabToggleButtonEl[count]);
+//       tab.show();
+//     });
+//
+//     if (tabToggleButtonEl.length) {
+//       tabToggleButtonEl.forEach(function (item, index) {
+//         /* eslint-disable */
+//         item.addEventListener('show.bs.tab', function (e) {
+//           if ((!(inputEmail && inputEmail.value && validatePattern(emailPattern, inputEmail.value)) || !inputPassword.value || !inputConfirmPassword.value) && form.className.includes('needs-validation')) {
+//             e.preventDefault();
+//             form.classList.add('was-validated');
+//             return null;
+//             /* eslint-enable */
+//           }
+//
+//           count = index; // can't go back tab
+//
+//           if (count === tabToggleButtonEl.length - 1) {
+//             tabToggleButtonEl.forEach(function (tab) {
+//               tab.setAttribute('data-bs-toggle', 'modal');
+//               tab.setAttribute('data-bs-target', '#error-modal');
+//             });
+//           } //add done class
+//
+//
+//           for (let i = 0; i < count; i += 1) {
+//             tabToggleButtonEl[i].classList.add('done');
+//           } //remove done class
+//
+//
+//           for (let j = count; j < tabToggleButtonEl.length; j += 1) {
+//             tabToggleButtonEl[j].classList.remove('done');
+//           } // card footer remove at last step
+//
+//
+//           if (count > tabToggleButtonEl.length - 2) {
+//             item.classList.add('done');
+//             cardFooter.classList.add('d-none');
+//           } else {
+//             cardFooter.classList.remove('d-none');
+//           } // prev-button removing
+//
+//
+//           if (count > 0) {
+//             prevButton.classList.remove('d-none');
+//           } else {
+//             prevButton.classList.add('d-none');
+//           }
+//         });
+//       });
+//     }
+//   }); // control wizard progressbar
+//
+//   if (tabPillEl.length) {
+//     let dividedProgressbar = 100 / tabPillEl.length;
+//     tabProgressBar.querySelector('.progress-bar').style.width = "".concat(dividedProgressbar, "%");
+//     tabPillEl.forEach(function (item, index) {
+//       item.addEventListener('show.bs.tab', function () {
+//         tabProgressBar.querySelector('.progress-bar').style.width = "".concat(dividedProgressbar * (index + 1), "%");
+//       });
+//     });
+//   }
+// };
 
 let _window3 = window,
     dayjs = _window3.dayjs;
@@ -10466,7 +10467,7 @@ docReady(fullCalendarInit);
 docReady(appCalendarInit);
 docReady(managementCalendarInit);
 docReady(lottieInit);
-docReady(wizardInit);
+// docReady(wizardInit);
 docReady(searchInit);
 docReady(cookieNoticeInit);
 docReady(themeControl);

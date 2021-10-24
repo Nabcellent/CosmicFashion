@@ -20,6 +20,6 @@ class Category extends Model {
      * RELATIONSHIP FUNCTIONS
      */
     public function subCategories(): HasMany {
-        return $this->hasMany(SubCategory::class, 'category_id');
+        return $this->hasMany(SubCategory::class);
     }
 }
