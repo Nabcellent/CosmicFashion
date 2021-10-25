@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\Category;
 use App\Models\SubCategory;
+use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
 
 class SubCategoryController extends BaseController
@@ -38,6 +39,33 @@ class SubCategoryController extends BaseController
         } catch(Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Error creating sub category! ❌', 'admin.subcategory.create');
+        }
+    }
+
+    public function edit($id): string | RedirectResponse {
+        try {
+            $data = [
+                'subCategory' => SubCategory::findOrFail($id),
+                'categories' => Category::select(['id', 'name'])->get()
+            ];
+
+            return view('Admin/pages/subcategories/upsert', $data);
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Unable to find category for editing!', 'admin.subcategory.index');
+        }
+    }
+
+    public function update($id): RedirectResponse {
+        try {
+            $category = SubCategory::findOrFail($id);
+
+            $category->update($this->request->getVar());
+
+            return updateOk('Sub category updated successful! ✔', 'admin.subcategory.index');
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return updateFail('Unable to update sub category!');
         }
     }
 }

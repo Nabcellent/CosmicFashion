@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c761ce53efed567fd33c59be68447f80",
+    "content-hash": "8c764530cd48d05bee7479bf7b843405",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -910,16 +910,16 @@
         },
         {
             "name": "nabcellent/codeigniter4-eloquent",
-            "version": "v1.1.4",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nabcellent/Codeigniter4-eloquent.git",
-                "reference": "6217434500936b278ab593ab39485c9632afd47e"
+                "reference": "f3487fad6f83068b4cc104e189c1f6be4939f313"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/6217434500936b278ab593ab39485c9632afd47e",
-                "reference": "6217434500936b278ab593ab39485c9632afd47e",
+                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/f3487fad6f83068b4cc104e189c1f6be4939f313",
+                "reference": "f3487fad6f83068b4cc104e189c1f6be4939f313",
                 "shasum": ""
             },
             "require": {
@@ -927,7 +927,7 @@
                 "illuminate/database": "^8.64",
                 "illuminate/events": "^8.65",
                 "illuminate/pagination": "^8.64",
-                "php": "^8.0"
+                "php": "^7.3|^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -958,9 +958,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Nabcellent/Codeigniter4-eloquent/issues",
-                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.4"
+                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.5"
             },
-            "time": "2021-10-20T12:19:51+00:00"
+            "time": "2021-10-24T16:31:41+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -4493,7 +4493,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.0|^8.1"
+        "php": "^7.4|^8.0|^8.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

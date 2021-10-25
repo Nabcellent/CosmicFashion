@@ -21,6 +21,8 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('/', 'SubCategoryController', ['as' => 'admin.subcategory.index']);
         $routes->get('create', 'SubCategoryController::create', ['as' => 'admin.subcategory.create']);
         $routes->post('store', 'SubCategoryController::store', ['as' => 'admin.subcategory.store']);
+        $routes->get('edit/(:num)', 'SubCategoryController::edit/$1', ['as' => 'admin.subcategory.edit']);
+        $routes->put('update/(:num)', 'SubCategoryController::update/$1', ['as' => 'admin.subcategory.update']);
     });
 
     //  PRODUCT ROUTES
