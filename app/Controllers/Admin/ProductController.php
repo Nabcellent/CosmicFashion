@@ -103,9 +103,7 @@ class ProductController extends BaseController
             $data['user_id'] = user()->id;
             $file->move(PUBLICPATH . "/images/products/", $data['image']);
 
-//            dd(file_exists("images/products/{$product->image}"), $product);
-
-            if(file_exists("images/products/{$product->image}"))
+            if(isset($product->image) && file_exists("images/products/{$product->image}"))
                 unlink("images/products/{$product->image}");
         }
 

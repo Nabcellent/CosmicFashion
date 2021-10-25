@@ -55,6 +55,7 @@ class Filters extends BaseConfig
                     'shop*',
                     'check-email',
                     'delete-resource',
+                    'api*'
                 ]
             ],
         ],

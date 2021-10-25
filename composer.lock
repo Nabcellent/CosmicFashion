@@ -910,16 +910,16 @@
         },
         {
             "name": "nabcellent/codeigniter4-eloquent",
-            "version": "v1.1.5",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nabcellent/Codeigniter4-eloquent.git",
-                "reference": "f3487fad6f83068b4cc104e189c1f6be4939f313"
+                "reference": "f576080d7dc2e049dbb5418ad13ca6347bbfa13a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/f3487fad6f83068b4cc104e189c1f6be4939f313",
-                "reference": "f3487fad6f83068b4cc104e189c1f6be4939f313",
+                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/f576080d7dc2e049dbb5418ad13ca6347bbfa13a",
+                "reference": "f576080d7dc2e049dbb5418ad13ca6347bbfa13a",
                 "shasum": ""
             },
             "require": {
@@ -944,23 +944,29 @@
             ],
             "authors": [
                 {
-                    "name": "nabcellent",
-                    "email": "nabcellent.dev@gmail.com"
+                    "name": "Lil Nabz",
+                    "email": "nabcellent.dev@gmail.com",
+                    "role": "Web Artisan"
                 }
             ],
-            "description": "The Illuminate Database package for CodeIgniter 4",
+            "description": "The Illuminate/Eloquent package for CodeIgniter 4.",
             "keywords": [
+                "codegniter",
+                "codegniter eloquent",
+                "codegniter query builder",
                 "codegniter4",
                 "codeigniter4-eloquent",
                 "database",
+                "eloquent",
                 "orm",
+                "query builder",
                 "sql"
             ],
             "support": {
                 "issues": "https://github.com/Nabcellent/Codeigniter4-eloquent/issues",
-                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.5"
+                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.6"
             },
-            "time": "2021-10-24T16:31:41+00:00"
+            "time": "2021-10-25T11:06:30+00:00"
         },
         {
             "name": "nesbot/carbon",

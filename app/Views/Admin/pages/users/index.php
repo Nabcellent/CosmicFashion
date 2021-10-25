@@ -6,7 +6,7 @@
 
 	<div class="card mb-3">
 		<div class="bg-holder d-none d-lg-block bg-card"
-		     style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
+		     style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
 		<div class="card-body position-relative">
 			<div class="row">
 				<div class="col-lg-8">

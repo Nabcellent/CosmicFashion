@@ -91,3 +91,4 @@ $routes->get('/test', 'HomeController::test', ['as' => 'test']);
 
 
 require_once ROOTPATH."/Routes/admin.php";
+require_once ROOTPATH."/Routes/api.php";

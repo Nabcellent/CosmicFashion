@@ -145,7 +145,7 @@ if(isset($product)) {
 						     aria-labelledby="bootstrap-wizard-validation-tab3"
 						     id="bootstrap-wizard-validation-tab3">
 							<i class="fas fa-check-circle text-success fs-48 mb-3"></i>
-							<h4 class="mb-1">Product is ready for creation!</h4>
+							<h4 class="mb-1">Product is ready to <?= strtolower($actionText) ?>!</h4>
 							<p><i>Click <?= strtolower($actionText) ?> to complete.</i></p>
 							<button class="btn btn-primary px-5 my-3" type="submit"><?= $actionText ?></button>
 						</div>
@@ -194,7 +194,7 @@ if(isset($product)) {
             new TomSelect("#sub_category_id");
 
             if (<?= isset($product->image) && file_exists("images/products/" . ($product->image ?? 0)) ? : '0' ?>)
-                pond.addFile(`<?= "/images/products/{$product->image}" ?>`);
+                pond.addFile(`<?= "/images/products/" . ($product->image ?? 0) ?>`);
         })
 	</script>
 <?= $this->endSection() ?>

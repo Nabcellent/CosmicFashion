@@ -59,8 +59,8 @@ class UserController extends BaseController
         $file = $this->request->getFile('image');
 
         if($file->isValid()) {
-            $data['image'] = "pic_" . time() . ".{$file->getClientExtension()}";
-            $file->move(PUBLICPATH . "/images/products/", $data['image']);
+            $data['image'] = "usr_" . time() . ".{$file->getClientExtension()}";
+            $file->move(PUBLICPATH . "/images/users/", $data['image']);
         }
 
         $data['password'] = Password::hash($this->request->getVar('password'));
@@ -78,7 +78,7 @@ class UserController extends BaseController
     public function edit($id): string | RedirectResponse {
         try {
             $data = [
-                'user' => User::findOrFail($id),
+                'user'  => User::findOrFail($id),
                 'roles' => Role::where('name', '<>', 'red')->get(),
             ];
 
@@ -90,10 +90,35 @@ class UserController extends BaseController
     }
 
     public function update($id): RedirectResponse {
-        try {
-            $user = User::findOrFail($id);
+        $rules = [
+            'first_name' => 'required|min_length[2]|max_length[50]',
+            'last_name'  => 'required|min_length[2]|max_length[50]',
+            'email'      => "required|valid_email|is_unique[users.email,id,$id]",
+            'gender'     => 'required',
+        ];
+        $messages = [
+            'email' => ['is_unique' => 'The email provided is already in use.']
+        ];
 
-            $user->update($this->request->getVar());
+        if(!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = $this->request->getVar();
+        $file = $this->request->getFile('image');
+
+        $user = User::findOrFail($id);
+
+        if($file->isValid()) {
+            $data['image'] = "usr_" . time() . ".{$file->getClientExtension()}";
+            $file->move(PUBLICPATH . "/images/users/", $data['image']);
+
+            if(isset($user->image) && file_exists("images/users/{$user->image}"))
+                unlink("images/users/{$user->image}");
+        }
+
+        try {
+            $user->update($data);
 
             return updateOk('User updated successful! ✔', 'admin.user.index');
         } catch (Exception $e) {

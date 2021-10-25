@@ -1,6 +1,15 @@
+<?php
+if(isset($user)) {
+    $actionText = 'Update';
+    $formAction = route_to('admin.user.update', $user->id);
+} else {
+    $actionText = 'Create';
+    $formAction = route_to('admin.user.store');
+}
+?>
 <?= $this->extend('Admin/layouts/master') ?>
 <?= $this->section('title') ?>
-	Create Product
+<?= $actionText ?> Product
 <?= $this->endSection() ?>
 <?= $this->section('links') ?>
 	<link rel="stylesheet" href="/vendor/tomselect/tom-select.bootstrap5.css">
@@ -12,7 +21,7 @@
 
 	<div class="card mb-3">
 		<div class="bg-holder d-none d-lg-block bg-card"
-		     style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
+		     style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
 		<!--/.bg-holder-->
 		<div class="card-body position-relative">
 			<div class="row">
@@ -39,7 +48,7 @@
 				</span>
 				<div class="col">
 					<h5 class="mb-0 text-primary position-relative">
-						<span class="bg-200 dark__bg-1100 pe-3">User creation</span>
+						<span class="bg-200 dark__bg-1100 pe-3"><?= $actionText ?> User</span>
 						<span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span>
 					</h5>
 					<p class="mb-0">You can easily show your stats content by using these cards.</p>
@@ -84,10 +93,9 @@
                 <?= view('App\auth\_message_block') ?>
 
 				<div class="card-body py-4" id="wizard-controller">
-					<form id="create-user" action="<?= route_to('admin.user.store') ?>" class="tab-content"
-					      method="POST"
+					<form id="create-user" action="<?= $formAction ?>" class="tab-content" method="POST"
 					      enctype="multipart/form-data">
-                        <?= csrf_field() ?>
+                        <?= csrf_field() ?><?= isset($user) ? form_method('PUT') : ''; ?>
 						<div class="tab-pane active px-sm-3 px-md-5" role="tabpanel"
 						     aria-labelledby="bootstrap-wizard-validation-tab1"
 						     id="bootstrap-wizard-validation-tab1">
@@ -95,43 +103,48 @@
 								<div class="col">
 									<label class="form-label" for="first_name">First name*</label>
 									<input class="form-control" type="text" name="first_name" placeholder="John"
-									       required id="first_name" value="<?= old('first_name') ?>">
+									       required id="first_name"
+									       value="<?= old('first_name', $user->first_name ?? '') ?>">
 								</div>
 								<div class="col">
 									<label class="form-label" for="last_name">Last name *</label>
 									<input class="form-control" type="text" name="last_name" placeholder="Smith"
-									       required value="<?= old('last_name') ?>" id="last_name">
+									       required value="<?= old('last_name', $user->last_name ?? '') ?>"
+									       id="last_name">
 								</div>
 							</div>
 							<div class="mb-3">
 								<label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email*</label>
 								<input class="form-control" type="email" name="email" placeholder="Email address"
 								       pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
-								       required="required" value="<?= old('email') ?>"
+								       required value="<?= old('email', $user->email ?? '') ?>"
 								       id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true">
 							</div>
-							<div class="row g-2">
-								<div class="col-6">
-									<div class="mb-3">
-										<label class="form-label" for="password">Password*</label>
-										<input class="form-control" type="password" name="password"
-										       placeholder="Password" required="required" id="password">
+                            <?php if(!isset($user)): ?>
+								<div class="row g-2">
+									<div class="col-6">
+										<div class="mb-3">
+											<label class="form-label" for="password">Password*</label>
+											<input class="form-control" type="password" name="password"
+											       placeholder="Password" required id="password">
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="mb-3">
+											<label class="form-label" for="password_confirmation">Confirm
+												Password*</label>
+											<input class="form-control" type="password" name="password_confirmation"
+											       placeholder="Confirm Password" required id="password_confirmation">
+										</div>
 									</div>
 								</div>
-								<div class="col-6">
-									<div class="mb-3">
-										<label class="form-label" for="password_confirmation">Confirm Password*</label>
-										<input class="form-control" type="password" name="password_confirmation"
-										       placeholder="Confirm Password" required id="password_confirmation">
-									</div>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" name="terms"
+									       id="use_default_pass">
+									<label class="form-check-label" for="use_default_pass">
+										Use the <a href="javascript:void(0)">default </a>password.</a></label>
 								</div>
-							</div>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" name="terms"
-								       id="use_default_pass">
-								<label class="form-check-label" for="use_default_pass">
-									Use the <a href="javascript:void(0)">default </a>password.</a></label>
-							</div>
+                            <?php endif; ?>
 						</div>
 						<div class="tab-pane px-sm-3 px-md-5" role="tabpanel"
 						     aria-labelledby="bootstrap-wizard-validation-tab2"
@@ -141,8 +154,12 @@
 									<label class="form-label" for="gender">Gender</label>
 									<select class="form-select" name="gender" id="gender">
 										<option selected hidden value="">Select your gender ...</option>
-										<option value="male">Male</option>
-										<option value="female">Female</option>
+										<option <?= isset($user) && $user->gender === 'Male' ? 'selected' : '' ?>
+												value="male">Male
+										</option>
+										<option <?= isset($user) && $user->gender === 'Female' ? 'selected' : '' ?>
+												value="female">Female
+										</option>
 									</select>
 								</div>
 								<div class="col-lg-4">
@@ -155,14 +172,16 @@
 									<select class="form-select" name="role_id" id="role" required>
 										<option selected hidden value="">Select user role ...</option>
                                         <?php foreach($roles as $role): ?>
-											<option value="<?= $role->id ?>"><?= $role->name ?></option>
+                                            <?php $selected = isset($user) && $user->role_id == $role->id ? 'selected' : '' ?>
+											<option <?= $selected ?>
+													value="<?= $role->id ?>"><?= $role->name ?></option>
                                         <?php endforeach; ?>
 									</select>
 								</div>
 								<div class="col">
 									<label class="form-label" for="phone">Phone</label>
 									<input class="form-control" type="text" name="phone" placeholder="Phone"
-									       id="phone" value="<?= old('phone') ?>">
+									       id="phone" value="<?= old('phone', $user->phone ?? '') ?>">
 								</div>
 							</div>
 						</div>
@@ -170,9 +189,9 @@
 						     aria-labelledby="bootstrap-wizard-validation-tab3"
 						     id="bootstrap-wizard-validation-tab3">
 							<i class="fas fa-check-circle text-success fs-48 mb-3"></i>
-							<h4 class="mb-1">User account is ready for creation!</h4>
-							<p><i>Click create to complete.</i></p>
-							<button class="btn btn-primary px-5 my-3" type="submit">Create</button>
+							<h4 class="mb-1">User account is ready to <?= strtolower($actionText) ?>!</h4>
+							<p><i>Click <?= strtolower($actionText) ?> to complete.</i></p>
+							<button class="btn btn-primary px-5 my-3" type="submit"><?= $actionText ?></button>
 						</div>
 					</form>
 				</div>
@@ -216,12 +235,9 @@
             filepondInit()
 
             if (<?= isset($user->image) && file_exists("images/users/" . ($user->image ?? 0)) ? : '0' ?>)
-                pond.addFile(`{{ gcs_asset("images/users/$user->image") }}`)
-                    .then(file => {
-                        console.log(file)
-                    });
+                pond.addFile(`<?= "/images/users/" . ($user->image ?? 0) ?>`);
 
-            $('#use_default_pass').on('change', function() {
+            $('#use_default_pass').on('change', function () {
                 $('input[type="password"]').val($(this).prop("checked") ? 'CosmoDressing!' : '')
             })
         })
