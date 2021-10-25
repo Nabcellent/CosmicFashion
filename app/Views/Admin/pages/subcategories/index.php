@@ -65,7 +65,7 @@
 									<th class="align-middle"><?= $subCategory->id ?></th>
 									<th class="align-middle"><?= $subCategory->name ?></th>
 									<td class="align-middle"><?= $subCategory->category->name ?></td>
-									<td class="align-middle"><?= $subCategory->products_count ?></td>
+									<td class="align-middle text-danger"><?= $subCategory->products_count ?></td>
 									<td class="align-middle">Sweat pants</td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">

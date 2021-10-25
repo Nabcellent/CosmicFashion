@@ -5,7 +5,7 @@
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
+		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
 		<div class="card-body position-relative">
 			<div class="row">
 				<div class="col-lg-8">
@@ -63,6 +63,7 @@
 								<th class="align-middle">Created by</th>
 								<th class="align-middle">Price</th>
 								<th class="align-middle">Stock</th>
+								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
 							<tbody id="bulk-select-body">
@@ -79,8 +80,21 @@
 									<th class="align-middle"><?= $product->name ?></th>
 									<td class="align-middle"><?= $product->subCategory->name ?></td>
 									<td class="align-middle"><a href="#"><?= $product->user->email ?></a></td>
-									<td class="align-middle"><?= $product->price ?></td>
-									<td class="align-middle"><?= $product->stock ?></td>
+									<td class="align-middle text-success"><?= $product->price ?></td>
+									<td class="align-middle text-warning"><?= $product->stock ?></td>
+									<td class="align-middle actions">
+										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="<?= route_to('admin.product.edit', $product->id) ?>"
+											   class="btn btn-sm btn-primary rounded-circle shadow">
+												<i class="fas fa-pen"></i></a>
+											<a href="javascript:void(0);" data-id="<?= $product->id ?>"
+											   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
+											   data-model="product" data-bs-toggle="tooltip"
+											   data-bs-placement="right" title="Delete Product">
+												<i class="fas fa-trash text-danger"></i>
+											</a>
+										</div>
+									</td>
 								</tr>
 
                             <?php endforeach; ?>
@@ -93,10 +107,12 @@
 		</div>
 	</div>
 
+<?= $this->section('scripts') ?>
+	<script src="/js/admin/dynamic.js"></script>
 	<script>
         $(() => {
             $('#table_id').DataTable({});
         })
 	</script>
-
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

@@ -57,10 +57,17 @@ class SubCategoryController extends BaseController
     }
 
     public function update($id): RedirectResponse {
-        try {
-            $category = SubCategory::findOrFail($id);
+        $rules = ['name' => 'required', 'category_id' => 'required'];
+        $messages = ['category_id' => ['required' => 'Valid category required.']];
 
-            $category->update($this->request->getVar());
+        if(!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        try {
+            $subCategory = SubCategory::findOrFail($id);
+
+            $subCategory->update($this->request->getVar());
 
             return updateOk('Sub category updated successful! ✔', 'admin.subcategory.index');
         } catch (Exception $e) {

@@ -74,4 +74,31 @@ class UserController extends BaseController
             return createFail('Error creating user ❗', 'admin.user.create');
         }
     }
+
+    public function edit($id): string | RedirectResponse {
+        try {
+            $data = [
+                'user' => User::findOrFail($id),
+                'roles' => Role::where('name', '<>', 'red')->get(),
+            ];
+
+            return view('Admin/pages/users/upsert', $data);
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Unable to find user for editing!', 'admin.user.index');
+        }
+    }
+
+    public function update($id): RedirectResponse {
+        try {
+            $user = User::findOrFail($id);
+
+            $user->update($this->request->getVar());
+
+            return updateOk('User updated successful! ✔', 'admin.user.index');
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return updateFail('Unable to update user!');
+        }
+    }
 }

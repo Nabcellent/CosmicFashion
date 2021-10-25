@@ -5,13 +5,15 @@
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
+		<div class="bg-holder d-none d-lg-block bg-card"
+		     style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
 		<div class="card-body position-relative">
 			<div class="row">
 				<div class="col-lg-8">
 					<h3>Bulk Select</h3>
 					<p class="mb-0">
-						Bulk select allows users to check multiple checkboxes at once and toggles a UI for bulk actions to be performed
+						Bulk select allows users to check multiple checkboxes at once and toggles a UI for bulk actions
+						to be performed
 						for the selected items.
 					</p>
 				</div>
@@ -32,7 +34,8 @@
 				<div class="card-body p-0 pb-3">
 					<div class="d-flex align-items-center justify-content-end my-3">
 						<div id="bulk-select-replace-element">
-							<a href="<?= route_to('admin.user.create') ?>" class="btn btn-falcon-success btn-sm" type="button">
+							<a href="<?= route_to('admin.user.create') ?>" class="btn btn-falcon-success btn-sm"
+							   type="button">
 								<i class="fas fa-plus"></i><span class="ms-1">New</span>
 							</a>
 						</div>
@@ -66,31 +69,34 @@
 							</thead>
 							<tbody id="bulk-select-body">
 
-							<?php foreach($users as $user): ?>
-							<tr>
-								<td class="align-middle white-space-nowrap">
-									<div class="form-check mb-0">
-										<input class="form-check-input" type="checkbox" id="checkbox-<?= $user->id ?>" aria-label data-bulk-select-row="data-bulk-select-row">
-									</div>
-								</td>
-								<th class="align-middle"><?= $user->id ?></th>
-								<td class="align-middle"><?= $user->full_name ?></td>
-								<td class="align-middle"><?= $user->email ?></td>
-								<td class="align-middle"><?= $user->gender ?></td>
-								<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
-								<td class="align-middle actions">
-									<div class="d-flex justify-content-evenly align-items-center">
-										<a href="#" class="btn btn-sm btn-primary rounded-circle shadow">
-											<i class="fas fa-pen"></i></a>
-										<a href="javascript:void(0);" data-id="<?= $user->id ?>"
-										   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
-										   data-model="user" data-bs-toggle="tooltip" data-bs-placement="right"
-										   title="Delete User"><i class="fas fa-trash text-danger"></i>
-										</a>
-									</div>
-								</td>
-							</tr>
-							<?php endforeach; ?>
+                            <?php foreach($users as $user): ?>
+								<tr>
+									<td class="align-middle white-space-nowrap">
+										<div class="form-check mb-0">
+											<input class="form-check-input" type="checkbox"
+											       id="checkbox-<?= $user->id ?>" aria-label
+											       data-bulk-select-row="data-bulk-select-row">
+										</div>
+									</td>
+									<th class="align-middle"><?= $user->id ?></th>
+									<td class="align-middle"><?= $user->full_name ?></td>
+									<td class="align-middle"><?= $user->email ?></td>
+									<td class="align-middle"><?= $user->gender ?></td>
+									<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
+									<td class="align-middle actions">
+										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="<?= route_to('admin.user.edit', $user->id) ?>"
+											   class="btn btn-sm btn-primary rounded-circle shadow">
+												<i class="fas fa-pen"></i></a>
+											<a href="javascript:void(0);" data-id="<?= $user->id ?>"
+											   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
+											   data-model="user" data-bs-toggle="tooltip" data-bs-placement="right"
+											   title="Delete User"><i class="fas fa-trash text-danger"></i>
+											</a>
+										</div>
+									</td>
+								</tr>
+                            <?php endforeach; ?>
 
 							</tbody>
 						</table>

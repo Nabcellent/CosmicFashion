@@ -46,6 +46,10 @@ class CategoryController extends BaseController
     }
 
     public function update($id): RedirectResponse {
+        if(!$this->validate(['name' => 'required',])) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
         try {
             $category = Category::findOrFail($id);
 

@@ -10,6 +10,17 @@ use Exception;
 
 class ProductController extends BaseController
 {
+    private array $upsertRules = [
+        'name'            => 'required',
+        'price'           => 'required',
+        'sub_category_id' => 'required'
+    ];
+    private array $upsertMessages = [
+        'sub_category_id' => [
+            'required' => 'Category is required.'
+        ]
+    ];
+
     public function index(): string {
         $data['products'] = Product::with([
             'user'        => function($query) {
@@ -24,26 +35,17 @@ class ProductController extends BaseController
     }
 
     public function create(): string {
-        $data['categories'] = Category::with(['subCategories' => function($query) {
-            $query->select(['id', 'category_id', 'name']);
-        }])->get();
-        
+        $data['categories'] = Category::with([
+            'subCategories' => function($query) {
+                $query->select(['id', 'category_id', 'name']);
+            }
+        ])->get();
+
         return view('Admin/pages/products/upsert', $data);
     }
 
     public function store(): RedirectResponse {
-        $rules = [
-            'name' => 'required',
-            'price' => 'required',
-            'sub_category_id' => 'required'
-        ];
-        $messages = [
-            'sub_category_id' => [
-                'required' => 'Category is required.'
-            ]
-        ];
-
-        if(!$this->validate($rules, $messages)) {
+        if(!$this->validate($this->upsertRules, $this->upsertMessages)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
@@ -51,7 +53,7 @@ class ProductController extends BaseController
         $file = $this->request->getFile('image');
 
         if(!$file->isValid()) {
-            return createFail('Please upload a valid file.');
+            return createFail('Please upload a valid image.');
         }
 
         $data['image'] = "pic_" . time() . ".{$file->getClientExtension()}";
@@ -62,9 +64,58 @@ class ProductController extends BaseController
             Product::create($data);
 
             return createOk('Product created successful! ✔', 'admin.product.index');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Error creating product! ❌', 'admin.product.create');
+        }
+    }
+
+    public function edit($id): string | RedirectResponse {
+        try {
+            $data = [
+                'product'    => Product::findOrFail($id),
+                'categories' => Category::with([
+                    'subCategories' => function($query) {
+                        $query->select(['id', 'category_id', 'name']);
+                    }
+                ])->get(),
+            ];
+
+            return view('Admin/pages/products/upsert', $data);
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Unable to find product for editing!', 'admin.product.index');
+        }
+    }
+
+    public function update($id): RedirectResponse {
+        if(!$this->validate($this->upsertRules, $this->upsertMessages)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = $this->request->getVar();
+        $file = $this->request->getFile('image');
+
+        $product = Product::findOrFail($id);
+
+        if($file->isValid()) {
+            $data['image'] = "pic_" . time() . ".{$file->getClientExtension()}";
+            $data['user_id'] = user()->id;
+            $file->move(PUBLICPATH . "/images/products/", $data['image']);
+
+//            dd(file_exists("images/products/{$product->image}"), $product);
+
+            if(file_exists("images/products/{$product->image}"))
+                unlink("images/products/{$product->image}");
+        }
+
+        try {
+            $product->update($data);
+
+            return updateOk('Product updated successful! ✔', 'admin.product.index');
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return updateFail('Unable to update product!');
         }
     }
 }

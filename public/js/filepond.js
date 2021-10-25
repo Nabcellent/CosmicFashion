@@ -1,3 +1,4 @@
+let pond;
 let filepondInit = function wizardInit() {
     FilePond.registerPlugin(
         FilePondPluginImagePreview,
@@ -7,7 +8,7 @@ let filepondInit = function wizardInit() {
     );
 
     const inputElement = document.getElementById('image');
-    const pond = FilePond.create(inputElement, {
+    pond = FilePond.create(inputElement, {
         labelIdle: `Drag & Drop or <span class="filepond--label-action"> Browse </span> your product image`,
         acceptedFileTypes: ['image/jpg', 'image/png', 'image/jpeg'],
         dropOnPage: true,

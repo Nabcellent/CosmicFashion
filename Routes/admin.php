@@ -30,6 +30,8 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('/', 'ProductController', ['as' => 'admin.product.index']);
         $routes->get('create', 'ProductController::create', ['as' => 'admin.product.create']);
         $routes->post('store', 'ProductController::store', ['as' => 'admin.product.store']);
+        $routes->get('edit/(:num)', 'ProductController::edit/$1', ['as' => 'admin.product.edit']);
+        $routes->put('update/(:num)', 'ProductController::update/$1', ['as' => 'admin.product.update']);
     });
 
     //  USER ROUTES
@@ -37,6 +39,8 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('/', 'UserController', ['as' => 'admin.user.index']);
         $routes->get('create', 'UserController::create', ['as' => 'admin.user.create']);
         $routes->post('store', 'UserController::store', ['as' => 'admin.user.store']);
+        $routes->get('edit/(:num)', 'UserController::edit/$1', ['as' => 'admin.user.edit']);
+        $routes->put('update/(:num)', 'UserController::update/$1', ['as' => 'admin.user.update']);
     });
 });
 
