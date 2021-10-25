@@ -26,6 +26,12 @@ if(!function_exists('differenceForHumans')) {
     }
 }
 
+if(!function_exists('form_method')) {
+    function form_method($method = 'POST'): string {
+        return '<input type="hidden" name="_method" value="' . $method . '" />';
+    }
+}
+
 if(!function_exists('getModel')) {
     function getModel($model): string {
         $table = Str::snake(Str::plural($model));
