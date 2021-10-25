@@ -1,21 +1,6 @@
 <?= $this->extend('Admin/layouts/master') ?>
 <?= $this->section('content') ?>
 
-	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card" style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
-		<div class="card-body position-relative">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3>Bulk Select</h3>
-					<p class="mb-0">
-						Bulk select allows users to check multiple checkboxes at once and toggles a UI for bulk actions to be performed
-						for the selected items.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="card">
 		<div class="card-header">
 			<div class="row flex-between-end">
@@ -57,8 +42,9 @@
 								<th class="align-middle">Id</th>
 								<th class="align-middle">Name</th>
 								<th class="align-middle">Category</th>
-								<th class="align-middle">No products</th>
+								<th class="align-middle">No. of products</th>
 								<th class="align-middle">Best Selling</th>
+								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
 							<tbody id="bulk-select-body">
@@ -76,6 +62,17 @@
 									<td class="align-middle"><?= $subCategory->category->name ?></td>
 									<td class="align-middle"><?= $subCategory->products_count ?></td>
 									<td class="align-middle">Sweat pants</td>
+									<td class="align-middle actions">
+										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="#" class="btn btn-sm btn-primary rounded-circle shadow">
+												<i class="fas fa-pen"></i></a>
+											<a href="javascript:void(0);" data-id="<?= $subCategory->id ?>"
+											   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
+											   data-model="sub_category" data-bs-toggle="tooltip" data-bs-placement="right"
+											   title="Delete Sub Category"><i class="fas fa-trash text-danger"></i>
+											</a>
+										</div>
+									</td>
 								</tr>
                             <?php endforeach; ?>
 
@@ -87,10 +84,12 @@
 		</div>
 	</div>
 
+<?= $this->section('scripts') ?>
+	<script src="/js/admin/dynamic.js"></script>
 	<script>
         $(() => {
             $('#table_id').DataTable({});
         })
 	</script>
-
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

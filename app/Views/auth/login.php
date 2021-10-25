@@ -36,7 +36,9 @@
 						</div>
 						<div class="d-flex justify-content-between align-items-center mt-5">
 							<a href="<?= route_to('register') ?>">Create an account</a>
-							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary">Login</button>
+							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary">
+								Sign In <i class="fas fa-key"></i>
+							</button>
 						</div>
 					</form>
 					<footer class="d-flex justify-content-between Login_footer__3RA6w">

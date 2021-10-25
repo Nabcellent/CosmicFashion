@@ -43,7 +43,20 @@ class Filters extends BaseConfig
         'before' => [
             // 'honeypot',
             'csrf'  => ['except' => 'api/'],
-            'login' => ['except' => ['', 'home*', 'test', 'login*', 'register*', 'sign-in*', 'sign-up*', 'shop*', 'check-email']],
+            'login' => [
+                'except' => [
+                    '',
+                    'home*',
+                    'test',
+                    'login*',
+                    'register*',
+                    'sign-in*',
+                    'sign-up*',
+                    'shop*',
+                    'check-email',
+                    'delete-resource',
+                ]
+            ],
         ],
         'after'  => [
             'toolbar',

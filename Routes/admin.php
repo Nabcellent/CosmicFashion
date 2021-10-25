@@ -37,3 +37,4 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
 });
 
 $routes->get('/check-email', 'UserController::checkEmailExists');
+$routes->delete('/delete-resource', 'AjaxController::destroy');

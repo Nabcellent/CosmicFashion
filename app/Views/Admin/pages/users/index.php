@@ -23,7 +23,7 @@
 		<div class="card-header">
 			<div class="row flex-between-end">
 				<div class="col-auto align-self-center">
-					<h5 class="mb-0">Customers</h5>
+					<h5 class="mb-0"><i class="fas fa-users"></i> Users</h5>
 				</div>
 			</div>
 		</div>
@@ -61,6 +61,7 @@
 								<th class="align-middle">Email</th>
 								<th class="align-middle">Gender</th>
 								<th class="align-middle">Date created</th>
+								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
 							<tbody id="bulk-select-body">
@@ -77,6 +78,17 @@
 								<td class="align-middle"><?= $user->email ?></td>
 								<td class="align-middle"><?= $user->gender ?></td>
 								<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
+								<td class="align-middle actions">
+									<div class="d-flex justify-content-evenly align-items-center">
+										<a href="#" class="btn btn-sm btn-primary rounded-circle shadow">
+											<i class="fas fa-pen"></i></a>
+										<a href="javascript:void(0);" data-id="<?= $user->id ?>"
+										   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
+										   data-model="user" data-bs-toggle="tooltip" data-bs-placement="right"
+										   title="Delete User"><i class="fas fa-trash text-danger"></i>
+										</a>
+									</div>
+								</td>
 							</tr>
 							<?php endforeach; ?>
 
@@ -88,10 +100,12 @@
 		</div>
 	</div>
 
+<?= $this->section('scripts') ?>
+	<script src="/js/admin/dynamic.js"></script>
 	<script>
         $(() => {
             $('#table_id').DataTable({});
         })
 	</script>
-
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

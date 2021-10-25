@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 
 class UserController extends BaseController {
-    public function index() {
+    public function index(): string {
         $data = [
             'title' => "My Profile",
         ];

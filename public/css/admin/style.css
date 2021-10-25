@@ -9,6 +9,26 @@
 
 /** ____________________________________________________________________    DATATABLES **/
 
+.table > :not(caption) > * > * {
+	padding: .4rem .5rem;
+	font-size: 10pt;
+}
+
+#table_id_filter input[type="search"] {
+	min-height: calc(1.5em + (0.5rem + 2px));
+	padding: 0.25rem 0.5rem;
+	font-size: 0.875rem;
+	border-radius: 0.2rem;
+}
+table td.actions .btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 9pt;
+	width: 1.7rem;
+	height: 1.7rem;
+	padding: 4px;
+}
 .paginate_button a {
 	padding: .1875rem .75rem;
 	font-size: 0.875rem;
@@ -32,8 +52,4 @@
 
 .dataTables_info {
 	font-size: .8333333333rem !important;
-}
-
-.table > :not(caption) > * > * {
-	padding: .55rem .55rem;
 }

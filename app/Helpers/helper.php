@@ -1,7 +1,11 @@
 <?php
 
-use CodeIgniter\HTTP\RedirectResponse;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\SubCategory;
+use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 if(!function_exists('isRed')) {
     function isRed(): bool {
@@ -19,5 +23,18 @@ if(!function_exists('isAdmin')) {
 if(!function_exists('differenceForHumans')) {
     function differenceForHumans($date): string {
         return Carbon::parse($date)->diffForHumans();
+    }
+}
+
+if(!function_exists('getModel')) {
+    function getModel($model): string {
+        $table = Str::snake(Str::plural($model));
+
+        return match ($table) {
+            'users' => User::class,
+            'categories' => Category::class,
+            'sub_categories' => SubCategory::class,
+            'products' => Product::class,
+        };
     }
 }
