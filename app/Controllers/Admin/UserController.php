@@ -17,6 +17,17 @@ class UserController extends BaseController
         return view('Admin/pages/users/index', $data);
     }
 
+    public function show($id): string|RedirectResponse {
+        try {
+            $data['user'] = User::with('role')->findOrFail($id);
+
+            return view('Admin/pages/users/profile', $data);
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Unable to find user!', 'admin.user.index');
+        }
+    }
+
     public function showCustomers(): string {
         $data['users'] = User::whereHas('role', function($query) {
             $query->where('name', 'Customer');
@@ -75,7 +86,7 @@ class UserController extends BaseController
         }
     }
 
-    public function edit($id): string | RedirectResponse {
+    public function edit($id): string|RedirectResponse {
         try {
             $data = [
                 'user'  => User::findOrFail($id),
@@ -113,8 +124,7 @@ class UserController extends BaseController
             $data['image'] = "usr_" . time() . ".{$file->getClientExtension()}";
             $file->move(PUBLICPATH . "/images/users/", $data['image']);
 
-            if(isset($user->image) && file_exists("images/users/{$user->image}"))
-                unlink("images/users/{$user->image}");
+            if(isset($user->image) && file_exists("images/users/{$user->image}")) unlink("images/users/{$user->image}");
         }
 
         try {

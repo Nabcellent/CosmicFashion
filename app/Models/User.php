@@ -36,7 +36,7 @@ class User extends Model {
      * @return string
      */
     public function getFullNameAttribute(): string {
-        return "{$this->first_name} {$this->last_name}";
+        return ucwords("{$this->first_name} {$this->last_name}");
     }
     /**
      * Get the user's gender in CAPS.

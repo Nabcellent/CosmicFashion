@@ -85,9 +85,14 @@
 									<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="<?= route_to('admin.user.profile', $user->id) ?>"
+											   class="btn btn-sm btn-secondary rounded-circle shadow">
+												<i class="bi bi-eye-fill"></i>
+											</a>
 											<a href="<?= route_to('admin.user.edit', $user->id) ?>"
 											   class="btn btn-sm btn-primary rounded-circle shadow">
-												<i class="fas fa-pen"></i></a>
+												<i class="fas fa-pen"></i>
+											</a>
 											<a href="javascript:void(0);" data-id="<?= $user->id ?>"
 											   class="delete-resource btn btn-sm btn-danger rounded-circle shadow"
 											   data-model="user" data-bs-toggle="tooltip" data-bs-placement="right"

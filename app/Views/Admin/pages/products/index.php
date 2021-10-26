@@ -84,6 +84,10 @@
 									<td class="align-middle text-warning"><?= $product->stock ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="<?= route_to('admin.product.show', $product->id) ?>"
+											   class="btn btn-sm btn-secondary rounded-circle shadow">
+												<i class="bi bi-eye-fill"></i>
+											</a>
 											<a href="<?= route_to('admin.product.edit', $product->id) ?>"
 											   class="btn btn-sm btn-primary rounded-circle shadow">
 												<i class="fas fa-pen"></i></a>

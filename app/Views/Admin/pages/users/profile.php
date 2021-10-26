@@ -1,0 +1,219 @@
+<?= $this->extend('Admin/layouts/master') ?>
+<?= $this->section('title') ?>
+	Profile
+<?= $this->endSection() ?>
+<?= $this->section('links') ?>
+	<link href="/vendor/admin/glightbox/glightbox.min.css" rel="stylesheet">
+<?= $this->endSection() ?>
+<?= $this->section('content') ?>
+
+	<div class="card mb-3">
+		<div class="card-header position-relative min-vh-25 mb-7">
+			<div class="bg-holder rounded-3 rounded-bottom-0" style="background-image:url(/images/dash/generic/4.jpg);"></div>
+			<div class="avatar avatar-5xl avatar-profile">
+				<img class="rounded-circle img-thumbnail shadow-sm" src="/images/dash/team/2.jpg" width="200" alt="" />
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-lg-8">
+					<h4 class="mb-1">
+						<?= $user->full_name ?>
+						<span data-bs-toggle="tooltip" data-bs-placement="right" title="Verified">
+							<small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small>
+						</span>
+					</h4>
+					<h5 class="fs-0 fw-normal"><?= $user->email ?></h5>
+					<p class="text-500"><?= $user->role->name ?></p>
+					<button class="btn btn-falcon-primary btn-sm px-3" type="button">Email</button>
+					<button class="btn btn-falcon-default btn-sm px-3 ms-2" type="button">Message</button>
+					<div class="border-dashed-bottom my-4 d-lg-none"></div>
+				</div>
+				<div class="col ps-2 ps-lg-3">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item d-flex align-items-center">
+							<i class="bi bi-gender-<?= strtolower($user->gender) ?> me-2 text-700"></i>
+							<div class="flex-1"><h6 class="mb-0"><?= $user->gender ?></h6></div>
+						</li>
+						<li class="list-group-item">
+							<a class="d-flex align-items-center" href="javascript:void(0)">
+								<i class="bi bi-bag-check me-2 text-700"></i>
+								<div class="flex-1"><h6 class="mb-0">See products (330)</h6></div>
+							</a>
+						</li>
+						<li class="list-group-item">
+							<a class="d-flex align-items-center" href="javascript:void(0)">
+								<i class="bi bi-shield-lock me-2 text-700"></i>
+								<div class="flex-1"><h6 class="mb-0">Register as API user</h6></div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row g-0">
+		<div class="col-lg-8 pe-lg-2">
+			<div class="card mb-3">
+				<div class="card-header bg-light d-flex justify-content-between">
+					<h5 class="mb-0">Orders</h5><a class="font-sans-serif" href="../../app/social/activity-log.html">All orders</a>
+				</div>
+				<div class="card-body fs--1 p-0">
+					<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+						<div class="notification-avatar">
+							<div class="avatar avatar-xl me-3">
+								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🏷️</span></div>
+							</div>
+						</div>
+						<div class="notification-body">
+							<p class="mb-1"><strong>California Institute of Technology</strong> tagged <strong>Anthony Hopkins</strong> in a post.</p>
+							<span class="notification-time">November 8, 5:00 PM</span>
+						</div>
+					</a>
+
+					<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+						<div class="notification-avatar">
+							<div class="avatar avatar-xl me-3">
+								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📋️</span></div>
+							</div>
+						</div>
+						<div class="notification-body">
+							<p class="mb-1"><strong>Anthony Hopkins</strong> joined <strong>Victory day cultural Program</strong> with <strong>Tony Stark</strong></p>
+							<span class="notification-time">November 01, 11:30 AM</span>
+						</div>
+					</a>
+
+					<a class="notification border-x-0 border-bottom-0 border-300 rounded-top-0" href="#!">
+						<div class="notification-avatar">
+							<div class="avatar avatar-xl me-3">
+								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📅️</span></div>
+							</div>
+						</div>
+						<div class="notification-body">
+							<p class="mb-1"><strong>Massachusetts Institute of Technology</strong> invited <strong>Anthony Hopkin</strong> to an event</p>
+							<span class="notification-time">October 28, 12:00 PM</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="card mb-3">
+				<div class="card-header bg-light d-flex justify-content-between">
+					<h5 class="mb-0">Activity log</h5><a class="font-sans-serif" href="../../app/social/activity-log.html">All logs</a>
+				</div>
+				<div class="card-body fs--1 p-0">
+					<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
+						<div class="notification-avatar">
+							<div class="avatar avatar-xl me-3">
+								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🎁</span></div>
+							</div>
+						</div>
+						<div class="notification-body">
+							<p class="mb-1"><strong>Jennifer Kent</strong> Congratulated <strong>Anthony Hopkins</strong></p>
+							<span class="notification-time">November 13, 5:00 Am</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="card mb-3 mb-lg-0">
+				<div class="card-header bg-light">
+					<h5 class="mb-0">Photos</h5>
+				</div>
+				<div class="card-body overflow-hidden">
+					<div class="row g-0">
+						<div class="col-6 p-1"><a class="glightbox" href="/images/dash/generic/4.jpg" data-gallery="gallery1" data-glightbox="data-glightbox"><img class="img-fluid rounded" src="/images/dash/generic/4.jpg" alt="..." /></a></div>
+						<div class="col-6 p-1"><a class="glightbox" href="/images/dash/generic/5.jpg" data-gallery="gallery1" data-glightbox="data-glightbox"><img class="img-fluid rounded" src="/images/dash/generic/5.jpg" alt="..." /></a></div>
+						<div class="col-4 p-1"><a class="glightbox" href="/images/dash/gallery/4.jpg" data-gallery="gallery1" data-glightbox="data-glightbox"><img class="img-fluid rounded" src="/images/dash/gallery/4.jpg" alt="..." /></a></div>
+						<div class="col-4 p-1"><a class="glightbox" href="/images/dash/gallery/5.jpg" data-gallery="gallery1" data-glightbox="data-glightbox"><img class="img-fluid rounded" src="/images/dash/gallery/5.jpg" alt="..." /></a></div>
+						<div class="col-4 p-1"><a class="glightbox" href="/images/dash/gallery/3.jpg" data-gallery="gallery1" data-glightbox="data-glightbox"><img class="img-fluid rounded" src="/images/dash/gallery/3.jpg" alt="..." /></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 ps-lg-2">
+			<div class="sticky-sidebar">
+				<div class="card mb-3">
+					<div class="card-header bg-light">
+						<h5 class="mb-0">Products</h5>
+					</div>
+					<div class="card-body fs--1">
+						<div class="d-flex"><a href="#!">
+								<div class="avatar avatar-3xl">
+									<div class="avatar-name rounded-circle"><span>SU</span></div>
+								</div>
+							</a>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"> <a href="#!">Stanford University<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></a></h6>
+								<p class="mb-1">Computer Science and Engineering</p>
+								<p class="text-1000 mb-0">2010 - 2014 • 4 yrs</p>
+								<p class="text-1000 mb-0">California, USA</p>
+								<div class="border-dashed-bottom my-3"></div>
+							</div>
+						</div>
+						<div class="d-flex"><a href="#!"> <img class="img-fluid" src="/images/dash/logos/staten.png" alt="" width="56" /></a>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"> <a href="#!">Staten Island Technical High School<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></a></h6>
+								<p class="mb-1">Higher Secondary School Certificate, Science</p>
+								<p class="text-1000 mb-0">2008 - 2010 &bull; 2 yrs</p>
+								<p class="text-1000 mb-0">New York, USA</p>
+								<div class="border-dashed-bottom my-3"></div>
+							</div>
+						</div>
+						<div class="d-flex"><a href="#!"> <img class="img-fluid" src="/images/dash/logos/tj-heigh-school.png" alt="" width="56" /></a>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"> <a href="#!">Thomas Jefferson High School for Science and Technology<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified"><small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small></span></a></h6>
+								<p class="mb-1">Secondary School Certificate, Science</p>
+								<p class="text-1000 mb-0">2003 - 2008 &bull; 5 yrs</p>
+								<p class="text-1000 mb-0">Alexandria, USA</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-3 mb-lg-0">
+					<div class="card-header bg-light">
+						<h5 class="mb-0">Events</h5>
+					</div>
+					<div class="card-body fs--1">
+						<div class="d-flex btn-reveal-trigger">
+							<div class="calendar"><span class="calendar-month">Feb</span><span class="calendar-day">21</span></div>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">Newmarket Nights</a></h6>
+								<p class="mb-1">Organized by <a href="#!" class="text-700">University of Oxford</a></p>
+								<p class="text-1000 mb-0">Time: 6:00AM</p>
+								<p class="text-1000 mb-0">Duration: 6:00AM - 5:00PM</p>Place: Cambridge Boat Club, Cambridge<div class="border-dashed-bottom my-3"></div>
+							</div>
+						</div>
+						<div class="d-flex btn-reveal-trigger">
+							<div class="calendar"><span class="calendar-month">Dec</span><span class="calendar-day">31</span></div>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">31st Night Celebration</a></h6>
+								<p class="mb-1">Organized by <a href="#!" class="text-700">Chamber Music Society</a></p>
+								<p class="text-1000 mb-0">Time: 11:00PM</p>
+								<p class="text-1000 mb-0">280 people interested</p>Place: Tavern on the Greend, New York<div class="border-dashed-bottom my-3"></div>
+							</div>
+						</div>
+						<div class="d-flex btn-reveal-trigger">
+							<div class="calendar"><span class="calendar-month">Dec</span><span class="calendar-day">16</span></div>
+							<div class="flex-1 position-relative ps-3">
+								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">Folk Festival</a></h6>
+								<p class="mb-1">Organized by <a href="#!" class="text-700">Harvard University</a></p>
+								<p class="text-1000 mb-0">Time: 9:00AM</p>
+								<p class="text-1000 mb-0">Location: Cambridge Masonic Hall Association</p>Place: Porter Square, North Cambridge
+							</div>
+						</div>
+					</div>
+					<div class="card-footer bg-light p-0 border-top"><a class="btn btn-link d-block w-100" href="../../app/events/event-list.html">All Events<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<?= $this->section('scripts') ?>
+	<script src="/vendor/admin/glightbox/glightbox.min.js"></script>
+	<script src="/js/admin/dynamic.js"></script>
+	<script>
+        $(() => {
+            $('#table_id').DataTable({});
+        })
+	</script>
+<?= $this->endSection() ?>
+<?= $this->endSection() ?>

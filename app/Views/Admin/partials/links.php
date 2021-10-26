@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="/vendor/toastify/toastify.min.css">
 
 <link rel="stylesheet" href="/vendor/bootstrap5/bootstrap.min.css">
+<link rel="stylesheet" href="/vendor/bootstrap5/bootstrap-icons.css">
 <link rel="stylesheet" href="/vendor/datatables/datatables.min.css">
 
 <link href="/vendor/admin/prism/prism-okaidia.css" rel="stylesheet">
