@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\ApiUser;
 use App\Models\Role;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -12,14 +13,18 @@ use Myth\Auth\Password;
 class UserController extends BaseController
 {
     public function index(): string {
-        $data['users'] = User::with('role')->get();
+        $data['users'] = User::whereHas('role', function($query) {
+            $query->where('name', '<>', 'red');
+        })->with('role')->get();
 
         return view('Admin/pages/users/index', $data);
     }
 
     public function show($id): string|RedirectResponse {
         try {
-            $data['user'] = User::with('role')->findOrFail($id);
+            $data['user'] = User::with(['role', 'logins' => function($query) {
+                $query->take(3);
+            }, 'apiUser'])->findOrFail($id);
 
             return view('Admin/pages/users/profile', $data);
         } catch (Exception $e) {

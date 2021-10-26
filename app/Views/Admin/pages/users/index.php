@@ -63,7 +63,7 @@
 								<th class="align-middle">Name</th>
 								<th class="align-middle">Email</th>
 								<th class="align-middle">Gender</th>
-								<th class="align-middle">Date created</th>
+								<th class="align-middle">Role</th>
 								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
@@ -82,7 +82,7 @@
 									<td class="align-middle"><?= $user->full_name ?></td>
 									<td class="align-middle"><?= $user->email ?></td>
 									<td class="align-middle"><?= $user->gender ?></td>
-									<td class="align-middle"><?= differenceForHumans($user->created_at) ?></td>
+									<td class="align-middle"><?= $user->role->name ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
 											<a href="<?= route_to('admin.user.profile', $user->id) ?>"

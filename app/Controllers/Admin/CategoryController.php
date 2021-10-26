@@ -27,7 +27,7 @@ class CategoryController extends BaseController
         try {
             Category::create($this->request->getVar());
 
-            return createOk('Category created successful! ✔', 'admin.category.index');
+            return createOk('Category creation successful! ✔', 'admin.category.index');
         } catch(Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Error creating category! ❌', 'admin.category.create');
@@ -55,7 +55,7 @@ class CategoryController extends BaseController
 
             $category->update($this->request->getVar());
 
-            return updateOk('Category updated successful! ✔', 'admin.category.index');
+            return updateOk('Category updated successfully! ✔', 'admin.category.index');
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return updateFail('Unable to update category!');

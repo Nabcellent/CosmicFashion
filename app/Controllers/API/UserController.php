@@ -2,17 +2,18 @@
 
 namespace App\Controllers\API;
 
-use CodeIgniter\RESTful\ResourceController;
+use App\Controllers\BaseController;
+use App\Models\ApiUser;
+use Exception;
 
-class UserController extends ResourceController
+class UserController extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format
      *
      * @return mixed
      */
-    public function index()
-    {
+    public function index() {
         dd('wassuuuup');
     }
 
@@ -21,8 +22,7 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function show($id = null)
-    {
+    public function show($id = null) {
         //
     }
 
@@ -31,9 +31,29 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function new()
-    {
-        //
+    public function store() {
+        $rules = ['user_id' => 'required', 'username' => 'required'];
+        $messages = [
+            'user_id' => [
+                'required' => "Can't find existing user for creation."
+            ]
+        ];
+
+        if(!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = $this->request->getVar();
+        $data['key'] = empty($data['key']) ? null : $data['key'];
+
+        try {
+            ApiUser::updateOrcreate(['user_id' => $data['user_id']], $data);
+
+            return createOk('Registration successful! ✔');
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Error creating api user! ❌');
+        }
     }
 
     /**
@@ -41,8 +61,7 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -51,8 +70,7 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         //
     }
 
@@ -61,8 +79,7 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function update($id = null)
-    {
+    public function update($id = null) {
         //
     }
 
@@ -71,8 +88,7 @@ class UserController extends ResourceController
      *
      * @return mixed
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         //
     }
 }

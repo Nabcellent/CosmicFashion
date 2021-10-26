@@ -19,9 +19,9 @@
 				<div class="bg-white dark__bg-1000 rounded-3 py-2">
 					<a class="dropdown-item link-600 fw-medium" href="index-2.html">Default</a>
 					<a class="dropdown-item link-600 fw-medium" href="dashboard/analytics.html">Analytics</a>
-					<a class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">CRM</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">API</a>
 					<a class="dropdown-item link-600 fw-medium" href="dashboard/e-commerce.html">E commerce</a>
-					<a class="dropdown-item link-600 fw-medium" href="dashboard/project-management.html">Management</a>
 				</div>
 			</div>
 		</li>
@@ -64,26 +64,27 @@
         ========================================================================================    TOP PAGES
         -->
 
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-		                                 aria-expanded="false" id="pagess">Pages</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+			   aria-expanded="false" id="pagess">Pages</a>
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
 				<div class="card navbar-card-pages shadow-none dark__bg-1000">
-					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-					                                                     src="/images/dash/icons/spot-illustrations/authentication-corner.png"
-					                                                     width="130" alt=""/>
+					<div class="card-body scrollbar max-h-dropdown">
+						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png"
+						     width="130" alt=""/>
 						<div class="row">
 							<div class="col-6 col-xxl-3">
 								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">User</p><a class="nav-link py-1 link-600 fw-medium"
-									                                                     href="pages/user/profile.html">Profile</a><a
-											class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
+									<p class="nav-link text-700 mb-0 fw-bold">User</p>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/profile.html">Profile</a>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
 								</div>
 							</div>
 							<div class="col-6 col-xxl-3">
 								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p><a class="nav-link py-1 link-600 fw-medium"
-									                                                        href="pages/pricing/pricing-default.html">Pricing
-										default</a><a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
+									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-default.html">Pricing default</a>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
 								</div>
 							</div>
 						</div>
@@ -96,13 +97,14 @@
         ========================================================================================    TOP API
         -->
 
-		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-		                                 aria-expanded="false" id="apps">Api</a>
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+			   aria-expanded="false" id="apps">Api</a>
 			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="apps">
 				<div class="card navbar-card-app shadow-none dark__bg-1000">
-					<div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-					                                                     src="/images/dash/icons/spot-illustrations/authentication-corner.png"
-					                                                     width="130" alt=""/>
+					<div class="card-body scrollbar max-h-dropdown">
+						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png"
+						     width="130" alt=""/>
 						<div class="row">
 							<div class="col-6 col-md-5">
 								<div class="nav flex-column">

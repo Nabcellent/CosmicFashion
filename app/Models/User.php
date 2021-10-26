@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model {
@@ -53,5 +54,15 @@ class User extends Model {
      */
     public function role(): BelongsTo {
         return $this->belongsTo(Role::class);
+    }
+
+    public function logins(): HasMany {
+        return $this->hasMany(Login::class);
+    }
+
+
+
+    public function apiUser(): HasOne {
+        return $this->hasOne(ApiUser::class);
     }
 }

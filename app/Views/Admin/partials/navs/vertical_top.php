@@ -8,8 +8,8 @@
 	<div class="d-flex align-items-center">
 		<div class="toggle-icon-wrapper">
 			<button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip"
-			        data-bs-placement="left"
-			        title="Toggle Navigation"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
+			        data-bs-placement="left" title="Toggle Navigation">
+				<span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
 			</button>
 		</div>
 		<a class="navbar-brand" href="<?= route_to('dashboard') ?>">
@@ -45,23 +45,24 @@
 							</a><!-- more inner pages-->
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="dashboard/analytics.html">
-								<div class="d-flex align-items-center">
-									<span class="nav-link-text ps-1">Analytics</span>
-								</div>
-							</a><!-- more inner pages-->
-						</li>
-						<li class="nav-item">
 							<a class="nav-link" href="dashboard/e-commerce.html">
 								<div class="d-flex align-items-center">
-									<span class="nav-link-text ps-1">E commerce</span>
+									<span class="nav-link-text ps-1">E-commerce</span>
 								</div>
 							</a><!-- more inner pages-->
 						</li>
+						<li class="dropdown-divider"></li>
 						<li class="nav-item">
 							<a class="nav-link" href="dashboard/project-management.html">
 								<div class="d-flex align-items-center">
-									<span class="nav-link-text ps-1">Management</span>
+									<span class="nav-link-text ps-1">API</span>
+								</div>
+							</a><!-- more inner pages-->
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="dashboard/analytics.html">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-text ps-1">Analytics</span>
 								</div>
 							</a><!-- more inner pages-->
 						</li>
@@ -145,21 +146,24 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item"><a class="nav-link dropdown-indicator" href="#orders"
-						                        data-bs-toggle="collapse"
-						                        aria-controls="e-commerce">
+						<li class="nav-item">
+							<a class="nav-link dropdown-indicator" href="#orders" data-bs-toggle="collapse"
+							   aria-controls="e-commerce">
 								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Orders</span>
 								</div>
 							</a><!-- more inner pages-->
 							<ul class="nav collapse false" id="orders">
-								<li class="nav-item"><a class="nav-link" href="app/e-commerce/orders/order-list.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Order list</span>
+								<li class="nav-item">
+									<a class="nav-link" href="app/e-commerce/orders/order-list.html">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-text ps-1">Order list</span>
 										</div>
 									</a><!-- more inner pages-->
 								</li>
-								<li class="nav-item"><a class="nav-link"
-								                        href="app/e-commerce/orders/order-details.html">
-										<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Order details</span>
+								<li class="nav-item">
+									<a class="nav-link" href="app/e-commerce/orders/order-details.html">
+										<div class="d-flex align-items-center">
+											<span class="nav-link-text ps-1">Order details</span>
 										</div>
 									</a><!-- more inner pages-->
 								</li>
@@ -213,26 +217,31 @@
 
 					<!-- parent pages-->
 					<a class="nav-link" href="app/calendar.html" role="button">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-										class="fas fa-calendar-alt"></span></span><span
-									class="nav-link-text ps-1">Calendar</span></div>
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fas fa-calendar-alt"></span></span>
+							<span class="nav-link-text ps-1">Calendar</span>
+						</div>
 					</a>
 					<!-- parent pages-->
 					<a class="nav-link" href="app/chat.html" role="button">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-										class="fas fa-comments"></span></span><span
-									class="nav-link-text ps-1">Chat</span></div>
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fas fa-comments"></span></span>
+							<span class="nav-link-text ps-1">Chat</span>
+						</div>
 					</a>
 					<!-- parent pages-->
 					<a class="nav-link dropdown-indicator" href="#email" role="button" data-bs-toggle="collapse"
 					   aria-controls="email">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-										class="fas fa-envelope-open"></span></span><span
-									class="nav-link-text ps-1">Email</span></div>
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fas fa-envelope-open"></span></span>
+							<span class="nav-link-text ps-1">Email</span>
+						</div>
 					</a>
 					<ul class="nav collapse false" id="email">
-						<li class="nav-item"><a class="nav-link" href="app/email/inbox.html">
-								<div class="d-flex align-items-center"><span class="nav-link-text ps-1">Inbox</span>
+						<li class="nav-item">
+							<a class="nav-link" href="app/email/inbox.html">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-text ps-1">Inbox</span>
 								</div>
 							</a><!-- more inner pages-->
 						</li>
@@ -261,6 +270,13 @@
 							<hr class="mb-0 navbar-vertical-divider"/>
 						</div>
 					</div>
+					<!-- parent pages-->
+					<a class="nav-link" href="app/chat.html" role="button">
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon"><span class="fab fa-audible"></span></span>
+							<span class="nav-link-text ps-1">Overview</span>
+						</div>
+					</a>
 					<!-- parent pages-->
 					<a class="nav-link dropdown-indicator" href="#users" role="button" data-bs-toggle="collapse"
 					   aria-controls="users">

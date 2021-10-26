@@ -9,11 +9,11 @@ class ApiUsers extends Migration
     public function up() {
         $this->forge->addField([
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true],
             'username'   => ['type' => 'varchar', 'constraint' => 40, 'unique' => true],
-            'key'        => ['type' => 'varchar', 'constraint' => 60, 'unique' => true],
+            'key'        => ['type' => 'varchar', 'constraint' => 60, 'unique' => true, 'null' => true],
             'created_at timestamp default current_timestamp',
-            'updated_on timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
+            'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
             'is_deleted' => ['type' => 'BOOLEAN', 'default' => false]
         ]);
 
