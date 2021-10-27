@@ -194,7 +194,8 @@
 										alt="close">
 							</button>
 						</div>
-						<div class="d-flex align-items-center my-4"><h6 class="fw-bold mr-4 mb-0">Rate Product</h6>
+						<div class="d-flex align-items-center my-4">
+							<h6 class="fw-bold mr-4 mb-0">Rate Product</h6>
 							<div>
 								<div class="Product_star__uSePA"></div>
 								<div class="Product_star__uSePA"></div>
