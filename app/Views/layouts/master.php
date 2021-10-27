@@ -8,12 +8,13 @@
 
 	<link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 
-	<!-- STYLES -->
-    <?= $this->include('partials/links') ?>
 	<link rel="stylesheet" href="/css/second.css">
 	<link rel="stylesheet" href="/css/shop.css">
 	<link rel="stylesheet" href="/css/app.css">
 	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- STYLES -->
+    <?= $this->include('partials/links') ?>
 
 	<script src="/vendor/jquery/jquery.js"></script>
 	<script src="/vendor/toastify/toastify.min.js"></script>

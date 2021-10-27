@@ -76,7 +76,11 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($route) {
     $route->post('reset-password', 'AuthController::attemptReset');
 });
 
-$routes->get('/shop', 'ProductController::index');
+$routes->group('/shop', function($routes) {
+    $routes->get('/', 'ProductController::index', ['as' => 'shop.index']);
+    $routes->get('(:num)', 'ProductController::show/$1', ['as' => 'shop.show']);
+});
+
 $routes->get('/cart', 'ProductController::cart');
 
 $routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);

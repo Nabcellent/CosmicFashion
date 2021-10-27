@@ -182,7 +182,7 @@
                         <?php foreach($products as $product): ?>
 							<div class="mb-4 Shop_product__1cFbR col-12 col-md-6 col-lg-4">
 								<div class="position-relative">
-									<a href="/products/afaf98d5-4060-4408-967b-c4f4af3d1863">
+									<a href="<?= route_to('shop.show', $product->id) ?>">
 										<div class="Shop_productImage__1ILty"
 										     style="background-image: url(/images/products/<?= $product->image ?>)"></div>
 									</a>
@@ -203,7 +203,7 @@
 									<div>
 										<a class="mt-3 text-muted mb-0 d-inline-block"
 										   href="/category/1fcb7ece-6373-405d-92ef-3f3c4e7dc711">Furniture</a>
-										<a href="/products/afaf98d5-4060-4408-967b-c4f4af3d1863">
+										<a href="<?= route_to('shop.show', $product->id) ?>">
 											<h6 class="fw-bold font-size-base mt-1 fs-16"><?= $product->name ?></h6>
 										</a>
 										<h6 class="fs-16">KSH.<?= $product->price ?></h6>

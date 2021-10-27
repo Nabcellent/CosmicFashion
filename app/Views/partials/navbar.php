@@ -56,7 +56,7 @@
 					<a href="<?= route_to('home') ?>" class="Header_dropdownItem__6boOk">Home</a>
 				</li>
 				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;">
-					<a href="<?= route_to('shop') ?>" class="Header_dropdownItem__6boOk">Shop</a>
+					<a href="<?= route_to('shop.index') ?>" class="Header_dropdownItem__6boOk">Shop</a>
 				</li>
 			</ul>
 		</nav>

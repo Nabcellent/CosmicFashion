@@ -21,6 +21,7 @@ class UserSeeder extends Seeder {
             'gender' => 'male',
             'role_id' => Role::where('name', 'Red')->first()->id,
             'email' => 'nabcellent.dev@gmail.com',
+            'image' => '2.jpg',
             'password' => password_hash('CosmicFashion.', PASSWORD_DEFAULT),
         ]);
 

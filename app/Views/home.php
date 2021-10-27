@@ -85,7 +85,7 @@
                 <?php foreach($newArrivals as $product): ?>
 					<div class="mb-4 index_product__2R5IL col-12 col-sm-6 col-md-3">
 						<div style="position:relative">
-							<a href="products/afaf98d5-4060-4408-967b-c4f4af3d1863.html">
+							<a href="<?= route_to('shop.show', $product->id) ?>">
 								<div style="background:url(/images/products/<?= $product->image ?>) no-repeat center;background-size:contain;transition:all .65s ease"
 								     class="index_productImage__3VSiQ"></div>
 							</a>
