@@ -8,7 +8,7 @@ class PaymentTypes extends Migration {
     public function up() {
         $this->forge->addField([
             'id'          => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'name'        => ['type' => 'VARCHAR', 'constraint' => 15, 'null' => false],
+            'name'        => ['type' => 'VARCHAR', 'constraint' => 15],
             'description' => ['type' => 'VARCHAR', 'constraint' => 40, 'null' => true],
             'is_deleted'  => ['type' => 'BOOLEAN', 'default' => false]
         ]);

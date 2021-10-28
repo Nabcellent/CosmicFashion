@@ -8,9 +8,9 @@ class Products extends Migration {
     public function up() {
         $this->forge->addField([
             'id'              => ['type' => 'INT', 'constraint' => 5, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'sub_category_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'name'            => ['type' => 'VARCHAR', 'constraint' => '25', 'null' => false],
+            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'sub_category_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'name'            => ['type' => 'VARCHAR', 'constraint' => '25'],
             'price'           => ['type' => 'DOUBLE', 'unsigned' => true],
             'stock'           => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'default' => 1],
             'discount'        => ['type' => 'TINYINT', 'default' => 0,],

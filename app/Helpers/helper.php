@@ -5,7 +5,19 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+
+if(!function_exists('cartDetails')) {
+    function cartDetails(string $detail = null) {
+        $cart = [
+            'count' => sizeof(session('cart') ?? []),
+            'total' => collect(session('cart'))->sum('sub_total')
+        ];
+
+        return $detail ? $cart[$detail] : $cart;
+    }
+}
 
 if(!function_exists('isRed')) {
     function isRed(): bool {
@@ -42,5 +54,17 @@ if(!function_exists('getModel')) {
             'sub_categories' => SubCategory::class,
             'products' => Product::class,
         };
+    }
+}
+
+if (! function_exists('collect')) {
+    /**
+     * Create a collection from the given value.
+     *
+     * @param mixed|null $value
+     * @return Collection
+     */
+    function collect(mixed $value = null): Collection {
+        return new Collection($value);
     }
 }

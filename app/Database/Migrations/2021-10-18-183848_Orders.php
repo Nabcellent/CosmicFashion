@@ -8,8 +8,8 @@ class Orders extends Migration {
     public function up() {
         $this->forge->addField([
             'id'              => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'payment_type_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'payment_type_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'amount'          => ['type' => 'DOUBLE', 'unsigned' => true, 'default' => 0],
             'status'          => ['type' => 'ENUM', 'constraint' => ['pending', 'paid', 'pending payment']],    // Bad datatype
             'created_at datetime default current_timestamp',

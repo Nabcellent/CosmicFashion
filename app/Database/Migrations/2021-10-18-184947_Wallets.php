@@ -8,7 +8,7 @@ class Wallets extends Migration {
     public function up() {
         $this->forge->addField([
             'id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'amount'     => ['type' => 'DOUBLE', 'unsigned' => true, 'default' => 0],
             'created_at datetime default current_timestamp',
             'updated_at datetime DEFAULT current_timestamp ON UPDATE current_timestamp',

@@ -8,8 +8,8 @@ class OrderDetails extends Migration {
     public function up() {
         $this->forge->addField([
             'id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'order_id'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'product_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
+            'order_id'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'product_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'price'      => ['type' => 'DOUBLE', 'unsigned' => true],
             'quantity'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'default' => 1],
             'total'      => ['type' => 'DOUBLE', 'unsigned' => true],

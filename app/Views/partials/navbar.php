@@ -1,8 +1,10 @@
 <div class="Sidebar_sidebarClose__3lZVO Sidebar_sidebarWrapper__2MEYt">
 	<nav class="Sidebar_root__3jtoJ">
-		<header class="Sidebar_logo__3dQYJ"><span class="Sidebar_logoStyle__2aDEc mx-1">Flatlogic<i>.</i></span></header>
+		<header class="Sidebar_logo__3dQYJ"><span class="Sidebar_logoStyle__2aDEc mx-1">Flatlogic<i>.</i></span>
+		</header>
 		<ul class="Sidebar_nav__B5P8m">
-			<li class="link-wrapper LinksGroup_headerLink__3Z-8d"><a href="index.html"><span class="LinksGroup_iconWrapper__OROnE"></span>Home
+			<li class="link-wrapper LinksGroup_headerLink__3Z-8d"><a href="index.html"><span
+							class="LinksGroup_iconWrapper__OROnE"></span>Home
 				</a></li>
 			<li class="link-wrapper LinksGroup_headerLink__3Z-8d"><a class="d-flex" style="padding-left:33px"><span
 							class="icon LinksGroup_icon__d1a94"><i class="fi undefined"></i></span>Pages <b
@@ -62,9 +64,15 @@
 		</nav>
 		<ul class="nav">
 			<li class="d-flex align-items-center nav-item">
+				<div class="border-0 p-3"><i class="fas fa-search"></i></div>
+				<div class="border-0 p-3 position-relative cart-total" title="Total ~ KSH.<?= cartDetails('total') ?>"
+				     data-bs-toggle="tooltip" data-bs-placement="bottom">
+					<span class="position-absolute top-0 fs-10 end-0 pt-2 pe-2 cart-count">
+						<?= cartDetails('count') ?>
+					</span>
+					<a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a>
+				</div>
                 <?php if(logged_in()): ?>
-					<div class="border-0 p-3"><i class="fas fa-search"></i></div>
-					<div class="border-0 p-3"><a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a></div>
 					<div class="border-0 p-3 dropstart">
 						<a href="javascript:void(0)" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="fas fa-user" title="<?= user()->first_name . " " . user()->last_name ?>"></i>

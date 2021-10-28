@@ -8,8 +8,8 @@ class ProductImages extends Migration {
     public function up() {
         $this->forge->addField([
             'id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'product_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
-            'image'       => ['type' => 'VARCHAR', 'constraint' => '40', 'null' => false, 'unique' => true],
+            'product_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
+            'image'       => ['type' => 'VARCHAR', 'constraint' => '40', 'unique' => true],
             'is_deleted'  => ['type' => 'BOOLEAN', 'default' => false]
         ]);
 

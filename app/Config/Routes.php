@@ -79,9 +79,10 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], function ($route) {
 $routes->group('/shop', function($routes) {
     $routes->get('/', 'ProductController::index', ['as' => 'shop.index']);
     $routes->get('(:num)', 'ProductController::show/$1', ['as' => 'shop.show']);
+    $routes->post('store', 'ProductController::store', ['as' => 'shop.store']);
 });
 
-$routes->get('/cart', 'ProductController::cart');
+$routes->get('/cart', 'ProductController::showCart');
 
 $routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);
 
