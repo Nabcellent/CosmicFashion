@@ -25,7 +25,7 @@ class ProductController extends BaseController
             $data = [
                 'product'      => $product,
                 'title'        => $product->name,
-                'likeProducts' => Product::inRandomOrder()->take(5)->get(),
+                'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(5)->get(),
             ];
 
             return view('details', $data);
@@ -70,6 +70,35 @@ class ProductController extends BaseController
             ]);
 
 //            return redirect()->back()->with('toast_success', 'Product added to cart successfully!');
+        } catch (Exception $e) {
+            return json_encode([
+                'status'  => false,
+                'msg'     => 'unable to add item.',
+                'content' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function update() {
+        parse_str($this->request->getBody(), $input);
+
+        try {
+            if($input['product_id'] && $input['quantity']){
+                $cart = session('cart');
+                $unitPrice = $cart[$input['product_id']]["price"];
+                $cart[$input['product_id']]["quantity"] = $input['quantity'];
+                $cart[$input['product_id']]["sub_total"] = $unitPrice * (int)$input['quantity'];
+
+                session()->set('cart', $cart);
+
+                return json_encode([
+                    'status'    => true,
+                    'cartCount' => sizeof($cart),
+                    'cartTotal' => cartDetails('total'),
+                    'unitPrice' => $unitPrice,
+                    'msg'       => 'Quantity updated successfully!'
+                ]);
+            }
         } catch (Exception $e) {
             return json_encode([
                 'status'  => false,

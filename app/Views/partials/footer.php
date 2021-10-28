@@ -10,7 +10,7 @@ use Carbon\Carbon;
 				<p class="text-muted mt-3">Do you want to receive exclusive email offers? Subscribe to our newsletter! You will receive a unique
 					promo code which gives you a 20% discount on all our products in 10 minutes.</p></div>
 			<div class="d-flex align-items-center col-md-7 col-xl-5">
-				<input type="email" placeholder="Enter your email" style="height:51px" class="mr-3 border-0 form-control"/>
+				<input type="email" placeholder="Enter your email" style="height:40px" class="me-3 border-0 form-control"/>
 				<button class="fw-bold btn btn-primary">Subscribe</button>
 			</div>
 		</div>

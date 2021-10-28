@@ -4,6 +4,16 @@
 	<link rel="stylesheet" href="/vendor/nicenumber/nice-number.css">
 	<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
 	<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+	<style>
+		.swiper {
+			height: 27rem;
+		}
+
+		.swiper img {
+			height: 20rem;
+		}
+	</style>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
@@ -102,52 +112,49 @@
 				</div>
 			</div>
 			<hr/>
-			<div class="mt-5 mb-5 row">
+			<div class="mt-5 mb-3 row">
 				<div class="col-sm-12"><h5 class="fw-bold">You may also like:</h5></div>
 			</div>
-			<div style="position:relative" class="mb-5 row">
-				<div class="carousel" style="width:100%">
-					<button type="button" aria-label="previous"
-					        class="buttonBack___1mlaL carousel__back-button btn bg-transparent border-0 p-0"
-					        style="position:absolute;top:35%;z-index:99;left:-20px">
-						<i class="fas fa-arrow-left"></i>
-					</button>
 
-					<div class="horizontalSlider___281Ls carousel__slider carousel__slider--horizontal"
-					     aria-live="polite" tabindex="0" role="listbox">
-						<div class="carousel__slider-tray-wrapper carousel__slider-tray-wrap--horizontal">
-							<ul class="sliderTray___-vHFQ sliderAnimation___300FY carousel__slider-tray carousel__slider-tray--horizontal"
-							    style="width:200%;transform:translateX(0%) translateX(0px);flex-direction:row">
+			<div class="row mb-4">
+				<div class="col">
+					<!-- Slider main container -->
+					<div class="carousel" style="width:100%">
+						<button type="button" aria-label="previous" style="position:absolute;top:35%;z-index:99;left:-20px"
+						        class="buttonBack___1mlaL carousel__back-button btn bg-transparent border-0 p-0">
+							<i class="fas fa-arrow-left"></i>
+						</button>
+						<div class="swiper">
+							<div class="swiper-wrapper">
+								<!-- Slides -->
 
                                 <?php foreach($likeProducts as $likeProduct): ?>
-									<li tabindex="0" aria-selected="true" role="option"
-									    class="slide___3-Nqo slideHorizontal___1NzNV carousel__slide carousel__slide--visible"
-									    style="width:12.5%;padding-bottom:16.666666666666668%">
+									<div class="swiper-slide">
 										<div class="slideInner___2mfX9 carousel__inner-slide">
 											<div class="Product_product__2Peg4 col">
-												<a href="<?= route_to('shop.show', $likeProduct->id) ?>"><img
-															src="/images/products/<?= $likeProduct->image ?>"
-															class="img-fluid" style="width:100%"/></a>
-												<p class="mt-3 text-muted mb-0">Category</p>
+												<a href="<?= route_to('shop.show', $likeProduct->id) ?>">
+													<img src="/images/products/<?= $likeProduct->image ?>" class="img-fluid"
+													     style="width:100%" alt="Product image"/>
+												</a>
+												<p class="mt-3 text-muted mb-0"><?= $likeProduct->subCategory->name ?></p>
 												<a href="<?= route_to('shop.show', $likeProduct->id) ?>">
 													<h6 class="fw-bold font-size-base mt-1" style="font-size:16px">
-														<?= $likeProduct->name ?>
+                                                        <?= $likeProduct->name ?>
 													</h6>
 												</a>
 												<h6 style="font-size:16px">KSH.<?= $likeProduct->price ?></h6>
 											</div>
 										</div>
-									</li>
+									</div>
                                 <?php endforeach; ?>
 
-							</ul>
+							</div>
 						</div>
+						<button type="button" aria-label="next" style="position:absolute;top:35%;z-index:99;right:-20px"
+						        class="buttonNext___2mOCa btn bg-transparent border-0 p-0">
+							<i class="fas fa-arrow-right"></i>
+						</button>
 					</div>
-					<button type="button" aria-label="next"
-					        class="buttonNext___2mOCa carousel__next-button btn bg-transparent border-0 p-0"
-					        style="position:absolute;top:35%;z-index:99;right:-20px">
-						<i class="fas fa-arrow-right"></i>
-					</button>
 				</div>
 			</div>
 		</div>
@@ -281,6 +288,38 @@
                 }
             })
         })
+	</script>
+	<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+	<script>
+        const swiper = new Swiper('.swiper', {
+            slidesPerView: 4,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 40,
+                },
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.buttonNext___2mOCa',
+                prevEl: '.buttonBack___1mlaL',
+            },
+        });
 	</script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>

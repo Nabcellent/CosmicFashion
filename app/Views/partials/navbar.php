@@ -91,7 +91,7 @@
 						</ul>
 					</div>
                 <?php else: ?>
-					<a href="<?= route_to('login') ?>">Sign In</a>
+					<a href="<?= route_to('login') ?>" class="link-primary ms-2">Sign In</a>
                 <?php endif; ?>
 			</li>
 		</ul>

@@ -119,11 +119,11 @@
 			</div>
 		</div>
 		<section class="index_promo__gOmpU">
-			<div class="h-100 container">
+			<div class="h-100 container ps-lg-5">
 				<div class="h-100 row">
 					<div class="h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start col-12 col-md-6"><h5
 								class="text-uppercase fw-bold mb-3">news and inspiration</h5>
-						<h1 class="text-uppercase fw-bold mb-0 index_newArrivals__3EhqC" style="font-size:50px">new arrivals</h1>
+						<h1 class="text-uppercase fw-bold mb-0 index_newArrivals__3EhqC">new arrivals</h1>
 						<div class="index_stroke__2BGza mt-4" style="margin-bottom:30px"></div>
 						<div class="index_promo__indication__3B7OO">
 							<section class="index_promo__indication__block__3Vblf"><h5 id="promo_days" class="mb-0">0</h5>
@@ -151,7 +151,7 @@
 			</div>
 			<div class="row">
 				<div class="col-12 col-md-6">
-					<section class="index_top_first__31BMD img-fluid"><h6 class="text-uppercase text-primary fw-bold">All new</h6>
+					<section class="index_top_first__31BMD"><h6 class="text-uppercase text-primary fw-bold">All new</h6>
 						<h2 class="fw-bold">SPRING THINGS</h2>
 						<div class="index_stroke__2BGza"></div>
 						<h6 class="text-muted mt-4">Save up to 30%</h6></section>
@@ -159,19 +159,19 @@
 				<div class="col-12 col-md-6">
 					<div class="row">
 						<div class="index_topMargin__3WKar col-12 col-md-6">
-							<div class="index_top2__3roD5 img-fluid">
+							<div class="index_top2__3roD5">
 								<div><h6 class="text-primary fw-bold">Online Exclusive</h6>
 									<p><u>shop now</u></p></div>
 							</div>
-							<div class="index_top4__1fHFJ img-fluid">
+							<div class="index_top4__1fHFJ">
 								<div class="index_label__2nfPo"><h6 class="fw-bold text-uppercase mb-0 text-white">spring sale</h6></div>
 							</div>
 						</div>
 						<div class="col-12 col-md-6">
-							<div class="index_top3__3tocY img-fluid">
+							<div class="index_top3__3tocY">
 								<div class="index_label__2nfPo"><h6 class="fw-bold text-uppercase mb-0 text-white">70% SALE</h6></div>
 							</div>
-							<div class="index_top5__3bzPr img-fluid">
+							<div class="index_top5__3bzPr">
 								<div>
 									<div class="index_stroke__2BGza"></div>
 									<div><p class="mb-0">collection</p><h5 class="fw-bold text-primary text-uppercase">summer</h5></div>

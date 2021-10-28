@@ -168,15 +168,20 @@
 					</div>
 				</div>
 				<div class="col-sm-9">
-					<div class="d-flex justify-content-between align-items-center" style="margin-bottom:50px"><h6>Showing<!-- --> <span
-									class="fw-bold text-primary">0</span> <!-- -->of <span class="fw-bold text-primary">15</span> Products</h6>
-						<div class="d-flex align-items-center"><h6 class="text-nowrap mr-3 mb-0">Sort by:</h6><select style="height:50px;width:180px"
-						                                                                                              class="form-control">
+					<div class="d-flex justify-content-between align-items-center" style="margin-bottom:50px">
+						<h6>Showing<!-- -->
+							<span class="fw-bold text-primary">0</span> <!-- -->of
+							<span class="fw-bold text-primary">15</span> Products
+						</h6>
+						<div class="d-flex align-items-center">
+							<h6 class="text-nowrap mr-3 mb-0">Sort by:</h6>
+							<select style="width:180px" class="form-control" aria-label="">
 								<option>Most Popular</option>
 								<option>Newest</option>
 								<option>Price: low to high</option>
 								<option>Price: high to low</option>
-							</select></div>
+							</select>
+						</div>
 					</div>
 					<div class="row">
                         <?php foreach($products as $product): ?>

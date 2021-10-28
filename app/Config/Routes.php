@@ -80,6 +80,7 @@ $routes->group('/shop', function($routes) {
     $routes->get('/', 'ProductController::index', ['as' => 'shop.index']);
     $routes->get('(:num)', 'ProductController::show/$1', ['as' => 'shop.show']);
     $routes->post('store', 'ProductController::store', ['as' => 'shop.store']);
+    $routes->patch('update', 'ProductController::update', ['as' => 'shop.update']);
     $routes->delete('destroy', 'ProductController::destroy', ['as' => 'shop.destroy']);
 });
 

@@ -68,7 +68,7 @@
 							}
 
 							if (settings.onChange) {
-								settings.onChange(newValue, settings);
+								settings.onChange(newValue, $currentInput, settings);
 							}
 						}
 					});
@@ -97,7 +97,7 @@
 							}
 
 							if (settings.onChange) {
-								settings.onChange(newValue, settings);
+								settings.onChange(newValue, $currentInput, settings);
 							}
 						}
 					});

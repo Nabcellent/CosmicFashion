@@ -60,16 +60,19 @@
 										</a>
 									</td>
 									<td class="px-0">
-										<div class="d-flex align-items-center">
+										<div class="d-flex align-items-center ld-ext-right w-auto">
 											<input type="number" class="bg-transparent border-0 form-control quantity"
 											       name="quantity" min="1" value="<?= $item['quantity'] ?>" aria-label>
+											<span class="ld ld-ring ld-spin"></span>
 										</div>
 									</td>
 									<td class="px-0">
 										<h6 class="fw-bold mb-0">KSH.<?= $item['price'] ?></h6>
 									</td>
 									<td class="px-0">
-										<h6 class="fw-bold mb-0">KSH.<?= $item['sub_total'] ?></h6>
+										<h6 class="fw-bold mb-0 sub-total">
+											KSH.<span><?= $item['sub_total'] ?></span>
+										</h6>
 									</td>
 									<td class="px-0">
 										<a href="javascript:void(0)" class="text-danger remove-cart-item ld-ext-right"
@@ -114,12 +117,19 @@
 
 <?= $this->section('scripts') ?>
 	<script src="/vendor/nicenumber/nice-number.js"></script>
+	<!--    SweetAlert2     -->
+	<script src="/vendor/sweetalert/sweetalert.js"></script>
 	<script>
         const qtyInput = $('.quantity').niceNumber({
-            onChange: (input) => {
-                const unitPrice = `2`
+            onChange: (value, inputEl) => {
+	            const data = {
+                    product_id: $(inputEl).closest('tr').data('id'),
+		            quantity: value
+	            }
 
-                $('#unit-price').html(`${input * parseInt(unitPrice)}`)
+                sendRequest(data,
+	                `<?= route_to('shop.update') ?>`, 'PATCH',
+	                $(inputEl).closest('.ld-ext-right'))
             }
         });
 
@@ -127,16 +137,37 @@
             const product_id = $(this).closest('tr').data('id');
             $(this).html(`<i class="bi bi-cart-x"></i><span class="ld ld-ring ld-spin"></span>`)
 
-	        $.ajax({
-		        data: {product_id},
-                url: `<?= route_to('shop.destroy') ?>`,
-		        method: 'DELETE',
-                beforeSend: () => $(this).addClass('running'),
-		        success: response => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(result => {
+                if (result.isConfirmed) {
+                    sendRequest({product_id}, `<?= route_to('shop.destroy') ?>`, 'DELETE', $(this))
+                }
+            })
+        })
+
+        function sendRequest(data, url, method, loadElement) {
+            $.ajax({
+                data: data,
+                url: url,
+                method: method,
+                beforeSend: () => loadElement.addClass('running'),
+                success: response => {
                     const result = JSON.parse(response)
 
                     if(result.status) {
-                        $(this).closest('tr').hide(300)
+                        if(method === 'PATCH') {
+                            const subTotal = result.unitPrice * data.quantity
+                            loadElement.closest('tr').find($('.sub-total')).html(`KSH.${subTotal}`)
+                        } else if(method === 'DELETE') {
+                            loadElement.closest('tr').hide(300)
+                        }
 
                         $('.card .summary-subtotal').html(`KSH.${result.cartTotal}/=`)
                         $('.card .summary-total').html(`KSH.${result.cartTotal}/=`)
@@ -144,18 +175,14 @@
                         $('nav .cart-total').attr('title', `Total ~ KSH.${result.cartTotal}`)
                         toast({msg: result.msg, type: `success`})
                     }
-		        },
+                },
                 error: error => {
-                    toast({msg: '☹Unable to remove item.', type: `danger`})
+                    toast({msg: '☹Something went wrong.', type: `danger`})
                     console.log(`Error: ${error}`)
                 },
-                complete: () => {
-                    $(this).removeClass('running');
-                    /*addToCartBtn.removeClass('running')
-                    addToCartBtn.html(`Add to cart`)*/
-                }
-	        })
-        })
+                complete: () => loadElement.removeClass('running')
+            })
+        }
 	</script>
 
 <?= $this->endSection() ?>
