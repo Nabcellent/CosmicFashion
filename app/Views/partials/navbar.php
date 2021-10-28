@@ -68,7 +68,7 @@
 				<div class="border-0 p-3 position-relative cart-total" title="Total ~ KSH.<?= cartDetails('total') ?>"
 				     data-bs-toggle="tooltip" data-bs-placement="bottom">
 					<span class="position-absolute top-0 fs-10 end-0 pt-2 pe-2 cart-count">
-						<?= cartDetails('count') ?>
+						<?= cartDetails('count') ?: '' ?>
 					</span>
 					<a href="<?= route_to('cart') ?>"><i class="fab fa-opencart"></i></a>
 				</div>

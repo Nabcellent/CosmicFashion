@@ -46,15 +46,17 @@ class ProductController extends BaseController
 
             if(isset($cart[$productId])) {
                 $cart[$productId]['quantity'] += $quantity;
+                $cart[$productId]['sub_total'] += (int)$product->price * $quantity;
             } else {
                 $cart[$productId] = [
-                    "title"      => $product->title,
-                    "quantity"   => $quantity,
-                    "price"      => $product->price,
-                    "sub_total"  => (int)$product->price * $quantity,
-                    "image"      => $product->image,
-                    "discount"   => $product->discount,
-                    'created_at' => Carbon::now()
+                    "name"         => $product->name,
+                    "quantity"     => $quantity,
+                    "price"        => $product->price,
+                    "sub_total"    => (int)$product->price * $quantity,
+                    "sub_category" => $product->subCategory->name,
+                    "image"        => $product->image,
+                    "discount"     => $product->discount,
+                    'created_at'   => Carbon::now()
                 ];
             }
 
@@ -79,10 +81,41 @@ class ProductController extends BaseController
 
     public function showCart(): string {
         $data = [
-            'cartItems' => null,
+            'cartItems' => session('cart'),
             'title'     => 'Cart'
         ];
 
         return view('cart', $data);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @return false|string
+     */
+    public function destroy(): bool|string {
+        parse_str($this->request->getBody(), $input);
+
+        if($input['product_id']) {
+            $cart = session('cart');
+
+            if(isset($cart[$input['product_id']])) {
+                unset($cart[$input['product_id']]);
+
+                session()->set('cart', $cart);
+            }
+
+            return json_encode([
+                'status'    => true,
+                'cartCount' => sizeof($cart),
+                'cartTotal' => cartDetails('total'),
+                'msg'       => 'Item removed successfully!'
+            ]);
+        }
+
+        return json_encode([
+            'status'    => false,
+            'msg'       => 'Unable to remove item😪!'
+        ]);
     }
 }

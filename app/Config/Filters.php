@@ -47,6 +47,7 @@ class Filters extends BaseConfig
                 'except' => [
                     '',
                     'home*',
+                    'cart',
                     'test',
                     'login*',
                     'register*',

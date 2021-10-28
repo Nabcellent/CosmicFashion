@@ -1,5 +1,9 @@
 <?= $this->extend('layouts/master') ?>
-
+<?= $this->section('links') ?>
+	<link rel="stylesheet" href="/vendor/nicenumber/nice-number.css">
+	<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
+	<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 	<div id="shop">
@@ -20,31 +24,139 @@
 						<tr style="border-bottom:1px solid #D9D9D9">
 							<th class="bg-transparent text-dark px-0">Product</th>
 							<th class="bg-transparent text-dark px-0">Quantity</th>
-							<th class="bg-transparent text-dark px-0">Price</th>
+							<th class="bg-transparent text-dark px-0">Unit price</th>
+							<th class="bg-transparent text-dark px-0" colspan="2">Sub total</th>
 						</tr>
 						</thead>
 						<tbody>
-						<tr>
-							<td colspan="3"><h5 class="text-center fw-bold mt-3">Cart is empty.</h5></td>
-						</tr>
+
+                        <?php if(empty($cartItems)): ?>
+							<tr>
+								<td colspan="3">
+									<div class=" text-center">
+										<h5 class="fw-bold mt-3">Cart is empty.</h5>
+										<div class="mt-5">
+											<a href="<?= route_to('shop.index') ?>"
+											   class="btn btn-outline-primary px-5">
+												<i class="fas fa-arrow-left"></i> Go Shopping😁
+											</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+                        <?php else: ?>
+                            <?php foreach($cartItems as $key => $item): ?>
+								<tr data-id="<?= $key ?>">
+									<td class="px-0">
+										<a href="<?= route_to('shop.show', $key) ?>"
+										   class="d-flex link-primary align-items-center">
+											<img src="/images/products/<?= $item['image'] ?>" width="100"
+											     class="me-4 p-1 bg-light shadow" alt="Product image"
+											     style="width:3rem; height:3rem; object-fit:cover; border-radius:50%;">
+											<div>
+												<small class="text-muted"><?= $item['sub_category'] ?></small>
+												<h6 class="fw-bold"><?= $item['name'] ?></h6>
+											</div>
+										</a>
+									</td>
+									<td class="px-0">
+										<div class="d-flex align-items-center">
+											<input type="number" class="bg-transparent border-0 form-control quantity"
+											       name="quantity" min="1" value="<?= $item['quantity'] ?>" aria-label>
+										</div>
+									</td>
+									<td class="px-0">
+										<h6 class="fw-bold mb-0">KSH.<?= $item['price'] ?></h6>
+									</td>
+									<td class="px-0">
+										<h6 class="fw-bold mb-0">KSH.<?= $item['sub_total'] ?></h6>
+									</td>
+									<td class="px-0">
+										<a href="javascript:void(0)" class="text-danger remove-cart-item ld-ext-right"
+										   title="Remove item">
+											<i class="bi bi-cart-x"></i>
+										</a>
+									</td>
+								</tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+
 						</tbody>
 					</table>
 				</div>
 				<div class="col-12 col-lg-4">
 					<section class="card Cart_cartTotal__2jJho"><h2 class="fw-bold mb-5">Cart Total</h2>
-						<div class="d-flex"><h6 class="fw-bold mr-5 mb-0">Subtotal:</h6><h6 class="fw-bold mb-0">KSH.0</h6></div>
-						<hr class="my-4"/>
-						<div class="d-flex"><h6 class="fw-bold mr-5 mb-0">Shipping:</h6>
-							<div><h6 class="fw-bold mb-3">Free Shipping</h6>
-								<p class="mb-0">Shipping options will be updated during checkout.</p></div>
+						<div class="d-flex">
+							<h6 class="fw-bold me-5 mb-0">Subtotal:</h6>
+							<h6 class="fw-bold mb-0 summary-subtotal">KSH.<?= cartDetails('total') ?>/=</h6>
 						</div>
 						<hr class="my-4"/>
-						<div class="d-flex"><h5 class="fw-bold" style="margin-right:63px">Total:</h5><h5 class="fw-bold">KSH.0</h5></div>
-						<button type="button" class="Cart_checkOutBtn__3oMJx text-uppercase mt-auto fw-bold btn btn-primary">Check out</button>
+						<div class="d-flex"><h6 class="fw-bold me-5 mb-0">Shipping:</h6>
+							<div>
+								<h6 class="fw-bold mb-3">Free Shipping</h6>
+								<p class="mb-0">Shipping options will be updated during checkout.</p>
+							</div>
+						</div>
+						<hr class="my-4"/>
+						<div class="d-flex">
+							<h5 class="fw-bold" style="margin-right:63px">Total:</h5>
+							<h5 class="fw-bold summary-total">KSH.<?= cartDetails('total') ?>/=</h5>
+						</div>
+						<button type="button"
+						        class="Cart_checkOutBtn__3oMJx text-uppercase mt-auto fw-bold btn btn-primary">Check out
+						</button>
 					</section>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+<?= $this->section('scripts') ?>
+	<script src="/vendor/nicenumber/nice-number.js"></script>
+	<script>
+        const qtyInput = $('.quantity').niceNumber({
+            onChange: (input) => {
+                const unitPrice = `2`
+
+                $('#unit-price').html(`${input * parseInt(unitPrice)}`)
+            }
+        });
+
+        $('.remove-cart-item').on('click', function() {
+            const product_id = $(this).closest('tr').data('id');
+            $(this).html(`<i class="bi bi-cart-x"></i><span class="ld ld-ring ld-spin"></span>`)
+
+	        $.ajax({
+		        data: {product_id},
+                url: `<?= route_to('shop.destroy') ?>`,
+		        method: 'DELETE',
+                beforeSend: () => $(this).addClass('running'),
+		        success: response => {
+                    const result = JSON.parse(response)
+
+                    if(result.status) {
+                        $(this).closest('tr').hide(300)
+
+                        $('.card .summary-subtotal').html(`KSH.${result.cartTotal}/=`)
+                        $('.card .summary-total').html(`KSH.${result.cartTotal}/=`)
+                        $('nav .cart-count').html(result.cartCount)
+                        $('nav .cart-total').attr('title', `Total ~ KSH.${result.cartTotal}`)
+                        toast({msg: result.msg, type: `success`})
+                    }
+		        },
+                error: error => {
+                    toast({msg: '☹Unable to remove item.', type: `danger`})
+                    console.log(`Error: ${error}`)
+                },
+                complete: () => {
+                    $(this).removeClass('running');
+                    /*addToCartBtn.removeClass('running')
+                    addToCartBtn.html(`Add to cart`)*/
+                }
+	        })
+        })
+	</script>
+
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>

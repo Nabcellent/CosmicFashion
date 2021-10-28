@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="mb-5 row" style="margin-top: 32px;">
 				<div class="d-flex col-12 col-lg-6">
-					<div class="mr-3"
+					<div class="me-3"
 					     style="cursor: crosshair; width: auto; height: auto; font-size: 0px; position: relative; user-select: none;">
 						<img src="/images/products/<?= $product->image ?>" alt="Wristwatch by Ted Baker London"
 						     style="width: 100%; height: auto; display: block; pointer-events: none;">
@@ -35,13 +35,13 @@
 							<div class="Product_star__uSePA Product_selected__2KgtD"></div>
 							<div class="Product_star__uSePA Product_selected__2KgtD"></div>
 							<div class="Product_star__uSePA"></div>
-							<p class="text-primary ml-3 mb-0">0 reviews</p>
+							<p class="text-primary ms-3 mb-0">0 reviews</p>
 						</div>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod
 							orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 							Vestibulum ultricies aliquam.</p>
 						<div class="d-flex">
-							<div class="d-flex flex-column mr-5 justify-content-between">
+							<div class="d-flex flex-column me-5 justify-content-between">
 								<h6 class="fw-bold text-muted text-uppercase">Quantity</h6>
 								<div class="d-flex align-items-center">
 									<input type="number" class="bg-transparent border-0 form-control" id="quantity"
@@ -58,7 +58,7 @@
 						<input type="hidden" name="product_id" value="<?= $product->id ?>">
 						<input type="hidden" name="price" value="<?= $product->price ?>">
 						<button type="submit"
-						        class="flex-fill mr-4 text-uppercase fw-bold btn btn-outline-primary ld-ext-right"
+						        class="flex-fill me-4 text-uppercase fw-bold btn btn-outline-primary ld-ext-right"
 						        id="add-to-cart-btn" style="width: 50%;">Add to Cart<span
 									class="ld ld-ring ld-spin"></span>
 						</button>
@@ -80,7 +80,7 @@
 				</div>
 				<div class="d-flex mt-5 col-sm-12">
 					<img src="/images/users/2.jpg"
-					     class="mr-5 Product_reviewImg__hJn4H" style="border-radius: 65px;">
+					     class="me-5 Product_reviewImg__hJn4H" style="border-radius: 65px;">
 					<div class="d-flex flex-column justify-content-between align-items-start">
 						<div class="d-flex justify-content-between w-100 undefined">
 							<h6 class="fw-bold mb-0">Lil Nabz</h6>
@@ -168,7 +168,7 @@
 					<div class="modal-body"><h3 class="fw-bold mb-5">Leave Your Feedback</h3>
 						<div class=" Product_modalProduct__3MuUp d-flex justify-content-between align-items-center">
 							<div class="d-flex align-items-center">
-								<img src="/images/products/<?= $product->image ?>" alt="" width="100" class="mr-4">
+								<img src="/images/products/<?= $product->image ?>" alt="" width="100" class="me-4">
 								<div>
 									<h6 class="text-muted">Lighting</h6>
 									<h5 class="fw-bold"><?= $product->name ?></h5>
@@ -176,12 +176,12 @@
 							</div>
 							<div class="d-flex align-items-center">
 								<button type="button"
-								        class="bg-transparent border-0 p-1 fw-bold mr-3 Product_quantityBtn__2Mx6O btn btn-secondary">
+								        class="bg-transparent border-0 p-1 fw-bold me-3 Product_quantityBtn__2Mx6O btn btn-secondary">
 									-
 								</button>
 								<p class="fw-bold mb-0">1</p>
 								<button type="button"
-								        class="bg-transparent border-0 p-1 fw-bold ml-3 Product_quantityBtn__2Mx6O btn btn-secondary">
+								        class="bg-transparent border-0 p-1 fw-bold ms-3 Product_quantityBtn__2Mx6O btn btn-secondary">
 									+
 								</button>
 							</div>
@@ -192,7 +192,7 @@
 							</button>
 						</div>
 						<div class="d-flex align-items-center my-4">
-							<h6 class="fw-bold mr-4 mb-0">Rate Product</h6>
+							<h6 class="fw-bold me-4 mb-0">Rate Product</h6>
 							<div>
 								<div class="Product_star__uSePA"></div>
 								<div class="Product_star__uSePA"></div>
@@ -203,7 +203,7 @@
 						</div>
 						<div class="d-flex mb-4">
 							<input name="text" id="exampleEmail" placeholder="First Name" type="text" aria-label=""
-							       class="w-100 mr-4 form-control">
+							       class="w-100 me-4 form-control">
 							<input name="text" id="exampleEmail" placeholder="Last Name" type="text" aria-label=""
 							       class="w-100 form-control">
 						</div>
@@ -258,9 +258,7 @@
                 data,
                 url: `<?= route_to('shop.store') ?>`,
                 method: 'POST',
-                beforeSend: () => {
-                    addToCartBtn.addClass('running')
-                },
+                beforeSend: () => addToCartBtn.addClass('running'),
                 success: response => {
                     const result = JSON.parse(response)
 

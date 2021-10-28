@@ -11354,13 +11354,6 @@ pre code {
 	}
 }
 
-.row {
-	display: flex;
-	flex-wrap: wrap;
-	margin-right: -20px;
-	margin-left: -20px
-}
-
 .no-gutters {
 	margin-right: 0;
 	margin-left: 0
@@ -11369,19 +11362,6 @@ pre code {
 .no-gutters > .col, .no-gutters > [class*=col-] {
 	padding-right: 0;
 	padding-left: 0
-}
-
-.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto, .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-auto, .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md-auto, .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-auto {
-	position: relative;
-	width: 100%;
-	padding-right: 20px;
-	padding-left: 20px
-}
-
-.col {
-	flex-basis: 0;
-	flex-grow: 1;
-	max-width: 100%
 }
 
 .row-cols-1 > * {
@@ -22700,40 +22680,20 @@ hr {
 	transform: rotate(315deg)
 }
 
-.bg-primary {
-	background-color: var(--falcon-primary) !important
-}
-
 .input-group-no-border.focus a.bg-primary.input-group-addon, .input-group-no-border.focus button.bg-primary.input-group-addon, .input-group-no-border .form-control:focus + a.bg-primary.input-group-addon, .input-group-no-border .form-control:focus + button.bg-primary.input-group-addon, .input-group-no-border a.bg-primary.form-control:focus, .input-group-no-border button.bg-primary.form-control:focus, a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover {
 	background-color: var(--falcon-blue-dark) !important
-}
-
-.bg-success {
-	background-color: #21ae8c !important
 }
 
 .input-group-no-border.focus a.bg-success.input-group-addon, .input-group-no-border.focus button.bg-success.input-group-addon, .input-group-no-border .form-control:focus + a.bg-success.input-group-addon, .input-group-no-border .form-control:focus + button.bg-success.input-group-addon, .input-group-no-border a.bg-success.form-control:focus, .input-group-no-border button.bg-success.form-control:focus, a.bg-success:focus, a.bg-success:hover, button.bg-success:focus, button.bg-success:hover {
 	background-color: #19836a !important
 }
 
-.bg-info {
-	background-color: #1a86d0 !important
-}
-
 .input-group-no-border.focus a.bg-info.input-group-addon, .input-group-no-border.focus button.bg-info.input-group-addon, .input-group-no-border .form-control:focus + a.bg-info.input-group-addon, .input-group-no-border .form-control:focus + button.bg-info.input-group-addon, .input-group-no-border a.bg-info.form-control:focus, .input-group-no-border button.bg-info.form-control:focus, a.bg-info:focus, a.bg-info:hover, button.bg-info:focus, button.bg-info:hover {
 	background-color: #1469a3 !important
 }
 
-.bg-warning {
-	background-color: #fda700 !important
-}
-
 .input-group-no-border.focus a.bg-warning.input-group-addon, .input-group-no-border.focus button.bg-warning.input-group-addon, .input-group-no-border .form-control:focus + a.bg-warning.input-group-addon, .input-group-no-border .form-control:focus + button.bg-warning.input-group-addon, .input-group-no-border a.bg-warning.form-control:focus, .input-group-no-border button.bg-warning.form-control:focus, a.bg-warning:focus, a.bg-warning:hover, button.bg-warning:focus, button.bg-warning:hover {
 	background-color: #ca8500 !important
-}
-
-.bg-danger {
-	background-color: #fd5f00 !important
 }
 
 .input-group-no-border.focus a.bg-danger.input-group-addon, .input-group-no-border.focus button.bg-danger.input-group-addon, .input-group-no-border .form-control:focus + a.bg-danger.input-group-addon, .input-group-no-border .form-control:focus + button.bg-danger.input-group-addon, .input-group-no-border a.bg-danger.form-control:focus, .input-group-no-border button.bg-danger.form-control:focus, a.bg-danger:focus, a.bg-danger:hover, button.bg-danger:focus, button.bg-danger:hover {
@@ -22804,10 +22764,6 @@ hr {
 	background-color: transparent !important
 }
 
-.bg-white {
-	background-color: #fff !important
-}
-
 .input-group-no-border.focus a.bg-white.input-group-addon, .input-group-no-border.focus button.bg-white.input-group-addon, .input-group-no-border .form-control:focus + a.bg-white.input-group-addon, .input-group-no-border .form-control:focus + button.bg-white.input-group-addon, .input-group-no-border a.bg-white.form-control:focus, .input-group-no-border button.bg-white.form-control:focus, a.bg-white:focus, a.bg-white:hover, button.bg-white:focus, button.bg-white:hover {
 	background-color: #e6e6e6 !important
 }
@@ -22822,56 +22778,28 @@ hr {
 	}
 }
 
-.text-primary {
-	color: var(--falcon-primary) !important
-}
-
 .input-group-no-border.focus a.text-primary.input-group-addon, .input-group-no-border .form-control:focus + a.text-primary.input-group-addon, .input-group-no-border a.text-primary.form-control:focus, a.text-primary:focus, a.text-primary:hover {
 	color: #8a5233 !important
-}
-
-.text-success {
-	color: #21ae8c !important
 }
 
 .input-group-no-border.focus a.text-success.input-group-addon, .input-group-no-border .form-control:focus + a.text-success.input-group-addon, .input-group-no-border a.text-success.form-control:focus, a.text-success:focus, a.text-success:hover {
 	color: #156e58 !important
 }
 
-.text-info {
-	color: #1a86d0 !important
-}
-
 .input-group-no-border.focus a.text-info.input-group-addon, .input-group-no-border .form-control:focus + a.text-info.input-group-addon, .input-group-no-border a.text-info.form-control:focus, a.text-info:focus, a.text-info:hover {
 	color: #125a8c !important
-}
-
-.text-warning {
-	color: #fda700 !important
 }
 
 .input-group-no-border.focus a.text-warning.input-group-addon, .input-group-no-border .form-control:focus + a.text-warning.input-group-addon, .input-group-no-border a.text-warning.form-control:focus, a.text-warning:focus, a.text-warning:hover {
 	color: #b17500 !important
 }
 
-.text-danger {
-	color: #fd5f00 !important
-}
-
 .input-group-no-border.focus a.text-danger.input-group-addon, .input-group-no-border .form-control:focus + a.text-danger.input-group-addon, .input-group-no-border a.text-danger.form-control:focus, a.text-danger:focus, a.text-danger:hover {
 	color: #b14200 !important
 }
 
-.text-link {
-	color: #1a86d0 !important
-}
-
 .input-group-no-border.focus a.text-link.input-group-addon, .input-group-no-border .form-control:focus + a.text-link.input-group-addon, .input-group-no-border a.text-link.form-control:focus, a.text-link:focus, a.text-link:hover {
 	color: #125a8c !important
-}
-
-.text-white {
-	color: #fff !important
 }
 
 .input-group-no-border.focus a.text-white.input-group-addon, .input-group-no-border .form-control:focus + a.text-white.input-group-addon, .input-group-no-border a.text-white.form-control:focus, a.text-white:focus, a.text-white:hover {
@@ -23196,78 +23124,6 @@ hr {
 
 .mb-0, .mb-n-0 {
 	margin-bottom: 0
-}
-
-.ml-lg {
-	margin-left: 20px
-}
-
-.ml-n-lg {
-	margin-left: -20px
-}
-
-.ml, .ml-md, .ml-n {
-	margin-left: 15px
-}
-
-.ml-n-md {
-	margin-left: -15px
-}
-
-.ml-sm {
-	margin-left: 10px
-}
-
-.ml-n-sm {
-	margin-left: -10px
-}
-
-.ml-xs {
-	margin-left: 5px
-}
-
-.ml-n-xs {
-	margin-left: -5px
-}
-
-.ml-0, .ml-n-0 {
-	margin-left: 0
-}
-
-.mr-lg {
-	margin-right: 20px
-}
-
-.mr-n-lg {
-	margin-right: -20px
-}
-
-.mr, .mr-md, .mr-n {
-	margin-right: 15px
-}
-
-.mr-n-md {
-	margin-right: -15px
-}
-
-.mr-sm {
-	margin-right: 10px
-}
-
-.mr-n-sm {
-	margin-right: -10px
-}
-
-.mr-xs {
-	margin-right: 5px
-}
-
-.mr-n-xs {
-	margin-right: -5px
-}
-
-.mr-0, .mr-n-0 {
-	margin-right: 0
 }
 
 .pt-xlg {
