@@ -13,6 +13,13 @@
 		.swiper img {
 			height: 20rem;
 		}
+
+		@media (min-width: 1200px) {
+			.main-image img {
+				min-height: 500px;
+				object-fit: cover;
+			}
+		}
 	</style>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
@@ -26,9 +33,9 @@
 
 		<div class="container">
 			<div class="mb-5 row" style="margin-top: 32px;">
-				<div class="d-flex col-12 col-lg-6">
-					<div class="me-3"
-					     style="cursor: crosshair; width: auto; height: auto; font-size: 0px; position: relative; user-select: none;">
+				<div class="d-flex col-12 col-lg-6 col-xl">
+					<div class="me-3 main-image"
+					     style="cursor: crosshair; width: auto; height: auto; font-size: 0; position: relative; user-select: none;">
 						<img src="/images/products/<?= $product->image ?>" alt="Wristwatch by Ted Baker London"
 						     style="width: 100%; height: auto; display: block; pointer-events: none;">
 					</div>
