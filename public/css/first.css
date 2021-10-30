@@ -22340,11 +22340,6 @@ hr {
 	color: #555
 }
 
-.text-light {
-	color: inherit !important;
-	opacity: .8
-}
-
 .fs-sm {
 	font-size: .875rem
 }
@@ -22371,14 +22366,6 @@ hr {
 
 .bbrr {
 	border-bottom-right-radius: .3rem
-}
-
-.hide {
-	display: none !important
-}
-
-.show {
-	display: block !important
 }
 
 .btn-group.show {

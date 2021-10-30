@@ -38,7 +38,7 @@
 					</a>
 					<ul class="nav collapse show" id="dashboard">
 						<li class="nav-item">
-							<a class="nav-link active" href="index-2.html">
+							<a class="nav-link active" href="<?= route_to('dashboard') ?>">
 								<div class="d-flex align-items-center">
 									<span class="nav-link-text ps-1">Default</span>
 								</div>

@@ -4,16 +4,21 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Orders extends Migration {
+class Orders extends Migration
+{
     public function up() {
         $this->forge->addField([
             'id'              => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'payment_type_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'amount'          => ['type' => 'DOUBLE', 'unsigned' => true, 'default' => 0],
-            'status'          => ['type' => 'ENUM', 'constraint' => ['pending', 'paid', 'pending payment']],    // Bad datatype
-            'created_at datetime default current_timestamp',
-            'updated_at datetime DEFAULT current_timestamp ON UPDATE current_timestamp',
+            'status'          => [
+                'type'       => 'ENUM',
+                'constraint' => ['pending', 'paid', 'pending payment'],
+                'DEFAULT'    => 'pending'
+            ],    // Bad datatype
+            'created_at timestamp default current_timestamp',
+            'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
             'is_deleted'      => ['type' => 'BOOLEAN', 'default' => false]
         ]);
 

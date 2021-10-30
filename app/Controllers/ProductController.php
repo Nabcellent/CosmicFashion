@@ -25,11 +25,12 @@ class ProductController extends BaseController
             $data = [
                 'product'      => $product,
                 'title'        => $product->name,
-                'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(5)->get(),
+                'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(8)->get(),
             ];
 
             return view('details', $data);
         } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return toastError($e->getMessage(), 'Unable to fetch product');
         }
     }

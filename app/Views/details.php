@@ -5,22 +5,6 @@
 	<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
 	<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-	<style>
-		.swiper {
-			height: 27rem;
-		}
-
-		.swiper img {
-			height: 20rem;
-		}
-
-		@media (min-width: 1200px) {
-			.main-image img {
-				min-height: 500px;
-				object-fit: cover;
-			}
-		}
-	</style>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 

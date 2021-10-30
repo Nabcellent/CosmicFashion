@@ -86,6 +86,12 @@ $routes->group('/shop', function($routes) {
 
 $routes->get('/cart', 'ProductController::showCart');
 
+$routes->group('/orders', function($routes) {
+    $routes->get('checkout', 'OrderController::index', ['as' => 'orders.index']);
+    $routes->post('order', 'OrderController::store', ['as' => 'orders.store']);
+    $routes->get('thanks', 'OrderController::thanks', ['as' => 'orders.thanks']);
+});
+
 $routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);
 
 $routes->group('/user', function ($route) {

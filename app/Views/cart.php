@@ -17,7 +17,6 @@
 
 		<div class="container">
 			<div style="margin-top:32px" class="mb-5 row">
-				<div class="Toastify"></div>
 				<div class="col-12 col-lg-8"><h2 class="fw-bold mt-4 mb-5">Shopping Cart</h2>
 					<table class="table table-borderless">
 						<thead>
@@ -105,9 +104,11 @@
 							<h5 class="fw-bold" style="margin-right:63px">Total:</h5>
 							<h5 class="fw-bold summary-total">KSH.<?= cartDetails('total') ?>/=</h5>
 						</div>
-						<button type="button"
-						        class="Cart_checkOutBtn__3oMJx text-uppercase mt-auto fw-bold btn btn-primary">Check out
-						</button>
+                        <?php if(!empty($cartItems)): ?>
+							<a href="<?= route_to('orders.index') ?>"
+							   class="Cart_checkOutBtn__3oMJx text-uppercase mt-auto fw-bold btn btn-primary">Check out
+							</a>
+                        <?php endif; ?>
 					</section>
 				</div>
 			</div>
@@ -122,18 +123,18 @@
 	<script>
         const qtyInput = $('.quantity').niceNumber({
             onChange: (value, inputEl) => {
-	            const data = {
+                const data = {
                     product_id: $(inputEl).closest('tr').data('id'),
-		            quantity: value
-	            }
+                    quantity: value
+                }
 
                 sendRequest(data,
-	                `<?= route_to('shop.update') ?>`, 'PATCH',
-	                $(inputEl).closest('.ld-ext-right'))
+                    `<?= route_to('shop.update') ?>`, 'PATCH',
+                    $(inputEl).closest('.ld-ext-right'))
             }
         });
 
-        $('.remove-cart-item').on('click', function() {
+        $('.remove-cart-item').on('click', function () {
             const product_id = $(this).closest('tr').data('id');
             $(this).html(`<i class="bi bi-cart-x"></i><span class="ld ld-ring ld-spin"></span>`)
 
@@ -161,11 +162,11 @@
                 success: response => {
                     const result = JSON.parse(response)
 
-                    if(result.status) {
-                        if(method === 'PATCH') {
+                    if (result.status) {
+                        if (method === 'PATCH') {
                             const subTotal = result.unitPrice * data.quantity
                             loadElement.closest('tr').find($('.sub-total')).html(`KSH.${subTotal}`)
-                        } else if(method === 'DELETE') {
+                        } else if (method === 'DELETE') {
                             loadElement.closest('tr').hide(300)
                         }
 

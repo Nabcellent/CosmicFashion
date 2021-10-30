@@ -120,7 +120,48 @@ img {
 	box-shadow: var(--falcon-box-shadow)
 }
 
-.form-control {display: block;width: 100%;padding: .3125rem 1rem;font-size: 1rem;font-weight: 400;line-height: 1.5;color: var(--falcon-input-color);background-color: var(--falcon-input-bg);background-clip: padding-box;border: 1px solid var(--falcon-input-border-color);-webkit-appearance: none;-moz-appearance: none;appearance: none;border-radius: .25rem;-webkit-box-shadow: var(--falcon-box-shadow-inset);box-shadow: var(--falcon-box-shadow-inset);-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;-o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out}
+.bg-holder {position: absolute;
+	width: 100%;
+	min-height: 100%;
+	top: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+	will-change: transform, opacity, filter;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	background-repeat: no-repeat;
+	z-index: 0
+}
+
+.bg-card {
+	background-size: contain;
+	background-position: right;
+	border-top-right-radius: .375rem;
+	border-bottom-right-radius: .375rem
+}
+
+.form-control {display: block;
+	width: 100%;
+	padding: .3125rem 1rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--falcon-input-color);
+	background-color: var(--falcon-input-bg);
+	background-clip: padding-box;
+	border: 1px solid var(--falcon-input-border-color);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: .25rem;
+	-webkit-box-shadow: var(--falcon-box-shadow-inset);
+	box-shadow: var(--falcon-box-shadow-inset);
+	-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+	-o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
+}
 
 .btn,
 [data-list] .page,

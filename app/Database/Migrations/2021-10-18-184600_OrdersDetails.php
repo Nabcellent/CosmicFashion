@@ -21,12 +21,12 @@ class OrderDetails extends Migration {
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('order_id', 'orders', 'id', '', 'CASCADE');
         $this->forge->addForeignKey('product_id', 'products', 'id', '', 'CASCADE');
-        $this->forge->createTable('order_details', true);
+        $this->forge->createTable('orders_details', true);
     }
 
     public function down() {
         $this->db->disableForeignKeyChecks();
-        $this->forge->dropTable('order_details', true);
+        $this->forge->dropTable('orders_details', true);
         $this->db->enableForeignKeyChecks();
     }
 }
