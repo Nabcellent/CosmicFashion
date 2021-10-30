@@ -12,9 +12,16 @@
 			<div class="bg-holder rounded-3 rounded-bottom-0"
 			     style="background-image:url(/images/dash/generic/4.jpg);"></div>
 			<div class="avatar avatar-5xl avatar-profile">
-				<img class="rounded-circle img-thumbnail shadow-sm" src="/images/dash/team/2.jpg" width="200" alt=""/>
+                <?php if(isset($user->image)): ?>
+					<img class="rounded-circle img-thumbnail shadow-sm" src="/images/users/<?= $user->image ?>"
+					     width="200" alt=""/>
+                <?php else: ?>
+					<img class="rounded-circle img-thumbnail shadow-sm"
+					     src="/images/dash/icons/spot-illustrations/falcon.png" width="200" alt=""/>
+                <?php endif; ?>
 			</div>
 		</div>
+
 		<div class="card-body">
 			<div class="row">
 				<div class="col-lg-8">
@@ -25,7 +32,9 @@
 						</span>
 					</h4>
 					<h5 class="fs-0 fw-normal"><?= $user->email ?></h5>
-					<p class="text-500"><?= $user->role->name ?>, <?= isset($user->apiUser) ? 'Api' : '' ?></p>
+					<p class="text-500"><?= $user->role->name ?>, <?= isset($user->apiUser)
+                            ? 'Api'
+                            : '' ?></p>
 					<button class="btn btn-falcon-primary btn-sm px-3" type="button">Email</button>
 					<button class="btn btn-falcon-default btn-sm px-3 ms-2" type="button">Message</button>
 					<div class="border-dashed-bottom my-4 d-lg-none"></div>
@@ -54,15 +63,15 @@
 							</a>
 						</li>
 
-						<?php if(empty($user->apiUser)): ?>
-						<li class="list-group-item">
-							<a class="d-flex align-items-center" href="#authentication-modal" data-bs-toggle="modal"
-							   aria-expanded="false">
-								<i class="bi bi-shield-lock me-2 text-700"></i>
-								<div class="flex-1"><h6 class="mb-0">Register as API user</h6></div>
-							</a>
-						</li>
-						<?php endif; ?>
+                        <?php if(empty($user->apiUser)): ?>
+							<li class="list-group-item">
+								<a class="d-flex align-items-center" href="#authentication-modal" data-bs-toggle="modal"
+								   aria-expanded="false">
+									<i class="bi bi-shield-lock me-2 text-700"></i>
+									<div class="flex-1"><h6 class="mb-0">Register as API user</h6></div>
+								</a>
+							</li>
+                        <?php endif; ?>
 
 					</ul>
 				</div>
@@ -351,7 +360,8 @@
                         <?= csrf_field() ?>
 						<div class="mb-3">
 							<label class="form-label" for="username">Username</label>
-							<input class="form-control" type="text" placeholder="Username" name="username" id="username" required/>
+							<input class="form-control" type="text" placeholder="Username" name="username" id="username"
+							       required/>
 						</div>
 						<label class="form-label" for="key">Api key <small><i>(optional)</i></small></label>
 						<div class="input-group mb-3">

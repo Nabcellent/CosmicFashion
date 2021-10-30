@@ -214,7 +214,11 @@
         </li>
         <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="avatar avatar-xl">
-                    <img class="rounded-circle" src="/images/dash/team/3-thumb.png" alt="" />
+	                <?php if(isset(user()->image)): ?>
+		                <img class="rounded-circle" src="/images/users/<?= user()->image ?>" alt="" />
+	                <?php else: ?>
+		                <img class="rounded-circle" src="/images/dash/icons/spot-illustrations/falcon.png" alt="Prof Pic.">
+	                <?php endif; ?>
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end py-0" aria-labelledby="navbarDropdownUser">

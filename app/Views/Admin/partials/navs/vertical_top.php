@@ -323,44 +323,66 @@
 					</ul>
 				</li>
 
+				<!--
+            ========================================================================================    VERTICAL ADMIN
+            -->
 
 				<li class="nav-item">
 					<!-- label-->
 					<div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-						<div class="col-auto navbar-vertical-label">Pages</div>
+						<div class="col-auto navbar-vertical-label">Admin</div>
 						<div class="col ps-0">
 							<hr class="mb-0 navbar-vertical-divider"/>
 						</div>
 					</div>
 
 					<!-- parent pages-->
-					<a class="nav-link" href="#!" role="button">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-										class="fas fa-question-circle"></span></span><span
-									class="nav-link-text ps-1">Faq</span></div>
+					<a class="nav-link" href="<?= route_to('admin.user.profile', user()->id) ?>" role="button">
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon">
+								<span class="fas fa-user"></span>
+							</span>
+							<span class="nav-link-text ps-1">Profile</span>
+						</div>
 					</a>
-					<!-- parent pages--><a class="nav-link dropdown-indicator" href="#miscellaneous" role="button"
-					                       data-bs-toggle="collapse"
-					                       aria-controls="miscellaneous">
-						<div class="d-flex align-items-center"><span class="nav-link-icon"><span
-										class="fas fa-thumbtack"></span></span><span
-									class="nav-link-text ps-1">Miscellaneous</span></div>
+					<a class="nav-link" href="#!" role="button">
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon">
+								<span class="fas fa-question-circle"></span>
+							</span>
+							<span class="nav-link-text ps-1">Faq</span>
+						</div>
+					</a>
+					<!-- parent pages-->
+					<a class="nav-link dropdown-indicator" href="#miscellaneous" role="button"
+					   data-bs-toggle="collapse" aria-controls="miscellaneous">
+						<div class="d-flex align-items-center">
+							<span class="nav-link-icon">
+								<span class="fas fa-thumbtack"></span></span>
+							<span class="nav-link-text ps-1">Miscellaneous</span>
+						</div>
 					</a>
 					<ul class="nav collapse false" id="miscellaneous">
-						<li class="nav-item"><a class="nav-link" href="pages/miscellaneous/associations.html">
-								<div class="d-flex align-items-center"><span
-											class="nav-link-text ps-1">Associations</span></div>
+						<li class="nav-item">
+							<a class="nav-link" href="pages/miscellaneous/associations.html">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-text ps-1">Associations</span>
+								</div>
 							</a><!-- more inner pages-->
 						</li>
-						<li class="nav-item"><a class="nav-link" href="pages/miscellaneous/invite-people.html">
-								<div class="d-flex align-items-center"><span
-											class="nav-link-text ps-1">Invite people</span></div>
-							</a><!-- more inner pages-->
+						<li class="nav-item">
+							<a class="nav-link" href="pages/miscellaneous/invite-people.html">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-text ps-1">Invite people</span>
+								</div>
+							</a>
 						</li>
-						<li class="nav-item"><a class="nav-link" href="pages/miscellaneous/privacy-policy.html">
-								<div class="d-flex align-items-center"><span
-											class="nav-link-text ps-1">Privacy policy</span></div>
-							</a><!-- more inner pages-->
+						<li class="nav-item">
+							<a class="nav-link" href="pages/miscellaneous/privacy-policy.html">
+								<div class="d-flex align-items-center">
+									<span class="nav-link-text ps-1">Privacy policy</span>
+								</div>
+							</a>
 						</li>
 					</ul>
 				</li>
