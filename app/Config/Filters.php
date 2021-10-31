@@ -42,7 +42,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             // 'honeypot',
-            'csrf'  => ['except' => 'api/'],
+//            'csrf'  => ['except' => 'api/'],
             'login' => [
                 'except' => [
                     '',
@@ -77,7 +77,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public array $methods = [
-        'post' => ['csrf']
+//        'post' => ['csrf']
     ];
 
     /**

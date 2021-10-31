@@ -60,8 +60,8 @@
 						<input type="hidden" name="price" value="<?= $product->price ?>">
 						<button type="submit"
 						        class="flex-fill me-4 text-uppercase fw-bold btn btn-outline-primary ld-ext-right"
-						        id="add-to-cart-btn" style="width: 50%;">Add to Cart<span
-									class="ld ld-ring ld-spin"></span>
+						        id="add-to-cart-btn" style="width: 50%;">Add to Cart
+							<span class="ld ld-ring ld-spin"></span>
 						</button>
 						<button type="button" class="text-uppercase fw-bold btn btn-primary" style="width: 50%;">
 							Buy now

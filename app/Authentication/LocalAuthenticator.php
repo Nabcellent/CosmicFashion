@@ -50,7 +50,8 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-        if(!$this->user->isActivated()) {
+//        TODO: Find out how this works - checks if user is activated.
+        /*if(!$this->user->isActivated()) {
             // Always record a login attempt, whether success or not.
             $ipAddress = service('request')->getIPAddress();
             $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
@@ -63,7 +64,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
 
             $this->user = null;
             return false;
-        }
+        }*/
 
         return $this->login($this->user, $remember);
     }
@@ -83,10 +84,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
 
             return true;
         }
-
-        // Check the remember me functionality.
-        helper('cookie');
-        $remember = get_cookie('remember');
 
         if(empty($remember)) {
             return false;
@@ -199,8 +196,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
      * Logs a user out of the system.
      */
     public function logout() {
-        helper('cookie');
-
         // Destroy the session data - but ensure a session is still available for flash messages, etc.
         if(isset($_SESSION)) {
             foreach($_SESSION as $key => $value) {
@@ -211,9 +206,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
 
         // Regenerate the session ID for a touch of added safety.
         session()->regenerate(true);
-
-        // Remove the cookie
-        delete_cookie("remember");
 
         // Handle user-specific tasks
         if($user = $this->user()) {

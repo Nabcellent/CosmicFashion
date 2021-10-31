@@ -1,4 +1,8 @@
 <?= $this->extend('layouts/guest') ?>
+<?= $this->section('links') ?>
+	<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
+	<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 
@@ -19,7 +23,7 @@
 
                     <?= view('App\auth\_message_block') ?>
 
-					<form id="login" action="<?= route_to('login') ?>" method="POST">
+					<form id="login" action="" method="POST">
                         <?= csrf_field() ?>
 
 						<div class="form-group">
@@ -36,8 +40,9 @@
 						</div>
 						<div class="d-flex justify-content-between align-items-center mt-5">
 							<a href="<?= route_to('register') ?>">Create an account</a>
-							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary">
+							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary ld-ext-right">
 								Sign In <i class="fas fa-key"></i>
+								<span class="ld ld-ring ld-spin"></span>
 							</button>
 						</div>
 					</form>
@@ -64,6 +69,31 @@
 	                    email: true
                     },
 		            password: 'required'
+	            },
+	            submitHandler: form => {
+                    const data = {};
+                    $(form).serializeArray().map(input => data[input.name] = input.value)
+
+		            const submitButton = $(form).find($('button[type="submit"]'))
+
+		            $.ajax({
+			            data: data,
+			            url: `<?= route_to('login') ?>`,
+			            method: 'POST',
+                        beforeSend: () => submitButton.prop('disabled', true).addClass('running'),
+			            success: response => {
+                            const result = JSON.parse(response)
+
+				            if(result.status) {
+                                location.href = result.url
+				            } else if(result.message) {
+                                toast({msg:result.message, type: 'warning', duration: 10, position: 'left'})
+				            } else {
+                                toast({msg:`Error: unable to log you in. Kindly contact admin.`, type: 'warning', position:'left'})
+				            }
+			            },
+                        complete: () => submitButton.prop('disabled', false).removeClass('running')
+		            })
 	            }
             })
 		})

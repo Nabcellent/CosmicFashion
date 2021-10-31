@@ -39,10 +39,13 @@
     }
 
     function toast(data) {
+        const duration = (data.duration ?? 7) * 1000    //  Converts to seconds
+
         Toastify({
             text: data.msg,
-            duration: 7000,
+            duration: duration,
             close: true,
+            position: data.position ?? 'right',
             className: data.type,
         }).showToast();
     }

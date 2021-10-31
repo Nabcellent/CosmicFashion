@@ -1,4 +1,8 @@
 <?= $this->extend('layouts/guest') ?>
+<?= $this->section('links') ?>
+<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
+<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 <div class="d-flex flex-column justify-content-center align-items-center h-100 col-12 col-md-6">
@@ -24,7 +28,7 @@
 
                 <?= view('App\auth\_message_block') ?>
 
-				<form id="register" action="<?= route_to('register') ?>" method="POST" class="w-100">
+				<form id="register" action="" method="POST" class="w-100">
                     <?= csrf_field() ?>
 
 					<div class="row mb-2">
@@ -84,8 +88,9 @@
 					</div>
 					<div class="d-flex justify-content-between align-items-center mt-5">
 						<a href="<?= route_to('login') ?>">Sign In to your account</a>
-						<button type="submit" class="fw-bold text-uppercase Register_button__1hHYm btn btn-primary">
-							SIGN UP <i class="fas fa-user-plus"></i>
+						<button type="submit"
+						        class="fw-bold text-uppercase Register_button__1hHYm btn btn-primary ld-ext-right">
+							SIGN UP <i class="fas fa-user-plus"></i><span class="ld ld-ring ld-spin"></span>
 						</button>
 					</div>
 				</form>
@@ -126,6 +131,35 @@
                 password_confirmation: {
                     equalTo: 'Passwords do not match.'
                 }
+            },
+            submitHandler: form => {
+                const data = {};
+                $(form).serializeArray().map(input => data[input.name] = input.value)
+
+                const submitButton = $(form).find($('button[type="submit"]'))
+
+                $.ajax({
+                    data: data,
+                    url: `<?= route_to('register') ?>`,
+                    method: 'POST',
+                    beforeSend: () => submitButton.prop('disabled', true).addClass('running'),
+                    success: response => {
+                        const result = JSON.parse(response)
+
+                        if (result.status) {
+                            location.href = result.url
+                        } else if (result.message) {
+                            toast({msg: result.message, type: 'warning', duration: 10, position: 'left'})
+                        } else {
+                            toast({
+                                msg: `Error: unable to log you in. Kindly contact admin.`,
+                                type: 'warning',
+                                position: 'left'
+                            })
+                        }
+                    },
+                    complete: () => submitButton.prop('disabled', false).removeClass('running')
+                })
             }
         })
     })

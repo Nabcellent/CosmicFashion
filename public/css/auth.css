@@ -33,12 +33,6 @@
 	background-size: cover
 }
 
-@media (max-width: 1280px) {
-	.Register_button__1hHYm {
-		padding: 14px 37px !important
-	}
-}
-
 .Register_formGroup__6wvMB {
 	position: relative
 }
