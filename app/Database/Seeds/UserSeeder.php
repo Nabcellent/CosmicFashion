@@ -6,6 +6,7 @@ use App\Models\Role;
 use CodeIgniter\Database\Seeder;
 use Exception;
 use Faker\Factory;
+use Myth\Auth\Password;
 
 class UserSeeder extends Seeder {
     /**
@@ -22,7 +23,7 @@ class UserSeeder extends Seeder {
             'role_id' => Role::where('name', 'Red')->first()->id,
             'email' => 'nabcellent.dev@gmail.com',
             'image' => '2.jpg',
-            'password' => password_hash('CosmicFashion.', PASSWORD_DEFAULT),
+            'password' => Password::hash('CosmicFashion.'),
         ]);
 
         for($i = 0; $i < 10; $i++) $this->db->table('users')->insert($this->fakeUser());
@@ -38,7 +39,7 @@ class UserSeeder extends Seeder {
             'first_name' => $faker->firstName(),
             'last_name'  => $faker->lastName(),
             'gender'     => $faker->randomElement(['male', 'female']),
-            'role_id'    => $faker->randomElement(Role::all()->pluck('id')->toArray()),
+            'role_id'    => $faker->randomElement(Role::where('id', '<>', 1)->pluck('id')->toArray()),
             'email'      => $faker->email,
             'password'   => password_hash('mike', PASSWORD_DEFAULT),
         ];

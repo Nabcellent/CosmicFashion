@@ -29,9 +29,8 @@ class AuthController extends Controller
     public function __construct() {
         service('eloquent');
         // Most services in this controller require the session to be started - so fire it up!
-        $this->session = service('session');
-
         $this->config = config('Auth');
+        $this->session = service('session');
         $this->auth = service('authentication');
     }
 
