@@ -30,12 +30,13 @@ class Product extends Model
     public function subCategory(): BelongsTo {
         return $this->belongsTo(SubCategory::class)->with('category');
     }
-
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
-
     public function images(): HasMany {
         return $this->hasMany(ProductsImage::class);
+    }
+    public function cart(): HasMany {
+        return $this->hasMany(Cart::class);
     }
 }

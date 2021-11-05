@@ -158,7 +158,11 @@
                             })
                         }
                     },
-                    complete: () => submitButton.prop('disabled', false).removeClass('running')
+                    complete: (xhr) => {
+                        let err = eval("(" + xhr.responseText + ")");
+
+                        if(err.status !== true) submitButton.prop('disabled', false).removeClass('running')
+                    }
                 })
             }
         })

@@ -13,6 +13,7 @@ class Cart extends Migration
             'product_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'quantity'   => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'default' => 1],
             'price'      => ['type' => 'DOUBLE', 'unsigned' => true],
+            'discount'        => ['type' => 'TINYINT', 'default' => 0,],
             'created_at timestamp default current_timestamp',
             'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
             'is_deleted' => ['type' => 'BOOLEAN', 'default' => false],

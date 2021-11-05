@@ -92,7 +92,11 @@
                                 toast({msg:`Error: unable to log you in. Kindly contact admin.`, type: 'warning', position:'left'})
 				            }
 			            },
-                        complete: () => submitButton.prop('disabled', false).removeClass('running')
+                        complete: (xhr) => {
+                            let err = eval("(" + xhr.responseText + ")");
+
+                            if(err.status !== true) submitButton.prop('disabled', false).removeClass('running')
+                        }
 		            })
 	            }
             })

@@ -1,8 +1,10 @@
 <?php namespace App\Controllers\Auth;
 
 use App\Entities\User;
+use App\Models\Cart;
 use App\Models\Role;
 use App\Models\UserModel;
+use Carbon\Carbon;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Session\Session;
@@ -103,6 +105,26 @@ class AuthController extends Controller
             return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash);
         }
 
+        $userCart = \App\Models\User::find($this->auth->user()->id)->cart();
+
+        $cart = [];
+        if($userCart->exists()) {
+            foreach($userCart->with('product')->get() as $item) {
+                $cart[$item['product_id']] = [
+                    "name"         => $item->product->name,
+                    "quantity"     => $item->quantity,
+                    "price"        => $item->price,
+                    "sub_total"    => (int)$item->price * $item->quantity,
+                    "sub_category" => $item->product->subCategory->name,
+                    "image"        => $item->product->image,
+                    "discount"     => $item->discount,
+                    'created_at'   => $item->created_at
+                ];
+            }
+        }
+
+        session()->set('cart', $cart);
+
         $redirectURL = site_url('/');
         unset($_SESSION['redirect_url']);
 
@@ -115,6 +137,17 @@ class AuthController extends Controller
      * Log the user out.
      */
     public function logout(): RedirectResponse {
+        $cart = session('cart');
+
+        if(!empty('cart')) {
+            foreach($cart as $productId => $item) {
+                Cart::updateOrCreate(
+                    ['user_id' => user()->id, 'product_id' => $productId],
+                    $item
+                );
+            }
+        }
+
         if($this->auth->check()) {
             $this->auth->logout();
         }

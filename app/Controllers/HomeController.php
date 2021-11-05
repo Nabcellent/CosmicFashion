@@ -13,7 +13,7 @@ class HomeController extends BaseController {
         //  SELECT * FROM users WHERE email = nabcellent.dev@gmail.com;
 
         //  With eloquent...
-        $users = User::where('email', 'nabcellent.dev@gmail.com;')->get();
+//        $users = User::where('email', 'nabcellent.dev@gmail.com;')->get();
 
         $data['newArrivals'] = Product::latest()->limit(8)->get();;
 

@@ -80,7 +80,7 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="<?= route_to('user.index') ?>">Profile</a></li>
 							<li><a class="dropdown-item" href="<?= route_to('user.account') ?>">Account</a></li>
-							<li><a class="dropdown-item" href="#">Wishlist</a></li>
+							<li><a class="dropdown-item" href="<?= route_to('orders.index') ?>">Checkout</a></li>
 							<li>
 								<hr class="dropdown-divider">
 							</li>
@@ -92,6 +92,8 @@
 					</div>
                 <?php else: ?>
 					<a href="<?= route_to('login') ?>" class="link-primary ms-2">Sign In</a>
+                &nbsp; |
+					<a href="<?= route_to('register') ?>" class="link-primary ms-2">Sign Up</a>
                 <?php endif; ?>
 			</li>
 		</ul>

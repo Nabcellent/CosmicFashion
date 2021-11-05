@@ -55,9 +55,11 @@ class User extends Model {
     public function role(): BelongsTo {
         return $this->belongsTo(Role::class);
     }
-
     public function logins(): HasMany {
         return $this->hasMany(Login::class);
+    }
+    public function cart(): HasMany {
+        return $this->hasMany(Cart::class);
     }
 
 
