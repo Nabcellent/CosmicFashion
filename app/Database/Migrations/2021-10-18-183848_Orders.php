@@ -12,6 +12,7 @@ class Orders extends Migration
             'user_id'         => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'payment_type_id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true],
             'amount'          => ['type' => 'DOUBLE', 'unsigned' => true, 'default' => 0],
+            'is_paid'         => ['type' => 'BOOLEAN', 'default' => false],
             'status'          => [
                 'type'       => 'ENUM',
                 'constraint' => ['pending', 'paid', 'pending payment'],

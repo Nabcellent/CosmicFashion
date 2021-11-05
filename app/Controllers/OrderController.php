@@ -23,16 +23,30 @@ class OrderController extends BaseController
     }
 
     public function store(): RedirectResponse {
-        $cart = session('cart');
+        if(self::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+            return redirect('orders.thanks');
+        }
 
+        return createFail('Unable to place order. kindly contact Admin.');
+    }
+
+    public function thanks(): string {
         $data = [
-            'user_id' => user()->id,
-            'payment_type_id' => $this->request->getVar('payment_method'),
-            'amount' => cartDetails('total'),
+            'title'     => 'Thank you',
+            'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(8)->get(),
         ];
 
+        return view('thanks', $data);
+    }
+
+    public static function storeCart(array $data): bool|Order {
+        $cart = session('cart');
+
+        $data['amount'] = cartDetails('total');
+        $data['user_id'] = user_id();
+
         try {
-            DB::transaction(function() use ($cart, $data) {
+            $order = DB::transaction(function() use ($cart, $data) {
                 $order = Order::create($data);
 
                 foreach($cart as $productId => $item) {
@@ -44,23 +58,17 @@ class OrderController extends BaseController
                         'created_at' => $item['created_at']
                     ]);
                 }
+
+                return $order;
             });
 
-            session()->set('cart', []);
+//            session()->set('cart', []);
 
-            return redirect('orders.thanks');
+            return $order;
         } catch (Exception|Throwable $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
-            return toastError($e->getMessage(), 'Unable to place order. kindly contact Admin.');
+
+            return false;
         }
-    }
-
-    public function thanks(): string {
-        $data = [
-            'title'     => 'Thank you',
-            'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(8)->get(),
-        ];
-
-        return view('thanks', $data);
     }
 }

@@ -251,6 +251,7 @@ class AuthController extends Controller
             $users = $users->withGroup($this->config->defaultUserGroup);
         }*/
 
+
         $newUser['password'] = Password::hash($newUser['password']);
 
         \App\Models\User::create($newUser);

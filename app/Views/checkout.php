@@ -15,7 +15,7 @@
 			</div>
 		</div>
 
-		<form action="<?= route_to('orders.store') ?>" method="POST" class="container">
+		<form action="<?= route_to('orders.store') ?>" id="checkout-form" method="POST" class="container">
             <?= csrf_field() ?>
 			<div class="my-5 row">
 				<div class="col-sm-12">
@@ -115,7 +115,9 @@
 <?= $this->section('scripts') ?>
 	<!--    SweetAlert2     -->
 	<script src="/vendor/sweetalert/sweetalert.js"></script>
+	<script src="/js/payment.js"></script>
 	<script>
+		const checkoutForm = $('#checkout-form')
         const paymentOptions = {
             Mpesa: {
                 text: 'Lipa na Mpesa',
@@ -138,11 +140,19 @@
             $('#submit-button button').html(paymentMethod.text)
         })
 
-        $('form').on('submit', function(e) {
+        checkoutForm.on('submit', function(e) {
             e.preventDefault()
 
 	        if(selectedMethod === 'Cash') {
-                console.log($(this).trigger('submit'))
+                $(this).trigger('submit')
+	        } else if($.inArray(selectedMethod, ['Mpesa', 'PayPal']) !== -1) {
+                const formData = {}
+
+		        checkoutForm.serializeArray().map(input => {
+                    formData[input.name] = input.value;
+		        })
+
+                payWithMpesa('<?= cartDetails('total') ?>', formData)
 	        }
         })
 	</script>

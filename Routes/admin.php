@@ -44,6 +44,11 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('edit/(:num)', 'UserController::edit/$1', ['as' => 'admin.user.edit']);
         $routes->put('update/(:num)', 'UserController::update/$1', ['as' => 'admin.user.update']);
     });
+
+    $routes->group('payments', function($routes) {
+        $routes->post('stk_requests', 'PaymentController::initiateStkPush');
+        $routes->get('stk_status/(:segment)', 'PaymentController::stkStatus/$1');
+    });
 });
 
 $routes->get('/check-email', 'UserController::checkEmailExists');

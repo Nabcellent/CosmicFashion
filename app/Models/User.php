@@ -61,6 +61,9 @@ class User extends Model {
     public function cart(): HasMany {
         return $this->hasMany(Cart::class);
     }
+    public function mpesaStkRequests(): HasMany {
+        return $this->hasMany(MpesaStkRequest::class);
+    }
 
 
 

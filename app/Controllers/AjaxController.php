@@ -41,7 +41,5 @@ class AjaxController extends BaseController
                 'msg' => 'unable to delete record.'
             ]);
         });
-
-
     }
 }
