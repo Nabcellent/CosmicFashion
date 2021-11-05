@@ -2,73 +2,7 @@
 <?= $this->section('links') ?>
 	<link rel="stylesheet" href="/vendor/loadingbtn/loading.min.css">
 	<link rel="stylesheet" href="/vendor/loadingbtn/ldbtn.min.css">
-	<style>
-		.btn.btn-outline-success,
-		.btn.btn-outline-danger,
-		.btn.btn-outline-warning {
-			position: relative;
-			transition: all .3s ease;
-		}
-
-		.btn.btn-outline-success {
-			color: #21ae8c;
-			border: 1px solid #21ae8c;
-		}
-
-		.btn.btn-outline-danger {
-			color: #fd5f00;
-			border: 1px solid #fd5f00;
-		}
-
-		.btn.btn-outline-warning {
-			color: #fda700;
-			border: 1px solid #fda700;
-		}
-
-		.btn.btn-outline-success:focus:after,
-		.btn.btn-outline-success:hover:after,
-		.btn.btn-outline-warning:focus:after,
-		.btn.btn-outline-warning:hover:after,
-		.btn.btn-outline-danger:focus:after,
-		.btn.btn-outline-danger:hover:after {
-			width: 100%;
-			transition: all .3s ease
-		}
-
-		.btn.btn-outline-success:focus,
-		.btn.btn-outline-success:hover,
-		.btn.btn-outline-danger:focus,
-		.btn.btn-outline-danger:hover,
-		.btn.btn-outline-warning:focus,
-		.btn.btn-outline-warning:hover {
-			color: #fff !important
-		}
-
-		.btn.btn-outline-success:after,
-		.btn.btn-outline-warning:after,
-		.btn.btn-outline-danger:after {
-			content: '';
-			position: absolute;
-			transition: all .3s ease;
-			z-index: -1;
-			width: 0;
-			height: 100%;
-			top: 0;
-			left: 0;
-		}
-
-		.btn.btn-outline-success:after {
-			background: #21ae8c
-		}
-
-		.btn.btn-outline-danger:after {
-			background: #fd5f00
-		}
-
-		.btn.btn-outline-warning:after {
-			background: #fda700
-		}
-	</style>
+	<link rel="stylesheet" href="/css/checkout.css">
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
@@ -86,19 +20,20 @@
 			<div class="my-5 row">
 				<div class="col-sm-12">
 					<h3 class="fw-bold">Checkout</h3>
-					<p>Choose a payment option below and fill out the approriate infomation</p>
+					<p>Choose a payment option below</p>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-sm-12 btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
                     <?php foreach($paymentTypes as $type) { ?>
-						<input type="radio" class="btn-check" name="payment_method" id="method<?= $type->id ?>"
+						<input type="radio" class="btn-check" name="payment_method"
+						       id="method<?= str_replace(' ', '', $type->name) ?>"
 						       autocomplete="off" <?= strtolower($type->name) === 'mpesa'
                             ? ' checked'
                             : '' ?> value="<?= $type->id ?>">
 						<label class="btn btn-outline-<?= $type->description ?>"
-						       for="method<?= $type->id ?>"><?= $type->name ?></label>
+						       for="method<?= str_replace(' ', '', $type->name) ?>"><?= $type->name ?></label>
                     <?php } ?>
 				</div>
 			</div>
@@ -165,11 +100,11 @@
 							<h5 class="fw-bold" style="margin-right:63px">Total:</h5>
 							<h5 class="fw-bold summary-total">KSH.<?= cartDetails('total') ?>/=</h5>
 						</div>
-						<button type="submit"
-						        class="text-uppercase mt-auto fw-bold btn btn-primary">
-							Place Order
-							<i class="fas fa-truck"></i>
-						</button>
+						<div id="submit-button" class="mt-auto d-grid">
+							<button class="text-uppercase fw-bold btn btn-primary">
+								Lipa na Mpesa
+							</button>
+						</div>
 					</section>
 				</div>
 			</div>
@@ -180,5 +115,36 @@
 <?= $this->section('scripts') ?>
 	<!--    SweetAlert2     -->
 	<script src="/vendor/sweetalert/sweetalert.js"></script>
-	<?= $this->endSection() ?>
+	<script>
+        const paymentOptions = {
+            Mpesa: {
+                text: 'Lipa na Mpesa',
+            },
+            PayPal: {
+                text: 'paypal payment'
+            },
+            Cash: {
+                text: 'Place order <i class="fas fa-truck"></i>'
+            }
+        }
+
+        let selectedMethod = $('.btn-group input:checked').prop('id').slice(6),
+            paymentMethod = paymentOptions[selectedMethod]
+
+        $('.btn-group input').on('change', function () {
+            selectedMethod = $(this).prop('id').slice(6);
+            paymentMethod = paymentOptions[selectedMethod]
+
+            $('#submit-button button').html(paymentMethod.text)
+        })
+
+        $('form').on('submit', function(e) {
+            e.preventDefault()
+
+	        if(selectedMethod === 'Cash') {
+                console.log($(this).trigger('submit'))
+	        }
+        })
+	</script>
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>
