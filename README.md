@@ -20,7 +20,7 @@ PHP - specifically the codeigniter 4 framework together with the following libra
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts
 2. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
 3. [Datatables](https://datatables.net/)
-4. [Tom Select](https://tom-select.js.org/) - a versatile and dynamic `select` UI control
+4. [Tom Select](https://tom-select.js.org/) - A versatile and dynamic `select` UI control
 5. [FilePond](https://pqina.nl/filepond/) - File uploader
 6. 
 
