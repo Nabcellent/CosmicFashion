@@ -34,6 +34,25 @@ class ProductController extends BaseController
         return view('Admin/pages/products/index', $data);
     }
 
+    /**
+     * Return the properties of a resource object
+     *
+     * @param $id
+     * @return RedirectResponse|string
+     */
+    public function show($id): string|RedirectResponse {
+        try {
+            $data = [
+                'product' => Product::with('user')->findOrFail($id),
+            ];
+
+            return view('Admin/pages/products/show', $data);
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Unable to find product for viewing!', 'admin.product.index');
+        }
+    }
+
     public function create(): string {
         $data['categories'] = Category::with([
             'subCategories' => function($query) {
