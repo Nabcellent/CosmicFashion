@@ -48,6 +48,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
     $routes->group('payments', function($routes) {
         $routes->post('stk_requests', 'PaymentController::initiateStkPush');
         $routes->get('stk_status/(:segment)', 'PaymentController::stkStatus/$1');
+        $routes->post('paypal-callback', 'PaymentController::paypalCallback');
     });
 });
 

@@ -12,7 +12,8 @@
     "illuminate/support": "^8.64",
     "nabcellent/codeigniter4-eloquent": "^1.0",
     "guzzlehttp/guzzle": "^7.0",
-    "ext-openssl": "*"
+    "ext-openssl": "*",
+    "amrshawky/laravel-currency": "^4.0"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9",

@@ -4,7 +4,6 @@ use App\Entities\User;
 use App\Models\Cart;
 use App\Models\Role;
 use App\Models\UserModel;
-use Carbon\Carbon;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\Session\Session;
@@ -141,10 +140,7 @@ class AuthController extends Controller
 
         if(!empty('cart')) {
             foreach($cart as $productId => $item) {
-                Cart::updateOrCreate(
-                    ['user_id' => user()->id, 'product_id' => $productId],
-                    $item
-                );
+                Cart::updateOrCreate(['user_id' => user()->id, 'product_id' => $productId], $item);
             }
         }
 

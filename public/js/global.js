@@ -13,3 +13,14 @@ function errorAlert(message) {
         text: message,
     })
 }
+
+function showLoader(message = null) {
+    if(message !== null) {
+        $('loader button').html(message);
+    }
+
+    $('loader.wait').show(300);
+}
+function hideLoader() {
+    $('loader.wait').hide(500);
+}

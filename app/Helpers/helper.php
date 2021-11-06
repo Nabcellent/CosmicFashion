@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
@@ -16,6 +17,17 @@ if(!function_exists('cartDetails')) {
         ];
 
         return $detail ? $cart[$detail] : $cart;
+    }
+}
+
+if(!function_exists('emptyCart')) {
+    function emptyCart() {
+        session()->set('cart', []);
+
+        $dbCart = Cart::where('user_id', user_id());
+        if(logged_in() && $dbCart->exists()) {
+            $dbCart->delete();
+        }
     }
 }
 

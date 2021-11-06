@@ -101,9 +101,11 @@
 							<h5 class="fw-bold summary-total">KSH.<?= cartDetails('total') ?>/=</h5>
 						</div>
 						<div id="submit-button" class="mt-auto d-grid">
-							<button class="text-uppercase fw-bold btn btn-primary">
+							<button class="text-uppercase fw-bold btn btn-primary" style="border-radius:18px">
 								Lipa na Mpesa
 							</button>
+							<div id="paypal_payment_button"
+							     style="position:relative;z-index:1;height:2.2rem;display:none"></div>
 						</div>
 					</section>
 				</div>
@@ -115,20 +117,23 @@
 <?= $this->section('scripts') ?>
 	<!--    SweetAlert2     -->
 	<script src="/vendor/sweetalert/sweetalert.js"></script>
+	<script
+			src="https://www.paypal.com/sdk/js?client-id=AfzK9bEaxQ_TP4LIXl0Pp-akLxoKvaReVchEVlTfiRWdseaa1l1o-iXQ92FlhBla_M73KSLf4Y6NBWOG&disable-funding=credit,card&buyer-country=KE&components=buttons"></script>
 	<script src="/js/payment.js"></script>
 	<script>
-		const checkoutForm = $('#checkout-form')
-        const paymentOptions = {
-            Mpesa: {
-                text: 'Lipa na Mpesa',
-            },
-            PayPal: {
-                text: 'paypal payment'
-            },
-            Cash: {
-                text: 'Place order <i class="fas fa-truck"></i>'
+        const checkoutForm = $('#checkout-form'),
+            submitButton = $('#submit-button button'),
+            paymentOptions = {
+                Mpesa: {
+                    text: 'Lipa na Mpesa',
+                },
+                PayPal: {
+                    text: 'paypal payment'
+                },
+                Cash: {
+                    text: 'Place order <i class="fas fa-truck"></i>'
+                }
             }
-        }
 
         let selectedMethod = $('.btn-group input:checked').prop('id').slice(6),
             paymentMethod = paymentOptions[selectedMethod]
@@ -137,23 +142,30 @@
             selectedMethod = $(this).prop('id').slice(6);
             paymentMethod = paymentOptions[selectedMethod]
 
-            $('#submit-button button').html(paymentMethod.text)
+            if (selectedMethod === 'PayPal') {
+                submitButton.hide(300);
+                $('#paypal_payment_button').show(300)
+            } else {
+                submitButton.html(paymentMethod.text)
+                submitButton.show(300);
+                $('#paypal_payment_button').hide(300)
+            }
         })
 
-        checkoutForm.on('submit', function(e) {
+        checkoutForm.on('submit', function (e) {
             e.preventDefault()
 
-	        if(selectedMethod === 'Cash') {
+            if (selectedMethod === 'Cash') {
                 $(this).trigger('submit')
-	        } else if($.inArray(selectedMethod, ['Mpesa', 'PayPal']) !== -1) {
+            } else if (selectedMethod === 'Mpesa') {
                 const formData = {}
 
-		        checkoutForm.serializeArray().map(input => {
+                checkoutForm.serializeArray().map(input => {
                     formData[input.name] = input.value;
-		        })
+                })
 
                 payWithMpesa('<?= cartDetails('total') ?>', formData)
-	        }
+            }
         })
 	</script>
 <?= $this->endSection() ?>

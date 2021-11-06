@@ -16,7 +16,7 @@ function payWithMpesa(amount, formData) {
                     method: 'POST',
                     url: `/admin/payments/stk_requests`,
                     dataType: 'json',
-                    beforeSend: () => console.log('Processing...'),
+                    beforeSend: () => showLoader('Processing payment...'),
                     statusCode: {
                         200: response => {
                             if (response.status) {
@@ -103,7 +103,7 @@ class STK {
                 timer: 3000,
                 showConfirmButton: false
             }).then(() => {
-                if(data.url !== "") {
+                if (data.url !== "") {
                     window.location = data.url
                 }
             });
@@ -125,4 +125,94 @@ class STK {
             });
         }
     }
+}
+
+
+/**---------------------------------------------------------------------------------------------------
+ *                          PAYPAL PAYMENT
+ * ---------------------------------------------------------------------------------------------------*/
+if ($('#paypal_payment_button').length) {
+    const formData = {}
+
+    $('#checkout-form').serializeArray().map(input => {
+        formData[input.name] = input.value;
+    });
+
+    paypal.Buttons({
+        style: {
+            color: 'blue',
+            layout: 'vertical',
+            shape: 'pill',
+            label: 'buynow',
+        },
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        currency_code: "USD",
+                        value: 1
+                        //value: parseFloat(AMOUNT_USD)
+                    },
+                    payee: {
+                        email_address: 'sb-kg0wb2320059@business.example.com'
+                    }
+                }]
+            });
+        },
+        onApprove: (data, actions) => {
+            return actions.order.capture().then((details) => {
+                formData.payload = details
+                formData.status = 'Paid'
+
+                $.ajax({
+                    data: formData,
+                    type: 'POST',
+                    url: '/admin/payments/paypal-callback',
+                    dataType: 'json',
+                    beforeSend: () => showLoader('Processing payment...'),
+                    statusCode: {
+                        200: (response) => {
+                            if (response.status) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Payment Successful!',
+                                    text: 'RewAd',
+                                    timer: 3000,
+                                    showConfirmButton: false
+                                }).then(() => {
+                                    if (data.url !== "") window.location = response.url;
+                                });
+                            } else {
+                                errorAlert(response.message)
+                            }
+                        },
+                    },
+                    error: () => {
+                        oopsError()
+                    }
+                });
+            });
+        },
+        onCancel: (data) => {
+            data.status = 'Cancelled';
+            formData.payload = data;
+
+            $.ajax({
+                data: formData,
+                type: 'POST',
+                url: '/admin/payments/paypal-callback',
+                dataType: 'json',
+            })
+
+            Swal.fire({
+                title: 'Payment Cancelled.',
+                position: 'top-end',
+                icon: 'info',
+                text: 'RewAd',
+                timer: 3000,
+                showConfirmButton: false
+            })
+        }
+    }).render('#paypal_payment_button');
 }

@@ -35,7 +35,7 @@ class ProductController extends BaseController
         }
     }
 
-    public function store() {
+    public function store(): bool|string {
         try {
             $productId = $this->request->getVar('product_id');
             $quantity = (int)$this->request->getVar('quantity');
@@ -69,8 +69,6 @@ class ProductController extends BaseController
                 'cartTotal' => cartDetails('total'),
                 'msg'       => 'Item added to cart successfully!'
             ]);
-
-//            return redirect()->back()->with('toast_success', 'Product added to cart successfully!');
         } catch (Exception $e) {
             return json_encode([
                 'status'  => false,

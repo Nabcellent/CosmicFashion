@@ -46,7 +46,7 @@ class OrderController extends BaseController
         $data['user_id'] = user_id();
 
         try {
-            $order = DB::transaction(function() use ($cart, $data) {
+            return DB::transaction(function() use ($cart, $data) {
                 $order = Order::create($data);
 
                 foreach($cart as $productId => $item) {
@@ -61,10 +61,6 @@ class OrderController extends BaseController
 
                 return $order;
             });
-
-//            session()->set('cart', []);
-
-            return $order;
         } catch (Exception|Throwable $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
 

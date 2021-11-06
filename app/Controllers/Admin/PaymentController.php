@@ -2,14 +2,16 @@
 
 namespace App\Controllers\Admin;
 
+use AmrShawky\Currency;
 use App\Controllers\BaseController;
 use App\Libraries\Mpesa\Repositories\Mpesa;
 use App\Libraries\Mpesa\Static\STK;
 use App\Models\MpesaStkRequest;
-use App\Models\Order;
+use App\Models\PayPalCallback;
 use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
 
 class PaymentController extends BaseController
@@ -76,6 +78,8 @@ class PaymentController extends BaseController
                         $order = MpesaStkRequest::where('checkout_request_id', $reference)->first()->order;
                         $order->is_paid = true;
                         $order->save();
+
+                        emptyCart();
                     } catch (Exception $e) {
                         log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
 
@@ -107,5 +111,54 @@ class PaymentController extends BaseController
         }
 
         return json_encode(['status' => $status, 'message' => $message]);
+    }
+
+
+    public function paypalCallback() {
+        $payLoad = $this->request->getVar('payload');
+
+        try {
+            $data['status'] = strtolower($payLoad['status']);
+            $url = "";
+
+            if($payLoad['status'] === 'COMPLETED') {
+                $data['payload_id'] = $payLoad['id'];
+                $data['payer_email'] = $payLoad['payer']['email_address'];
+                $data['amount'] = $this->dollarsToKSH($payLoad['purchase_units'][0]['amount']['value']);
+                $data['created_at'] = $payLoad['create_time'];
+                $data['updated_at'] = $payLoad['update_time'];
+
+                $callback = PayPalCallback::create($data);
+
+                $url = route_to('orders.thanks');
+
+                if($order = \App\Controllers\OrderController::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+                    $callback->order_id = $order->id;
+                    $callback->save();
+
+                    $callback->order()->update(['is_paid' => true]);
+
+                    emptyCart();
+                }
+            } else {
+                $data['pp_order_id'] = $payLoad['orderID'];
+
+                PayPalCallback::create($data);
+            }
+
+            return json_encode(['status' => true, 'url' => $url]);
+        } catch(QueryException | Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+
+            return json_encode(['status' => false, 'message' => 'Something went wrong', 'content' => $e->getMessage()]);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function dollarsToKSH($amount): float {
+        return Currency::convert()
+            ->from('USD')->to('KES')->amount($amount)->round(2)->get();
     }
 }
