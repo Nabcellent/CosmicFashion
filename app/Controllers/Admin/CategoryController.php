@@ -19,7 +19,7 @@ class CategoryController extends BaseController
         return view('Admin/pages/categories/upsert');
     }
 
-    public function store() {
+    public function store(): RedirectResponse {
         if(!$this->validate(['name' => 'required',])) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }

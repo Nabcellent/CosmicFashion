@@ -12,6 +12,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('/', 'CategoryController', ['as' => 'admin.category.index']);
         $routes->get('create', 'CategoryController::create', ['as' => 'admin.category.create']);
         $routes->post('store', 'CategoryController::store', ['as' => 'admin.category.store']);
+        $routes->get('show/(:num)', 'CategoryController::show/$1', ['as' => 'admin.categories.show']);
         $routes->get('edit/(:num)', 'CategoryController::edit/$1', ['as' => 'admin.category.edit']);
         $routes->put('update/(:num)', 'CategoryController::update/$1', ['as' => 'admin.category.update']);
     });

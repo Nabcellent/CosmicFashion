@@ -82,6 +82,10 @@
 									<td class="align-middle"><?= $category->sub_categories_count ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
+											<a href="<?= route_to('admin.categories.show', $category->id) ?>"
+											   class="btn btn-sm btn-secondary rounded-circle shadow" title="View category">
+												<i class="bi bi-eye-fill"></i>
+											</a>
 											<a href="<?= route_to('admin.category.edit', $category->id) ?>"
 											   class="btn btn-sm btn-primary rounded-circle shadow">
 												<i class="fas fa-pen"></i></a>
