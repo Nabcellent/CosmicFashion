@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nosterla/public_html/cosmic_fashion/
+    - /bin/cp -r * $DEPLOYPATH
