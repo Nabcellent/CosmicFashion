@@ -24,6 +24,8 @@ class OrderController extends BaseController
 
     public function store(): RedirectResponse {
         if(self::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+            emptyCart();
+
             return redirect('orders.thanks');
         }
 

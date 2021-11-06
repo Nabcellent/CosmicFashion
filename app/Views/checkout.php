@@ -153,11 +153,9 @@
         })
 
         checkoutForm.on('submit', function (e) {
-            e.preventDefault()
+            if (selectedMethod === 'Mpesa') {
+                e.preventDefault()
 
-            if (selectedMethod === 'Cash') {
-                $(this).trigger('submit')
-            } else if (selectedMethod === 'Mpesa') {
                 const formData = {}
 
                 checkoutForm.serializeArray().map(input => {
