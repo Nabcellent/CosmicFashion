@@ -10,7 +10,6 @@ PHP - specifically the codeigniter 4 framework together with the following libra
 2. [FontAwesome 6](https://fontawesome.com/)
 3. [Loading.io](https://loading.io/) - For the `loading button` styling.
 
-
 ### JS
 1. [Jquery v3.3.6](https://jquery.com/) - Designed to simplify HTML DOM tree traversal and manipulation
 2. [Swiper](https://swiperjs.com/) - A modern slider with hardware accelerated transitions and amazing native behavior.
@@ -19,8 +18,11 @@ PHP - specifically the codeigniter 4 framework together with the following libra
 
 ### Other Plugins
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts
-2. [Datatables](https://datatables.net/)
-3. [FilePond](https://pqina.nl/filepond/) - File uploader
+2. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
+3. [Datatables](https://datatables.net/)
+4. [Tom Select](https://tom-select.js.org/) - a versatile and dynamic `select` UI control
+5. [FilePond](https://pqina.nl/filepond/) - File uploader
+6. 
 
 Feel free to browse through the code and notify me if you find any issues. More information can be found at
 the [official site](http://codeigniter.com).
