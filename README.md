@@ -1,4 +1,4 @@
-# CosmicFashion.
+# 🛒CosmicFashion.🛍
 [![License](https://poser.pugx.org/nabcellent/laravel-kyanda/license)](https://github.com/Nabcellent/laravel-kyanda/blob/master/LICENSE.md)
 
 ## What is [`CosmicFashion`](https://cosmicfashion.nosterlab.com/).?
