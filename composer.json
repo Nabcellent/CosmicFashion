@@ -20,7 +20,6 @@
     "mikey179/vfsstream": "^1.6",
     "phpunit/phpunit": "^9.1",
     "symfony/var-dumper": "^5.3",
-    "barryvdh/laravel-ide-helper": "^2.10"
   },
   "suggest": {
     "ext-fileinfo": "Improves mime type detection for files"
