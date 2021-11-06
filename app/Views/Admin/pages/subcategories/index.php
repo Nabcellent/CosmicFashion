@@ -47,7 +47,7 @@
 								<th class="align-middle">Name</th>
 								<th class="align-middle">Category</th>
 								<th class="align-middle">No. of products</th>
-								<th class="align-middle">Best Selling</th>
+								<th class="align-middle">Purchases</th>
 								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
@@ -66,7 +66,7 @@
 									<th class="align-middle"><?= $subCategory->name ?></th>
 									<td class="align-middle"><?= $subCategory->category->name ?></td>
 									<td class="align-middle text-danger"><?= $subCategory->products_count ?></td>
-									<td class="align-middle">Sweat pants</td>
+									<td class="align-middle text-primary"><?= $subCategory->purchases ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
 											<a href="<?= route_to('admin.subcategory.edit', $subCategory->id) ?>"

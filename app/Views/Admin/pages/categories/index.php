@@ -5,23 +5,6 @@
 <?= $this->section('content') ?>
 
 	<div class="card mb-3">
-		<div class="bg-holder d-none d-lg-block bg-card"
-		     style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
-		<div class="card-body position-relative">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3>Bulk Select</h3>
-					<p class="mb-0">
-						Bulk select allows users to check multiple checkboxes at once and toggles a UI for bulk actions
-						to be performed
-						for the selected items.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="card">
 		<div class="card-header">
 			<div class="row flex-between-end">
 				<div class="col-auto align-self-center">
@@ -63,6 +46,7 @@
 								<th class="align-middle">Id</th>
 								<th class="align-middle">Name</th>
 								<th class="align-middle">No. sub categories</th>
+								<th class="align-middle">No. products</th>
 								<th class="align-middle">Actions</th>
 							</tr>
 							</thead>
@@ -80,10 +64,12 @@
 									<th class="align-middle"><?= $category->id ?></th>
 									<td class="align-middle"><?= $category->name ?></td>
 									<td class="align-middle"><?= $category->sub_categories_count ?></td>
+									<td class="align-middle"><?= $category->products_count ?></td>
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
 											<a href="<?= route_to('admin.categories.show', $category->id) ?>"
-											   class="btn btn-sm btn-secondary rounded-circle shadow" title="View category">
+											   class="btn btn-sm btn-secondary rounded-circle shadow"
+											   title="View category">
 												<i class="bi bi-eye-fill"></i>
 											</a>
 											<a href="<?= route_to('admin.category.edit', $category->id) ?>"
@@ -107,6 +93,25 @@
 		</div>
 	</div>
 
+	<div class="card">
+		<div class="bg-holder d-none d-lg-block bg-card"
+		     style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
+		<div class="card-body position-relative">
+			<div class="row text-center">
+				<h6 class="fw-bolder">PURCHASES PER CATEGORY</h6>
+				<hr>
+                <?php $i = 0; foreach($categories as $category): ?>
+					<div class="col-lg <?= $i !== 0 ? 'border-start' : '' ?>">
+						<div class="mb-0 small bg-dark bg-gradient p-2" style="box-shadow: var(--falcon-box-shadow-inset);">
+							<h6 class="m-0 text-light"><?= $category->name ?></h6>
+							<div class="fw-bolder text-danger" data-countup='{"endValue":<?= $category->purchases ?>,"duration":7}'>0</div>
+						</div>
+					</div>
+                    <?php $i++; endforeach; ?>
+			</div>
+		</div>
+	</div>
+
 <?= $this->section('scripts') ?>
 	<script src="/js/admin/dynamic.js"></script>
 	<script>
@@ -114,5 +119,6 @@
             $('#table_id').DataTable({});
         })
 	</script>
+	<script src="/vendor/admin/countup/countUp.umd.js"></script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>

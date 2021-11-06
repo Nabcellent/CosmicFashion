@@ -26,7 +26,7 @@ class OrderSeeder extends Seeder
             'user_id'         => $faker->randomElement(User::pluck('id')->toArray()),
             'payment_type_id' => $faker->randomElement(PaymentType::pluck('id')->toArray()),
             'amount'          => $faker->randomFloat(2, 0, 1000),
-            'is_paid'         => $faker->boolean(75),
+            'is_paid'         => $faker->boolean(90),
             'status'          => $faker->randomElement(['pending', 'paid', 'pending payment']),
             'created_at'      => $faker->dateTimeThisMonth()
         ];

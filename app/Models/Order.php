@@ -26,11 +26,9 @@ class Order extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
-
     public function paymentType(): BelongsTo {
         return $this->belongsTo(PaymentType::class);
     }
-
     public function ordersDetails(): HasMany {
         return $this->hasMany(OrdersDetail::class);
     }

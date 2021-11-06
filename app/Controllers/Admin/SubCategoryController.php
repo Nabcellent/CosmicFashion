@@ -7,13 +7,20 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
+use Nabz\Models\DB;
 
 class SubCategoryController extends BaseController
 {
     public function index(): string {
         $data['subCategories'] = SubCategory::with(['category' => function($query) {
             $query->select('id', 'name');
-        }])->withCount('products')->latest('id')->take(30)->get();
+        }, 'products' => function($query) {
+            return '$query->';
+        }])->withCount(['products', 'ordersDetails as purchases' => function($query) {
+            return $query->whereHas('order', function($query) {
+                $query->where('is_paid', true);
+            });
+        }])->latest('id')->take(30)->get();
 
         return view('Admin/pages/subcategories/index', $data);
     }

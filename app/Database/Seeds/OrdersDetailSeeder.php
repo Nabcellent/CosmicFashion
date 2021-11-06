@@ -14,8 +14,7 @@ class OrdersDetailSeeder extends Seeder
         service('eloquent');
 
         Order::whereDoesntHave('ordersDetails')->each(function($detail) {
-            for($i = 0; $i < mt_rand(1, 5); $i++)
-                OrdersDetail::create($this->fakeOrdersDetail($detail->id));
+            for($i = 0; $i < mt_rand(1, 5); $i++) OrdersDetail::create($this->fakeOrdersDetail($detail->id));
         });
     }
 

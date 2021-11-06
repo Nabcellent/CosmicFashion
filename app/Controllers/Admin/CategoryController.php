@@ -10,7 +10,13 @@ use Exception;
 class CategoryController extends BaseController
 {
     public function index(): string {
-        $data['categories'] = Category::withCount('subCategories')->take(10)->get();
+        $data['categories'] = Category::withCount(['subCategories', 'products', 'products as purchases' => function($query) {
+            $query->whereHas('ordersDetails', function($query) {
+                return $query->whereHas('order', function($query) {
+                    $query->where('is_paid', true);
+                });
+            });
+        }])->get();
 
         return view('Admin/pages/categories/index', $data);
     }
@@ -28,13 +34,13 @@ class CategoryController extends BaseController
             Category::create($this->request->getVar());
 
             return createOk('Category creation successful! ✔', 'admin.category.index');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Error creating category! ❌', 'admin.category.create');
         }
     }
 
-    public function edit($id): string | RedirectResponse {
+    public function edit($id): string|RedirectResponse {
         try {
             $data['category'] = Category::findOrFail($id);
 
