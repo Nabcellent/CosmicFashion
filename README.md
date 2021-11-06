@@ -30,12 +30,15 @@ The following are some of the libraries used to create the web app:
 * [lonnieezell/myth-auth](https://github.com/lonnieezell/myth-auth) - For authentication.
 * [amrshawky/laravel-currency](https://github.com/amrshawky/laravel-currency) - A currency converter.
 
-Feel free to browse through the code and notify me if you find any issues. More information can be found at
-the [official site](http://codeigniter.com).
+Feel free to browse through the code.
+
+## Security
+
+If you discover any issues, please email [nabcellent.dev@gmail.com](mailto:nabcellent.dev@gmail.com) instead of using the issue tracker.
 
 The user guide corresponding to this version of the codeigniter framework that has been used to build this website can
 be found
-[here](https://codeigniter4.github.io/userguide/).
+[here](https://codeigniter.com/user_guide/intro/index.html#).
 
 ## Installation and other documentation.
 
