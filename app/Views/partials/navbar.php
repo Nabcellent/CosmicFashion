@@ -49,9 +49,12 @@
 
 <nav class="Header_header__4PQyW navbar">
 	<div class="container">
-		<a href="<?= route_to('home') ?>" class="navbar-brand">
-			<span class="Header_logoStyle__1knHi"><?= env('app.name', 'CosmicFashion.') ?></span>
-		</a>
+		<div class="d-flex align-items-center">
+			<img class="me-2" src="/images/dash/icons/spot-illustrations/falcon.png" alt="" width="25">
+			<a href="<?= route_to('home') ?>" class="navbar-brand">
+				<span class="Header_logoStyle__1knHi"><?= env('app.name', 'CosmicFashion.') ?></span>
+			</a>
+		</div>
 		<nav class="Header_nav__csVkV">
 			<ul class="Header_nav__menu__JHVR4">
 				<li class="Header_nav__menuItem__2jcMl" style="width: 90px;">
