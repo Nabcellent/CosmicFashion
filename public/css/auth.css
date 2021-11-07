@@ -19,17 +19,15 @@
 	right: 8px;
 	top: 36px
 }
-
-.Login_footer__3RA6w {
-	margin-top: 180px
+.auth_footer {
+	margin-top: 70px
 }
-
-.Login_footer__3RA6w > a {
+.auth_footer > a {
 	margin-right: 15px
 }
 
 .Register_backgroundImage__3ZLed {
-	background-image: url(/images/media/bg.e83c840a2831e55145412c04bccf85a6.png);
+	background-image: url(/images/pexels-tembela-bohle-1884581.jpg);
 	background-size: cover
 }
 
@@ -42,12 +40,4 @@
 	position: absolute;
 	right: 8px;
 	top: 36px
-}
-
-.Register_footer__3THtR {
-	margin-top: 180px
-}
-
-.Register_footer__3THtR > a {
-	margin-right: 15px
 }

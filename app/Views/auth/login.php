@@ -10,47 +10,69 @@
 		<div class="container">
 			<div class="d-flex justify-content-center row">
 				<div class="col-auto col-xl-6">
-					<h4 class="fw-bold" style="margin-bottom:100px"><a href="<?= route_to('home') ?>"><?= env('app.name', 'CosmicFashion.') ?></a></h4>
-					<h5 class="fw-bold mb-5">Login</h5>
-
-                    <?php if(session()->getFlashdata('msg')): ?>
-						<div class="alert alert-danger alert-dismissible fade show" role="alert">
-							<strong>Holy guacamole!</strong><hr/>
-                            <?= session()->getFlashdata('msg') ?>
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					<div class="card rounded-7">
+						<div class="card-header bg-circle-shape bg-shape text-center p-3 rounded-7">
+							<a class="fw-bolder fs-4 z-index-1 position-relative link-light light"
+							   href="<?= route_to('home') ?>"><?= env('app.name', 'CosmicFashion.') ?></a>
 						</div>
-                    <?php endif; ?>
+						<div class="card-body p-3 p-md-4">
+							<div class="d-flex justify-content-between align-items-center mb-5">
+								<h5 class="fw-bold">Sign In</h5>
+								<small>New user? <a href="<?= route_to('register') ?>">Create account</a></small>
+							</div>
 
-                    <?= view('App\auth\_message_block') ?>
+                            <?php if(session()->getFlashdata('msg')): ?>
+								<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<strong>Holy guacamole!</strong>
+									<hr/>
+                                    <?= session()->getFlashdata('msg') ?>
+									<button type="button" class="btn-close" data-bs-dismiss="alert"
+									        aria-label="Close"></button>
+								</div>
+                            <?php endif; ?>
 
-					<form id="login" action="" method="POST">
-                        <?= csrf_field() ?>
+                            <?= view('App\auth\_message_block') ?>
 
-						<div class="form-group">
-							<small class="fw-bold">Email</small>
-							<input type="email" name="email" placeholder="Email" value="<?= old('email') ?>" required="" aria-label
-							       class="w-100 form-control"/>
-						</div>
-						<small class="fw-bold">Password</small>
-						<div class="input-group">
-							<input type="password" name="password" placeholder="Password" required aria-label
-							       class="form-control"/>
-							<span class="input-group-text border-right-0 rounded-0 show-password" title="Show Password" style="cursor: pointer">
+							<form id="login" action="" method="POST">
+                                <?= csrf_field() ?>
+
+								<div class="form-group">
+									<small class="fw-bold">Email</small>
+									<input type="email" name="email" placeholder="Email" value="<?= old('email') ?>"
+									       required="" aria-label
+									       class="w-100 form-control"/>
+								</div>
+								<small class="fw-bold">Password</small>
+								<div class="input-group">
+									<input type="password" name="password" placeholder="Password" required aria-label
+									       class="form-control"/>
+									<span class="input-group-text border-right-0 rounded-0 show-password"
+									      title="Show Password" style="cursor: pointer">
 									<i class="bi bi-eye"></i></span>
+								</div>
+								<div class="row justify-content-between small my-3">
+									<div class="col-auto">
+										<div class="form-check mb-0"><input class="form-check-input" type="checkbox"
+										                                    id="split-checkbox"><label
+													class="form-check-label mb-0" for="split-checkbox">Remember
+												me</label></div>
+									</div>
+									<div class="col-auto"><a class="fs--1" href="forgot-password.html">Forgot
+											Password?</a></div>
+								</div>
+								<div class="d-grid">
+									<button type="submit"
+									        class="Login_button__28f5q fw-bold text-uppercase btn btn-primary ld-ext-right">
+										Sign In <i class="fas fa-key"></i>
+										<span class="ld ld-ring ld-spin"></span>
+									</button>
+								</div>
+							</form>
+							<footer class="d-flex justify-content-center small auth_footer">
+								<a href="javascript:void(0)">Terms & Conditions</a>
+							</footer>
 						</div>
-						<div class="d-flex justify-content-between align-items-center mt-5">
-							<a href="<?= route_to('register') ?>">Create an account</a>
-							<button type="submit" class="Login_button__28f5q fw-bold text-uppercase btn btn-primary ld-ext-right">
-								Sign In <i class="fas fa-key"></i>
-								<span class="ld ld-ring ld-spin"></span>
-							</button>
-						</div>
-					</form>
-					<footer class="d-flex justify-content-between Login_footer__3RA6w">
-						<a href="javascript:void(0)">Terms & Conditions</a>
-						<a href="javascript:void(0)">Privacy Policy</a>
-						<a href="javascript:void(0)">Forgot password</a>
-					</footer>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -61,46 +83,50 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/jquery/jqueryValidation.js"></script>
 	<script>
-		$(() => {
+        $(() => {
             $('#login').validate({
-	            rules: {
+                rules: {
                     email: {
                         required: true,
-	                    email: true
+                        email: true
                     },
-		            password: 'required'
-	            },
-	            submitHandler: form => {
+                    password: 'required'
+                },
+                submitHandler: form => {
                     const data = {};
                     $(form).serializeArray().map(input => data[input.name] = input.value)
 
-		            const submitButton = $(form).find($('button[type="submit"]'))
+                    const submitButton = $(form).find($('button[type="submit"]'))
 
-		            $.ajax({
-			            data: data,
-			            url: `<?= route_to('login') ?>`,
-			            method: 'POST',
+                    $.ajax({
+                        data: data,
+                        url: `<?= route_to('login') ?>`,
+                        method: 'POST',
                         beforeSend: () => submitButton.prop('disabled', true).addClass('running'),
-			            success: response => {
+                        success: response => {
                             const result = JSON.parse(response)
 
-				            if(result.status) {
+                            if (result.status) {
                                 location.href = result.url
-				            } else if(result.message) {
-                                toast({msg:result.message, type: 'warning', duration: 10, position: 'left'})
-				            } else {
-                                toast({msg:`Error: unable to log you in. Kindly contact admin.`, type: 'warning', position:'left'})
-				            }
-			            },
+                            } else if (result.message) {
+                                toast({msg: result.message, type: 'warning', duration: 10, position: 'left'})
+                            } else {
+                                toast({
+                                    msg: `Error: unable to log you in. Kindly contact admin.`,
+                                    type: 'warning',
+                                    position: 'left'
+                                })
+                            }
+                        },
                         complete: (xhr) => {
                             let err = eval("(" + xhr.responseText + ")");
 
-                            if(err.status !== true) submitButton.prop('disabled', false).removeClass('running')
+                            if (err.status !== true) submitButton.prop('disabled', false).removeClass('running')
                         }
-		            })
-	            }
+                    })
+                }
             })
-		})
+        })
 	</script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>
