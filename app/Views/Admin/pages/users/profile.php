@@ -53,7 +53,8 @@
 								<i class="bi bi-bag-check me-2 text-700"></i>
 								<div class="flex-1">
 									<h6 class="mb-0">
-										Total items ordered (<span data-countup='{"endValue":<?= $user->orders_count ?>,"duration":7}'>0</span>)
+										Total items ordered (<span
+												data-countup='{"endValue":<?= $user->orders_count ?>,"duration":7}'>0</span>)
 									</h6>
 								</div>
 							</a>

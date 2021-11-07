@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\ApiUser;
 use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
@@ -23,9 +22,13 @@ class UserController extends BaseController
 
     public function show($id): string|RedirectResponse {
         try {
-            $data['user'] = User::with(['role', 'logins' => function($query) {
-                $query->take(3);
-            }, 'apiUser'])->withCount(['ordersDetails as total_items_ordered', 'orders'])->findOrFail($id);
+            $data['user'] = User::with([
+                'role',
+                'logins' => function($query) {
+                    $query->take(3);
+                },
+                'apiUser'
+            ])->withCount(['ordersDetails as total_items_ordered', 'orders'])->findOrFail($id);
 
             return view('Admin/pages/users/profile', $data);
         } catch (Exception $e) {

@@ -59,13 +59,6 @@
 								</div>
 							</a><!-- more inner pages-->
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="dashboard/analytics.html">
-								<div class="d-flex align-items-center">
-									<span class="nav-link-text ps-1">Analytics</span>
-								</div>
-							</a><!-- more inner pages-->
-						</li>
 					</ul>
 				</li>
 
@@ -345,7 +338,7 @@
 							<span class="nav-link-text ps-1">Profile</span>
 						</div>
 					</a>
-					<a class="nav-link" href="#!" role="button">
+					<a class="nav-link" href="<?= route_to('admin.stats.index') ?>" role="button">
 						<div class="d-flex align-items-center">
 							<span class="nav-link-icon">
 								<span class="fas fa-chart-pie"></span>

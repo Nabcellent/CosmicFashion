@@ -4,7 +4,7 @@ use Config\Services;
 
 $routes = Services::routes();
 
-$routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'admin'], function ($routes) {
+$routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'admin'], function($routes) {
     $routes->get('/', "DashboardController", ['as' => "dashboard"]);
 
     //  CATEGORY ROUTES
@@ -34,7 +34,8 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('show/(:num)', 'ProductController::show/$1', ['as' => 'admin.products.show']);
         $routes->get('edit/(:num)', 'ProductController::edit/$1', ['as' => 'admin.products.edit']);
         $routes->put('update/(:num)', 'ProductController::update/$1', ['as' => 'admin.product.update']);
-        $routes->get('purchases-chart/(:num)', 'ProductController::dailyPurchases/$1', ['as' => 'admin.product.purchases.chart']);
+        $routes->get('purchases-chart/(:num)', 'ProductController::dailyPurchases/$1',
+            ['as' => 'admin.product.purchases.chart']);
     });
 
     //  USER ROUTES
@@ -52,6 +53,10 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->post('stk_requests', 'PaymentController::initiateStkPush');
         $routes->get('stk_status/(:segment)', 'PaymentController::stkStatus/$1');
         $routes->post('paypal-callback', 'PaymentController::paypalCallback');
+    });
+
+    $routes->group('analytics', function($routes) {
+        $routes->get('/', 'AnalyticController::index', ['as' => 'admin.stats.index']);
     });
 });
 
