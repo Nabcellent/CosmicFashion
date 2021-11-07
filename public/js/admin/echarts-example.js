@@ -1,8 +1,8 @@
 "use strict";
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { let keys = Object.keys(object); if (Object.getOwnPropertySymbols) { let symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (let i = 1; i < arguments.length; i++) { let source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -13,7 +13,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /*                                    Utils                                   */
 
 /* -------------------------------------------------------------------------- */
-var docReady = function docReady(fn) {
+let docReady = function docReady(fn) {
   // see if DOM is already available
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', fn);
@@ -22,22 +22,22 @@ var docReady = function docReady(fn) {
   }
 };
 
-var resize = function resize(fn) {
+let resize = function resize(fn) {
   return window.addEventListener('resize', fn);
 };
 
-var isIterableArray = function isIterableArray(array) {
+let isIterableArray = function isIterableArray(array) {
   return Array.isArray(array) && !!array.length;
 };
 
-var camelize = function camelize(str) {
-  var text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
+let camelize = function camelize(str) {
+  let text = str.replace(/[-_\s.]+(.)?/g, function (_, c) {
     return c ? c.toUpperCase() : '';
   });
   return "".concat(text.substr(0, 1).toLowerCase()).concat(text.substr(1));
 };
 
-var getData = function getData(el, data) {
+let getData = function getData(el, data) {
   try {
     return JSON.parse(el.dataset[camelize(data)]);
   } catch (e) {
@@ -47,31 +47,31 @@ var getData = function getData(el, data) {
 /* ----------------------------- Colors function ---------------------------- */
 
 
-var hexToRgb = function hexToRgb(hexValue) {
-  var hex;
+let hexToRgb = function hexToRgb(hexValue) {
+  let hex;
   hexValue.indexOf('#') === 0 ? hex = hexValue.substring(1) : hex = hexValue; // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
 
-  var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.replace(shorthandRegex, function (m, r, g, b) {
+  let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex.replace(shorthandRegex, function (m, r, g, b) {
     return r + r + g + g + b + b;
   }));
   return result ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)] : null;
 };
 
-var rgbaColor = function rgbaColor() {
-  var color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#fff';
-  var alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
+let rgbaColor = function rgbaColor() {
+  let color = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '#fff';
+  let alpha = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
   return "rgba(".concat(hexToRgb(color), ", ").concat(alpha, ")");
 };
 /* --------------------------------- Colors --------------------------------- */
 
 
-var getColor = function getColor(name) {
-  var dom = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.documentElement;
+let getColor = function getColor(name) {
+  let dom = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document.documentElement;
   return getComputedStyle(dom).getPropertyValue("--falcon-".concat(name)).trim();
 };
 
-var getColors = function getColors(dom) {
+let getColors = function getColors(dom) {
   return {
     primary: getColor('primary', dom),
     secondary: getColor('secondary', dom),
@@ -84,7 +84,7 @@ var getColors = function getColors(dom) {
   };
 };
 
-var getSoftColors = function getSoftColors(dom) {
+let getSoftColors = function getSoftColors(dom) {
   return {
     primary: getColor('soft-primary', dom),
     secondary: getColor('soft-secondary', dom),
@@ -97,7 +97,7 @@ var getSoftColors = function getSoftColors(dom) {
   };
 };
 
-var getGrays = function getGrays(dom) {
+let getGrays = function getGrays(dom) {
   return {
     white: getColor('white', dom),
     100: getColor('100', dom),
@@ -115,19 +115,19 @@ var getGrays = function getGrays(dom) {
   };
 };
 
-var hasClass = function hasClass(el, className) {
+let hasClass = function hasClass(el, className) {
   !el && false;
   return el.classList.value.includes(className);
 };
 
-var addClass = function addClass(el, className) {
+let addClass = function addClass(el, className) {
   el.classList.add(className);
 };
 
-var getOffset = function getOffset(el) {
-  var rect = el.getBoundingClientRect();
-  var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+let getOffset = function getOffset(el) {
+  let rect = el.getBoundingClientRect();
+  let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   return {
     top: rect.top + scrollTop,
     left: rect.left + scrollLeft
@@ -135,15 +135,15 @@ var getOffset = function getOffset(el) {
 };
 
 function isScrolledIntoView(el) {
-  var rect = el.getBoundingClientRect();
-  var windowHeight = window.innerHeight || document.documentElement.clientHeight;
-  var windowWidth = window.innerWidth || document.documentElement.clientWidth;
-  var vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
-  var horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
+  let rect = el.getBoundingClientRect();
+  let windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  let windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  let vertInView = rect.top <= windowHeight && rect.top + rect.height >= 0;
+  let horInView = rect.left <= windowWidth && rect.left + rect.width >= 0;
   return vertInView && horInView;
 }
 
-var breakpoints = {
+let breakpoints = {
   xs: 0,
   sm: 576,
   md: 768,
@@ -152,9 +152,9 @@ var breakpoints = {
   xxl: 1540
 };
 
-var getBreakpoint = function getBreakpoint(el) {
-  var classes = el && el.classList.value;
-  var breakpoint;
+let getBreakpoint = function getBreakpoint(el) {
+  let classes = el && el.classList.value;
+  let breakpoint;
 
   if (classes) {
     breakpoint = breakpoints[classes.split(' ').filter(function (cls) {
@@ -167,18 +167,18 @@ var getBreakpoint = function getBreakpoint(el) {
 /* --------------------------------- Cookie --------------------------------- */
 
 
-var setCookie = function setCookie(name, value, expire) {
-  var expires = new Date();
+let setCookie = function setCookie(name, value, expire) {
+  let expires = new Date();
   expires.setTime(expires.getTime() + expire);
   document.cookie = "".concat(name, "=").concat(value, ";expires=").concat(expires.toUTCString());
 };
 
-var getCookie = function getCookie(name) {
-  var keyValue = document.cookie.match("(^|;) ?".concat(name, "=([^;]*)(;|$)"));
+let getCookie = function getCookie(name) {
+  let keyValue = document.cookie.match("(^|;) ?".concat(name, "=([^;]*)(;|$)"));
   return keyValue ? keyValue[2] : keyValue;
 };
 
-var settings = {
+let settings = {
   tinymce: {
     theme: 'oxide'
   },
@@ -188,15 +188,15 @@ var settings = {
 };
 /* -------------------------- Chart Initialization -------------------------- */
 
-var newChart = function newChart(chart, config) {
-  var ctx = chart.getContext('2d');
+let newChart = function newChart(chart, config) {
+  let ctx = chart.getContext('2d');
   return new window.Chart(ctx, config);
 };
 /* ---------------------------------- Store --------------------------------- */
 
 
-var getItemFromStore = function getItemFromStore(key, defaultValue) {
-  var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
+let getItemFromStore = function getItemFromStore(key, defaultValue) {
+  let store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
 
   try {
     return JSON.parse(store.getItem(key)) || defaultValue;
@@ -205,22 +205,22 @@ var getItemFromStore = function getItemFromStore(key, defaultValue) {
   }
 };
 
-var setItemToStore = function setItemToStore(key, payload) {
-  var store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
+let setItemToStore = function setItemToStore(key, payload) {
+  let store = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : localStorage;
   return store.setItem(key, payload);
 };
 
-var getStoreSpace = function getStoreSpace() {
-  var store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : localStorage;
+let getStoreSpace = function getStoreSpace() {
+  let store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : localStorage;
   return parseFloat((escape(encodeURIComponent(JSON.stringify(store))).length / (1024 * 1024)).toFixed(2));
 };
 /* get Dates between */
 
 
-var getDates = function getDates(startDate, endDate) {
-  var interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000 * 60 * 60 * 24;
-  var duration = endDate - startDate;
-  var steps = duration / interval;
+let getDates = function getDates(startDate, endDate) {
+  let interval = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1000 * 60 * 60 * 24;
+  let duration = endDate - startDate;
+  let steps = duration / interval;
   return Array.from({
     length: steps + 1
   }, function (v, i) {
@@ -228,8 +228,8 @@ var getDates = function getDates(startDate, endDate) {
   });
 };
 
-var getPastDates = function getPastDates(duration) {
-  var days;
+let getPastDates = function getPastDates(duration) {
+  let days;
 
   switch (duration) {
     case 'week':
@@ -248,19 +248,19 @@ var getPastDates = function getPastDates(duration) {
       days = duration;
   }
 
-  var date = new Date();
-  var endDate = date;
-  var startDate = new Date(new Date().setDate(date.getDate() - (days - 1)));
+  let date = new Date();
+  let endDate = date;
+  let startDate = new Date(new Date().setDate(date.getDate() - (days - 1)));
   return getDates(startDate, endDate);
 };
 /* Get Random Number */
 
 
-var getRandomNumber = function getRandomNumber(min, max) {
+let getRandomNumber = function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-var utils = {
+let utils = {
   docReady: docReady,
   resize: resize,
   isIterableArray: isIterableArray,
@@ -290,19 +290,19 @@ var utils = {
 };
 /* eslint-disable */
 
-var getPosition = function getPosition(pos, params, dom, rect, size) {
+let getPosition = function getPosition(pos, params, dom, rect, size) {
   return {
     top: pos[1] - size.contentSize[1] - 10,
     left: pos[0] - size.contentSize[0] / 2
   };
 };
 
-var echartSetOption = function echartSetOption(chart, userOptions, getDefaultOptions) {
-  var themeController = document.body; // Merge user options with lodash
+let echartSetOption = function echartSetOption(chart, userOptions, getDefaultOptions) {
+  let themeController = document.body; // Merge user options with lodash
 
   chart.setOption(window._.merge(getDefaultOptions(), userOptions));
   themeController.addEventListener('clickControl', function (_ref) {
-    var control = _ref.detail.control;
+    let control = _ref.detail.control;
 
     if (control === 'theme') {
       chart.setOption(window._.merge(getDefaultOptions(), userOptions));
@@ -310,8 +310,8 @@ var echartSetOption = function echartSetOption(chart, userOptions, getDefaultOpt
   });
 };
 
-var tooltipFormatter = function tooltipFormatter(params) {
-  var tooltipItem = "";
+let tooltipFormatter = function tooltipFormatter(params) {
+  let tooltipItem = "";
   params.forEach(function (el) {
     tooltipItem = tooltipItem + "<div class='ms-1'> \n        <h6 class=\"text-700\"><span class=\"fas fa-circle me-1 fs--2\" style=\"color:".concat(el.borderColor ? el.borderColor : el.color, "\"></span>\n          ").concat(el.seriesName, " : ").concat(_typeof(el.value) === 'object' ? el.value[1] : el.value, "\n        </h6>\n      </div>");
   });
@@ -324,15 +324,15 @@ var tooltipFormatter = function tooltipFormatter(params) {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsAreaPiecesChartInit = function echartsAreaPiecesChartInit() {
-  var $areaPiecesChartEl = document.querySelector('.echart-area-pieces-chart-example');
+let echartsAreaPiecesChartInit = function echartsAreaPiecesChartInit() {
+  let $areaPiecesChartEl = document.querySelector('.echart-area-pieces-chart-example');
 
   if ($areaPiecesChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($areaPiecesChartEl, 'options');
-    var chart = window.echarts.init($areaPiecesChartEl);
+    let userOptions = utils.getData($areaPiecesChartEl, 'options');
+    let chart = window.echarts.init($areaPiecesChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -457,16 +457,16 @@ var echartsAreaPiecesChartInit = function echartsAreaPiecesChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarLineChartInit = function echartsBarLineChartInit() {
-  var $barLineChartEl = document.querySelector('.echart-bar-line-chart-example');
+let echartsBarLineChartInit = function echartsBarLineChartInit() {
+  let $barLineChartEl = document.querySelector('.echart-bar-line-chart-example');
 
   if ($barLineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barLineChartEl, 'options');
-    var chart = window.echarts.init($barLineChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let userOptions = utils.getData($barLineChartEl, 'options');
+    let chart = window.echarts.init($barLineChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -627,15 +627,15 @@ var echartsBarLineChartInit = function echartsBarLineChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarNegativeChartInit = function echartsBarNegativeChartInit() {
-  var $barNegativeChartEl = document.querySelector('.echart-bar-chart-negative-example');
+let echartsBarNegativeChartInit = function echartsBarNegativeChartInit() {
+  let $barNegativeChartEl = document.querySelector('.echart-bar-chart-negative-example');
 
   if ($barNegativeChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barNegativeChartEl, 'options');
-    var chart = window.echarts.init($barNegativeChartEl);
+    let userOptions = utils.getData($barNegativeChartEl, 'options');
+    let chart = window.echarts.init($barNegativeChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -711,18 +711,18 @@ var echartsBarNegativeChartInit = function echartsBarNegativeChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarRaceChartInit = function echartsBarRaceChartInit() {
-  var $barRaceChartEl = document.querySelector('.echart-bar-race-chart-example');
+let echartsBarRaceChartInit = function echartsBarRaceChartInit() {
+  let $barRaceChartEl = document.querySelector('.echart-bar-race-chart-example');
 
   if ($barRaceChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barRaceChartEl, 'options');
-    var chart = window.echarts.init($barRaceChartEl);
-    var data = Array.from(Array(7).keys()).map(function () {
+    let userOptions = utils.getData($barRaceChartEl, 'options');
+    let chart = window.echarts.init($barRaceChartEl);
+    let data = Array.from(Array(7).keys()).map(function () {
       return Math.round(Math.random() * 200);
     });
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         xAxis: {
           max: 'dataMax',
@@ -789,7 +789,7 @@ var echartsBarRaceChartInit = function echartsBarRaceChartInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions);
 
-    var run = function run() {
+    let run = function run() {
       data = data.map(function (item) {
         return Math.random() > 0.9 ? item + Math.round(Math.random() * 2000) : item + Math.round(Math.random() * 200);
       });
@@ -815,15 +815,15 @@ var echartsBarRaceChartInit = function echartsBarRaceChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarSeriesChartInit = function echartsBarSeriesChartInit() {
-  var $barSeriesChartEl = document.querySelector('.echart-bar-chart-series-example');
+let echartsBarSeriesChartInit = function echartsBarSeriesChartInit() {
+  let $barSeriesChartEl = document.querySelector('.echart-bar-chart-series-example');
 
   if ($barSeriesChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barSeriesChartEl, 'options');
-    var chart = window.echarts.init($barSeriesChartEl);
+    let userOptions = utils.getData($barSeriesChartEl, 'options');
+    let chart = window.echarts.init($barSeriesChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('info')],
         tooltip: {
@@ -917,20 +917,20 @@ var echartsBarSeriesChartInit = function echartsBarSeriesChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarStackedChartInit = function echartsBarStackedChartInit() {
-  var $barStackedChartEl = document.querySelector('.echart-bar-stacked-chart-example');
+let echartsBarStackedChartInit = function echartsBarStackedChartInit() {
+  let $barStackedChartEl = document.querySelector('.echart-bar-stacked-chart-example');
 
   if ($barStackedChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barStackedChartEl, 'options');
-    var chart = window.echarts.init($barStackedChartEl);
-    var xAxisData = [];
-    var _data = [];
-    var _data2 = [];
-    var data3 = [];
-    var data4 = [];
+    let userOptions = utils.getData($barStackedChartEl, 'options');
+    let chart = window.echarts.init($barStackedChartEl);
+    let xAxisData = [];
+    let _data = [];
+    let _data2 = [];
+    let data3 = [];
+    let data4 = [];
 
-    for (var i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 10; i += 1) {
       xAxisData.push("Class".concat(i + 1));
 
       _data.push((Math.random() * 2).toFixed(2));
@@ -941,14 +941,14 @@ var echartsBarStackedChartInit = function echartsBarStackedChartInit() {
       data4.push(-Math.random().toFixed(2));
     }
 
-    var emphasisStyle = {
+    let emphasisStyle = {
       itemStyle: {
         shadowBlur: 10,
         shadowColor: utils.rgbaColor(utils.getColor('dark'), 0.3)
       }
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('info'), utils.getColor('warning'), utils.getColor('danger')],
         legend: {
@@ -1052,17 +1052,17 @@ var echartsBarStackedChartInit = function echartsBarStackedChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBarTimelineChartInit = function echartsBarTimelineChartInit() {
-  var $barTimelineChartEl = document.querySelector('.echart-bar-timeline-chart-example');
+let echartsBarTimelineChartInit = function echartsBarTimelineChartInit() {
+  let $barTimelineChartEl = document.querySelector('.echart-bar-timeline-chart-example');
 
   if ($barTimelineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barTimelineChartEl, 'options');
-    var chart = window.echarts.init($barTimelineChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var dataMap = {};
+    let userOptions = utils.getData($barTimelineChartEl, 'options');
+    let chart = window.echarts.init($barTimelineChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let dataMap = {};
 
-    var dataFormatter = function dataFormatter(obj) {
+    let dataFormatter = function dataFormatter(obj) {
       return Object.keys(obj).reduce(function (acc, val) {
         return _objectSpread(_objectSpread({}, acc), {}, _defineProperty({}, val, obj[val].map(function (value, index) {
           return {
@@ -1101,7 +1101,7 @@ var echartsBarTimelineChartInit = function echartsBarTimelineChartInit() {
       2011: [12363.18, 5219.24, 8483.17, 3960.87, 5015.89, 8158.98, 3679.91, 4918.09, 11142.86, 20842.21, 14180.23, 4975.96]
     });
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         baseOption: {
           timeline: {
@@ -1308,16 +1308,16 @@ var echartsBarTimelineChartInit = function echartsBarTimelineChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsWaterFallChartInit = function echartsWaterFallChartInit() {
-  var $waterfallChartEl = document.querySelector('.echart-nightfall-chart-example');
+let echartsWaterFallChartInit = function echartsWaterFallChartInit() {
+  let $waterfallChartEl = document.querySelector('.echart-nightfall-chart-example');
 
   if ($waterfallChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($waterfallChartEl, 'options');
-    var chart = window.echarts.init($waterfallChartEl);
-    var days = ['2021-06-05', '2021-06-06', '2021-06-07', '2021-06-08', '2021-06-09', '2021-06-10', '2021-06-11', '2021-06-12', '2021-06-13', '2021-06-14', '2021-06-15'];
+    let userOptions = utils.getData($waterfallChartEl, 'options');
+    let chart = window.echarts.init($waterfallChartEl);
+    let days = ['2021-06-05', '2021-06-06', '2021-06-07', '2021-06-08', '2021-06-09', '2021-06-10', '2021-06-11', '2021-06-12', '2021-06-13', '2021-06-14', '2021-06-15'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           data: ['Expenditure', 'Income'],
@@ -1337,7 +1337,7 @@ var echartsWaterFallChartInit = function echartsWaterFallChartInit() {
 
           /* eslint-disable prefer-destructuring */
           formatter: function formatter(params) {
-            var tar;
+            let tar;
 
             if (params[1].value !== '-') {
               tar = params[1];
@@ -1460,17 +1460,17 @@ var echartsWaterFallChartInit = function echartsWaterFallChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBasicBarChartInit = function echartsBasicBarChartInit() {
-  var $barChartEl = document.querySelector('.echart-basic-bar-chart-example');
+let echartsBasicBarChartInit = function echartsBasicBarChartInit() {
+  let $barChartEl = document.querySelector('.echart-basic-bar-chart-example');
 
   if ($barChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($barChartEl, 'options');
-    var chart = window.echarts.init($barChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204];
+    let userOptions = utils.getData($barChartEl, 'options');
+    let chart = window.echarts.init($barChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -1569,16 +1569,16 @@ var echartsBasicBarChartInit = function echartsBasicBarChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBasicCandlestickChartInit = function echartsBasicCandlestickChartInit() {
-  var $basicCandleStickChartEl = document.querySelector('.echart-candlestick-chart-example');
+let echartsBasicCandlestickChartInit = function echartsBasicCandlestickChartInit() {
+  let $basicCandleStickChartEl = document.querySelector('.echart-candlestick-chart-example');
 
   if ($basicCandleStickChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($basicCandleStickChartEl, 'options');
-    var chart = window.echarts.init($basicCandleStickChartEl);
-    var data = [['2013/1/24', 2320.26, 2320.26, 2287.3, 2362.94], ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38], ['2013/1/28', 2295.35, 2346.5, 2295.35, 2346.92], ['2013/1/29', 2347.22, 2358.98, 2337.35, 2363.8], ['2013/1/30', 2360.75, 2382.48, 2347.89, 2383.76], ['2013/1/31', 2383.43, 2385.42, 2371.23, 2391.82], ['2013/2/1', 2377.41, 2419.02, 2369.57, 2421.15], ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38], ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42], ['2013/2/6', 2432.68, 2434.48, 2427.7, 2441.73], ['2013/2/7', 2430.69, 2418.53, 2394.22, 2433.89], ['2013/2/8', 2416.62, 2432.4, 2414.4, 2443.03], ['2013/2/18', 2441.91, 2421.56, 2415.43, 2444.8], ['2013/2/19', 2420.26, 2382.91, 2373.53, 2427.07], ['2013/2/20', 2383.49, 2397.18, 2370.61, 2397.94], ['2013/2/21', 2378.82, 2325.95, 2309.17, 2378.82], ['2013/2/22', 2322.94, 2314.16, 2308.76, 2330.88], ['2013/2/25', 2320.62, 2325.82, 2315.01, 2338.78], ['2013/2/26', 2313.74, 2293.34, 2289.89, 2340.71], ['2013/2/27', 2297.77, 2313.22, 2292.03, 2324.63], ['2013/2/28', 2322.32, 2365.59, 2308.92, 2366.16], ['2013/3/1', 2364.54, 2359.51, 2330.86, 2369.65], ['2013/3/4', 2332.08, 2273.4, 2259.25, 2333.54], ['2013/3/5', 2274.81, 2326.31, 2270.1, 2328.14], ['2013/3/6', 2333.61, 2347.18, 2321.6, 2351.44], ['2013/3/7', 2340.44, 2324.29, 2304.27, 2352.02], ['2013/3/8', 2326.42, 2318.61, 2314.59, 2333.67], ['2013/3/11', 2314.68, 2310.59, 2296.58, 2320.96], ['2013/3/12', 2309.16, 2286.6, 2264.83, 2333.29], ['2013/3/13', 2282.17, 2263.97, 2253.25, 2286.33], ['2013/3/14', 2255.77, 2270.28, 2253.31, 2276.22], ['2013/3/15', 2269.31, 2278.4, 2250, 2312.08], ['2013/3/18', 2267.29, 2240.02, 2239.21, 2276.05], ['2013/3/19', 2244.26, 2257.43, 2232.02, 2261.31], ['2013/3/20', 2257.74, 2317.37, 2257.42, 2317.86], ['2013/3/21', 2318.21, 2324.24, 2311.6, 2330.81], ['2013/3/22', 2321.4, 2328.28, 2314.97, 2332], ['2013/3/25', 2334.74, 2326.72, 2319.91, 2344.89], ['2013/3/26', 2318.58, 2297.67, 2281.12, 2319.99], ['2013/3/27', 2299.38, 2301.26, 2289, 2323.48], ['2013/3/28', 2273.55, 2236.3, 2232.91, 2273.55], ['2013/3/29', 2238.49, 2236.62, 2228.81, 2246.87], ['2013/4/1', 2229.46, 2234.4, 2227.31, 2243.95], ['2013/4/2', 2234.9, 2227.74, 2220.44, 2253.42], ['2013/4/3', 2232.69, 2225.29, 2217.25, 2241.34], ['2013/4/8', 2196.24, 2211.59, 2180.67, 2212.59], ['2013/4/9', 2215.47, 2225.77, 2215.47, 2234.73], ['2013/4/10', 2224.93, 2226.13, 2212.56, 2233.04], ['2013/4/11', 2236.98, 2219.55, 2217.26, 2242.48], ['2013/4/12', 2218.09, 2206.78, 2204.44, 2226.26]];
+    let userOptions = utils.getData($basicCandleStickChartEl, 'options');
+    let chart = window.echarts.init($basicCandleStickChartEl);
+    let data = [['2013/1/24', 2320.26, 2320.26, 2287.3, 2362.94], ['2013/1/25', 2300, 2291.3, 2288.26, 2308.38], ['2013/1/28', 2295.35, 2346.5, 2295.35, 2346.92], ['2013/1/29', 2347.22, 2358.98, 2337.35, 2363.8], ['2013/1/30', 2360.75, 2382.48, 2347.89, 2383.76], ['2013/1/31', 2383.43, 2385.42, 2371.23, 2391.82], ['2013/2/1', 2377.41, 2419.02, 2369.57, 2421.15], ['2013/2/4', 2425.92, 2428.15, 2417.58, 2440.38], ['2013/2/5', 2411, 2433.13, 2403.3, 2437.42], ['2013/2/6', 2432.68, 2434.48, 2427.7, 2441.73], ['2013/2/7', 2430.69, 2418.53, 2394.22, 2433.89], ['2013/2/8', 2416.62, 2432.4, 2414.4, 2443.03], ['2013/2/18', 2441.91, 2421.56, 2415.43, 2444.8], ['2013/2/19', 2420.26, 2382.91, 2373.53, 2427.07], ['2013/2/20', 2383.49, 2397.18, 2370.61, 2397.94], ['2013/2/21', 2378.82, 2325.95, 2309.17, 2378.82], ['2013/2/22', 2322.94, 2314.16, 2308.76, 2330.88], ['2013/2/25', 2320.62, 2325.82, 2315.01, 2338.78], ['2013/2/26', 2313.74, 2293.34, 2289.89, 2340.71], ['2013/2/27', 2297.77, 2313.22, 2292.03, 2324.63], ['2013/2/28', 2322.32, 2365.59, 2308.92, 2366.16], ['2013/3/1', 2364.54, 2359.51, 2330.86, 2369.65], ['2013/3/4', 2332.08, 2273.4, 2259.25, 2333.54], ['2013/3/5', 2274.81, 2326.31, 2270.1, 2328.14], ['2013/3/6', 2333.61, 2347.18, 2321.6, 2351.44], ['2013/3/7', 2340.44, 2324.29, 2304.27, 2352.02], ['2013/3/8', 2326.42, 2318.61, 2314.59, 2333.67], ['2013/3/11', 2314.68, 2310.59, 2296.58, 2320.96], ['2013/3/12', 2309.16, 2286.6, 2264.83, 2333.29], ['2013/3/13', 2282.17, 2263.97, 2253.25, 2286.33], ['2013/3/14', 2255.77, 2270.28, 2253.31, 2276.22], ['2013/3/15', 2269.31, 2278.4, 2250, 2312.08], ['2013/3/18', 2267.29, 2240.02, 2239.21, 2276.05], ['2013/3/19', 2244.26, 2257.43, 2232.02, 2261.31], ['2013/3/20', 2257.74, 2317.37, 2257.42, 2317.86], ['2013/3/21', 2318.21, 2324.24, 2311.6, 2330.81], ['2013/3/22', 2321.4, 2328.28, 2314.97, 2332], ['2013/3/25', 2334.74, 2326.72, 2319.91, 2344.89], ['2013/3/26', 2318.58, 2297.67, 2281.12, 2319.99], ['2013/3/27', 2299.38, 2301.26, 2289, 2323.48], ['2013/3/28', 2273.55, 2236.3, 2232.91, 2273.55], ['2013/3/29', 2238.49, 2236.62, 2228.81, 2246.87], ['2013/4/1', 2229.46, 2234.4, 2227.31, 2243.95], ['2013/4/2', 2234.9, 2227.74, 2220.44, 2253.42], ['2013/4/3', 2232.69, 2225.29, 2217.25, 2241.34], ['2013/4/8', 2196.24, 2211.59, 2180.67, 2212.59], ['2013/4/9', 2215.47, 2225.77, 2215.47, 2234.73], ['2013/4/10', 2224.93, 2226.13, 2212.56, 2233.04], ['2013/4/11', 2236.98, 2219.55, 2217.26, 2242.48], ['2013/4/12', 2218.09, 2206.78, 2204.44, 2226.26]];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -1715,19 +1715,19 @@ var echartsBasicCandlestickChartInit = function echartsBasicCandlestickChartInit
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBasicGaugeChartInit = function echartsBasicGaugeChartInit() {
-  var $basicGaugeChartEl = document.querySelector('.echart-basic-gauge-chart-example');
+let echartsBasicGaugeChartInit = function echartsBasicGaugeChartInit() {
+  let $basicGaugeChartEl = document.querySelector('.echart-basic-gauge-chart-example');
 
   if ($basicGaugeChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($basicGaugeChartEl, 'options');
-    var chart = window.echarts.init($basicGaugeChartEl);
+    let userOptions = utils.getData($basicGaugeChartEl, 'options');
+    let chart = window.echarts.init($basicGaugeChartEl);
 
-    var _tooltipFormatter = function _tooltipFormatter(params) {
+    let _tooltipFormatter = function _tooltipFormatter(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].color, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -1783,21 +1783,21 @@ var echartsBasicGaugeChartInit = function echartsBasicGaugeChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineChartInit = function echartsLineChartInit() {
-  var $lineChartEl = document.querySelector('.echart-line-chart-example');
+let echartsLineChartInit = function echartsLineChartInit() {
+  let $lineChartEl = document.querySelector('.echart-line-chart-example');
 
   if ($lineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineChartEl, 'options');
-    var chart = window.echarts.init($lineChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204];
+    let userOptions = utils.getData($lineChartEl, 'options');
+    let chart = window.echarts.init($lineChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204];
 
-    var _tooltipFormatter2 = function _tooltipFormatter2(params) {
+    let _tooltipFormatter2 = function _tooltipFormatter2(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].borderColor, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -1898,16 +1898,16 @@ var echartsLineChartInit = function echartsLineChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsBubbleChartInit = function echartsBubbleChartInit() {
-  var $bubbleChartEl = document.querySelector('.echart-bubble-chart-example');
+let echartsBubbleChartInit = function echartsBubbleChartInit() {
+  let $bubbleChartEl = document.querySelector('.echart-bubble-chart-example');
 
   if ($bubbleChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($bubbleChartEl, 'options');
-    var chart = window.echarts.init($bubbleChartEl);
-    var data = [[[28604, 77, 17096869, 'Australia', 1990], [31163, 77.4, 27662440, 'Canada', 1990], [1516, 68, 1154605773, 'China', 1990], [28599, 75, 4986705, 'Finland', 1990], [29476, 77.1, 56943299, 'France', 1990], [31476, 75.4, 78958237, 'Germany', 1990], [1777, 57.7, 870601776, 'India', 1990], [29550, 79.1, 122249285, 'Japan', 1990], [12087, 72, 42972254, 'South Korea', 1990], [24021, 75.4, 3397534, 'New Zealand', 1990], [43296, 76.8, 4240375, 'Norway', 1990], [10088, 70.8, 38195258, 'Poland', 1990], [19349, 69.6, 147568552, 'Russia', 1990], [26424, 75.7, 57110117, 'United Kingdom', 1990], [37062, 75.4, 252847810, 'United States', 1990]], [[44056, 81.8, 23968973, 'Australia', 2015], [43294, 81.7, 35939927, 'Canada', 2015], [13334, 76.9, 1376048943, 'China', 2015], [38923, 80.8, 5503457, 'Finland', 2015], [37599, 81.9, 64395345, 'France', 2015], [44053, 81.1, 80688545, 'Germany', 2015], [5903, 66.8, 1311050527, 'India', 2015], [36162, 83.5, 126573481, 'Japan', 2015], [34644, 80.7, 50293439, 'South Korea', 2015], [34186, 80.6, 4528526, 'New Zealand', 2015], [64304, 81.6, 5210967, 'Norway', 2015], [24787, 77.3, 38611794, 'Poland', 2015], [23038, 73.13, 143456918, 'Russia', 2015], [38225, 81.4, 64715810, 'United Kingdom', 2015], [53354, 79.1, 321773631, 'United States', 2015]]];
+    let userOptions = utils.getData($bubbleChartEl, 'options');
+    let chart = window.echarts.init($bubbleChartEl);
+    let data = [[[28604, 77, 17096869, 'Australia', 1990], [31163, 77.4, 27662440, 'Canada', 1990], [1516, 68, 1154605773, 'China', 1990], [28599, 75, 4986705, 'Finland', 1990], [29476, 77.1, 56943299, 'France', 1990], [31476, 75.4, 78958237, 'Germany', 1990], [1777, 57.7, 870601776, 'India', 1990], [29550, 79.1, 122249285, 'Japan', 1990], [12087, 72, 42972254, 'South Korea', 1990], [24021, 75.4, 3397534, 'New Zealand', 1990], [43296, 76.8, 4240375, 'Norway', 1990], [10088, 70.8, 38195258, 'Poland', 1990], [19349, 69.6, 147568552, 'Russia', 1990], [26424, 75.7, 57110117, 'United Kingdom', 1990], [37062, 75.4, 252847810, 'United States', 1990]], [[44056, 81.8, 23968973, 'Australia', 2015], [43294, 81.7, 35939927, 'Canada', 2015], [13334, 76.9, 1376048943, 'China', 2015], [38923, 80.8, 5503457, 'Finland', 2015], [37599, 81.9, 64395345, 'France', 2015], [44053, 81.1, 80688545, 'Germany', 2015], [5903, 66.8, 1311050527, 'India', 2015], [36162, 83.5, 126573481, 'Japan', 2015], [34644, 80.7, 50293439, 'South Korea', 2015], [34186, 80.6, 4528526, 'New Zealand', 2015], [64304, 81.6, 5210967, 'Norway', 2015], [24787, 77.3, 38611794, 'Poland', 2015], [23038, 73.13, 143456918, 'Russia', 2015], [38225, 81.4, 64715810, 'United Kingdom', 2015], [53354, 79.1, 321773631, 'United States', 2015]]];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: {
           text: '1990 and 2015 have per capita and GDP',
@@ -2027,28 +2027,28 @@ var echartsBubbleChartInit = function echartsBubbleChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsCandlestickMixedChartInit = function echartsCandlestickMixedChartInit() {
-  var $candleStickMixedChartEl = document.querySelector('.echart-candlestick-mixed-chart-example');
+let echartsCandlestickMixedChartInit = function echartsCandlestickMixedChartInit() {
+  let $candleStickMixedChartEl = document.querySelector('.echart-candlestick-mixed-chart-example');
 
   if ($candleStickMixedChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($candleStickMixedChartEl, 'options');
-    var chart = window.echarts.init($candleStickMixedChartEl);
-    var colorList = [utils.getColor('primary'), utils.getColor('info'), utils.getColor('dark'), utils.getColor('warning')];
+    let userOptions = utils.getData($candleStickMixedChartEl, 'options');
+    let chart = window.echarts.init($candleStickMixedChartEl);
+    let colorList = [utils.getColor('primary'), utils.getColor('info'), utils.getColor('dark'), utils.getColor('warning')];
     /* eslint-disable no-continue */
 
-    var calculateMA = function calculateMA(dayCount, data) {
-      var result = [];
+    let calculateMA = function calculateMA(dayCount, data) {
+      let result = [];
 
-      for (var i = 0, len = data.length; i < len; i += 1) {
+      for (let i = 0, len = data.length; i < len; i += 1) {
         if (i < dayCount) {
           result.push('-');
           continue;
         }
 
-        var sum = 0;
+        let sum = 0;
 
-        for (var j = 0; j < dayCount; j += 1) {
+        for (let j = 0; j < dayCount; j += 1) {
           sum += data[i - j][1];
         }
 
@@ -2058,13 +2058,13 @@ var echartsCandlestickMixedChartInit = function echartsCandlestickMixedChartInit
       return result;
     };
 
-    var dates = utils.getPastDates(61).map(function (date) {
+    let dates = utils.getPastDates(61).map(function (date) {
       return window.dayjs(date).format('MMM DD, YYYY');
     });
-    var data = [[17512.58, 17633.11, 17434.27, 17642.81, 86160000], [17652.36, 17716.66, 17652.36, 17790.11, 79330000], [17716.05, 17685.09, 17669.72, 17755.7, 102600000], [17661.74, 17792.75, 17568.02, 17811.48, 104890000], [17799.39, 17737, 17710.67, 17806.38, 85230000], [17718.03, 17603.32, 17579.56, 17718.03, 115230000], [17605.45, 17716.05, 17542.54, 17723.55, 99410000], [17687.28, 17541.96, 17484.23, 17687.28, 90120000], [17555.39, 17576.96, 17528.16, 17694.51, 79990000], [17586.48, 17556.41, 17555.9, 17731.63, 107100000], [17571.34, 17721.25, 17553.57, 17744.43, 81020000], [17741.66, 17908.28, 17741.66, 17918.35, 91710000], [17912.25, 17926.43, 17885.44, 17962.14, 84510000], [17925.95, 17897.46, 17867.41, 17937.65, 118160000], [17890.2, 18004.16, 17848.22, 18009.53, 89390000], [18012.1, 18053.6, 17984.43, 18103.46, 89820000], [18059.49, 18096.27, 18031.21, 18167.63, 100210000], [18092.84, 17982.52, 17963.89, 18107.29, 102720000], [17985.05, 18003.75, 17909.89, 18026.85, 134120000], [17990.94, 17977.24, 17855.55, 17990.94, 83770000], [17987.38, 17990.32, 17934.17, 18043.77, 92570000], [17996.14, 18041.55, 17920.26, 18084.66, 109090000], [18023.88, 17830.76, 17796.55, 18035.73, 100920000], [17813.09, 17773.64, 17651.98, 17814.83, 136670000], [17783.78, 17891.16, 17773.71, 17912.35, 80100000], [17870.75, 17750.91, 17670.88, 17870.75, 97060000], [17735.02, 17651.26, 17609.01, 17738.06, 95020000], [17664.48, 17660.71, 17615.82, 17736.11, 81530000], [17650.3, 17740.63, 17580.38, 17744.54, 80020000], [17743.85, 17705.91, 17668.38, 17783.16, 85590000], [17726.66, 17928.35, 17726.66, 17934.61, 75790000], [17919.03, 17711.12, 17711.05, 17919.03, 87390000], [17711.12, 17720.5, 17625.38, 17798.19, 88560000], [17711.12, 17535.32, 17512.48, 17734.74, 86640000], [17531.76, 17710.71, 17531.76, 17755.8, 88440000], [17701.46, 17529.98, 17469.92, 17701.46, 103260000], [17501.28, 17526.62, 17418.21, 17636.22, 79120000], [17514.16, 17435.4, 17331.07, 17514.16, 95530000], [17437.32, 17500.94, 17437.32, 17571.75, 111990000], [17507.04, 17492.93, 17480.05, 17550.7, 87790000], [17525.19, 17706.05, 17525.19, 17742.59, 86480000], [17735.09, 17851.51, 17735.09, 17891.71, 79180000], [17859.52, 17828.29, 17803.82, 17888.66, 68940000], [17826.85, 17873.22, 17824.73, 17873.22, 73190000], [17891.5, 17787.2, 17724.03, 17899.24, 147390000], [17754.55, 17789.67, 17664.79, 17809.18, 78530000], [17789.05, 17838.56, 17703.55, 17838.56, 75560000], [17799.8, 17807.06, 17689.68, 17833.17, 82270000], [17825.69, 17920.33, 17822.81, 17949.68, 71870000], [17936.22, 17938.28, 17936.22, 18003.23, 78750000], [17931.91, 18005.05, 17931.91, 18016, 71260000], [17969.98, 17985.19, 17915.88, 18005.22, 69690000], [17938.82, 17865.34, 17812.34, 17938.82, 90540000], [17830.5, 17732.48, 17731.35, 17893.28, 101690000], [17710.77, 17674.82, 17595.79, 17733.92, 93740000], [17703.65, 17640.17, 17629.01, 17762.96, 94130000], [17602.23, 17733.1, 17471.29, 17754.91, 91950000], [17733.44, 17675.16, 17602.78, 17733.44, 248680000], [17736.87, 17804.87, 17736.87, 17946.36, 99380000], [17827.33, 17829.73, 17799.8, 17877.84, 85130000], [17832.67, 17780.83, 17770.36, 17920.16, 89440000]];
-    var dataMA5 = calculateMA(5, data);
+    let data = [[17512.58, 17633.11, 17434.27, 17642.81, 86160000], [17652.36, 17716.66, 17652.36, 17790.11, 79330000], [17716.05, 17685.09, 17669.72, 17755.7, 102600000], [17661.74, 17792.75, 17568.02, 17811.48, 104890000], [17799.39, 17737, 17710.67, 17806.38, 85230000], [17718.03, 17603.32, 17579.56, 17718.03, 115230000], [17605.45, 17716.05, 17542.54, 17723.55, 99410000], [17687.28, 17541.96, 17484.23, 17687.28, 90120000], [17555.39, 17576.96, 17528.16, 17694.51, 79990000], [17586.48, 17556.41, 17555.9, 17731.63, 107100000], [17571.34, 17721.25, 17553.57, 17744.43, 81020000], [17741.66, 17908.28, 17741.66, 17918.35, 91710000], [17912.25, 17926.43, 17885.44, 17962.14, 84510000], [17925.95, 17897.46, 17867.41, 17937.65, 118160000], [17890.2, 18004.16, 17848.22, 18009.53, 89390000], [18012.1, 18053.6, 17984.43, 18103.46, 89820000], [18059.49, 18096.27, 18031.21, 18167.63, 100210000], [18092.84, 17982.52, 17963.89, 18107.29, 102720000], [17985.05, 18003.75, 17909.89, 18026.85, 134120000], [17990.94, 17977.24, 17855.55, 17990.94, 83770000], [17987.38, 17990.32, 17934.17, 18043.77, 92570000], [17996.14, 18041.55, 17920.26, 18084.66, 109090000], [18023.88, 17830.76, 17796.55, 18035.73, 100920000], [17813.09, 17773.64, 17651.98, 17814.83, 136670000], [17783.78, 17891.16, 17773.71, 17912.35, 80100000], [17870.75, 17750.91, 17670.88, 17870.75, 97060000], [17735.02, 17651.26, 17609.01, 17738.06, 95020000], [17664.48, 17660.71, 17615.82, 17736.11, 81530000], [17650.3, 17740.63, 17580.38, 17744.54, 80020000], [17743.85, 17705.91, 17668.38, 17783.16, 85590000], [17726.66, 17928.35, 17726.66, 17934.61, 75790000], [17919.03, 17711.12, 17711.05, 17919.03, 87390000], [17711.12, 17720.5, 17625.38, 17798.19, 88560000], [17711.12, 17535.32, 17512.48, 17734.74, 86640000], [17531.76, 17710.71, 17531.76, 17755.8, 88440000], [17701.46, 17529.98, 17469.92, 17701.46, 103260000], [17501.28, 17526.62, 17418.21, 17636.22, 79120000], [17514.16, 17435.4, 17331.07, 17514.16, 95530000], [17437.32, 17500.94, 17437.32, 17571.75, 111990000], [17507.04, 17492.93, 17480.05, 17550.7, 87790000], [17525.19, 17706.05, 17525.19, 17742.59, 86480000], [17735.09, 17851.51, 17735.09, 17891.71, 79180000], [17859.52, 17828.29, 17803.82, 17888.66, 68940000], [17826.85, 17873.22, 17824.73, 17873.22, 73190000], [17891.5, 17787.2, 17724.03, 17899.24, 147390000], [17754.55, 17789.67, 17664.79, 17809.18, 78530000], [17789.05, 17838.56, 17703.55, 17838.56, 75560000], [17799.8, 17807.06, 17689.68, 17833.17, 82270000], [17825.69, 17920.33, 17822.81, 17949.68, 71870000], [17936.22, 17938.28, 17936.22, 18003.23, 78750000], [17931.91, 18005.05, 17931.91, 18016, 71260000], [17969.98, 17985.19, 17915.88, 18005.22, 69690000], [17938.82, 17865.34, 17812.34, 17938.82, 90540000], [17830.5, 17732.48, 17731.35, 17893.28, 101690000], [17710.77, 17674.82, 17595.79, 17733.92, 93740000], [17703.65, 17640.17, 17629.01, 17762.96, 94130000], [17602.23, 17733.1, 17471.29, 17754.91, 91950000], [17733.44, 17675.16, 17602.78, 17733.44, 248680000], [17736.87, 17804.87, 17736.87, 17946.36, 99380000], [17827.33, 17829.73, 17799.8, 17877.84, 85130000], [17832.67, 17780.83, 17770.36, 17920.16, 89440000]];
+    let dataMA5 = calculateMA(5, data);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         animation: false,
         color: colorList,
@@ -2086,7 +2086,7 @@ var echartsCandlestickMixedChartInit = function echartsCandlestickMixedChartInit
           borderWidth: 1,
           transitionDuration: 0,
           position: function position(pos, params, el, elRect, size) {
-            var obj = {
+            let obj = {
               top: 60
             };
             obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 5;
@@ -2265,15 +2265,15 @@ var echartsCandlestickMixedChartInit = function echartsCandlestickMixedChartInit
 /* -------------------------------------------------------------------------- */
 
 
-var echartsDoughnutChartInit = function echartsDoughnutChartInit() {
-  var $doughnutChartEl = document.querySelector('.echart-doughnut-chart-example');
+let echartsDoughnutChartInit = function echartsDoughnutChartInit() {
+  let $doughnutChartEl = document.querySelector('.echart-doughnut-chart-example');
 
   if ($doughnutChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($doughnutChartEl, 'options');
-    var chart = window.echarts.init($doughnutChartEl);
+    let userOptions = utils.getData($doughnutChartEl, 'options');
+    let chart = window.echarts.init($doughnutChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           left: 'left',
@@ -2352,15 +2352,15 @@ var echartsDoughnutChartInit = function echartsDoughnutChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsDoughnutRoundedChartInit = function echartsDoughnutRoundedChartInit() {
-  var $doughnutRoundedChartEl = document.querySelector('.echart-doughnut-rounded-chart');
+let echartsDoughnutRoundedChartInit = function echartsDoughnutRoundedChartInit() {
+  let $doughnutRoundedChartEl = document.querySelector('.echart-doughnut-rounded-chart');
 
   if ($doughnutRoundedChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($doughnutRoundedChartEl, 'options');
-    var chart = window.echarts.init($doughnutRoundedChartEl);
+    let userOptions = utils.getData($doughnutRoundedChartEl, 'options');
+    let chart = window.echarts.init($doughnutRoundedChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           orient: 'vertical',
@@ -2462,15 +2462,15 @@ var echartsDoughnutRoundedChartInit = function echartsDoughnutRoundedChartInit()
 /* -------------------------------------------------------------------------- */
 
 
-var echartsDynamicLineChartInit = function echartsDynamicLineChartInit() {
-  var $dynamicLineChartEl = document.querySelector('.echart-dynamic-line-chart-example');
+let echartsDynamicLineChartInit = function echartsDynamicLineChartInit() {
+  let $dynamicLineChartEl = document.querySelector('.echart-dynamic-line-chart-example');
 
   if ($dynamicLineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($dynamicLineChartEl, 'options');
-    var chart = window.echarts.init($dynamicLineChartEl);
+    let userOptions = utils.getData($dynamicLineChartEl, 'options');
+    let chart = window.echarts.init($dynamicLineChartEl);
 
-    var randomData = function randomData() {
+    let randomData = function randomData() {
       now = new Date(+now + oneDay);
       value = value + Math.random() * 21 - 10;
       return {
@@ -2479,16 +2479,16 @@ var echartsDynamicLineChartInit = function echartsDynamicLineChartInit() {
       };
     };
 
-    var data = [];
-    var now = +new Date(1997, 9, 3);
-    var oneDay = 24 * 3600 * 1000;
-    var value = Math.random() * 1000;
+    let data = [];
+    let now = +new Date(1997, 9, 3);
+    let oneDay = 24 * 3600 * 1000;
+    let value = Math.random() * 1000;
 
-    for (var i = 0; i < 1000; i++) {
+    for (let i = 0; i < 1000; i++) {
       data.push(randomData());
     }
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -2562,7 +2562,7 @@ var echartsDynamicLineChartInit = function echartsDynamicLineChartInit() {
 
     echartSetOption(chart, userOptions, getDefaultOptions);
     setInterval(function () {
-      for (var i = 0; i < 5; i++) {
+      for (let i = 0; i < 5; i++) {
         data.shift();
         data.push(randomData());
       }
@@ -2582,15 +2582,15 @@ var echartsDynamicLineChartInit = function echartsDynamicLineChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGaugeGradeChartInit = function echartsGaugeGradeChartInit() {
-  var $gaugeGradeChartEl = document.querySelector('.echart-gauge-grade-chart-example');
+let echartsGaugeGradeChartInit = function echartsGaugeGradeChartInit() {
+  let $gaugeGradeChartEl = document.querySelector('.echart-gauge-grade-chart-example');
 
   if ($gaugeGradeChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gaugeGradeChartEl, 'options');
-    var chart = window.echarts.init($gaugeGradeChartEl);
+    let userOptions = utils.getData($gaugeGradeChartEl, 'options');
+    let chart = window.echarts.init($gaugeGradeChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         series: [{
           radius: '100%',
@@ -2683,19 +2683,19 @@ var echartsGaugeGradeChartInit = function echartsGaugeGradeChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGaugeMultiRingChartInit = function echartsGaugeMultiRingChartInit() {
-  var $gaugeMultiRingChartEl = document.querySelector('.echart-gauge-multi-ring-chart-example');
+let echartsGaugeMultiRingChartInit = function echartsGaugeMultiRingChartInit() {
+  let $gaugeMultiRingChartEl = document.querySelector('.echart-gauge-multi-ring-chart-example');
 
   if ($gaugeMultiRingChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gaugeMultiRingChartEl, 'options');
-    var chart = window.echarts.init($gaugeMultiRingChartEl);
+    let userOptions = utils.getData($gaugeMultiRingChartEl, 'options');
+    let chart = window.echarts.init($gaugeMultiRingChartEl);
 
-    var _tooltipFormatter3 = function _tooltipFormatter3(params) {
+    let _tooltipFormatter3 = function _tooltipFormatter3(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].color, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -2812,19 +2812,19 @@ var echartsGaugeMultiRingChartInit = function echartsGaugeMultiRingChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGaugeMultiTitleChartInit = function echartsGaugeMultiTitleChartInit() {
-  var $gaugeMultiTitleChartEl = document.querySelector('.echart-gauge-multi-title-chart-example');
+let echartsGaugeMultiTitleChartInit = function echartsGaugeMultiTitleChartInit() {
+  let $gaugeMultiTitleChartEl = document.querySelector('.echart-gauge-multi-title-chart-example');
 
   if ($gaugeMultiTitleChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gaugeMultiTitleChartEl, 'options');
-    var chart = window.echarts.init($gaugeMultiTitleChartEl);
+    let userOptions = utils.getData($gaugeMultiTitleChartEl, 'options');
+    let chart = window.echarts.init($gaugeMultiTitleChartEl);
 
-    var _tooltipFormatter4 = function _tooltipFormatter4(params) {
+    let _tooltipFormatter4 = function _tooltipFormatter4(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].color, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -2937,19 +2937,19 @@ var echartsGaugeMultiTitleChartInit = function echartsGaugeMultiTitleChartInit()
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGaugeProgressChartInit = function echartsGaugeProgressChartInit() {
-  var $gaugeProgressChartEl = document.querySelector('.echart-gauge-progress-chart-example');
+let echartsGaugeProgressChartInit = function echartsGaugeProgressChartInit() {
+  let $gaugeProgressChartEl = document.querySelector('.echart-gauge-progress-chart-example');
 
   if ($gaugeProgressChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gaugeProgressChartEl, 'options');
-    var chart = window.echarts.init($gaugeProgressChartEl);
+    let userOptions = utils.getData($gaugeProgressChartEl, 'options');
+    let chart = window.echarts.init($gaugeProgressChartEl);
 
-    var _tooltipFormatter5 = function _tooltipFormatter5(params) {
+    let _tooltipFormatter5 = function _tooltipFormatter5(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].color, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3042,19 +3042,19 @@ var echartsGaugeProgressChartInit = function echartsGaugeProgressChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGaugeRingChartInit = function echartsGaugeRingChartInit() {
-  var $gaugeRingChartEl = document.querySelector('.echart-gauge-ring-chart-example');
+let echartsGaugeRingChartInit = function echartsGaugeRingChartInit() {
+  let $gaugeRingChartEl = document.querySelector('.echart-gauge-ring-chart-example');
 
   if ($gaugeRingChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gaugeRingChartEl, 'options');
-    var chart = window.echarts.init($gaugeRingChartEl);
+    let userOptions = utils.getData($gaugeRingChartEl, 'options');
+    let chart = window.echarts.init($gaugeRingChartEl);
 
-    var _tooltipFormatter6 = function _tooltipFormatter6(params) {
+    let _tooltipFormatter6 = function _tooltipFormatter6(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].color, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3142,17 +3142,17 @@ var echartsGaugeRingChartInit = function echartsGaugeRingChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsGradientBarChartInit = function echartsGradientBarChartInit() {
-  var $gradientBarChartEl = document.querySelector('.echart-gradient-bar-chart-example');
+let echartsGradientBarChartInit = function echartsGradientBarChartInit() {
+  let $gradientBarChartEl = document.querySelector('.echart-gradient-bar-chart-example');
 
   if ($gradientBarChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($gradientBarChartEl, 'options');
-    var chart = window.echarts.init($gradientBarChartEl);
-    var dataAxis = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
-    var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+    let userOptions = utils.getData($gradientBarChartEl, 'options');
+    let chart = window.echarts.init($gradientBarChartEl);
+    let dataAxis = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T'];
+    let data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3258,7 +3258,7 @@ var echartsGradientBarChartInit = function echartsGradientBarChartInit() {
     };
 
     echartSetOption(chart, userOptions, getDefaultOptions);
-    var zoomSize = 6;
+    let zoomSize = 6;
     chart.on('click', function (params) {
       chart.dispatchAction({
         type: 'dataZoom',
@@ -3275,24 +3275,24 @@ var echartsGradientBarChartInit = function echartsGradientBarChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsHeatMapChartInit = function echartsHeatMapChartInit() {
-  var ECHART_HEATMAP_CHART = '.echart-heatmap-chart-example';
-  var $echartHeatmapChart = document.querySelector(ECHART_HEATMAP_CHART);
-  var hours = ['12a', '2a', '4a', '6a', '8a', '10a', '12p', '2p', '4p', '6p', '8p', '10p'];
-  var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  var data = [];
+let echartsHeatMapChartInit = function echartsHeatMapChartInit() {
+  let ECHART_HEATMAP_CHART = '.echart-heatmap-chart-example';
+  let $echartHeatmapChart = document.querySelector(ECHART_HEATMAP_CHART);
+  let hours = ['12a', '2a', '4a', '6a', '8a', '10a', '12p', '2p', '4p', '6p', '8p', '10p'];
+  let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  let data = [];
 
-  for (var i = 0; i < 7; i += 1) {
-    for (var j = 0; j < 12; j += 1) {
+  for (let i = 0; i < 7; i += 1) {
+    for (let j = 0; j < 12; j += 1) {
       data.push([j, i, utils.getRandomNumber(5, 12)]);
     }
   }
 
   if ($echartHeatmapChart) {
-    var userOptions = utils.getData($echartHeatmapChart, 'options');
-    var chart = window.echarts.init($echartHeatmapChart);
+    let userOptions = utils.getData($echartHeatmapChart, 'options');
+    let chart = window.echarts.init($echartHeatmapChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           position: 'top',
@@ -3389,24 +3389,24 @@ var echartsHeatMapChartInit = function echartsHeatMapChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsHeatMapSingleSeriesChartInit = function echartsHeatMapSingleSeriesChartInit() {
-  var ECHART_HEATMAP_CHART = '.echart-heatmap-single-series-chart';
-  var $echartHeatmapChart = document.querySelector(ECHART_HEATMAP_CHART);
-  var hours = ['12a', '2a', '4a', '6a', '8a', '10a', '12p', '2p', '4p', '6p', '8p', '10p'];
-  var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  var data = [];
+let echartsHeatMapSingleSeriesChartInit = function echartsHeatMapSingleSeriesChartInit() {
+  let ECHART_HEATMAP_CHART = '.echart-heatmap-single-series-chart';
+  let $echartHeatmapChart = document.querySelector(ECHART_HEATMAP_CHART);
+  let hours = ['12a', '2a', '4a', '6a', '8a', '10a', '12p', '2p', '4p', '6p', '8p', '10p'];
+  let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  let data = [];
 
-  for (var i = 0; i < 7; i += 1) {
-    for (var j = 0; j < 12; j += 1) {
+  for (let i = 0; i < 7; i += 1) {
+    for (let j = 0; j < 12; j += 1) {
       data.push([j, i, utils.getRandomNumber(1, 12)]);
     }
   }
 
   if ($echartHeatmapChart) {
-    var userOptions = utils.getData($echartHeatmapChart, 'options');
-    var chart = window.echarts.init($echartHeatmapChart);
+    let userOptions = utils.getData($echartHeatmapChart, 'options');
+    let chart = window.echarts.init($echartHeatmapChart);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         gradientColor: [utils.rgbaColor(utils.getColors().info, 1), utils.rgbaColor(utils.getColors().primary, 1)],
         tooltip: {
@@ -3510,15 +3510,15 @@ var echartsHeatMapSingleSeriesChartInit = function echartsHeatMapSingleSeriesCha
 /* -------------------------------------------------------------------------- */
 
 
-var echartsHorizontalBarChartInit = function echartsHorizontalBarChartInit() {
-  var $horizontalBarChartEl = document.querySelector('.echart-horizontal-bar-chart-example');
+let echartsHorizontalBarChartInit = function echartsHorizontalBarChartInit() {
+  let $horizontalBarChartEl = document.querySelector('.echart-horizontal-bar-chart-example');
 
   if ($horizontalBarChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($horizontalBarChartEl, 'options');
-    var chart = window.echarts.init($horizontalBarChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204]; // const tooltipFormatter = params => {
+    let userOptions = utils.getData($horizontalBarChartEl, 'options');
+    let chart = window.echarts.init($horizontalBarChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let data = [1272, 1301, 1402, 1216, 1086, 1236, 1219, 1330, 1367, 1416, 1297, 1204]; // const tooltipFormatter = params => {
     //   return `
     //   <div>
     //       <h6 class="fs--1 text-700 mb-0">
@@ -3529,7 +3529,7 @@ var echartsHorizontalBarChartInit = function echartsHorizontalBarChartInit() {
     //   `;
     // };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3628,21 +3628,21 @@ var echartsHorizontalBarChartInit = function echartsHorizontalBarChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineAreaChartInit = function echartsLineAreaChartInit() {
-  var $lineAreaChartEl = document.querySelector('.echart-line-area-chart-example');
+let echartsLineAreaChartInit = function echartsLineAreaChartInit() {
+  let $lineAreaChartEl = document.querySelector('.echart-line-area-chart-example');
 
   if ($lineAreaChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineAreaChartEl, 'options');
-    var chart = window.echarts.init($lineAreaChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var data = [1142, 1160, 1179, 946, 1420, 1434, 986, 1247, 1051, 1297, 927, 1282];
+    let userOptions = utils.getData($lineAreaChartEl, 'options');
+    let chart = window.echarts.init($lineAreaChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let data = [1142, 1160, 1179, 946, 1420, 1434, 986, 1247, 1051, 1297, 927, 1282];
 
-    var _tooltipFormatter7 = function _tooltipFormatter7(params) {
+    let _tooltipFormatter7 = function _tooltipFormatter7(params) {
       return "\n      <div>\n          <h6 class=\"fs--1 text-700 mb-0\">\n            <span class=\"fas fa-circle me-1\" style='color:".concat(params[0].borderColor, "'></span>\n            ").concat(params[0].name, " : ").concat(params[0].value, "\n          </h6>\n      </div>\n      ");
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3756,22 +3756,22 @@ var echartsLineAreaChartInit = function echartsLineAreaChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineGradientChartInit = function echartsLineGradientChartInit() {
-  var $lineGradientChartEl = document.querySelector('.echart-line-gradient-chart-example');
+let echartsLineGradientChartInit = function echartsLineGradientChartInit() {
+  let $lineGradientChartEl = document.querySelector('.echart-line-gradient-chart-example');
 
   if ($lineGradientChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineGradientChartEl, 'options');
-    var chart = window.echarts.init($lineGradientChartEl);
-    var data = [['2021-06-05', 116], ['2021-06-06', 129], ['2021-06-07', 135], ['2021-06-08', 86], ['2021-06-09', 73], ['2021-06-10', 85], ['2021-06-11', 73], ['2021-06-12', 68], ['2021-06-13', 92], ['2021-06-14', 130], ['2021-06-15', 245], ['2021-06-16', 139], ['2021-06-17', 115], ['2021-06-18', 111], ['2021-06-19', 309], ['2021-06-20', 206], ['2021-06-21', 137], ['2021-06-22', 128], ['2021-06-23', 85], ['2021-06-24', 94], ['2021-06-25', 71], ['2021-06-26', 106], ['2021-06-27', 84], ['2021-06-28', 93], ['2021-06-29', 85], ['2021-06-30', 73], ['2021-07-01', 83], ['2021-07-02', 125], ['2021-07-03', 107], ['2021-07-04', 82], ['2021-07-05', 44], ['2021-07-06', 72], ['2021-07-07', 106], ['2021-07-08', 107], ['2021-07-09', 66], ['2021-07-10', 91], ['2021-07-11', 92], ['2021-07-12', 113], ['2021-07-13', 107], ['2021-07-14', 131], ['2021-07-15', 111], ['2021-07-16', 64], ['2021-07-17', 69], ['2021-07-18', 88], ['2021-07-19', 77], ['2021-07-20', 83], ['2021-07-21', 111], ['2021-07-22', 57], ['2021-07-23', 55], ['2021-07-24', 60]];
-    var dateList = data.map(function (item) {
+    let userOptions = utils.getData($lineGradientChartEl, 'options');
+    let chart = window.echarts.init($lineGradientChartEl);
+    let data = [['2021-06-05', 116], ['2021-06-06', 129], ['2021-06-07', 135], ['2021-06-08', 86], ['2021-06-09', 73], ['2021-06-10', 85], ['2021-06-11', 73], ['2021-06-12', 68], ['2021-06-13', 92], ['2021-06-14', 130], ['2021-06-15', 245], ['2021-06-16', 139], ['2021-06-17', 115], ['2021-06-18', 111], ['2021-06-19', 309], ['2021-06-20', 206], ['2021-06-21', 137], ['2021-06-22', 128], ['2021-06-23', 85], ['2021-06-24', 94], ['2021-06-25', 71], ['2021-06-26', 106], ['2021-06-27', 84], ['2021-06-28', 93], ['2021-06-29', 85], ['2021-06-30', 73], ['2021-07-01', 83], ['2021-07-02', 125], ['2021-07-03', 107], ['2021-07-04', 82], ['2021-07-05', 44], ['2021-07-06', 72], ['2021-07-07', 106], ['2021-07-08', 107], ['2021-07-09', 66], ['2021-07-10', 91], ['2021-07-11', 92], ['2021-07-12', 113], ['2021-07-13', 107], ['2021-07-14', 131], ['2021-07-15', 111], ['2021-07-16', 64], ['2021-07-17', 69], ['2021-07-18', 88], ['2021-07-19', 77], ['2021-07-20', 83], ['2021-07-21', 111], ['2021-07-22', 57], ['2021-07-23', 55], ['2021-07-24', 60]];
+    let dateList = data.map(function (item) {
       return item[0];
     });
-    var valueList = data.map(function (item) {
+    let valueList = data.map(function (item) {
       return item[1];
     });
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         visualMap: {
           show: false,
@@ -3863,15 +3863,15 @@ var echartsLineGradientChartInit = function echartsLineGradientChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineLogChartInit = function echartsLineLogChartInit() {
-  var $lineLogChartEl = document.querySelector('.echart-line-log-chart-example');
+let echartsLineLogChartInit = function echartsLineLogChartInit() {
+  let $lineLogChartEl = document.querySelector('.echart-line-log-chart-example');
 
   if ($lineLogChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineLogChartEl, 'options');
-    var chart = window.echarts.init($lineLogChartEl);
+    let userOptions = utils.getData($lineLogChartEl, 'options');
+    let chart = window.echarts.init($lineLogChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -3976,16 +3976,16 @@ var echartsLineLogChartInit = function echartsLineLogChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineMarkerChartInit = function echartsLineMarkerChartInit() {
-  var $lineMarkerChartEl = document.querySelector('.echart-line-marker-chart-example');
+let echartsLineMarkerChartInit = function echartsLineMarkerChartInit() {
+  let $lineMarkerChartEl = document.querySelector('.echart-line-marker-chart-example');
 
   if ($lineMarkerChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineMarkerChartEl, 'options');
-    var chart = window.echarts.init($lineMarkerChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($lineMarkerChartEl, 'options');
+    let chart = window.echarts.init($lineMarkerChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('warning') // utils.getColor('danger')
         ],
@@ -4174,16 +4174,16 @@ var echartsLineMarkerChartInit = function echartsLineMarkerChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineRaceChartInit = function echartsLineRaceChartInit() {
-  var $lineRaceChartEl = document.querySelector('.echart-line-race-chart-example');
+let echartsLineRaceChartInit = function echartsLineRaceChartInit() {
+  let $lineRaceChartEl = document.querySelector('.echart-line-race-chart-example');
 
   if ($lineRaceChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineRaceChartEl, 'options');
-    var chart = window.echarts.init($lineRaceChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($lineRaceChartEl, 'options');
+    let chart = window.echarts.init($lineRaceChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('warning')],
         legend: {
@@ -4339,15 +4339,15 @@ var echartsLineRaceChartInit = function echartsLineRaceChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsLineShareDatasetChartInit = function echartsLineShareDatasetChartInit() {
-  var $lineShareChartEl = document.querySelector('.echart-line-share-dataset-chart-example');
+let echartsLineShareDatasetChartInit = function echartsLineShareDatasetChartInit() {
+  let $lineShareChartEl = document.querySelector('.echart-line-share-dataset-chart-example');
 
   if ($lineShareChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($lineShareChartEl, 'options');
-    var chart = window.echarts.init($lineShareChartEl);
+    let userOptions = utils.getData($lineShareChartEl, 'options');
+    let chart = window.echarts.init($lineShareChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('danger'), utils.getColor('warning'), utils.getColor('info'), utils.getColor('primary')],
         legend: {
@@ -4488,10 +4488,10 @@ var echartsLineShareDatasetChartInit = function echartsLineShareDatasetChartInit
 
     echartSetOption(chart, userOptions, getDefaultOptions);
     chart.on('updateAxisPointer', function (event) {
-      var xAxisInfo = event.axesInfo[0];
+      let xAxisInfo = event.axesInfo[0];
 
       if (xAxisInfo) {
-        var dimension = xAxisInfo.value + 1;
+        let dimension = xAxisInfo.value + 1;
         chart.setOption({
           series: {
             id: 'pie',
@@ -4515,9 +4515,9 @@ var echartsLineShareDatasetChartInit = function echartsLineShareDatasetChartInit
 /* -------------------------------------------------------------------------- */
 
 
-var echartsUsaMapInit = function echartsUsaMapInit() {
-  var $usaMapEl = document.querySelector('.echart-map-usa-example');
-  var data = [{
+let echartsUsaMapInit = function echartsUsaMapInit() {
+  let $usaMapEl = document.querySelector('.echart-map-usa-example');
+  let data = [{
     name: 'Alabama',
     value: 4822023
   }, {
@@ -4676,10 +4676,10 @@ var echartsUsaMapInit = function echartsUsaMapInit() {
   }];
 
   if ($usaMapEl) {
-    var userOptions = utils.getData($usaMapEl, 'options');
-    var chart = window.echarts.init($usaMapEl);
+    let userOptions = utils.getData($usaMapEl, 'options');
+    let chart = window.echarts.init($usaMapEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -4763,15 +4763,15 @@ var echartsUsaMapInit = function echartsUsaMapInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsPieChartInit = function echartsPieChartInit() {
-  var $pieChartEl = document.querySelector('.echart-pie-chart-example');
+let echartsPieChartInit = function echartsPieChartInit() {
+  let $pieChartEl = document.querySelector('.echart-pie-chart-example');
 
   if ($pieChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($pieChartEl, 'options');
-    var chart = window.echarts.init($pieChartEl);
+    let userOptions = utils.getData($pieChartEl, 'options');
+    let chart = window.echarts.init($pieChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           left: 'left',
@@ -4868,9 +4868,9 @@ var echartsPieChartInit = function echartsPieChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsPieEdgeAlignChartInit = function echartsPieEdgeAlignChartInit() {
-  var $echartPieAEdgeAlignChartEl = document.querySelector('.echart-pie-edge-align-chart');
-  var data = [{
+let echartsPieEdgeAlignChartInit = function echartsPieEdgeAlignChartInit() {
+  let $echartPieAEdgeAlignChartEl = document.querySelector('.echart-pie-edge-align-chart');
+  let data = [{
     value: 800,
     name: 'Starter',
     itemStyle: {
@@ -4928,10 +4928,10 @@ var echartsPieEdgeAlignChartInit = function echartsPieEdgeAlignChartInit() {
 
   if ($echartPieAEdgeAlignChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartPieAEdgeAlignChartEl, 'options');
-    var chart = window.echarts.init($echartPieAEdgeAlignChartEl);
+    let userOptions = utils.getData($echartPieAEdgeAlignChartEl, 'options');
+    let chart = window.echarts.init($echartPieAEdgeAlignChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: [{
           text: 'Pie Edge Align Chart',
@@ -5007,14 +5007,14 @@ var echartsPieEdgeAlignChartInit = function echartsPieEdgeAlignChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsPieLabelAlignChartInit = function echartsPieLabelAlignChartInit() {
-  var $echartPieLabelAlignChartEl = document.querySelector('.echart-pie-label-align-chart');
+let echartsPieLabelAlignChartInit = function echartsPieLabelAlignChartInit() {
+  let $echartPieLabelAlignChartEl = document.querySelector('.echart-pie-label-align-chart');
 
   if ($echartPieLabelAlignChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartPieLabelAlignChartEl, 'options');
-    var chart = window.echarts.init($echartPieLabelAlignChartEl);
-    var data = [{
+    let userOptions = utils.getData($echartPieLabelAlignChartEl, 'options');
+    let chart = window.echarts.init($echartPieLabelAlignChartEl);
+    let data = [{
       value: 800,
       name: 'Starter',
       itemStyle: {
@@ -5070,7 +5070,7 @@ var echartsPieLabelAlignChartInit = function echartsPieLabelAlignChartInit() {
       }
     }];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: [{
           text: 'Pie Label Align Chart',
@@ -5146,7 +5146,7 @@ var echartsPieLabelAlignChartInit = function echartsPieLabelAlignChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var data1 = [{
+let data1 = [{
   value: 1048,
   name: 'Starter',
   itemStyle: {
@@ -5183,7 +5183,7 @@ var data1 = [{
     color: utils.getColor('info')
   }
 }];
-var data2 = [{
+let data2 = [{
   value: 1048,
   name: 'Facebook',
   itemStyle: {
@@ -5214,22 +5214,22 @@ var data2 = [{
     color: utils.getColor('warning')
   }
 }];
-var defaultRadius = {
+let defaultRadius = {
   radius: '55%'
 };
-var smallRadius = {
+let smallRadius = {
   radius: '48%'
 };
 
-var echartsPieMultipleChartInit = function echartsPieMultipleChartInit() {
-  var $echartPieMultipleChartEl = document.querySelector('.echart-pie-multiple-chart');
+let echartsPieMultipleChartInit = function echartsPieMultipleChartInit() {
+  let $echartPieMultipleChartEl = document.querySelector('.echart-pie-multiple-chart');
 
   if ($echartPieMultipleChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($echartPieMultipleChartEl, 'options');
-    var chart = window.echarts.init($echartPieMultipleChartEl);
+    let userOptions = utils.getData($echartPieMultipleChartEl, 'options');
+    let chart = window.echarts.init($echartPieMultipleChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         title: [{
           text: 'Pie Multiple Chart',
@@ -5295,15 +5295,15 @@ var echartsPieMultipleChartInit = function echartsPieMultipleChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsRadarChartInit = function echartsRadarChartInit() {
-  var $radarChartEl = document.querySelector('.echart-radar-chart-example');
+let echartsRadarChartInit = function echartsRadarChartInit() {
+  let $radarChartEl = document.querySelector('.echart-radar-chart-example');
 
   if ($radarChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($radarChartEl, 'options');
-    var chart = window.echarts.init($radarChartEl);
+    let userOptions = utils.getData($radarChartEl, 'options');
+    let chart = window.echarts.init($radarChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           orient: 'vertical',
@@ -5382,21 +5382,21 @@ var echartsRadarChartInit = function echartsRadarChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsRadarCustomizedChartInit = function echartsRadarCustomizedChartInit() {
-  var $radarChartEl = document.querySelector('.echart-radar-customized-chart');
+let echartsRadarCustomizedChartInit = function echartsRadarCustomizedChartInit() {
+  let $radarChartEl = document.querySelector('.echart-radar-customized-chart');
 
   function getFormatter(params) {
-    var indicators = [['Marketing', 'Sales', 'Dev', 'Support', 'Tech', 'Admin'], ['Language', 'Math', 'English', 'Physics', 'Chemistry', 'Biology']];
-    var num = params.seriesIndex;
+    let indicators = [['Marketing', 'Sales', 'Dev', 'Support', 'Tech', 'Admin'], ['Language', 'Math', 'English', 'Physics', 'Chemistry', 'Biology']];
+    let num = params.seriesIndex;
     return "<strong > ".concat(params.name, " </strong>\n    <div class=\"fs--1 text-600\">\n      <strong >").concat(indicators[params.seriesIndex][0], "</strong>: ").concat(params.value[0], "  <br>\n      <strong>").concat(indicators[num][1], "</strong>: ").concat(params.value[1], "  <br>\n      <strong>").concat(indicators[num][2], "</strong>: ").concat(params.value[2], "  <br>\n      <strong>").concat(indicators[num][3], "</strong>: ").concat(params.value[3], "  <br>\n      <strong>").concat(indicators[num][4], "</strong>: ").concat(params.value[4], "  <br>\n      <strong>").concat(indicators[num][5], "</strong>: ").concat(params.value[5], "  <br>\n    </div>");
   }
 
   if ($radarChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($radarChartEl, 'options');
-    var chart = window.echarts.init($radarChartEl);
+    let userOptions = utils.getData($radarChartEl, 'options');
+    let chart = window.echarts.init($radarChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           orient: 'vertical',
@@ -5599,16 +5599,16 @@ var echartsRadarCustomizedChartInit = function echartsRadarCustomizedChartInit()
 /* -------------------------------------------------------------------------- */
 
 
-var echartsRadarMultipleChartInit = function echartsRadarMultipleChartInit() {
-  var $radarChartEl = document.querySelector('.echart-radar-multiple-chart');
+let echartsRadarMultipleChartInit = function echartsRadarMultipleChartInit() {
+  let $radarChartEl = document.querySelector('.echart-radar-multiple-chart');
 
   if ($radarChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($radarChartEl, 'options');
-    var chart = window.echarts.init($radarChartEl);
-    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let userOptions = utils.getData($radarChartEl, 'options');
+    let chart = window.echarts.init($radarChartEl);
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    var getCenter = function getCenter() {
+    let getCenter = function getCenter() {
       if (window.innerWidth < 1540 && window.innerWidth > 992) {
         return [['25%', '40%'], ['50%', '75%'], ['75%', '40%']];
       }
@@ -5620,7 +5620,7 @@ var echartsRadarMultipleChartInit = function echartsRadarMultipleChartInit() {
       return [['15%', '50%'], ['50%', '50%'], ['85%', '50%']];
     };
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         legend: {
           left: 'left',
@@ -5789,15 +5789,15 @@ var echartsRadarMultipleChartInit = function echartsRadarMultipleChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsScatterBasicChartInit = function echartsScatterBasicChartInit() {
-  var $basicScatterChartEl = document.querySelector('.echart-basic-scatter-chart-example');
+let echartsScatterBasicChartInit = function echartsScatterBasicChartInit() {
+  let $basicScatterChartEl = document.querySelector('.echart-basic-scatter-chart-example');
 
   if ($basicScatterChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($basicScatterChartEl, 'options');
-    var chart = window.echarts.init($basicScatterChartEl);
+    let userOptions = utils.getData($basicScatterChartEl, 'options');
+    let chart = window.echarts.init($basicScatterChartEl);
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -5875,16 +5875,16 @@ var echartsScatterBasicChartInit = function echartsScatterBasicChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
-  var $scatterQuartetChartEl = document.querySelector('.echart-scatter-quartet-chart-example');
+let echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
+  let $scatterQuartetChartEl = document.querySelector('.echart-scatter-quartet-chart-example');
 
   if ($scatterQuartetChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($scatterQuartetChartEl, 'options');
-    var chart = window.echarts.init($scatterQuartetChartEl);
-    var dataAll = [[[10.0, 8.04], [8.0, 6.95], [13.0, 7.58], [9.0, 8.81], [11.0, 8.33], [14.0, 9.96], [6.0, 7.24], [4.0, 4.26], [12.0, 10.84], [7.0, 4.82], [5.0, 5.68]], [[10.0, 9.14], [8.0, 8.14], [13.0, 8.74], [9.0, 8.77], [11.0, 9.26], [14.0, 8.1], [6.0, 6.13], [4.0, 3.1], [12.0, 9.13], [7.0, 7.26], [5.0, 4.74]], [[10.0, 7.46], [8.0, 6.77], [13.0, 12.74], [9.0, 7.11], [11.0, 7.81], [14.0, 8.84], [6.0, 6.08], [4.0, 5.39], [12.0, 8.15], [7.0, 6.42], [5.0, 5.73]], [[8.0, 6.58], [8.0, 5.76], [8.0, 7.71], [8.0, 8.84], [8.0, 8.47], [8.0, 7.04], [8.0, 5.25], [19.0, 12.5], [8.0, 5.56], [8.0, 7.91], [8.0, 6.89]]];
+    let userOptions = utils.getData($scatterQuartetChartEl, 'options');
+    let chart = window.echarts.init($scatterQuartetChartEl);
+    let dataAll = [[[10.0, 8.04], [8.0, 6.95], [13.0, 7.58], [9.0, 8.81], [11.0, 8.33], [14.0, 9.96], [6.0, 7.24], [4.0, 4.26], [12.0, 10.84], [7.0, 4.82], [5.0, 5.68]], [[10.0, 9.14], [8.0, 8.14], [13.0, 8.74], [9.0, 8.77], [11.0, 9.26], [14.0, 8.1], [6.0, 6.13], [4.0, 3.1], [12.0, 9.13], [7.0, 7.26], [5.0, 4.74]], [[10.0, 7.46], [8.0, 6.77], [13.0, 12.74], [9.0, 7.11], [11.0, 7.81], [14.0, 8.84], [6.0, 6.08], [4.0, 5.39], [12.0, 8.15], [7.0, 6.42], [5.0, 5.73]], [[8.0, 6.58], [8.0, 5.76], [8.0, 7.71], [8.0, 8.84], [8.0, 8.47], [8.0, 7.04], [8.0, 5.25], [19.0, 12.5], [8.0, 5.56], [8.0, 7.91], [8.0, 6.89]]];
 
-    var xAxis = function xAxis() {
+    let xAxis = function xAxis() {
       return {
         axisLabel: {
           color: utils.getGrays()['600']
@@ -5904,7 +5904,7 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
       };
     };
 
-    var yAxis = function yAxis() {
+    let yAxis = function yAxis() {
       return {
         axisLabel: {
           color: utils.getGrays()['600']
@@ -5924,7 +5924,7 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
       };
     };
 
-    var markLineOpt = {
+    let markLineOpt = {
       animation: false,
       label: {
         formatter: 'y = 0.5 * x + 3',
@@ -5946,7 +5946,7 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
         symbol: 'none'
       }]]
     };
-    var gridMdUp = [{
+    let gridMdUp = [{
       left: '7%',
       top: '10%',
       width: '38%',
@@ -5967,7 +5967,7 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
       width: '38%',
       height: '38%'
     }];
-    var gridMdDown = [{
+    let gridMdDown = [{
       left: 6,
       right: 7,
       top: '4%',
@@ -5989,7 +5989,7 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
       height: '20%'
     }];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('primary'), utils.getColor('success'), utils.getColor('warning'), utils.getColor('danger')],
         tooltip: {
@@ -6103,24 +6103,24 @@ var echartsScatterQuartetChartInit = function echartsScatterQuartetChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsScatterSingleAxisChartInit = function echartsScatterSingleAxisChartInit() {
-  var $scatterSingleAxisChartEl = document.querySelector('.echart-scatter-single-axis-chart-example');
+let echartsScatterSingleAxisChartInit = function echartsScatterSingleAxisChartInit() {
+  let $scatterSingleAxisChartEl = document.querySelector('.echart-scatter-single-axis-chart-example');
 
   if ($scatterSingleAxisChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($scatterSingleAxisChartEl, 'options');
-    var chart = window.echarts.init($scatterSingleAxisChartEl);
-    var hours = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
-    var days = ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
-    var data = [];
+    let userOptions = utils.getData($scatterSingleAxisChartEl, 'options');
+    let chart = window.echarts.init($scatterSingleAxisChartEl);
+    let hours = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
+    let days = ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+    let data = [];
 
-    for (var i = 0; i < 7; i += 1) {
-      for (var j = 0; j < 24; j += 1) {
+    for (let i = 0; i < 7; i += 1) {
+      for (let j = 0; j < 24; j += 1) {
         data.push([j, i, utils.getRandomNumber(0, 10)]);
       }
     }
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'item',
@@ -6208,16 +6208,16 @@ var echartsScatterSingleAxisChartInit = function echartsScatterSingleAxisChartIn
 /* -------------------------------------------------------------------------- */
 
 
-var echartsStackedAreaChartInit = function echartsStackedAreaChartInit() {
-  var $stackedAreaChartEl = document.querySelector('.echart-stacked-area-chart-example');
+let echartsStackedAreaChartInit = function echartsStackedAreaChartInit() {
+  let $stackedAreaChartEl = document.querySelector('.echart-stacked-area-chart-example');
 
   if ($stackedAreaChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($stackedAreaChartEl, 'options');
-    var chart = window.echarts.init($stackedAreaChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($stackedAreaChartEl, 'options');
+    let chart = window.echarts.init($stackedAreaChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -6392,16 +6392,16 @@ var echartsStackedAreaChartInit = function echartsStackedAreaChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsHorizontalStackedChartInit = function echartsHorizontalStackedChartInit() {
-  var $horizontalStackChartEl = document.querySelector('.echart-horizontal-stacked-chart-example');
+let echartsHorizontalStackedChartInit = function echartsHorizontalStackedChartInit() {
+  let $horizontalStackChartEl = document.querySelector('.echart-horizontal-stacked-chart-example');
 
   if ($horizontalStackChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($horizontalStackChartEl, 'options');
-    var chart = window.echarts.init($horizontalStackChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($horizontalStackChartEl, 'options');
+    let chart = window.echarts.init($horizontalStackChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('info'), utils.getColor('danger'), utils.getColor('warning'), utils.getColor('success'), utils.getColor('primary')],
         tooltip: {
@@ -6559,16 +6559,16 @@ var echartsHorizontalStackedChartInit = function echartsHorizontalStackedChartIn
 /* -------------------------------------------------------------------------- */
 
 
-var echartsStackedLineChartInit = function echartsStackedLineChartInit() {
-  var $stackedLineChartEl = document.querySelector('.echart-stacked-line-chart-example');
+let echartsStackedLineChartInit = function echartsStackedLineChartInit() {
+  let $stackedLineChartEl = document.querySelector('.echart-stacked-line-chart-example');
 
   if ($stackedLineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($stackedLineChartEl, 'options');
-    var chart = window.echarts.init($stackedLineChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($stackedLineChartEl, 'options');
+    let chart = window.echarts.init($stackedLineChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         tooltip: {
           trigger: 'axis',
@@ -6729,16 +6729,16 @@ var echartsStackedLineChartInit = function echartsStackedLineChartInit() {
 /* -------------------------------------------------------------------------- */
 
 
-var echartsStepLineChartInit = function echartsStepLineChartInit() {
-  var $stepLineChartEl = document.querySelector('.echart-step-line-chart-example');
+let echartsStepLineChartInit = function echartsStepLineChartInit() {
+  let $stepLineChartEl = document.querySelector('.echart-step-line-chart-example');
 
   if ($stepLineChartEl) {
     // Get options from data attribute
-    var userOptions = utils.getData($stepLineChartEl, 'options');
-    var chart = window.echarts.init($stepLineChartEl);
-    var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let userOptions = utils.getData($stepLineChartEl, 'options');
+    let chart = window.echarts.init($stepLineChartEl);
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-    var getDefaultOptions = function getDefaultOptions() {
+    let getDefaultOptions = function getDefaultOptions() {
       return {
         color: [utils.getColor('danger'), utils.getColor('warning'), utils.getColor('primary')],
         legend: {

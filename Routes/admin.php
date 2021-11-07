@@ -57,6 +57,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
 
     $routes->group('analytics', function($routes) {
         $routes->get('/', 'AnalyticController::index', ['as' => 'admin.stats.index']);
+        $routes->get('fetch', 'AnalyticController::init', ['as' => 'admin.stats.init']);
     });
 });
 
