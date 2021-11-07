@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\Category;
+use App\Models\OrdersDetail;
 use App\Models\Product;
 use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
@@ -43,7 +44,11 @@ class ProductController extends BaseController
     public function show($id): string|RedirectResponse {
         try {
             $data = [
-                'product' => Product::with('user')->findOrFail($id),
+                'product' => Product::with(['user', 'subCategory', 'ordersDetails' => function($query) {
+                    return $query->whereHas('order', function($query) {
+                        $query->where('is_paid', true);
+                    });
+                }])->findOrFail($id),
             ];
 
             return view('Admin/pages/products/show', $data);
@@ -51,6 +56,25 @@ class ProductController extends BaseController
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Unable to find product for viewing!', 'admin.product.index');
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function weeklyPurchases($id): bool|string {
+        $frequency = 'daily';
+
+        $purchases = OrdersDetail::where('product_id', $id)->whereHas('order', function($query) {
+            $query->where('is_paid', true);
+        })->whereBetween('created_at', [chartStartDate($frequency), now()])
+            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
+                return chartDateFormat($item->created_at, $frequency);
+            });
+
+        $purchases = chartDataSet($purchases, $frequency);
+        $purchases['total'] = array_sum($purchases['datasets']);
+
+        return json_encode($purchases);
     }
 
     public function create(): string {

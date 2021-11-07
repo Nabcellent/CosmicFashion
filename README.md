@@ -17,6 +17,7 @@ The following are some of the libraries used to create the web app:
 1. [Jquery v3.3.6](https://jquery.com/) - Designed to simplify HTML DOM tree traversal and manipulation
 2. [Swiper](https://swiperjs.com/) - A modern slider with hardware accelerated transitions and amazing native behavior.
 3. [SweetAlert2](https://sweetalert2.github.io/)
+3. [CountUp](https://inorganik.github.io/countUp.js/)
 
 #### Other Plugins
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts

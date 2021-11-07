@@ -24,6 +24,10 @@ class Product extends Model
         'stock',
     ];
 
+    public function getDiscountPriceAttribute(): float|int {
+        return ((100 - (float)$this->discount) / 100) * (float)$this->price;
+    }
+
     /**
      * RELATIONSHIP FUNCTIONS
      */

@@ -34,6 +34,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('show/(:num)', 'ProductController::show/$1', ['as' => 'admin.products.show']);
         $routes->get('edit/(:num)', 'ProductController::edit/$1', ['as' => 'admin.products.edit']);
         $routes->put('update/(:num)', 'ProductController::update/$1', ['as' => 'admin.product.update']);
+        $routes->get('purchases-chart/(:num)', 'ProductController::weeklyPurchases/$1', ['as' => 'admin.product.purchases.chart']);
     });
 
     //  USER ROUTES

@@ -69,6 +69,11 @@ if(!function_exists('getModel')) {
     }
 }
 
+
+
+/**
+ *  ===========================================================================    LARAVEL HELPERS
+ */
 if (! function_exists('collect')) {
     /**
      * Create a collection from the given value.
@@ -78,5 +83,13 @@ if (! function_exists('collect')) {
      */
     function collect(mixed $value = null): Collection {
         return new Collection($value);
+    }
+}
+if(!function_exists('now')) {
+    /**
+     * @return Carbon
+     */
+    function now(): Carbon {
+        return Carbon::now();
     }
 }

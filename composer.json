@@ -30,7 +30,8 @@
       "Config\\": "app/Config"
     },
     "files": [
-      "app/Helpers/helper.php",
+      "app/Helpers/helpers.php",
+      "app/Helpers/analytics.php",
       "app/Libraries/Mpesa/helpers.php"
     ],
     "exclude-from-classmap": [
