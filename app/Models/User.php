@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Model {
@@ -63,6 +64,12 @@ class User extends Model {
     }
     public function mpesaStkRequests(): HasMany {
         return $this->hasMany(MpesaStkRequest::class);
+    }
+    public function orders(): HasMany {
+        return $this->hasMany(Order::class);
+    }
+    public function ordersDetails(): HasManyThrough {
+        return $this->hasManyThrough(OrdersDetail::class, Order::class);
     }
 
 

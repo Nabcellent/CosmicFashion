@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\ApiUser;
+use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -24,13 +25,30 @@ class UserController extends BaseController
         try {
             $data['user'] = User::with(['role', 'logins' => function($query) {
                 $query->take(3);
-            }, 'apiUser'])->findOrFail($id);
+            }, 'apiUser'])->withCount(['ordersDetails as total_items_ordered', 'orders'])->findOrFail($id);
 
             return view('Admin/pages/users/profile', $data);
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Unable to find user!', 'admin.user.index');
         }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function weeklyOrders($id): bool|string {
+        $frequency = 'weekly';
+
+        $orders = Order::where('user_id', $id)->whereBetween('created_at', [chartStartDate($frequency), now()])
+            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
+                return chartDateFormat($item->created_at, $frequency);
+            });
+
+        $orders = chartDataSet($orders, $frequency);
+        $orders['total'] = array_sum($orders['datasets']);
+
+        return json_encode($orders);
     }
 
     public function showCustomers(): string {

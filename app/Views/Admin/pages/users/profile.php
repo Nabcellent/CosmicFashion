@@ -51,7 +51,11 @@
 						<li class="list-group-item">
 							<a class="d-flex align-items-center" href="javascript:void(0)">
 								<i class="bi bi-bag-check me-2 text-700"></i>
-								<div class="flex-1"><h6 class="mb-0">See products (330)</h6></div>
+								<div class="flex-1">
+									<h6 class="mb-0">
+										Total items ordered (<span data-countup='{"endValue":<?= $user->orders_count ?>,"duration":7}'>0</span>)
+									</h6>
+								</div>
 							</a>
 						</li>
 						<li class="list-group-item">
@@ -78,6 +82,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="row g-0">
 		<div class="col-lg-8 pe-lg-2">
 			<div class="card mb-3">
@@ -224,6 +229,23 @@
 		<div class="col-lg-4 ps-lg-2">
 			<div class="sticky-sidebar">
 				<div class="card mb-3">
+					<div class="card-header bg-light d-flex justify-content-between">
+						<h5 class="mb-0">Weekly Purchases</h5>
+						<span id="count-up">All purchases</span>
+					</div>
+					<div class="card-body fs--1 p-2">
+						<div class="weekly-purchases w-100"
+						     data-echarts="{&quot;tooltip&quot;:{&quot;trigger&quot;:&quot;axis&quot;,&quot;formatter&quot;:&quot;{b0} : {c0}&quot;},&quot;xAxis&quot;:{&quot;data&quot;:[&quot;Week 4&quot;,&quot;Week 5&quot;,&quot;week 6&quot;,&quot;week 7&quot;]},&quot;series&quot;:[{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:[20,40,100,120],&quot;smooth&quot;:true,&quot;lineStyle&quot;:{&quot;width&quot;:3}}],&quot;grid&quot;:{&quot;bottom&quot;:&quot;2%&quot;,&quot;top&quot;:&quot;2%&quot;,&quot;right&quot;:&quot;10px&quot;,&quot;left&quot;:&quot;10px&quot;}}"
+						     data-echart-responsive="true" _echarts_instance_="ec_1634928926715"
+						     style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative; min-height: 10rem">
+							<div style="position: relative; width: 138px; height: 90px; padding: 0; margin: 0; border-width: 0;">
+								<canvas data-zr-dom-id="zr_0" width="138" height="90"
+								        style="position: absolute; left: 0; top: 0; width: 130px; height: 90px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0; margin: 0; border-width: 0;"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-3">
 					<div class="card-header bg-light">
 						<h5 class="mb-0">Products</h5>
 					</div>
@@ -289,53 +311,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="card mb-3 mb-lg-0">
-					<div class="card-header bg-light">
-						<h5 class="mb-0">Events</h5>
-					</div>
-					<div class="card-body fs--1">
-						<div class="d-flex btn-reveal-trigger">
-							<div class="calendar"><span class="calendar-month">Feb</span><span
-										class="calendar-day">21</span></div>
-							<div class="flex-1 position-relative ps-3">
-								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">Newmarket Nights</a>
-								</h6>
-								<p class="mb-1">Organized by <a href="#!" class="text-700">University of Oxford</a></p>
-								<p class="text-1000 mb-0">Time: 6:00AM</p>
-								<p class="text-1000 mb-0">Duration: 6:00AM - 5:00PM</p>Place: Cambridge Boat Club,
-								Cambridge
-								<div class="border-dashed-bottom my-3"></div>
-							</div>
-						</div>
-						<div class="d-flex btn-reveal-trigger">
-							<div class="calendar"><span class="calendar-month">Dec</span><span
-										class="calendar-day">31</span></div>
-							<div class="flex-1 position-relative ps-3">
-								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">31st Night
-										Celebration</a></h6>
-								<p class="mb-1">Organized by <a href="#!" class="text-700">Chamber Music Society</a></p>
-								<p class="text-1000 mb-0">Time: 11:00PM</p>
-								<p class="text-1000 mb-0">280 people interested</p>Place: Tavern on the Greend, New York
-								<div class="border-dashed-bottom my-3"></div>
-							</div>
-						</div>
-						<div class="d-flex btn-reveal-trigger">
-							<div class="calendar"><span class="calendar-month">Dec</span><span
-										class="calendar-day">16</span></div>
-							<div class="flex-1 position-relative ps-3">
-								<h6 class="fs-0 mb-0"><a href="../../app/events/event-detail.html">Folk Festival</a>
-								</h6>
-								<p class="mb-1">Organized by <a href="#!" class="text-700">Harvard University</a></p>
-								<p class="text-1000 mb-0">Time: 9:00AM</p>
-								<p class="text-1000 mb-0">Location: Cambridge Masonic Hall Association</p>Place: Porter
-								Square, North Cambridge
-							</div>
-						</div>
-					</div>
-					<div class="card-footer bg-light p-0 border-top"><a class="btn btn-link d-block w-100"
-					                                                    href="../../app/events/event-list.html">All
-							Events<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
 				</div>
 			</div>
 		</div>
@@ -413,6 +388,142 @@
         $('#keygen').on('click', function () {
             $('#apikey').val(generateUUID());
         });
+
+        $(() => {
+            function initWeeklyOrders(data) {
+                let ECHART_LINE_TOTAL_ORDER = '.weekly-purchases';
+                let $echartLineTotalOrder = document.querySelector(ECHART_LINE_TOTAL_ORDER);
+
+                if ($echartLineTotalOrder) {
+                    // Get options from data attribute
+                    let userOptions = utils.getData($echartLineTotalOrder, 'options');
+                    let chart = window.echarts.init($echartLineTotalOrder); // Default options
+
+                    let getDefaultOptions = function getDefaultOptions() {
+                        return {
+                            tooltip: {
+                                triggerOn: 'mousemove',
+                                trigger: 'axis',
+                                padding: [7, 10],
+                                formatter: '{b0}: {c0}',
+                                backgroundColor: utils.getGrays()['100'],
+                                borderColor: utils.getGrays()['300'],
+                                textStyle: {
+                                    color: utils.getColors().dark
+                                },
+                                borderWidth: 1,
+                                transitionDuration: 0,
+                                position: function position(pos, params, dom, rect, size) {
+                                    return getPosition(pos, params, dom, rect, size);
+                                }
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: data.labels,
+                                boundaryGap: false,
+                                splitLine: {
+                                    show: false
+                                },
+                                axisLine: {
+                                    show: false,
+                                    lineStyle: {
+                                        color: utils.getGrays()['300'],
+                                        type: 'dashed'
+                                    }
+                                },
+                                axisLabel: {
+                                    show: false
+                                },
+                                axisTick: {
+                                    show: false
+                                },
+                                axisPointer: {
+                                    type: 'none'
+                                }
+                            },
+                            yAxis: {
+                                type: 'value',
+                                splitLine: {
+                                    show: false
+                                },
+                                axisLine: {
+                                    show: false
+                                },
+                                axisLabel: {
+                                    show: false
+                                },
+                                axisTick: {
+                                    show: false
+                                },
+                                axisPointer: {
+                                    show: true
+                                }
+                            },
+                            series: [{
+                                type: 'line',
+                                lineStyle: {
+                                    color: utils.getColors().primary,
+                                    width: 3
+                                },
+                                itemStyle: {
+                                    color: utils.getGrays().white,
+                                    borderColor: utils.getColors().primary,
+                                    borderWidth: 2
+                                },
+                                hoverAnimation: true,
+                                data: data.datasets,
+                                // connectNulls: true,
+                                smooth: 0.6,
+                                smoothMonotone: 'x',
+                                showSymbol: false,
+                                symbol: 'circle',
+                                symbolSize: 8,
+                                areaStyle: {
+                                    color: {
+                                        type: 'linear',
+                                        x: 0,
+                                        y: 0,
+                                        x2: 0,
+                                        y2: 1,
+                                        colorStops: [{
+                                            offset: 0,
+                                            color: utils.rgbaColor(utils.getColors().primary, 0.25)
+                                        }, {
+                                            offset: 1,
+                                            color: utils.rgbaColor(utils.getColors().primary, 0)
+                                        }]
+                                    }
+                                }
+                            }],
+                            grid: {
+                                bottom: '2%',
+                                top: '0%',
+                                right: '10px',
+                                left: '10px'
+                            }
+                        };
+                    };
+
+                    echartSetOption(chart, userOptions, getDefaultOptions);
+                }
+            }
+
+            $.ajax({
+                url: '<?= route_to('admin.users.orders.chart', $user->id) ?>',
+                dataType: 'json',
+                success: response => {
+                    initWeeklyOrders(response)
+
+                    let countUp = new window.countUp.CountUp($('#count-up').get(0), response.total, {
+                        duration: 7
+                    });
+
+                    !countUp.error ? countUp.start() : console.error(countUp.error);
+                },
+                error: error => console.log(error)
+            })
+        })
 	</script>
+	<script src="/vendor/admin/countup/countUp.umd.js"></script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>

@@ -61,7 +61,7 @@ class ProductController extends BaseController
     /**
      * @throws Exception
      */
-    public function weeklyPurchases($id): bool|string {
+    public function dailyPurchases($id): bool|string {
         $frequency = 'daily';
 
         $purchases = OrdersDetail::where('product_id', $id)->whereHas('order', function($query) {
