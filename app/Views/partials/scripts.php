@@ -5,5 +5,6 @@
 
 <?= $this->renderSection('scripts') ?>
 
+
 <!--    CUSTOM    -->
 <script src="/js/global.js"></script>

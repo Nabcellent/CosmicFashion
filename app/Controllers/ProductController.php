@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Carbon\Carbon;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -11,8 +12,11 @@ class ProductController extends BaseController
 {
     public function index(): string {
         $data = [
-            'products' => Product::latest()->paginate(15),
-            'title'    => 'Shop'
+            'products'   => Product::latest()->paginate(15),
+            'title'      => 'Shop',
+            'categories' => Category::whereHas('subCategories', function($query) {
+                $query->whereHas('products');
+            })->get()
         ];
 
         return view('shop', $data);
@@ -82,7 +86,7 @@ class ProductController extends BaseController
         parse_str($this->request->getBody(), $input);
 
         try {
-            if($input['product_id'] && $input['quantity']){
+            if($input['product_id'] && $input['quantity']) {
                 $cart = session('cart');
                 $unitPrice = $cart[$input['product_id']]["price"];
                 $cart[$input['product_id']]["quantity"] = $input['quantity'];
@@ -142,8 +146,8 @@ class ProductController extends BaseController
         }
 
         return json_encode([
-            'status'    => false,
-            'msg'       => 'Unable to remove item😪!'
+            'status' => false,
+            'msg'    => 'Unable to remove item😪!'
         ]);
     }
 }

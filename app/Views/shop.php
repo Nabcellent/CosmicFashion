@@ -1,5 +1,7 @@
 <?= $this->extend('layouts/master') ?>
-
+<?= $this->section('links') ?>
+	<link rel="stylesheet" href="/vendor/admin/flatpickr/flatpickr.min.css">
+<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 	<div id="shop">
@@ -76,4 +78,7 @@
         <?= $this->include('partials/social') ?>
 	</div>
 
+<?= $this->section('scripts') ?>
+	<script src="/js/admin/flatpickr.js"></script>
+<?= $this->endSection() ?>
 <?= $this->endSection() ?>
