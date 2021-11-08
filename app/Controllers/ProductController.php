@@ -11,7 +11,7 @@ class ProductController extends BaseController
 {
     public function index(): string {
         $data = [
-            'products' => Product::all(),
+            'products' => Product::latest()->paginate(15),
             'title'    => 'Shop'
         ];
 

@@ -231,12 +231,10 @@
 	                    <span><?= env('app.name', 'CosmicFashion.') ?></span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">Set status</a>
                     <a class="dropdown-item" href="pages/user/profile.html">Profile &amp; account</a>
-                    <a class="dropdown-item" href="#!">Feedback</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="pages/user/settings.html">Settings</a>
-                    <a class="dropdown-item" href="<?= route_to('logout') ?>">Logout</a>
+                    <a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a>
                 </div>
             </div>
         </li>

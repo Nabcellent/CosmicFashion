@@ -39,8 +39,7 @@
 								<div class="form-group">
 									<small class="fw-bold">Email</small>
 									<input type="email" name="email" placeholder="Email" value="<?= old('email') ?>"
-									       required="" aria-label
-									       class="w-100 form-control"/>
+									       required="" aria-label autofocus class="w-100 form-control"/>
 								</div>
 								<small class="fw-bold">Password</small>
 								<div class="input-group">

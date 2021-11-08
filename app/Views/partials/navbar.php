@@ -87,7 +87,7 @@
 							<li>
 								<hr class="dropdown-divider">
 							</li>
-                            <?php if(isRed()): ?>
+                            <?php if(isAdmin()): ?>
 								<li><a class="dropdown-item" href="<?= route_to('dashboard') ?>">Dashboard</a></li>
                             <?php endif ?>
 							<li><a class="dropdown-item" href="<?= route_to('logout') ?>">Sign Out</a></li>

@@ -40,24 +40,19 @@
 							<div class="row mb-2">
 								<div class="col form-group">
 									<small class="fw-bold">First name</small>
-									<input type="text" name="first_name" placeholder="John"
-									       value="<?= old('first_name') ?>"
-									       required aria-label
-									       class="w-100 form-control"/>
+									<input type="text" name="first_name" placeholder="John" class="w-100 form-control"
+									       value="<?= old('first_name') ?>" required aria-label autofocus/>
 								</div>
 								<div class="col form-group">
 									<small class="fw-bold">Last name</small>
-									<input type="text" name="last_name" placeholder="Doe"
-									       value="<?= old('last_name') ?>"
-									       required aria-label
-									       class="w-100 form-control"/>
+									<input type="text" name="last_name" placeholder="Doe" class="w-100 form-control"
+									       value="<?= old('last_name') ?>" required aria-label/>
 								</div>
 							</div>
 							<div class="form-group">
 								<small class="fw-bold">Email</small>
 								<input type="email" name="email" placeholder="Email address" value="<?= old('email') ?>"
-								       required aria-label
-								       class="w-100 form-control"/>
+								       required aria-label class="w-100 form-control"/>
 							</div>
 							<div class="row justify-content-center mb-2">
 								<div class="col-12 text-center"><small class="fw-bold">Gender</small></div>
@@ -76,9 +71,7 @@
 									<small class="fw-bold">Password</small>
 									<div class="input-group">
 										<input type="password" name="password" placeholder="Password" id="password"
-										       required
-										       aria-label
-										       class="form-control"/>
+										       required aria-label class="form-control"/>
 										<span class="input-group-text border-right-0 rounded-0 show-password"
 										      title="Show Password" style="cursor: pointer">
 									<i class="bi bi-eye"></i></span>
@@ -88,9 +81,7 @@
 									<small class="fw-bold">Confirm Password</small>
 									<div class="input-group">
 										<input type="password" name="password_confirmation" placeholder="Password"
-										       required
-										       aria-label
-										       class="form-control"/>
+										       required aria-label class="form-control"/>
 										<span class="input-group-text border-right-0 rounded-0 show-password"
 										      title="Show Password" style="cursor: pointer">
 									<i class="bi bi-eye"></i></span>
@@ -98,8 +89,7 @@
 								</div>
 							</div>
 							<div class="d-grid">
-								<button type="submit"
-								        class="fw-bold text-uppercase btn btn-primary ld-ext-right">
+								<button type="submit" class="fw-bold text-uppercase btn btn-primary ld-ext-right">
 									SIGN UP <i class="fas fa-user-plus"></i><span class="ld ld-ring ld-spin"></span>
 								</button>
 							</div>

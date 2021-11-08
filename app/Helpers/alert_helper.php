@@ -24,6 +24,11 @@ function goWithSuccess($msg, $to = null): RedirectResponse {
 
     return $route->with("toast_success", $msg);
 }
+function goWithInfo($msg, $to = null): RedirectResponse {
+    $route = $to ? redirect($to) : redirect()->back();
+
+    return $route->with("toast_info", $msg);
+}
 function goWithError($msg = "Error...! ☹", $to = null): RedirectResponse {
     $route = $to ? redirect($to) : redirect()->back();
 

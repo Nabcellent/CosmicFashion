@@ -5,8 +5,6 @@ use CodeIgniter\Events\Events;
 use CodeIgniter\Router\Exceptions\RedirectException;
 use Exception;
 use Illuminate\Support\Carbon;
-use Myth\Auth\Authentication\AuthenticationBase;
-use Myth\Auth\Authentication\AuthenticatorInterface;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Exceptions\AuthException;
 use Myth\Auth\Password;
@@ -16,7 +14,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
     /**
      * @var LoginModel
      */
-    protected $loginModel;
+    protected LoginModel $loginModel;
 
     /**
      * Attempts to validate the credentials and log a user in.
@@ -74,6 +72,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
      *
      * @return bool
      * @throws RedirectException
+     * @throws Exception
      */
     public function check(): bool {
         if($this->isLoggedIn()) {
@@ -135,8 +134,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         // Only allowed 1 additional credential other than password
         $password = $credentials['password'];
         unset($credentials['password']);
-
-        if(count($credentials) > 1) throw AuthException::forTooManyCredentials();
 
         // Ensure that the fields are allowed validation fields
         if(!in_array(key($credentials), $this->config->validFields)) {

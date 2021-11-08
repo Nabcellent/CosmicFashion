@@ -60,7 +60,7 @@
 		display: block
 	}
 
-	.Shop_filterColumn__3Yibo {
+	.Shop-filter-column {
 		display: none;
 		position: absolute;
 		z-index: 11;
@@ -74,7 +74,7 @@
 		max-width: 500px
 	}
 
-	.Shop_filterColumn__3Yibo.Shop_showFilter__1Am4r {
+	.Shop-filter-column.Shop_showFilter__1Am4r {
 		display: block
 	}
 }
@@ -223,23 +223,23 @@
 	}
 }
 
-.Shop_filterColumn__3Yibo .filter-item {
+.Shop-filter-column .filter-item {
 	margin-top: -1px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.Shop_filterColumn__3Yibo .filter-title {
+.Shop-filter-column .filter-title {
 	margin-left: 5px
 }
 
-.Shop_filterColumn__3Yibo .filter-label {
+.Shop-filter-column .filter-label {
 	display: flex;
 	align-items: center
 }
 
-.Shop_filterColumn__3Yibo .filter-label p {
+.Shop-filter-column .filter-label p {
 	display: inline-block;
 	margin-bottom: 0;
 	margin-left: .25rem;

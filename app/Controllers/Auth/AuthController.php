@@ -73,14 +73,11 @@ class AuthController extends Controller
             'email'    => 'required',
             'password' => 'required',
         ];
-        if($this->config->validFields == ['email']) {
-            $rules['email'] .= '|valid_email';
-        }
+
+        if($this->config->validFields == ['email']) $rules['email'] .= '|valid_email';
 
         if(!$this->validate($rules)) {
             return json_encode(['status' => false, 'message' => Arr::first($this->validator->getErrors())]);
-//            TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-//            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $username = $this->request->getPost('email');
@@ -95,13 +92,6 @@ class AuthController extends Controller
         // Try to log them in...
         if(!$this->auth->attempt([$type => $username, 'password' => $password], $remember)) {
             return json_encode(['status' => false, 'message' => $this->auth->error() ?? lang('Auth.badAttempt')]);
-//            TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-//            return redirect()->back()->withInput()->with('error', $this->auth->error() ?? lang('Auth.badAttempt'));
-        }
-
-        // Is the user being forced to reset their password?
-        if($this->auth->user()->force_pass_reset === true) {
-            return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash);
         }
 
         $userCart = \App\Models\User::find($this->auth->user()->id)->cart();
@@ -128,8 +118,6 @@ class AuthController extends Controller
         unset($_SESSION['redirect_url']);
 
         return json_encode(['status' => true, 'url' => $redirectURL]);
-//        TODO: KEEP THIS FOR NONE AJAX LOGIN ->
-//        return redirect()->to($redirectURL)->with('message', lang('Auth.loginSuccess'));
     }
 
     /**
@@ -184,11 +172,7 @@ class AuthController extends Controller
         // Check if registration is allowed
         if(!$this->config->allowRegistration) {
             return json_encode(['status' => false, 'message' => lang('Auth.registerDisabled')]);
-//            TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-//            return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
         }
-
-//        $users = model(UserModel::class);
 
         // Validate basics first since some password rules rely on these fields
         $rules = [
@@ -207,8 +191,6 @@ class AuthController extends Controller
 
         if(!$this->validate($rules, $messages)) {
             return json_encode(['status' => false, 'message' => Arr::first($this->validator->getErrors())]);
-//            TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-//            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         // Validate passwords since they can only be validated properly here
@@ -219,8 +201,6 @@ class AuthController extends Controller
 
         if(!$this->validate($rules, $messages)) {
             return json_encode(['status' => false, 'message' => Arr::first($this->validator->getErrors())]);
-//            TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-//            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         // Save the user
@@ -240,40 +220,13 @@ class AuthController extends Controller
                 ->with('error', 'Unable to activate account. Kindly contact Admin' ?? lang('Auth.unknownError'));
         }
 
-        // Ensure default group gets assigned if set
-//        TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-        /*if(!empty($this->config->defaultUserGroup))
-            dd($this->config->defaultUserGroup);{
-            $users = $users->withGroup($this->config->defaultUserGroup);
-        }*/
-
-
         $newUser['password'] = Password::hash($newUser['password']);
 
         \App\Models\User::create($newUser);
 
-//        TODO: KEEP THIS FOR NONE AJAX ERRORS ->
-        /*if(!$users->save($user)) {
-            return redirect()->back()->withInput()->with('errors', $users->errors());
-        }
-
-        if($this->config->requireActivation !== null) {
-            $activator = service('activator');
-            $sent = $activator->send($user);
-
-            if(!$sent) {
-                return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
-            }
-
-            // Success!
-            return createOk(lang('Auth.activationSuccess'), 'login');
-        }*/
-
         // Success!
         Services::session()->setFlashdata('toast_success', 'Registration successful! ✔');
         return json_encode(['status' => true, 'url' => route_to('login')]);
-//        TODO: KEEP THIS FOR NONE AJAX LOGIN ->
-//        return createOk('Registration successful! ✔', 'login');
     }
 
     //--------------------------------------------------------------------

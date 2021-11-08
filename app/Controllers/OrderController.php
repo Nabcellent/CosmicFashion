@@ -12,7 +12,11 @@ use Throwable;
 
 class OrderController extends BaseController
 {
-    public function index(): string {
+    public function index(): string|RedirectResponse {
+        if(empty(session('cart'))) {
+            return goWithInfo('Your cart is empty🛒. Wanna add something first? 😁', 'shop.index');
+        }
+
         $data = [
             'cartItems' => session('cart'),
             'title'     => 'Checkout',
