@@ -23,6 +23,7 @@ The following are some of the libraries used to create the web app:
 #### Other Plugins
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts
 1. [Ion.RangeSlider v2.3.1](http://ionden.com/a/plugins/ion.rangeSlider/)
+1. [AOS](https://michalsnik.github.io/aos/) - Animated On Scroll Library
 2. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
 3. [Datatables](https://datatables.net/)
 4. [Tom Select](https://tom-select.js.org/) - A versatile and dynamic `select` UI control
