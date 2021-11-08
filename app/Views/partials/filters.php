@@ -12,12 +12,18 @@
             <?php $i = 0;
             foreach($categories as $category): ?>
 				<li class="list-group-item accordion-item p-0 bg-transparent border-0">
-					<h2 class="accordion-header" id="heading<?= $category->id ?>">
-						<button class="accordion-button" type="button" data-bs-toggle="collapse"
-						        data-bs-target="#collapse<?= $category->id ?>" aria-expanded="true">
-                            <?= $category->name ?>
-						</button>
-					</h2>
+					<div class="accordion-header d-flex justify-content-between" id="heading<?= $category->id ?>">
+						<div class="form-check form-switch ms-3">
+							<input class="form-check-input filter-check fil-category" type="checkbox" role="switch"
+							       id="switch-<?= $category->id ?>" value="<?= $category->id ?>">
+							<label class="form-check-label"
+							       for="switch-<?= $category->id ?>"><?= $category->name ?></label>
+						</div>
+						<span class="border fas fa-chevron-down rounded-circle p-2" type="button"
+						      data-bs-toggle="collapse"
+						      data-bs-target="#collapse<?= $category->id ?>" aria-expanded="true">
+						</span>
+					</div>
 					<div id="collapse<?= $category->id ?>"
 					     class="accordion-collapse collapse <?= $i === 0
                              ? 'show'
@@ -26,8 +32,8 @@
 						<div class="accordion-body">
                             <?php foreach($category->subCategories as $subCategory): ?>
 								<div class="form-check">
-									<input class="form-check-input filter-check" type="checkbox" value=""
-									       id="check-<?= $subCategory->id ?>">
+									<input class="form-check-input filter-check fil-sub-category" type="checkbox"
+									       value="<?= $subCategory->id ?>" id="check-<?= $subCategory->id ?>">
 									<label class="form-check-label"
 									       for="check-<?= $subCategory->id ?>"><?= $subCategory->name ?></label>
 								</div>
@@ -48,12 +54,12 @@
 			<div class="row align-items-center mt-1">
 				<div class="col pe-1">
 					<input type="number" id="minPrice" name="min" min="10" max="10000" aria-label
-					       class="form-control text-center border-0 pr-0" value="{{ $minPrice }}">
+					       class="form-control text-center border-0 price-range pr-0" value="30">
 				</div>
 				-
 				<div class="col ps-0">
 					<input type="number" id="maxPrice" name="max" min="10" max="10000" aria-label
-					       class="form-control text-center border-0" value="{{ $maxPrice }}">
+					       class="form-control text-center border-0 price-range" value="7000">
 				</div>
 			</div>
 		</div>
@@ -71,24 +77,30 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
 	<script>
-        const minPrice = 10,
-            maxPrice = 10000;
+        const minPrice = $('#minPrice'), maxPrice = $('#maxPrice');
 
-        $(".js-range-slider").ionRangeSlider({
+        const priceRange = $(".js-range-slider").ionRangeSlider({
             type: "double",
-            min: minPrice,
-            max: maxPrice,
-            from: minPrice,
-            to: maxPrice,
+            min: 10,
+            max: 10000,
+            from: 30,
+            to: 7000,
             force_edges: true,
             postfix: '/-',
             values_separator: ' * 👈 👉 * ',
             drag_interval: true,
             onChange: function (data) {
-                $('#minPrice').val(data.from);
-                $('#maxPrice').val(data.to);
+                minPrice.val(data.from);
+                maxPrice.val(data.to);
             },
             onFinish: () => getProducts()
+        }).data("ionRangeSlider");
+
+        $('.price-range').on('keyup', () => {
+            if (minPrice.val() > 10 && maxPrice.val() < 10000) priceRange.update({
+                from: minPrice.val(),
+                to: maxPrice.val()
+            });
         });
 	</script>
 <?= $this->endSection() ?>

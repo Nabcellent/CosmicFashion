@@ -35,7 +35,7 @@
 						</div>
 						<div class="d-flex align-items-center">
 							<h6 class="text-nowrap me-3 mb-0">Sort by:</h6>
-							<select style="width:180px" class="form-control" aria-label="">
+							<select id="sort-by" style="width:180px" class="form-control" aria-label="">
 								<option>Most Popular</option>
 								<option>Newest</option>
 								<option>Price: low to high</option>
@@ -97,9 +97,8 @@
         });
 
         /**==============================================================================  Sorting   */
-        $(document).on('change', '#products #sort_by', function () {
-            let ajaxUrl = '/get-filtered-products?page=1';
-            getProducts(ajaxUrl);
+        $(document).on('change', '#sort-by', function () {
+            getProducts('<?= route_to('shop.filter') ?>?page=1');
         });
 
         /**==============================================================================  Filter Categories   */
@@ -114,19 +113,17 @@
 
         const getProducts = (url = '<?= route_to('shop.filter') ?>') => {
             $('#loader').show();
-            let sort = $('#products #sort_by').val();
-            let perPage = parseInt($('#per_page').val());
 
-            let category = getFilterText('category');
-            let subCategory = getFilterText('sub_category');
-            let priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
+            let sort = $('#products #sort_by').val(),
+	            perPage = parseInt($('#per_page').val());
 
-            let categoryId = location.href.split('/products/')[1];
+            let category = getFilterText('category'),
+	            subCategory = getFilterText('sub-category'),
+	            priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
 
             $.ajax({
                 data: {
                     sort,
-                    categoryId,
                     perPage,
                     category,
                     subCategory,
@@ -151,7 +148,7 @@
         function getFilterText(text_id) {
             let filterData = [];
 
-            $('#' + text_id + ':checked').each(function () {
+            $('.fil-' + text_id + ':checked').each(function () {
                 filterData.push($(this).val());
             });
             return filterData;

@@ -17,10 +17,12 @@ The following are some of the libraries used to create the web app:
 1. [Jquery v3.3.6](https://jquery.com/) - Designed to simplify HTML DOM tree traversal and manipulation
 2. [Swiper](https://swiperjs.com/) - A modern slider with hardware accelerated transitions and amazing native behavior.
 3. [SweetAlert2](https://sweetalert2.github.io/)
+3. [Flatpickr](https://flatpickr.js.org/) - A lightweight and powerful datetime picker.
 3. [CountUp](https://inorganik.github.io/countUp.js/)
 
 #### Other Plugins
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts
+1. [Ion.RangeSlider v2.3.1](http://ionden.com/a/plugins/ion.rangeSlider/)
 2. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
 3. [Datatables](https://datatables.net/)
 4. [Tom Select](https://tom-select.js.org/) - A versatile and dynamic `select` UI control
