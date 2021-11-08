@@ -15,7 +15,7 @@ class HomeController extends BaseController {
         //  With eloquent...
 //        $users = User::where('email', 'nabcellent.dev@gmail.com;')->get();
 
-        $data['newArrivals'] = Product::latest()->limit(8)->get();;
+        $data['newArrivals'] = Product::with('subCategory')->latest()->limit(8)->get();;
 
         return view('home', $data);
     }

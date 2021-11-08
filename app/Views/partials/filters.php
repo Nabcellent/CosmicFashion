@@ -77,7 +77,7 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
 	<script>
-        const minPrice = $('#minPrice'), maxPrice = $('#maxPrice');
+        const minPriceEl = $('#minPrice'), maxPriceEl = $('#maxPrice'), priceRangeEl = $('.price-range');
 
         const priceRange = $(".js-range-slider").ionRangeSlider({
             type: "double",
@@ -90,17 +90,21 @@
             values_separator: ' * 👈 👉 * ',
             drag_interval: true,
             onChange: function (data) {
-                minPrice.val(data.from);
-                maxPrice.val(data.to);
+                minPriceEl.val(data.from);
+                maxPriceEl.val(data.to);
             },
             onFinish: () => getProducts()
         }).data("ionRangeSlider");
 
-        $('.price-range').on('keyup', () => {
-            if (minPrice.val() > 10 && maxPrice.val() < 10000) priceRange.update({
-                from: minPrice.val(),
-                to: maxPrice.val()
-            });
-        });
+        priceRangeEl.on('keyup', function() {
+            if (minPriceEl.val() > 10 && maxPriceEl.val() < 10000) {
+                priceRange.update({
+                    from: minPriceEl.val(),
+                    to: maxPriceEl.val()
+                });
+            }
+        })
+
+        priceRangeEl.on('change', () => {if(minPriceEl.val() > 10 && maxPriceEl.val() < 10000) getProducts()});
 	</script>
 <?= $this->endSection() ?>

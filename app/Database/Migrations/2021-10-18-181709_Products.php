@@ -16,7 +16,7 @@ class Products extends Migration {
             'discount'        => ['type' => 'TINYINT', 'default' => 0,],
             'image'           => ['type' => 'VARCHAR', 'constraint' => '40', 'null' => true, 'unique' => true],
             'description'     => ['type' => 'TEXT', 'null' => true],
-            'status'          => ['type' => 'BOOLEAN', 'default' => false],
+            'status'          => ['type' => 'BOOLEAN', 'default' => true],
             'created_at timestamp default current_timestamp',
             'updated_at timestamp DEFAULT current_timestamp ON UPDATE current_timestamp',
             'is_deleted'      => ['type' => 'BOOLEAN', 'default' => false]

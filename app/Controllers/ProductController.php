@@ -12,7 +12,7 @@ class ProductController extends BaseController
 {
     public function index(): string {
         $data = [
-            'products'   => Product::latest()->paginate(15),
+            'products'   => Product::with('subCategory')->latest()->paginate(15),
             'title'      => 'Shop',
             'categories' => Category::whereHas('subCategories', function($query) {
                 $query->whereHas('products');
