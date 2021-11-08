@@ -1,5 +1,4 @@
 <?= $this->extend('layouts/master') ?>
-
 <?= $this->section('content') ?>
 
 	<div id="home">
@@ -77,18 +76,20 @@
 				<span class="sr-only">next</span>
 			</a>
 		</div>
-		<div style="margin-top:80px;margin-bottom:80px" class="container"><h3 class="text-center fw-bold mb-4">New
-				Arrivals</h3>
-			<div class="justify-content-center mb-2 row">
-				<div class="col-sm-8">
-					<p class="text-center text-muted mb-4">Check out our new furniture collection! Cozy sofa, fancy
-						chair, wooden
-						casket, and many more. The new collection brings an informal elegance to your home.</p>
+		<div style="margin-top:80px;margin-bottom:80px" class="container">
+			<div class="new-arrivals-header" data-aos="zoom-out">
+				<h3 class="text-center fw-bold mb-4">New Arrivals</h3>
+				<div class="justify-content-center mb-2 row">
+					<div class="col-sm-8">
+						<p class="text-center text-muted mb-4">Check out our new furniture collection! Cozy sofa, fancy
+							chair, wooden
+							casket, and many more. The new collection brings an informal elegance to your home.</p>
+					</div>
 				</div>
 			</div>
 			<div class="row">
                 <?php foreach($newArrivals as $product): ?>
-					<div class="mb-4 index_product__2R5IL col-12 col-sm-6 col-md-3">
+					<div class="mb-4 index_product__2R5IL col-12 col-sm-6 col-md-3" data-aos="zoom-in">
 						<div style="position:relative">
 							<a href="<?= route_to('shop.show', $product->id) ?>">
 								<div style="background:url(/images/products/<?= $product->image ?>) no-repeat center;background-size:contain;transition:all .65s ease"
@@ -112,7 +113,8 @@
 								<a class="mt-3 text-muted mb-0 d-inline-block"
 								   href="category/3f3c4e7dc711.html"><?= $product->subCategory->name ?></a>
 								<a href="<?= route_to('shop.show', $product->id) ?>">
-									<h6 class="fw-bold font-size-base mt-1" style="font-size:16px"><?= $product->name ?></h6>
+									<h6 class="fw-bold font-size-base mt-1"
+									    style="font-size:16px"><?= $product->name ?></h6>
 								</a>
 								<h6 style="font-size:16px">KSH.<?= $product->price ?></h6>
 							</div>
@@ -121,11 +123,12 @@
                 <?php endforeach; ?>
 			</div>
 			<div class="d-flex justify-content-center row">
-				<button type="button" class="text-uppercase mx-auto mt-5 fw-bold btn btn-outline-primary">view more
+				<button type="button" class="text-uppercase mx-auto mt-5 fw-bold btn btn-outline-primary">
+					view more
 				</button>
 			</div>
 		</div>
-		<section class="index_promo__gOmpU">
+		<section class="index_promo__gOmpU" data-aos="zoom-out-up">
 			<div class="h-100 container ps-lg-5">
 				<div class="h-100 row">
 					<div class="h-100 d-flex flex-column justify-content-center align-items-center align-items-md-start col-12 col-md-6">
@@ -133,18 +136,22 @@
 						<h1 class="text-uppercase fw-bold mb-0 index_newArrivals__3EhqC">new arrivals</h1>
 						<div class="index_stroke__2BGza mt-4" style="margin-bottom:30px"></div>
 						<div class="index_promo__indication__3B7OO">
-							<section class="index_promo__indication__block__3Vblf"><h5 id="promo_days" class="mb-0">
-									0</h5>
-								<p class="mb-0">days</p></section>
-							<section class="index_promo__indication__block__3Vblf"><h5 id="promo_hours" class="mb-0">
-									0</h5>
-								<p class="mb-0">hours</p></section>
-							<section class="index_promo__indication__block__3Vblf"><h5 id="promo_mins" class="mb-0">
-									0</h5>
-								<p class="mb-0">mins</p></section>
-							<section class="index_promo__indication__block__3Vblf"><h5 id="promo_secs" class="mb-0">
-									0</h5>
-								<p class="mb-0">secs</p></section>
+							<section class="index_promo__indication__block__3Vblf">
+								<h5 id="promo_days" class="mb-0">0</h5>
+								<p class="mb-0">days</p>
+							</section>
+							<section class="index_promo__indication__block__3Vblf">
+								<h5 id="promo_hours" class="mb-0">0</h5>
+								<p class="mb-0">hours</p>
+							</section>
+							<section class="index_promo__indication__block__3Vblf">
+								<h5 id="promo_mins" class="mb-0">0</h5>
+								<p class="mb-0">mins</p>
+							</section>
+							<section class="index_promo__indication__block__3Vblf">
+								<h5 id="promo_secs" class="mb-0">0</h5>
+								<p class="mb-0">secs</p>
+							</section>
 						</div>
 						<section class="d-flex mt-5 align-itens-center">
 							<h2 class="text-muted me-3 mb-0 d-flex align-items-center">
@@ -155,15 +162,20 @@
 				</div>
 			</div>
 		</section>
-		<div style="margin-top:80px;margin-bottom:80px" class="container"><h3 class="text-center fw-bold mb-4">Top
-				Selling Products</h3>
-			<div class="justify-content-center mb-2 row">
-				<div class="col-sm-8"><p class="text-center text-muted mb-4">These furniture sets will become an
-						essential part of an ecosystem of
-						elements in your home. Your domestic space will easily embrace these tables, chairs, and
-						bookshelves.</p></div>
+		<div style="margin-top:80px;margin-bottom:80px" class="container">
+			<div class="top-selling-header" data-aos="fade-up" data-aos-anchor-placement="center-center">
+				<h3 class="text-center fw-bold mb-4">Top Selling Products</h3>
+				<div class="justify-content-center mb-2 row">
+					<div class="col-sm-8">
+						<p class="text-center text-muted mb-4">
+							These fashion items will become an essential part of an ecosystem of
+							elements in the way you look. Your domestic space will easily embrace these shoes, suits,
+							dresses, sweaters among other items.
+						</p>
+					</div>
+				</div>
 			</div>
-			<div class="row">
+			<div class="row" data-aos="fade-up" data-aos-duration="2000">
 				<div class="col-12 col-md-6">
 					<section class="index_top_first__31BMD"><h6 class="text-uppercase text-primary fw-bold">All new</h6>
 						<h2 class="fw-bold">SPRING THINGS</h2>

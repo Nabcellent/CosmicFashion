@@ -3,8 +3,10 @@
 <!--    SweetAlert2     -->
 <script src="/vendor/sweetalert/sweetalert.js"></script>
 
-<?= $this->renderSection('scripts') ?>
+<!--    AOS    -->
+<script src="/vendor/aos/aos.js"></script>
 
+<?= $this->renderSection('scripts') ?>
 
 <!--    CUSTOM    -->
 <script src="/js/global.js"></script>

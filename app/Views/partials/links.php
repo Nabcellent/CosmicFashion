@@ -7,6 +7,9 @@
 <!--    Fontawesome    -->
 <link rel="stylesheet" type="text/css" href="/vendor/fontawesome/css/all.min.css">
 
+<!--    AOS    -->
+<link rel="stylesheet" href="/vendor/aos/aos.css">
+
 <?= $this->renderSection('links') ?>
 
 <!--    Custom    -->

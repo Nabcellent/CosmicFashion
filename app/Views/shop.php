@@ -1,7 +1,6 @@
 <?= $this->extend('layouts/master') ?>
 <?= $this->section('links') ?>
 	<link rel="stylesheet" href="/vendor/admin/flatpickr/flatpickr.min.css">
-	<link rel="stylesheet" href="/vendor/aos/aos.css">
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
@@ -25,7 +24,8 @@
 					<div class="d-flex justify-content-between align-items-center" style="margin-bottom:50px">
 						<div class="d-flex align-items-center">
 							Showing
-							<select name="per_page" id="per_page" class="form-control bg-transparent mx-1" style="appearance: none;"
+							<select name="per_page" id="per_page" class="form-control bg-transparent mx-1"
+							        style="appearance: none;"
 							        aria-label>
 								<option value="10">10</option>
 								<option selected value="<?= $products->count() ?>"><?= $products->count() ?></option>
@@ -33,7 +33,8 @@
 								<option value="50">50</option>
 							</select>
 							of
-							<span class="fw-bold text-primary mx-1" id="shop-count"><?= $products->total() ?></span> Products
+							<span class="fw-bold text-primary mx-1" id="shop-count"><?= $products->total() ?></span>
+							Products
 						</div>
 						<div class="d-flex align-items-center">
 							<h6 class="text-nowrap me-3 mb-0">Sort by:</h6>
@@ -61,20 +62,8 @@
 	</div>
 
 <?= $this->section('scripts') ?>
-	<script src="/vendor/aos/aos.js"></script>
 	<script src="/js/admin/flatpickr.js"></script>
 	<script>
-        $(() => {
-            AOS.init({
-                delay: 20,
-                duration: 700,
-                once: true,
-                mirror: true,
-                anchorPlacement: 'top-bottom',
-            });
-        })
-
-
         /**==============================================================================  Pagination   */
         $(document).on('click', '.pagination a', function (event) {
             event.preventDefault();

@@ -24,3 +24,13 @@ function showLoader(message = null) {
 function hideLoader() {
     $('loader.wait').hide(500);
 }
+
+$(() => {
+    AOS.init({
+        delay: 20,
+        duration: 700,
+        once: true,
+        mirror: true,
+        anchorPlacement: 'top-bottom',
+    });
+})

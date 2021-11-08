@@ -1,7 +1,7 @@
 
 <hr/>
 
-<div class="InfoBlock_info__2a42M shadow">
+<div class="InfoBlock_info__2a42M shadow" data-aos="fade-left">
     <div class="h-100 container">
         <div class="h-100 justify-content-between flex-column flex-md-row align-items-center row">
             <div class="h-100 d-flex align-items-center InfoBlock_info__item__LaugH justify-content-center col-12 col-md-4">
