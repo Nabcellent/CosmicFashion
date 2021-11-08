@@ -1,5 +1,7 @@
 <?= $this->section('links') ?>
 	<link rel="stylesheet" href="/vendor/ionrangeslider/ion.rangeSlider.min.css">
+	<link rel="stylesheet" href="/vendor/admin/flatpickr/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/admin/flatpickr/dark.css">
 <?= $this->endSection() ?>
 
 	<div id="filters">
@@ -67,16 +69,20 @@
 		<hr>
 
 		<h5 class="fw-bold mb-5 mt-5 text-uppercase">Dates</h5>
-		<div id="date-range">
+		<div id=.date-range">
 			<label class="form-label" for="timepicker2">Select Date Range</label>
-			<input class="form-control datetimepicker" id="timepicker2" type="text" placeholder="d/m/y to d/m/y"
+			<input class="form-control date-range-picker" id="timepicker2" type="text" placeholder="d/m/y to d/m/y"
 			       data-options='{"mode":"range","dateFormat":"d/m/y","disableMobile":true}'/>
 		</div>
 	</div>
 
 <?= $this->section('scripts') ?>
 	<script src="/vendor/ionrangeslider/ion.rangeSlider.min.js"></script>
+	<script src="/vendor/admin/flatpickr/flatpickr.min.js"></script>
 	<script>
+        /**
+         * =====================================================    ION RANGE SLIDER
+         * */
         const minPriceEl = $('#minPrice'), maxPriceEl = $('#maxPrice'), priceRangeEl = $('.price-range');
 
         const priceRange = $(".js-range-slider").ionRangeSlider({
@@ -96,7 +102,7 @@
             onFinish: () => getProducts()
         }).data("ionRangeSlider");
 
-        priceRangeEl.on('keyup', function() {
+        priceRangeEl.on('keyup', function () {
             if (minPriceEl.val() > 10 && maxPriceEl.val() < 10000) {
                 priceRange.update({
                     from: minPriceEl.val(),
@@ -105,6 +111,22 @@
             }
         })
 
-        priceRangeEl.on('change', () => {if(minPriceEl.val() > 10 && maxPriceEl.val() < 10000) getProducts()});
+        priceRangeEl.on('change', () => {
+            if (minPriceEl.val() > 10 && maxPriceEl.val() < 10000) getProducts()
+        });
+
+        
+
+        /**
+         * =====================================================    FLATPICKR
+         * */
+        const fp = $(".date-range-picker").flatpickr({
+            mode: "range",
+            enableTime: true,
+	        dateFormat: 'd.m.y',
+            onChange: selectedDates => {
+                if(selectedDates.length === 2) getProducts()
+            },
+        });
 	</script>
 <?= $this->endSection() ?>

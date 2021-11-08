@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Nabz\Models\DB;
 
@@ -11,7 +12,7 @@ class AjaxController extends BaseController
 {
     public function filterProducts(): bool|string {
         $data = $this->request->getVar();
-
+        
         $priceString = 'products.price - (products.price * (products.discount / 100))';
         $query = Product::with('subCategory')->where('products.status', 1)
             ->whereRaw("$priceString >= {$data['priceRange'][0]}")
@@ -22,6 +23,14 @@ class AjaxController extends BaseController
 
         if(isset($data['category'])) { $query->whereIn('categories.id', $data['category']); }
         if(isset($data['subCategory'])) { $query->whereIn('products.sub_category_id', $data['subCategory']); }
+
+        if(isset($data['dateRange']) && count($data['dateRange']) === 2) {
+            $dateRange = collect($data['dateRange'])->map(function($date) {
+                return Carbon::createFromTimestampMs($date);
+            })->toArray();
+
+            $query->whereBetween('products.created_at', $dateRange);
+        }
 
         if(isset($data['sort']) && !empty($data['sort'])) {
             if($data['sort'] === "newest") {

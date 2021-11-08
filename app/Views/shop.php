@@ -1,7 +1,4 @@
 <?= $this->extend('layouts/master') ?>
-<?= $this->section('links') ?>
-	<link rel="stylesheet" href="/vendor/admin/flatpickr/flatpickr.min.css">
-<?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
 	<div id="shop">
@@ -62,7 +59,6 @@
 	</div>
 
 <?= $this->section('scripts') ?>
-	<script src="/js/admin/flatpickr.js"></script>
 	<script>
         /**==============================================================================  Pagination   */
         $(document).on('click', '.pagination a', function (event) {
@@ -95,7 +91,8 @@
 
             let category = getFilterText('category'),
                 subCategory = getFilterText('sub-category'),
-                priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
+                priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())],
+                dateRange = $('.date-range-picker').get(0)._flatpickr.selectedDates.map(date => Date.parse(date))
 
             $.ajax({
                 data: {
@@ -104,6 +101,7 @@
                     category,
                     subCategory,
                     priceRange,
+                    dateRange,
                 },
                 type: 'GET',
                 url: url,
