@@ -82,6 +82,8 @@ $routes->group('/shop', function($routes) {
     $routes->post('store', 'ProductController::store', ['as' => 'shop.store']);
     $routes->patch('update', 'ProductController::update', ['as' => 'shop.update']);
     $routes->delete('destroy', 'ProductController::destroy', ['as' => 'shop.destroy']);
+
+    $routes->get('filtered-products', 'AjaxController::filterProducts', ['as' => 'shop.filter']);
 });
 
 $routes->get('/cart', 'ProductController::showCart');
@@ -98,6 +100,9 @@ $routes->group('/user', function ($route) {
     $route->get('profile', 'UserController::index', ['as' => 'user.index']);
     $route->get('account', 'UserController::account', ['as' => 'user.account']);
 });
+
+
+
 
 $routes->get('/test', 'HomeController::test', ['as' => 'test']);
 

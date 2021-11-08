@@ -21294,23 +21294,6 @@ input::placeholder {
 	color: #d9d9d9 !important
 }
 
-select.form-control {
-	background: url(/images/media/chevron-down.40e09b36d30fe69cfd4cfa3e7ad4e58e.svg) no-repeat 100%;
-	-webkit-appearance: none;
-	background-position: calc(100% - 15px);
-	background-color: #fff
-}
-
-.dropdown-menu {
-	border: 1px solid #e9e9e9;
-	box-shadow: none;
-	padding: .9rem 0
-}
-
-.dropdown-menu .dropdown-item {
-	padding: .5rem 1.5rem
-}
-
 .dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover, .dropdown-menu .input-group-no-border.focus .dropdown-item.input-group-addon, .dropdown-menu .input-group-no-border .form-control:focus + .dropdown-item.input-group-addon, .input-group-no-border .dropdown-menu .form-control:focus + .dropdown-item.input-group-addon, .input-group-no-border.focus .dropdown-menu .dropdown-item.input-group-addon {
 	color: var(--falcon-primary);
 	font-weight: 700;

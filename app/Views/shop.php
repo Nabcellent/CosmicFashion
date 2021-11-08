@@ -22,12 +22,19 @@
 
 				<div class="col-sm-9">
 					<div class="d-flex justify-content-between align-items-center" style="margin-bottom:50px">
-						<h6>Showing<!-- -->
-							<span class="fw-bold text-primary"><?= $products->count() ?></span> <!-- -->of
-							<span class="fw-bold text-primary"><?= $products->total() ?></span> Products
-						</h6>
 						<div class="d-flex align-items-center">
-							<h6 class="text-nowrap mr-3 mb-0">Sort by:</h6>
+							Showing
+							<select name="per_page" id="per_page" class="form-control mx-1" style="appearance: none;" aria-label>
+								<option value="10">10</option>
+								<option selected value="<?= $products->count() ?>"><?= $products->count() ?></option>
+								<option value="20">20</option>
+								<option value="50">50</option>
+							</select>
+							of
+							<span class="fw-bold text-primary mx-1"><?= $products->total() ?></span> Products
+						</div>
+						<div class="d-flex align-items-center">
+							<h6 class="text-nowrap me-3 mb-0">Sort by:</h6>
 							<select style="width:180px" class="form-control" aria-label="">
 								<option>Most Popular</option>
 								<option>Newest</option>
@@ -80,5 +87,75 @@
 
 <?= $this->section('scripts') ?>
 	<script src="/js/admin/flatpickr.js"></script>
+	<script>
+        /**==============================================================================  Pagination   */
+        $(document).on('click', '.pagination a', function (event) {
+            event.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            let ajaxUrl = '/get-filtered-products?page=' + page;
+            getProducts(ajaxUrl);
+        });
+
+        /**==============================================================================  Sorting   */
+        $(document).on('change', '#products #sort_by', function () {
+            let ajaxUrl = '/get-filtered-products?page=1';
+            getProducts(ajaxUrl);
+        });
+
+        /**==============================================================================  Filter Categories   */
+        $(document).on('click', '.filter-check', function () {
+            getProducts();
+        });
+
+        /**=======================================================================  Change Products Per Page   */
+        $(document).on('change', '#per_page', () => {
+            getProducts();
+        });
+
+        const getProducts = (url = '<?= route_to('shop.filter') ?>') => {
+            $('#loader').show();
+            let sort = $('#products #sort_by').val();
+            let perPage = parseInt($('#per_page').val());
+
+            let category = getFilterText('category');
+            let subCategory = getFilterText('sub_category');
+            let priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
+
+            let categoryId = location.href.split('/products/')[1];
+
+            $.ajax({
+                data: {
+                    sort,
+                    categoryId,
+                    perPage,
+                    category,
+                    subCategory,
+                    priceRange,
+                },
+                type: 'GET',
+                url: url,
+                success: function (response) {
+                    $('#product_section').html(response.view);
+                    $('#productCount span').text(response.count);
+                    $('#loader').hide();
+
+                    if ($('.product_check:checked').length > 0) {
+                        $('#textChange').text('Filtered Products');
+                    } else {
+                        $('#textChange').text('All Products');
+                    }
+                }
+            })
+        }
+
+        function getFilterText(text_id) {
+            let filterData = [];
+
+            $('#' + text_id + ':checked').each(function () {
+                filterData.push($(this).val());
+            });
+            return filterData;
+        }
+	</script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>
