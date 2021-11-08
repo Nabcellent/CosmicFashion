@@ -29,21 +29,19 @@ class OrderController extends BaseController
 
     public function store(): RedirectResponse {
         $walletPaymentId = PaymentType::whereName('wallet')->value('id');
-        $orderData = [
-            'payment_type_id' => $this->request->getVar('payment_method')
-        ];
+        $orderData['payment_type_id'] = $this->request->getVar('payment_method');
 
-        if($this->request->getVar('payment_method') === $walletPaymentId) {
-            $userWallet = User::find(user_id())->wallet();
+        if((int)$this->request->getVar('payment_method') === $walletPaymentId) {
+            $userWallet = User::find(user_id())->wallet;
 
-            if($userWallet->amount < cartDetails('total')) {
-                return updateFail('Sorry! Your wallet balance is insufficient to complete the order.');
-            } else {
+            if($userWallet && $userWallet->amount >= cartDetails('total')) {
                 $userWallet->amount -= cartDetails('total');
                 $userWallet->save();
 
                 $orderData['is_paid'] = true;
                 $orderData['status'] = 'paid';
+            } else {
+                return goWithInfo('Sorry! Your wallet balance is insufficient to complete the order.');
             }
         }
 

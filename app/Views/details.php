@@ -172,22 +172,7 @@
 									<h5 class="fw-bold"><?= $product->name ?></h5>
 								</div>
 							</div>
-							<div class="d-flex align-items-center">
-								<button type="button"
-								        class="bg-transparent border-0 p-1 fw-bold me-3 Product_quantityBtn__2Mx6O btn btn-secondary">
-									-
-								</button>
-								<p class="fw-bold mb-0">1</p>
-								<button type="button"
-								        class="bg-transparent border-0 p-1 fw-bold ms-3 Product_quantityBtn__2Mx6O btn btn-secondary">
-									+
-								</button>
-							</div>
-							<h6 class="fw-bold mb-0">40$</h6>
-							<button type="button" class="bg-transparent border-0 p-0 btn btn-secondary">
-								<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMy40MTQyIDEyTDE3LjcwNzIgNy43MDcwMUMxOC4wOTgyIDcuMzE2MDEgMTguMDk4MiA2LjY4NDAxIDE3LjcwNzIgNi4yOTMwMUMxNy4zMTYyIDUuOTAyMDEgMTYuNjg0MiA1LjkwMjAxIDE2LjI5MzMgNi4yOTMwMUwxMi4wMDAyIDEwLjU4Nkw3LjcwNzI1IDYuMjkzMDFDNy4zMTYyNSA1LjkwMjAxIDYuNjg0MjUgNS45MDIwMSA2LjI5MzI1IDYuMjkzMDFDNS45MDIyNSA2LjY4NDAxIDUuOTAyMjUgNy4zMTYwMSA2LjI5MzI1IDcuNzA3MDFMMTAuNTg2MiAxMkw2LjI5MzI1IDE2LjI5M0M1LjkwMjI1IDE2LjY4NCA1LjkwMjI1IDE3LjMxNiA2LjI5MzI1IDE3LjcwN0M2LjQ4ODI1IDE3LjkwMiA2Ljc0NDI1IDE4IDcuMDAwMjUgMThDNy4yNTYyNSAxOCA3LjUxMjI1IDE3LjkwMiA3LjcwNzI1IDE3LjcwN0wxMi4wMDAyIDEzLjQxNEwxNi4yOTMzIDE3LjcwN0MxNi40ODgyIDE3LjkwMiAxNi43NDQzIDE4IDE3LjAwMDIgMThDMTcuMjU2MiAxOCAxNy41MTIyIDE3LjkwMiAxNy43MDcyIDE3LjcwN0MxOC4wOTgyIDE3LjMxNiAxOC4wOTgyIDE2LjY4NCAxNy43MDcyIDE2LjI5M0wxMy40MTQyIDEyWiIgZmlsbD0iIzlEOUQ5RCIvPgo8bWFzayBpZD0ibWFzazAiIG1hc2stdHlwZT0iYWxwaGEiIG1hc2tVbml0cz0idXNlclNwYWNlT25Vc2UiIHg9IjYiIHk9IjUiIHdpZHRoPSIxMyIgaGVpZ2h0PSIxMyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTMuNDE0MiAxMkwxNy43MDcyIDcuNzA3MDFDMTguMDk4MiA3LjMxNjAxIDE4LjA5ODIgNi42ODQwMSAxNy43MDcyIDYuMjkzMDFDMTcuMzE2MiA1LjkwMjAxIDE2LjY4NDIgNS45MDIwMSAxNi4yOTMzIDYuMjkzMDFMMTIuMDAwMiAxMC41ODZMNy43MDcyNSA2LjI5MzAxQzcuMzE2MjUgNS45MDIwMSA2LjY4NDI1IDUuOTAyMDEgNi4yOTMyNSA2LjI5MzAxQzUuOTAyMjUgNi42ODQwMSA1LjkwMjI1IDcuMzE2MDEgNi4yOTMyNSA3LjcwNzAxTDEwLjU4NjIgMTJMNi4yOTMyNSAxNi4yOTNDNS45MDIyNSAxNi42ODQgNS45MDIyNSAxNy4zMTYgNi4yOTMyNSAxNy43MDdDNi40ODgyNSAxNy45MDIgNi43NDQyNSAxOCA3LjAwMDI1IDE4QzcuMjU2MjUgMTggNy41MTIyNSAxNy45MDIgNy43MDcyNSAxNy43MDdMMTIuMDAwMiAxMy40MTRMMTYuMjkzMyAxNy43MDdDMTYuNDg4MiAxNy45MDIgMTYuNzQ0MyAxOCAxNy4wMDAyIDE4QzE3LjI1NjIgMTggMTcuNTEyMiAxNy45MDIgMTcuNzA3MiAxNy43MDdDMTguMDk4MiAxNy4zMTYgMTguMDk4MiAxNi42ODQgMTcuNzA3MiAxNi4yOTNMMTMuNDE0MiAxMloiIGZpbGw9IndoaXRlIi8+CjwvbWFzaz4KPGcgbWFzaz0idXJsKCNtYXNrMCkiPgo8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IiM5RDlEOUQiLz4KPC9nPgo8L3N2Zz4K"
-								     alt="close">
-							</button>
+							<h6 class="fw-bold mb-0">KSH.<?= $product->price ?></h6>
 						</div>
 						<div class="d-flex align-items-center my-4">
 							<h6 class="fw-bold me-4 mb-0">Rate Product</h6>
@@ -207,23 +192,11 @@
 						</div>
 						<textarea name="text" id="exampleEmail" placeholder="Add your comment" aria-label=""
 						          class="w-100 form-control" style="height: 155px;"></textarea>
-						<form>
-							<div class="form-group">
-								<label class="col-form-label null" for="image">Image</label><br>
-								<div class="sc-bdnylx jMhaxE">
-									<label class="btn btn-outline-secondary px-4 mb-2" style="cursor: pointer;">
-										Upload an image
-										<input accept="image/*" type="file" style="display: none;">
-									</label>
-								</div>
-								<div class="invalid-feedback"></div>
-							</div>
-							<div class="d-flex justify-content-center">
-								<button type="button" class="btn btn-primary fw-bold text-uppercase"
-								        style="margin-top: 48px;">LEAVE FEEDBACK
-								</button>
-							</div>
-						</form>
+						<div class="d-flex justify-content-center">
+							<button type="button" class="btn btn-primary fw-bold text-uppercase"
+							        style="margin-top: 48px;">LEAVE FEEDBACK
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -233,13 +206,14 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/nicenumber/nice-number.js"></script>
 	<script>
-        const qtyInput = $('#quantity').niceNumber({
+        const quantityEl = $('#quantity'), unitPrice = parseInt(`<?= $product->price ?>`)
+        const qtyInput = quantityEl.niceNumber({
             onChange: (input) => {
-                const unitPrice = `<?= $product->price ?>`
-
-                $('#unit-price').html(`${input * parseInt(unitPrice)}`)
+                $('#unit-price').html(`${input * unitPrice}`)
             }
         })
+
+        quantityEl.on('keyup', () => {$('#unit-price').html(`${quantityEl.val() * unitPrice}`)})
 
         $('#add-cart-form').on('submit', function (e) {
             e.preventDefault()
