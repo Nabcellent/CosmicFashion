@@ -37,23 +37,6 @@ class UserController extends BaseController
         }
     }
 
-    /**
-     * @throws Exception
-     */
-    public function weeklyOrders($id): bool|string {
-        $frequency = 'weekly';
-
-        $orders = Order::where('user_id', $id)->whereBetween('created_at', [chartStartDate($frequency), now()])
-            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
-                return chartDateFormat($item->created_at, $frequency);
-            });
-
-        $orders = chartDataSet($orders, $frequency);
-        $orders['total'] = array_sum($orders['datasets']);
-
-        return json_encode($orders);
-    }
-
     public function showCustomers(): string {
         $data['users'] = User::whereHas('role', function($query) {
             $query->where('name', 'Customer');
@@ -161,5 +144,24 @@ class UserController extends BaseController
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return updateFail('Unable to update user!');
         }
+    }
+
+
+
+    /**
+     * @throws Exception
+     */
+    public function weeklyOrders($id): bool|string {
+        $frequency = 'weekly';
+
+        $orders = Order::where('user_id', $id)->whereBetween('created_at', [chartStartDate($frequency), now()])
+            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
+                return chartDateFormat($item->created_at, $frequency);
+            });
+
+        $orders = chartDataSet($orders, $frequency);
+        $orders['total'] = array_sum($orders['datasets']);
+
+        return json_encode($orders);
     }
 }

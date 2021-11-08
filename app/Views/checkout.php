@@ -115,8 +115,6 @@
 
 
 <?= $this->section('scripts') ?>
-	<!--    SweetAlert2     -->
-	<script src="/vendor/sweetalert/sweetalert.js"></script>
 	<script
 			src="https://www.paypal.com/sdk/js?client-id=AfzK9bEaxQ_TP4LIXl0Pp-akLxoKvaReVchEVlTfiRWdseaa1l1o-iXQ92FlhBla_M73KSLf4Y6NBWOG&disable-funding=credit,card&buyer-country=KE&components=buttons"></script>
 	<script src="/js/payment.js"></script>

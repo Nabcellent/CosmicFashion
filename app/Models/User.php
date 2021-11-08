@@ -51,6 +51,15 @@ class User extends Model {
     }
 
     /**
+     * Get the user's gender in CAPS.
+     *
+     * @return string
+     */
+    public function getSpendAttribute(): string {
+        return $this->orders()->whereIsPaid(true)->sum('amount');
+    }
+
+    /**
      * RELATIONSHIP FUNCTIONS
      */
     public function role(): BelongsTo {
@@ -70,6 +79,9 @@ class User extends Model {
     }
     public function ordersDetails(): HasManyThrough {
         return $this->hasManyThrough(OrdersDetail::class, Order::class);
+    }
+    public function wallet(): HasOne {
+        return $this->hasOne(Wallet::class);
     }
 
 

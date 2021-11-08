@@ -99,6 +99,7 @@ $routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);
 $routes->group('/user', function ($route) {
     $route->get('profile', 'UserController::index', ['as' => 'user.index']);
     $route->get('account', 'UserController::account', ['as' => 'user.account']);
+    $route->post('wallet', 'UserController::loadWallet', ['as' => 'user.wallet']);
 });
 
 
