@@ -1,7 +1,7 @@
 
 <div class="row">
     <?php foreach($products as $product): ?>
-        <div class="mb-4 Shop_product__1cFbR col-12 col-md-6 col-lg-4">
+        <div class="mb-4 Shop_product__1cFbR col-12 col-md-6 col-lg-4" data-aos="fade-up">
             <div class="position-relative">
                 <a href="<?= route_to('shop.show', $product->id) ?>">
                     <div class="Shop_productImage__1ILty"

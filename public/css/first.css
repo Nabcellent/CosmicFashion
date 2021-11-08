@@ -7602,39 +7602,12 @@ div .Widget_widget-icon__3EfP3 {
 	width: auto
 }
 
-@font-face {
-	font-family: Line Awesome Brands;
-	font-style: normal;
-	font-weight: 400;
-	font-display: auto;
-	src: url(/images/media/la-brands-400.908ce19d18187969b32f22234c7fc8af.eot);
-	src: url(/images/media/la-brands-400.908ce19d18187969b32f22234c7fc8af.eot) format('embedded-opentype'), url(/images/media/la-brands-400.3a8109c4ac75662f83556aa4a3addc75.woff2) format('woff2'), url(/images/media/la-brands-400.925b340f49e65e8bab10da01bbcf9e30.woff) format('woff'), url(/images/media/la-brands-400.6ecea4826b87fafb97be19edfa667a31.ttf) format('truetype'), url(/images/media/la-brands-400.928495fae14841a0d61062ba4926be1d.svg) format('svg')
-}
-
 .lab {
 	font-family: Line Awesome Brands
 }
 
-@font-face {
-	font-family: Line Awesome Free;
-	font-style: normal;
-	font-weight: 400;
-	font-display: auto;
-	src: url(/images/media/la-regular-400.77111476f05dd3443047d910e3d81b5f.eot);
-	src: url(/images/media/la-regular-400.77111476f05dd3443047d910e3d81b5f.eot) format('embedded-opentype'), url(/images/media/la-regular-400.8dc1cedf1f4987f82b7284beb2cd23fa.woff2) format('woff2'), url(/images/media/la-regular-400.aa859c0d08b8193d6586665343356098.woff) format('woff'), url(/images/media/la-regular-400.cf246e21218cab398b3d274f582ef394.ttf) format('truetype'), url(/images/media/la-regular-400.86128b71644abd479cfb452e9ab97d55.svg) format('svg')
-}
-
 .lar {
 	font-weight: 400
-}
-
-@font-face {
-	font-family: Line Awesome Free;
-	font-style: normal;
-	font-weight: 900;
-	font-display: auto;
-	src: url(/images/media/la-solid-900.4184d740eae2fb727bfeab754dcac876.eot);
-	src: url(/images/media/la-solid-900.4184d740eae2fb727bfeab754dcac876.eot) format('embedded-opentype'), url(/images/media/la-solid-900.3efd5ba15a279377d224281c1ac26b53.woff2) format('woff2'), url(/images/media/la-solid-900.893634871a6cbff72157198067c72821.woff) format('woff'), url(/images/media/la-solid-900.279f38601f1d1655255f21db0691ab37.ttf) format('truetype'), url(/images/media/la-solid-900.a813034654b4ff0a0bacdf2773a25bcc.svg) format('svg')
 }
 
 .la, .lar, .las {
@@ -21394,10 +21367,6 @@ input::placeholder {
 html {
 	font-weight: 100;
 	font-size: 14px
-}
-
-body, html {
-	overflow-x: hidden
 }
 
 body {

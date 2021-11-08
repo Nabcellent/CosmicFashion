@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/master') ?>
 <?= $this->section('links') ?>
 	<link rel="stylesheet" href="/vendor/admin/flatpickr/flatpickr.min.css">
+	<link rel="stylesheet" href="/vendor/aos/aos.css">
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
 
@@ -24,14 +25,15 @@
 					<div class="d-flex justify-content-between align-items-center" style="margin-bottom:50px">
 						<div class="d-flex align-items-center">
 							Showing
-							<select name="per_page" id="per_page" class="form-control mx-1" style="appearance: none;" aria-label>
+							<select name="per_page" id="per_page" class="form-control bg-transparent mx-1" style="appearance: none;"
+							        aria-label>
 								<option value="10">10</option>
 								<option selected value="<?= $products->count() ?>"><?= $products->count() ?></option>
 								<option value="20">20</option>
 								<option value="50">50</option>
 							</select>
 							of
-							<span class="fw-bold text-primary mx-1"><?= $products->total() ?></span> Products
+							<span class="fw-bold text-primary mx-1" id="shop-count"><?= $products->total() ?></span> Products
 						</div>
 						<div class="d-flex align-items-center">
 							<h6 class="text-nowrap me-3 mb-0">Sort by:</h6>
@@ -47,7 +49,7 @@
 
 					<div id="products">
 
-						<?= $this->include('partials/shop_items') ?>
+                        <?= $this->include('partials/shop_items') ?>
 
 					</div>
 				</div>
@@ -59,8 +61,20 @@
 	</div>
 
 <?= $this->section('scripts') ?>
+	<script src="/vendor/aos/aos.js"></script>
 	<script src="/js/admin/flatpickr.js"></script>
 	<script>
+        $(() => {
+            AOS.init({
+                delay: 20,
+                duration: 700,
+                once: true,
+                mirror: true,
+                anchorPlacement: 'top-bottom',
+            });
+        })
+
+
         /**==============================================================================  Pagination   */
         $(document).on('click', '.pagination a', function (event) {
             event.preventDefault();
@@ -88,11 +102,11 @@
             $('#loader').show();
 
             let sort = $('#sort-by').val(),
-	            perPage = parseInt($('#per_page').val());
+                perPage = parseInt($('#per_page').val());
 
             let category = getFilterText('category'),
-	            subCategory = getFilterText('sub-category'),
-	            priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
+                subCategory = getFilterText('sub-category'),
+                priceRange = [parseInt($('#minPrice').val()), parseInt($('#maxPrice').val())];
 
             $.ajax({
                 data: {
@@ -104,19 +118,13 @@
                 },
                 type: 'GET',
                 url: url,
-	            dataType: 'json',
+                dataType: 'json',
                 success: function (response) {
-                    console.log(response)
-	                return;
-                    $('#product_section').html(response.view);
-                    $('#productCount span').text(response.count);
+                    $('#products').html(response.view);
+                    $('#shop-count').text(response.count);
                     $('#loader').hide();
 
-                    if ($('.product_check:checked').length > 0) {
-                        $('#textChange').text('Filtered Products');
-                    } else {
-                        $('#textChange').text('All Products');
-                    }
+                    AOS.refreshHard()
                 }
             })
         }
