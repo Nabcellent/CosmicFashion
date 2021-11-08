@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Order;
 use App\Models\PaymentType;
 use App\Models\Product;
+use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
 use Nabz\Models\DB;
@@ -27,7 +28,26 @@ class OrderController extends BaseController
     }
 
     public function store(): RedirectResponse {
-        if(self::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+        $walletPaymentId = PaymentType::whereName('wallet')->value('id');
+        $orderData = [
+            'payment_type_id' => $this->request->getVar('payment_method')
+        ];
+
+        if($this->request->getVar('payment_method') === $walletPaymentId) {
+            $userWallet = User::find(user_id())->wallet();
+
+            if($userWallet->amount < cartDetails('total')) {
+                return updateFail('Sorry! Your wallet balance is insufficient to complete the order.');
+            } else {
+                $userWallet->amount -= cartDetails('total');
+                $userWallet->save();
+
+                $orderData['is_paid'] = true;
+                $orderData['status'] = 'paid';
+            }
+        }
+
+        if(self::storeCart($orderData)) {
             emptyCart();
 
             return redirect('orders.thanks');

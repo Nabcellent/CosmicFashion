@@ -9,19 +9,19 @@ class PaymentTypeSeeder extends Seeder
     public function run() {
         $this->db->table('payment_types')->insertBatch([
             [
-                'name' => 'Mpesa',
+                'name'        => 'Mpesa',
                 'description' => 'success',
             ],
             [
-                'name' => 'PayPal',
+                'name'        => 'PayPal',
                 'description' => 'primary',
             ],
             [
-                'name' => 'Cash',
+                'name'        => 'Cash',
                 'description' => 'danger',
             ],
             [
-                'name' => 'Other',
+                'name'        => 'Wallet',
                 'description' => 'warning',
             ],
         ]);

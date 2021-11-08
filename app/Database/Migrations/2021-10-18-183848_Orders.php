@@ -24,8 +24,8 @@ class Orders extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('user_id', 'users', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('payment_type_id', 'payment_types', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('payment_type_id', 'payment_types', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('orders', true);
     }
 

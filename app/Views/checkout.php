@@ -130,6 +130,9 @@
                 },
                 Cash: {
                     text: 'Place order <i class="fas fa-truck"></i>'
+                },
+                Wallet: {
+                    text: 'Place order <i class="fas fa-truck"></i>'
                 }
             }
 
