@@ -5,7 +5,7 @@
 
 [`CosmicFashion`](https://cosmicfashion.nosterlab.com/). is online fashion store built using codeigniter 4 which is a full-stack web application
 
-The following are some of the libraries used to create the web app:
+The following are some of the libraries and packages used to create the web app:
 ### FRONTEND
 
 #### CSS
