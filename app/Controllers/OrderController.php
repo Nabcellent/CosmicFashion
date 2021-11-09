@@ -7,6 +7,8 @@ use App\Models\PaymentType;
 use App\Models\Product;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
+use Config\Services;
+use Dompdf\Dompdf;
 use Exception;
 use Nabz\Models\DB;
 use Throwable;
@@ -90,5 +92,29 @@ class OrderController extends BaseController
 
             return false;
         }
+    }
+
+    public function receipt(int $id): string {
+        $data = [
+            'order' => Order::with(["user", "ordersDetails"])->findOrFail($id),
+        ];
+
+        return view('receipt', $data);
+    }
+
+    public function receiptPDF(int $id): string {
+        $order = Order::with(['ordersDetails', 'user'])->findOrFail($id);
+
+        $view = view('receipt_template', ['order' => $order]);
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($view);
+
+        $dompdf->setPaper('A5');    // (Optional) Setup the paper size and orientation
+        $dompdf->render();              // Render the HTML as PDF
+        $dompdf->stream();              // Output the generated PDF to Browser
+
+        return view('receipt', $order);
     }
 }

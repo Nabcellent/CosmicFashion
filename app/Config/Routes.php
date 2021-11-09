@@ -92,6 +92,8 @@ $routes->group('/orders', function($routes) {
     $routes->get('checkout', 'OrderController::index', ['as' => 'orders.index']);
     $routes->post('order', 'OrderController::store', ['as' => 'orders.store']);
     $routes->get('thanks', 'OrderController::thanks', ['as' => 'orders.thanks']);
+    $routes->get('receipt/(:num)', 'OrderController::receipt/$1', ['as' => 'orders.receipt']);
+    $routes->get('receipt-pdf/(:num)', 'OrderController::receiptPDF/$1', ['as' => 'orders.receipt.pdf']);
 });
 
 $routes->get('/help', 'HomeController::showContactUs', ['as' => 'contact_us']);

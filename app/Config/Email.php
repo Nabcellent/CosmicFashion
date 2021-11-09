@@ -14,89 +14,89 @@ class Email extends BaseConfig
     /**
      * @var string
      */
-    public string $fromName = 'Re.d';
+    public string $fromName = "CosmicFashion.";
 
     /**
      * @var string
      */
-    public $recipients;
+    public string $recipients;
 
     /**
      * The "user agent"
      *
      * @var string
      */
-    public $userAgent = 'CodeIgniter';
+    public string $userAgent = 'CosmicFashion.';
 
     /**
      * The mail sending protocol: mail, sendmail, smtp
      *
      * @var string
      */
-    public $protocol = 'mail';
+    public string $protocol = 'smtp';
 
     /**
      * The server path to Sendmail.
      *
      * @var string
      */
-    public $mailPath = '/usr/sbin/sendmail';
+    public string $mailPath = '/usr/sbin/sendmail';
 
     /**
      * SMTP Server Address
      *
      * @var string
      */
-    public $SMTPHost;
+    public string $SMTPHost = 'smtp.gmail.com';
 
     /**
      * SMTP Username
      *
      * @var string
      */
-    public $SMTPUser;
+    public string $SMTPUser = "su.fashion10@gmail.com";
 
     /**
      * SMTP Password
      *
      * @var string
      */
-    public $SMTPPass;
+    public string $SMTPPass = "bvdcrrquknirwayl";
 
     /**
      * SMTP Port
      *
      * @var int
      */
-    public $SMTPPort = 25;
+    public int $SMTPPort = 465;
 
     /**
      * SMTP Timeout (in seconds)
      *
      * @var int
      */
-    public $SMTPTimeout = 5;
+    public int $SMTPTimeout = 60;
 
     /**
      * Enable persistent SMTP connections
      *
      * @var bool
      */
-    public $SMTPKeepAlive = false;
+    public bool $SMTPKeepAlive = false;
 
     /**
      * SMTP Encryption. Either tls or ssl
      *
      * @var string
      */
-    public $SMTPCrypto = 'tls';
+    public string $SMTPCrypto = 'tls';
 
     /**
      * Enable word-wrap
      *
      * @var bool
      */
-    public $wordWrap = true;
+    public bool $wordWrap = true;
 
     /**
      * Character count to wrap at
@@ -110,28 +110,28 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $mailType = 'text';
+    public string $mailType = 'html';
 
     /**
      * Character set (utf-8, iso-8859-1, etc.)
      *
      * @var string
      */
-    public $charset = 'UTF-8';
+    public string $charset = 'UTF-8';
 
     /**
      * Whether to validate the email address
      *
      * @var bool
      */
-    public $validate = false;
+    public bool $validate = false;
 
     /**
      * Email Priority. 1 = highest. 5 = lowest. 3 = normal
      *
      * @var int
      */
-    public $priority = 3;
+    public int $priority = 3;
 
     /**
      * Newline character. (Use “\r\n” to comply with RFC 822)

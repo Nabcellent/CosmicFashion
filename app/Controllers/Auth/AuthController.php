@@ -127,7 +127,7 @@ class AuthController extends Controller
     public function logout(): RedirectResponse {
         $cart = session('cart');
 
-        if(!empty('cart')) {
+        if(!empty($cart)) {
             foreach($cart as $productId => $item) {
                 Cart::updateOrCreate(['user_id' => user()->id, 'product_id' => $productId], $item);
             }

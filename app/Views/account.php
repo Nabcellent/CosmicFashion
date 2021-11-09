@@ -38,14 +38,14 @@
 									<th class="bg-transparent text-dark px-0">Date</th>
 									<th class="bg-transparent text-dark px-0">Status</th>
 									<th class="bg-transparent text-dark px-0">Pay Method</th>
-									<th class="bg-transparent text-dark px-0">Total</th>
+									<th colspan="2" class="bg-transparent text-dark px-0">Total</th>
 								</tr>
 								</thead>
 								<tbody id="accordion">
                                 <?php foreach($user->orders as $order): ?>
-									<tr style="border-bottom:1px solid #D9D9D9; cursor:pointer;"
-									    data-bs-toggle="collapse" data-bs-target="#product-<?= $order->id ?>">
-										<td class="px-0 pt-4"><p class="text-muted">16.06.2020</p></td>
+									<tr style="border-bottom:1px solid #D9D9D9;">
+										<td class="px-0 pt-4"><p class="text-muted"><?= date('d.m.y',
+                                                    strtotime($order->created_at)) ?></p></td>
 										<td class="px-0 pt-4">
 											<div class="d-flex align-items-center">
 												<div>
@@ -59,6 +59,18 @@
 										</td>
 										<td class="px-0 pt-4">
 											<h6 class="fw-bold mb-0">KSH.<?= $order->amount ?></h6>
+										</td>
+										<td class="px-0">
+											<a href="javascript:void(0)" class="text-secondary me-2"
+											   title="View items purchased" data-bs-toggle="collapse"
+											   data-bs-target="#product-<?= $order->id ?>">
+												<i class="bi bi-cart-check-fill"></i>
+											</a>
+                                            <?php if($order->is_paid): ?>
+												<a href="<?= route_to('orders.receipt', $order->id) ?>" class="text-info" title="View receipt">
+													<i class="bi bi-receipt-cutoff"></i>
+												</a>
+                                            <?php endif; ?>
 										</td>
 									</tr>
 									<tr class="accordion-item bg-transparent border-0">
@@ -123,12 +135,14 @@
 						<div class="d-flex justify-content-between w-100 mt-4">
 							<div class="d-flex flex-column align-items-center">
 								<h6 class="fw-bold text-muted text-uppercase">Wallet</h6>
-								<p class="fw-bold">KSH.<span id="wallet-balance"><?= $user->wallet->amount ?? 0 ?></span></p></div>
+								<p class="fw-bold">KSH.<span
+											id="wallet-balance"><?= $user->wallet->amount ?? 0 ?></span></p></div>
 							<div class="d-flex flex-column align-items-center">
 								<h6 class="fw-bold text-muted text-uppercase">Spend</h6>
 								<p class="fw-bold">KSH.<?= $user->spend ?></p></div>
 						</div>
-						<a href="javascript:void(0)" id="load-wallet" class="link-success">Load wallet <i class="bi bi-wallet"></i></a>
+						<a href="javascript:void(0)" id="load-wallet" class="link-success">Load wallet <i
+									class="bi bi-wallet"></i></a>
 						<hr/>
 						<div class="w-100 mt-3">
 							<div class="d-flex justify-content-between align-items-start">
@@ -149,7 +163,7 @@
 
 <?= $this->section('scripts') ?>
 	<script>
-		$('#load-wallet').on('click', function() {
+        $('#load-wallet').on('click', function () {
             Swal.fire({
                 input: 'tel',
                 inputLabel: 'Amount (min: 100)',
@@ -160,7 +174,7 @@
                         Swal.showValidationMessage('Invalid amount.')
                     } else {
                         return $.ajax({
-                            data: {amount:amount},
+                            data: {amount: amount},
                             method: 'POST',
                             url: `<?= route_to('user.wallet') ?>`,
                             dataType: 'json',
@@ -196,7 +210,7 @@
                     }).then(() => hideLoader())
                 }
             })
-		})
+        })
 	</script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>
