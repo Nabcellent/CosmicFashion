@@ -237,14 +237,6 @@
             },
             error: error => console.log(error)
         })
-
-		function initCountUp(node, endVal) {
-            let countUp = new window.countUp.CountUp(node, endVal, {
-                duration: 7
-            });
-
-            !countUp.error ? countUp.start() : console.error(countUp.error);
-		}
 	})
 </script>
 <script src="/vendor/admin/countup/countUp.umd.js"></script>

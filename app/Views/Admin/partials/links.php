@@ -14,5 +14,8 @@
 
 <?= $this->renderSection('links') ?>
 
+<!--    AOS    -->
+<link rel="stylesheet" href="/vendor/aos/aos.css">
+
 <link rel="stylesheet" href="/css/admin/style.css">
 <link rel="stylesheet" href="/css/global.css">

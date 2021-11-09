@@ -16,6 +16,8 @@
 
 <script src="/js/admin/theme.js"></script>
 
+<!--    AOS    -->
+<script src="/vendor/aos/aos.js"></script>
 <!--    SweetAlert2     -->
 <script src="/vendor/sweetalert/sweetalert.js"></script>
 <script src="/js/global.js"></script>

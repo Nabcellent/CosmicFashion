@@ -6,6 +6,7 @@ $routes = Services::routes();
 
 $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'admin'], function($routes) {
     $routes->get('/', "DashboardController", ['as' => "dashboard"]);
+    $routes->get('dash-stats', "DashboardController::dashStats", ['as' => "dashboard.stats"]);
 
     //  CATEGORY ROUTES
     $routes->group('categories', function($routes) {
