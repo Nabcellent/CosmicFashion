@@ -52,7 +52,7 @@ class DashboardController extends BaseController {
 
     public function popularProducts() {
         return OrdersDetail::join('products', 'orders_details.product_id', '=', 'products.id')
-            ->select(['name', DB::raw("SUM(quantity) as value")])
+            ->select(['product_id', 'name', DB::raw("SUM(quantity) as value")])
             ->groupBy('product_id')->latest('value')->take(3)->get();
     }
 }

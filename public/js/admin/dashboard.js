@@ -69,11 +69,10 @@ function InitPopularProducts(data) {
 
         const productColors = ['primary', 'info', '300']
         const products = data.map((product, i) => {
-            console.log(i)
             return `<div class="d-flex flex-between-center mb-1">
-                <div class="d-flex align-items-center">
-                    <span class="dot bg-${productColors[i]}" title="${product.value}"></span>
-                    <span class="fw-semi-bold">${product.name}</span>
+                <div class="d-flex align-items-center" title="${product.value} purchases">
+                    <span class="dot bg-${productColors[i]}"></span>
+                    <a href="/admin/products/show/${product.product_id}" class="fw-semi-bold">${product.name}</a>
                 </div>
                 <div class="d-xxl-none">${product.value}</div>
             </div>`
