@@ -96,8 +96,9 @@ class AuthController extends Controller
 
         $userCart = \App\Models\User::find($this->auth->user()->id)->cart();
 
-        $cart = [];
         if($userCart->exists()) {
+            $cart = session('cart') ?? [];
+
             foreach($userCart->with('product')->get() as $item) {
                 $cart[$item['product_id']] = [
                     "name"         => $item->product->name,
@@ -110,9 +111,9 @@ class AuthController extends Controller
                     'created_at'   => $item->created_at
                 ];
             }
-        }
 
-        session()->set('cart', $cart);
+            session()->set('cart', $cart);
+        }
 
         $redirectURL = site_url('/');
         unset($_SESSION['redirect_url']);
