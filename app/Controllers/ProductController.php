@@ -42,7 +42,7 @@ class ProductController extends BaseController
     public function store(): bool|string {
         try {
             $productId = $this->request->getVar('product_id');
-            $quantity = (int)$this->request->getVar('quantity');
+            (int)$quantity = $this->request->getVar('quantity') ?? 1;
 
             $product = Product::findOrFail($productId);
 

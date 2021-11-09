@@ -2330,16 +2330,16 @@
         },
         {
             "name": "nabcellent/codeigniter4-eloquent",
-            "version": "v1.1.6",
+            "version": "v1.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nabcellent/Codeigniter4-eloquent.git",
-                "reference": "f576080d7dc2e049dbb5418ad13ca6347bbfa13a"
+                "reference": "0fde9d92198052db082ea350727ccb2e8887877c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/f576080d7dc2e049dbb5418ad13ca6347bbfa13a",
-                "reference": "f576080d7dc2e049dbb5418ad13ca6347bbfa13a",
+                "url": "https://api.github.com/repos/Nabcellent/Codeigniter4-eloquent/zipball/0fde9d92198052db082ea350727ccb2e8887877c",
+                "reference": "0fde9d92198052db082ea350727ccb2e8887877c",
                 "shasum": ""
             },
             "require": {
@@ -2384,9 +2384,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Nabcellent/Codeigniter4-eloquent/issues",
-                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.6"
+                "source": "https://github.com/Nabcellent/Codeigniter4-eloquent/tree/v1.1.7"
             },
-            "time": "2021-10-25T11:06:30+00:00"
+            "time": "2021-11-09T01:17:48+00:00"
         },
         {
             "name": "nesbot/carbon",

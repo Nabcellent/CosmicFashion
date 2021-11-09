@@ -95,17 +95,20 @@
 								<div style="background:url(/images/products/<?= $product->image ?>) no-repeat center;background-size:contain;transition:all .65s ease"
 								     class="index_productImage__3VSiQ"></div>
 							</a>
-							<div class="d-flex flex-column justify-content-center index_product__actions__3kChI"
+							<div class="d-flex flex-column justify-content-center product-actions"
 							     style="position:absolute;height:100%;top:0;right:15px">
-								<button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-									<div class="mb-4 index_product__actions__heart__iF5CZ"></div>
-								</button>
-								<button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-									<div class="mb-4 index_product__actions__max__3rnIa"></div>
-								</button>
-								<button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-									<div class="mb-4 index_product__actions__cart__2Y30W"></div>
-								</button>
+								<a href="javascript:void(0)"
+								   class="p-1 mb-4 product-action heart d-flex align-items-center justify-content-center">
+									<i class="bi bi-heart"></i>
+								</a>
+								<a href="javascript:void(0)"
+								   class="p-1 mb-4 product-action zoom d-flex align-items-center justify-content-center">
+									<i class="bi bi-zoom-in"></i>
+								</a>
+								<a href="javascript:void(0)" data-id="<?= $product->id ?>"
+								   class="p-1 mb-4 product-action cart d-flex align-items-center justify-content-center">
+									<i class="bi bi-cart-plus"></i>
+								</a>
 							</div>
 						</div>
 						<div class="index_productInfo__2hSIT">

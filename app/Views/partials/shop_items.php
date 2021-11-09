@@ -1,24 +1,27 @@
 
 <div class="row">
     <?php foreach($products as $product): ?>
-        <div class="mb-4 Shop_product__1cFbR col-12 col-md-6 col-lg-4" data-aos="fade-up">
+        <div class="mb-4 index_product__2R5IL col-12 col-md-6 col-lg-4" data-aos="fade-up">
             <div class="position-relative">
                 <a href="<?= route_to('shop.show', $product->id) ?>">
                     <div class="Shop_productImage__1ILty"
                          style="background-image: url(/images/products/<?= $product->image ?>)"></div>
                 </a>
-                <div class="d-flex flex-column justify-content-center position-absolute h-100 top-0 Shop_product__actions__1VOlb"
-                     style="right:15px">
-                    <button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-                        <div class="mb-4 Shop_product__actions__heart__sBlRs"></div>
-                    </button>
-                    <button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-                        <div class="mb-4 Shop_product__actions__max__gkHwK"></div>
-                    </button>
-                    <button type="button" class="p-0 bg-transparent border-0 btn btn-secondary">
-                        <div class="mb-4 Shop_product__actions__cart__2rrU7"></div>
-                    </button>
-                </div>
+	            <div class="d-flex flex-column justify-content-center product-actions"
+	                 style="position:absolute;height:100%;top:0;right:15px">
+		            <a href="javascript:void(0)"
+		               class="p-1 mb-4 product-action heart d-flex align-items-center justify-content-center">
+			            <i class="bi bi-heart"></i>
+		            </a>
+		            <a href="javascript:void(0)"
+		               class="p-1 mb-4 product-action zoom d-flex align-items-center justify-content-center">
+			            <i class="bi bi-zoom-in"></i>
+		            </a>
+		            <a href="javascript:void(0)" data-id="<?= $product->id ?>"
+		               class="p-1 mb-4 product-action cart d-flex align-items-center justify-content-center">
+			            <i class="bi bi-cart-plus"></i>
+		            </a>
+	            </div>
             </div>
             <div class="Shop_productInfo__2QXeb">
                 <div>

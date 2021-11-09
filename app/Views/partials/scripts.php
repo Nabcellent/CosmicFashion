@@ -10,3 +10,4 @@
 
 <!--    CUSTOM    -->
 <script src="/js/global.js"></script>
+<script src="/js/index.js"></script>

@@ -233,14 +233,13 @@
                 data,
                 url: `<?= route_to('shop.store') ?>`,
                 method: 'POST',
+                dataType: 'json',
                 beforeSend: () => submitButton.addClass('running'),
                 success: response => {
-                    const result = JSON.parse(response)
-
-                    if (result.status) {
-                        $('nav .cart-count').html(result.cartCount)
-                        $('nav .cart-total').attr('title', `Total ~ KSH.${result.cartTotal}`)
-                        toast({msg: result.msg, type: `success`})
+                    if (response.status) {
+                        $('nav .cart-count').html(response.cartCount)
+                        $('nav .cart-total').attr('title', `Total ~ KSH.${response.cartTotal}`)
+                        toast({msg: response.msg, type: `success`})
 
                         if(isBuyNow) {
                             location.href = `<?= route_to('orders.index') ?>`
