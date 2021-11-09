@@ -7,7 +7,6 @@ use App\Models\PaymentType;
 use App\Models\Product;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
-use Config\Services;
 use Dompdf\Dompdf;
 use Exception;
 use Nabz\Models\DB;
@@ -21,8 +20,8 @@ class OrderController extends BaseController
         }
 
         $data = [
-            'cartItems' => session('cart'),
-            'title'     => 'Checkout',
+            'cartItems'    => session('cart'),
+            'title'        => 'Checkout',
             'paymentTypes' => PaymentType::all()
         ];
 
@@ -58,7 +57,7 @@ class OrderController extends BaseController
 
     public function thanks(): string {
         $data = [
-            'title'     => 'Thank you',
+            'title'        => 'Thank you',
             'likeProducts' => Product::inRandomOrder()->with('subCategory')->take(8)->get(),
         ];
 
@@ -78,16 +77,16 @@ class OrderController extends BaseController
                 foreach($cart as $productId => $item) {
                     $order->ordersDetails()->create([
                         'product_id' => $productId,
-                        'price' => $item['price'],
-                        'quantity' => $item['quantity'],
-                        'total' => $item['sub_total'],
+                        'price'      => $item['price'],
+                        'quantity'   => $item['quantity'],
+                        'total'      => $item['sub_total'],
                         'created_at' => $item['created_at']
                     ]);
                 }
 
                 return $order;
             });
-        } catch (Exception|Throwable $e) {
+        } catch (Exception | Throwable $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
 
             return false;
