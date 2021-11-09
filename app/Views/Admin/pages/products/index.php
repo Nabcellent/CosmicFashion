@@ -85,7 +85,7 @@
 									<td class="align-middle actions">
 										<div class="d-flex justify-content-evenly align-items-center">
 											<a href="<?= route_to('admin.products.show', $product->id) ?>"
-											   class="btn btn-sm btn-secondary rounded-circle shadow">
+											   class="btn btn-sm btn-secondary rounded-circle shadow" title="View product">
 												<i class="bi bi-eye-fill"></i>
 											</a>
 											<a href="<?= route_to('admin.products.edit', $product->id) ?>"

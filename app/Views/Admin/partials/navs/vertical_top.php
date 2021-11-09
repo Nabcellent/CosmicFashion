@@ -147,18 +147,18 @@
 							</a><!-- more inner pages-->
 							<ul class="nav collapse false" id="orders">
 								<li class="nav-item">
-									<a class="nav-link" href="app/e-commerce/orders/order-list.html">
+									<a class="nav-link" href="<?= route_to('admin.orders.index') ?>">
 										<div class="d-flex align-items-center">
-											<span class="nav-link-text ps-1">Order list</span>
+											<span class="nav-link-text ps-1">List</span>
 										</div>
-									</a><!-- more inner pages-->
+									</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="app/e-commerce/orders/order-details.html">
 										<div class="d-flex align-items-center">
-											<span class="nav-link-text ps-1">Order details</span>
+											<span class="nav-link-text ps-1">Details</span>
 										</div>
-									</a><!-- more inner pages-->
+									</a>
 								</li>
 							</ul>
 						</li>

@@ -33,7 +33,7 @@ class UserController extends BaseController
             return view('Admin/pages/users/profile', $data);
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
-            return createFail('Unable to find user!', 'admin.user.index');
+            return goWithError('Unable to find user!', 'admin.user.index');
         }
     }
 

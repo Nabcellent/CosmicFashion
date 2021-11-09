@@ -49,6 +49,16 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('purchases-chart/(:num)', 'UserController::weeklyOrders/$1', ['as' => 'admin.users.orders.chart']);
     });
 
+    //  ORDER ROUTES
+    $routes->group('orders', function($routes) {
+        $routes->get('/', 'OrderController', ['as' => 'admin.orders.index']);
+        $routes->get('show/(:num)', 'OrderController::show/$1', ['as' => 'admin.orders.show']);
+        $routes->get('edit/(:num)', 'OrderController::edit/$1', ['as' => 'admin.orders.edit']);
+        $routes->put('update/(:num)', 'OrderController::update/$1', ['as' => 'admin.orders.update']);
+        $routes->get('orders-chart/(:num)', 'OrderController::dailyPurchases/$1',
+            ['as' => 'admin.orders.purchases.chart']);
+    });
+
     $routes->group('payments', function($routes) {
         $routes->post('stk_requests', 'PaymentController::initiateStkPush');
         $routes->get('stk_status/(:segment)', 'PaymentController::stkStatus/$1');
