@@ -63,8 +63,9 @@
 						        id="add-to-cart-btn" style="width: 50%;">Add to Cart
 							<span class="ld ld-ring ld-spin"></span>
 						</button>
-						<button type="button" class="text-uppercase fw-bold btn btn-primary" style="width: 50%;">
+						<button type="submit" class="text-uppercase fw-bold btn btn-primary ld-ext-right buy-now" style="width: 50%;">
 							Buy now
+							<span class="ld ld-ring ld-spin"></span>
 						</button>
 					</div>
 				</form>
@@ -218,9 +219,11 @@
         $('#add-cart-form').on('submit', function (e) {
             e.preventDefault()
 
-            const addToCartBtn = $('#add-to-cart-btn');
-            addToCartBtn.prop('disabled', true)
-            addToCartBtn.html(`Adding...<span class="ld ld-ring ld-spin"></span>`)
+            const submitButton = $(e.originalEvent.submitter),
+	            isBuyNow = submitButton.hasClass('buy-now');
+
+            submitButton.prop('disabled', true)
+            submitButton.html(`${isBuyNow ? 'Processing' : 'Adding'}...<span class="ld ld-ring ld-spin"></span>`)
 
             const data = {}
             $(this).serializeArray().forEach(input => data[input.name] = input.value)
@@ -230,7 +233,7 @@
                 data,
                 url: `<?= route_to('shop.store') ?>`,
                 method: 'POST',
-                beforeSend: () => addToCartBtn.addClass('running'),
+                beforeSend: () => submitButton.addClass('running'),
                 success: response => {
                     const result = JSON.parse(response)
 
@@ -238,6 +241,10 @@
                         $('nav .cart-count').html(result.cartCount)
                         $('nav .cart-total').attr('title', `Total ~ KSH.${result.cartTotal}`)
                         toast({msg: result.msg, type: `success`})
+
+                        if(isBuyNow) {
+                            location.href = `<?= route_to('orders.index') ?>`
+                        }
                     } else {
                         toast({msg: '☹Unable to add item to cart.', type: `danger`})
                     }
@@ -246,10 +253,14 @@
                     toast({msg: '☹Unable to add item to cart.', type: `danger`})
                     console.log(`Error: ${error}`)
                 },
-                complete: () => {
-                    addToCartBtn.removeClass('running')
-                    addToCartBtn.html(`Add to cart`)
-                    addToCartBtn.prop('disabled', false)
+                complete: xhr => {
+                    let res = eval("(" + xhr.responseText + ")");
+
+                    if(!isBuyNow && res.status) {
+                        submitButton.removeClass('running')
+                        submitButton.html(`Add to cart`)
+                        submitButton.prop('disabled', false)
+                    }
                 }
             })
         })

@@ -119,9 +119,9 @@
                             }
                         },
                         complete: (xhr) => {
-                            let err = eval("(" + xhr.responseText + ")");
+                            let res = eval("(" + xhr.responseText + ")");
 
-                            if (err.status !== true) submitButton.prop('disabled', false).removeClass('running')
+                            if (res.status !== true) submitButton.prop('disabled', false).removeClass('running')
                         }
                     })
                 }
