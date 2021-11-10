@@ -22,18 +22,19 @@ The following are some of the libraries and packages used to create the web app:
 1. [Jquery v3.3.6](https://jquery.com/) - Designed to simplify HTML DOM tree traversal and manipulation
 2. [Swiper](https://swiperjs.com/) - A modern slider with hardware accelerated transitions and amazing native behavior.
 3. [SweetAlert2](https://sweetalert2.github.io/)
-3. [Flatpickr](https://flatpickr.js.org/) - A lightweight and powerful datetime picker.
-3. [CountUp](https://inorganik.github.io/countUp.js/)
+4. [Flatpickr](https://flatpickr.js.org/) - A lightweight and powerful datetime picker.
+5. [CountUp](https://inorganik.github.io/countUp.js/)
+6. [Weather.js v0.0.2](https://weatherjs.com/) - A conclusive JavaScript weather library.
 
 #### Other Plugins
 
 1. [Toastify](https://apvarun.github.io/toastify-js/) - For alerts
-1. [Ion.RangeSlider v2.3.1](http://ionden.com/a/plugins/ion.rangeSlider/)
-1. [AOS](https://michalsnik.github.io/aos/) - Animated On Scroll Library
-2. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
-3. [Datatables](https://datatables.net/)
-4. [Tom Select](https://tom-select.js.org/) - A versatile and dynamic `select` UI control
-5. [FilePond](https://pqina.nl/filepond/) - File uploader
+2. [Ion.RangeSlider v2.3.1](http://ionden.com/a/plugins/ion.rangeSlider/)
+3. [AOS](https://michalsnik.github.io/aos/) - Animated On Scroll Library
+4. [Nice Number](https://github.com/joshua-s/jquery.nice-number) - For the cart quantity `spinner`
+5. [Datatables](https://datatables.net/)
+6. [Tom Select](https://tom-select.js.org/) - A versatile and dynamic `select` UI control
+7. [FilePond](https://pqina.nl/filepond/) - File uploader
 
 ### BACKEND PACKAGES
 
@@ -42,6 +43,7 @@ The following are some of the libraries and packages used to create the web app:
 * [lonnieezell/myth-auth](https://github.com/lonnieezell/myth-auth) - For authentication.
 * [amrshawky/laravel-currency](https://github.com/amrshawky/laravel-currency) - A currency converter.
 * [dompdf/dompdf](https://github.com/dompdf/dompdf) - HTML to PDF converter.
+* [bshaffer/oauth2-server-php](https://bshaffer.github.io/oauth2-server-php-docs/) - An OAuth2 Server Library for PHP.
 
 Feel free to browse through the code.
 
