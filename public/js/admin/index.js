@@ -1,4 +1,4 @@
-function initCountUp(node, endVal, data = {}) {
+function InitCountUp(node, endVal, data = {}) {
     if(endVal > 999) {
         data.suffix = 'K'
         endVal /= 1000

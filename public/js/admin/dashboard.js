@@ -7,7 +7,7 @@ function InitPopularProducts(data) {
         let chart = window.echarts.init($echartMarketShare);
 
         const sum = data.reduce((a, {value}) => a + parseInt(value), 0);
-        initCountUp($('#popular-products-cu').get(0), sum)
+        InitCountUp($('#popular-products-cu').get(0), sum)
 
         function getDefaultOptions() {
             return {

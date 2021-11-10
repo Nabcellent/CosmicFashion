@@ -35,7 +35,7 @@
 				</div>
 				<div class="card-body d-flex flex-column justify-content-end">
 					<div class="row justify-content-between">
-						<div class="col-auto align-self-end">
+						<div class="col-4 align-self-end">
 							<div class="fs-2 fw-normal text-700 lh-1 mb-1">
 								<span id="total-orders-cu">0</span>
 							</div>
@@ -43,16 +43,14 @@
 								<span class="fas fa-caret-up me-1"></span>13.6%
 							</span>
 						</div>
-						<div class="col-auto ps-0 mt-n4">
-							<div class="echart-default-total-order"
-							     data-echarts="{&quot;tooltip&quot;:{&quot;trigger&quot;:&quot;axis&quot;,&quot;formatter&quot;:&quot;{b0} : {c0}&quot;},&quot;xAxis&quot;:{&quot;data&quot;:[&quot;Week 4&quot;,&quot;Week 5&quot;,&quot;week 6&quot;,&quot;week 7&quot;]},&quot;series&quot;:[{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:[20,40,100,120],&quot;smooth&quot;:true,&quot;lineStyle&quot;:{&quot;width&quot;:3}}],&quot;grid&quot;:{&quot;bottom&quot;:&quot;2%&quot;,&quot;top&quot;:&quot;2%&quot;,&quot;right&quot;:&quot;10px&quot;,&quot;left&quot;:&quot;10px&quot;}}"
+						<div class="col-8 ps-0 mt-n4">
+							<div class="weekly-orders w-100 h-100 p-2"
 							     data-echart-responsive="true" _echarts_instance_="ec_1634928926715"
 							     style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative;">
-								<div style="position: relative; width: 138px; height: 90px; padding: 0; margin: 0; border-width: 0;">
+								<div style="position: relative; width: 100%; height: 90px; padding: 0; margin: 0; border-width: 0;">
 									<canvas data-zr-dom-id="zr_0" width="138" height="90"
-									        style="position: absolute; left: 0; top: 0; width: 130px; height: 90px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0; margin: 0; border-width: 0;"></canvas>
+									        style="position: absolute; left: 0; top: 0;  width: 100%; height: 90px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0; margin: 0; border-width: 0;"></canvas>
 								</div>
-								<div class=""></div>
 							</div>
 						</div>
 					</div>
@@ -427,7 +425,6 @@
 	</div>
 
 <?= $this->section('scripts') ?>
-	<script src="/vendor/admin/countup/countUp.umd.js"></script>
 	<script src="/js/admin/dashboard.js"></script>
 	<script src="/js/admin/chart.js"></script>
 	<script>
@@ -435,10 +432,13 @@
             url: '<?= route_to('dashboard.stats') ?>',
             dataType: 'json',
             success: response => {
-                initCountUp($('#weekly-sales-cu').get(0), response.weekly_sales, {prefix: 'KSH.'})
-                initCountUp($('#total-orders-cu').get(0), response.total_orders)
+                InitCountUp($('#weekly-sales-cu').get(0), response.weekly_sales, {prefix: 'KSH.'})
+                InitCountUp($('#total-orders-cu').get(0), response.total_orders)
 
                 InitPopularProducts(response.popular_products)
+
+	            response.weekly_orders.elem = '.weekly-orders'
+                InitWeeklyOrders(response.weekly_orders)
             },
             error: error => console.log(error)
         })

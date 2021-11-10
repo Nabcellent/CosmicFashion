@@ -8,6 +8,7 @@
 <script src="/vendor/admin/echarts/echarts.min.js"></script>
 <script src="/vendor/admin/fontawesome/all.min.js"></script>
 <script src="/vendor/admin/lodash/lodash.min.js"></script>
+<script src="/vendor/admin/countup/countUp.umd.js"></script>
 
 <script src="/js/admin/polyfill.min58be.js?features=window.scroll"></script>
 <script src="/vendor/admin/list.js/list.min.js"></script>
@@ -17,7 +18,7 @@
 <script src="/vendor/aos/aos.js"></script>
 <!--    SweetAlert2     -->
 <script src="/vendor/sweetalert/sweetalert.js"></script>
+<script src="/js/admin/index.js"></script>
 <script src="/js/global.js"></script>
-<script src="/js/index.js"></script>
 
 <?= $this->renderSection('scripts') ?>

@@ -407,6 +407,5 @@
             })
         })
 	</script>
-	<script src="/vendor/admin/countup/countUp.umd.js"></script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>
