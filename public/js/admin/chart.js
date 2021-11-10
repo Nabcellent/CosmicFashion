@@ -2,7 +2,6 @@ function InitWeeklyOrders(data) {
     let ECHART_LINE_TOTAL_ORDER = data.elem ?? '.weekly-purchases';
     let $echartLineTotalOrder = document.querySelector(ECHART_LINE_TOTAL_ORDER);
 
-    console.log(data)
     if ($echartLineTotalOrder) {
         // Get options from data attribute
         let userOptions = utils.getData($echartLineTotalOrder, 'options');

@@ -100,18 +100,20 @@
 					<div class="row g-0 h-100 align-items-center">
 						<div class="col">
 							<div class="d-flex align-items-center">
-								<img class="me-3" src="/images/dash/icons/weather-icon.png" alt="" height="60"/>
-								<div>
-									<h6 class="mb-2">New York City</h6>
+								<img class="me-3" src="" id="weather-icon" alt="" height="60"/>
+								<div data-aos="fade-left" data-aos-delay="50" data-aos-duration="1700">
+									<h6 class="mb-2" id="temp-name"></h6>
 									<div class="fs--2 fw-semi-bold">
-										<div class="text-warning">Sunny</div>
+										<div class="text-warning" id="temp-condition">Sunny</div>
 										Precipitation: 50%
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-auto text-center ps-2">
-							<div class="fs-4 fw-normal text-primary mb-1 lh-1">31&deg;</div>
+							<div class="fs-4 fw-normal text-primary mb-1 lh-1">
+								<span id="current-temp-cu">0</span>&deg;
+							</div>
 							<div class="fs--1 text-800">32&deg; / 25&deg;</div>
 						</div>
 					</div>
@@ -427,6 +429,7 @@
 <?= $this->section('scripts') ?>
 	<script src="/js/admin/dashboard.js"></script>
 	<script src="/js/admin/chart.js"></script>
+	<script src="/vendor/weather/weather.min.js"></script>
 	<script>
         $.ajax({
             url: '<?= route_to('dashboard.stats') ?>',
@@ -437,11 +440,33 @@
 
                 InitPopularProducts(response.popular_products)
 
-	            response.weekly_orders.elem = '.weekly-orders'
+                response.weekly_orders.elem = '.weekly-orders'
                 InitWeeklyOrders(response.weekly_orders)
             },
             error: error => console.log(error)
         })
+
+
+
+        /*==========================================================================    WEATHER SETUP
+        * */
+        const city = 'Nairobi';
+        Weather.setApiKey('11ea5528e89c719b6f5832f8bb18faa9');
+
+        Weather.getCurrent('Nairobi', function (current) {
+            const {name, weather} = current.data,
+                condition = current.conditions(),
+                tempInCelsius = Weather.kelvinToCelsius(current.temperature()),
+                icon = `https://openweathermap.org/img/wn/${
+                    weather[0].icon
+                }@4x.png`;
+
+            InitCountUp($('#current-temp-cu').get(0), tempInCelsius)
+	        $('#weather-icon').prop('src', icon)
+            $('#temp-name').html(name)
+            $('#temp-condition').html(condition)
+            AOS.refreshHard()
+        });
 	</script>
 <?= $this->endSection() ?>
 <?= $this->endSection() ?>
