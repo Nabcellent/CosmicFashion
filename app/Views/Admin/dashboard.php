@@ -412,11 +412,13 @@
 				</div>
 				<div class="card-footer bg-light py-2">
 					<div class="row flex-between-center">
-						<div class="col-auto"><select class="form-select form-select-sm">
+						<div class="col-auto">
+							<select class="form-select form-select-sm">
 								<option>Last 7 days</option>
 								<option>Last Month</option>
 								<option>Last Year</option>
-							</select></div>
+							</select>
+						</div>
 						<div class="col-auto"><a class="btn btn-sm btn-falcon-default" href="#!">View All</a></div>
 					</div>
 				</div>
@@ -427,6 +429,7 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/admin/countup/countUp.umd.js"></script>
 	<script src="/js/admin/dashboard.js"></script>
+	<script src="/js/admin/chart.js"></script>
 	<script>
         $.ajax({
             url: '<?= route_to('dashboard.stats') ?>',

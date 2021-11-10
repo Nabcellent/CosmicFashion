@@ -1,21 +1,16 @@
 <?php namespace App\Authentication;
 
 use App\Models\LoginModel;
+use App\Models\User;
 use CodeIgniter\Events\Events;
 use CodeIgniter\Router\Exceptions\RedirectException;
 use Exception;
 use Illuminate\Support\Carbon;
-use Myth\Auth\Entities\User;
 use Myth\Auth\Exceptions\AuthException;
 use Myth\Auth\Password;
 use ReflectionException;
 
 class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInterface {
-    /**
-     * @var LoginModel
-     */
-    protected LoginModel $loginModel;
-
     /**
      * Attempts to validate the credentials and log a user in.
      *
@@ -102,7 +97,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         }
 
         // Yay! We were remembered!
-        $user = $this->userModel->find($token->user_id);
+        $user = User::find($token->user_id);
 
         if(empty($user)) {
             return false;
@@ -141,7 +136,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         }
 
         // Can we find a user with those credentials?
-        $user = $this->userModel->where($credentials)->first();
+        $user = User::where($credentials)->first();
 
         if(!$user) {
             $this->error = lang('Auth.badAttempt');
@@ -160,7 +155,7 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         // logged in.
         if(Password::needsRehash($user->password, $this->config->hashAlgorithm)) {
             $user->password = $password;
-            $this->userModel->save($user);
+            $this->user->save();
         }
 
         return $returnUser ? $user : true;

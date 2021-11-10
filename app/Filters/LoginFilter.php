@@ -5,7 +5,8 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\App;
 
-class LoginFilter implements FilterInterface {
+class LoginFilter implements FilterInterface
+{
     /**
      * Verifies that a user is logged in, or redirects to log in page.
      *
@@ -28,7 +29,7 @@ class LoginFilter implements FilterInterface {
         }
 
         // Make sure this isn't already a login route
-        if(in_array((string)$current, [
+        if(in_array($current, [
             route_to('login'),
             route_to('forgot'),
             route_to('reset-password'),
@@ -40,16 +41,18 @@ class LoginFilter implements FilterInterface {
 
         // if no user is logged in then send to the login form
         $authenticate = service('authentication');
+
         if(!$authenticate->check()) {
             session()->set('redirect_url', current_url());
+
             return redirect('login');
         }
     }
 
     /**
-     * @param RequestInterface $request
+     * @param RequestInterface  $request
      * @param ResponseInterface $response
-     * @param array|null $arguments
+     * @param array|null        $arguments
      *
      * @return void
      */

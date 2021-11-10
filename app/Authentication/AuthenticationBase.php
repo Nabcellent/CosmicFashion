@@ -1,13 +1,14 @@
 <?php namespace App\Authentication;
 
+use App\Models\Login;
+use App\Models\LoginModel;
+use App\Models\User;
 use CodeIgniter\Events\Events;
-use CodeIgniter\Model;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Myth\Auth\Config\Auth as AuthConfig;
-use Myth\Auth\Entities\User;
 use Myth\Auth\Exceptions\AuthException;
 use Myth\Auth\Exceptions\UserNotFoundException;
-use Myth\Auth\Models\LoginModel;
 use ReflectionException;
 
 class AuthenticationBase
@@ -15,27 +16,21 @@ class AuthenticationBase
     /**
      * @var User|null
      */
-    protected $user;
-
+    protected User|bool|null $user;
     /**
-     * @var Model
+     * @var Login
      */
-    protected $userModel;
-
-    /**
-     * @var LoginModel
-     */
-    protected \App\Models\LoginModel $loginModel;
+    protected Login $loginModel;
 
     /**
      * @var string
      */
-    protected $error;
+    protected string $error;
 
     /**
      * @var AuthConfig
      */
-    protected $config;
+    protected AuthConfig $config;
 
     public function __construct($config) {
         $this->config = $config;
@@ -66,11 +61,12 @@ class AuthenticationBase
      * NOTE: does not perform validation. All validation should
      * be done prior to using the login method.
      *
-     * @param User $user
-     * @param bool $remember
+     * @param User|null $user
+     * @param bool      $remember
      *
      * @return bool
-     * @throws \Exception
+     * @throws ReflectionException
+     * @throws Exception
      */
     public function login(User $user = null, bool $remember = false): bool {
         if(empty($user)) {
@@ -118,14 +114,9 @@ class AuthenticationBase
      * @return bool
      */
     public function isLoggedIn(): bool {
-        // On the off chance
-        if($this->user instanceof User) {
-            return true;
-        }
-
         if($userID = session('logged_in')) {
             // Store our current user object
-            $this->user = $this->userModel->find($userID);
+            $this->user = User::find($userID);
 
             return $this->user instanceof User;
         }
@@ -142,7 +133,7 @@ class AuthenticationBase
      * @return bool
      * @throws \Exception
      */
-    public function loginByID(int $id, bool $remember = false) {
+    public function loginByID(int $id, bool $remember = false): bool {
         $user = $this->retrieveUser(['id' => $id]);
 
         if(empty($user)) {
@@ -302,15 +293,14 @@ class AuthenticationBase
      * Grabs the current user from the database.
      *
      * @param array $wheres
-     *
-     * @return array|null|object
+     * @return mixed
      */
-    public function retrieveUser(array $wheres): object|array|null {
-        if(!$this->userModel instanceof Model) {
+    public function retrieveUser(array $wheres): mixed {
+        if(!$this->user instanceof User) {
             throw AuthException::forInvalidModel('User');
         }
 
-        return $this->userModel->where($wheres)->first();
+        return User::where($wheres)->first();
     }
 
 
@@ -322,12 +312,12 @@ class AuthenticationBase
      * Sets the model that should be used to work with
      * user accounts.
      *
-     * @param Model $model
+     * @param User $model
      *
      * @return $this
      */
-    public function setUserModel(Model $model): static {
-        $this->userModel = $model;
+    public function setUserModel(User $model): static {
+        $this->user = $model;
 
         return $this;
     }
@@ -340,11 +330,10 @@ class AuthenticationBase
      *
      * @return $this
      */
-    public function setLoginModel(Model $model): static {
+    public function setLoginModel(Login $model): static {
         $this->loginModel = $model;
 
         return $this;
     }
-
 }
 

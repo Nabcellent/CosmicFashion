@@ -232,11 +232,10 @@
 				<div class="card mb-3">
 					<div class="card-header bg-light d-flex justify-content-between">
 						<h5 class="mb-0">Weekly Purchases</h5>
-						<span id="count-up">All purchases</span>
+						<span id="count-up">0</span>
 					</div>
 					<div class="card-body fs--1 p-2">
-						<div class="weekly-purchases w-100"
-						     data-echarts="{&quot;tooltip&quot;:{&quot;trigger&quot;:&quot;axis&quot;,&quot;formatter&quot;:&quot;{b0} : {c0}&quot;},&quot;xAxis&quot;:{&quot;data&quot;:[&quot;Week 4&quot;,&quot;Week 5&quot;,&quot;week 6&quot;,&quot;week 7&quot;]},&quot;series&quot;:[{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:[20,40,100,120],&quot;smooth&quot;:true,&quot;lineStyle&quot;:{&quot;width&quot;:3}}],&quot;grid&quot;:{&quot;bottom&quot;:&quot;2%&quot;,&quot;top&quot;:&quot;2%&quot;,&quot;right&quot;:&quot;10px&quot;,&quot;left&quot;:&quot;10px&quot;}}"
+						<div class="weekly-purchases w-100 p-2"
 						     data-echart-responsive="true" _echarts_instance_="ec_1634928926715"
 						     style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative; min-height: 10rem">
 							<div style="position: relative; width: 138px; height: 90px; padding: 0; margin: 0; border-width: 0;">
@@ -361,6 +360,7 @@
 <?= $this->section('scripts') ?>
 	<script src="/vendor/admin/glightbox/glightbox.min.js"></script>
 	<script src="/js/admin/dynamic.js"></script>
+	<script src="/js/admin/chart.js"></script>
 	<script>
         $(() => {
             $('#table_id').DataTable({});
@@ -391,131 +391,13 @@
         });
 
         $(() => {
-            function initWeeklyOrders(data) {
-                let ECHART_LINE_TOTAL_ORDER = '.weekly-purchases';
-                let $echartLineTotalOrder = document.querySelector(ECHART_LINE_TOTAL_ORDER);
-
-                if ($echartLineTotalOrder) {
-                    // Get options from data attribute
-                    let userOptions = utils.getData($echartLineTotalOrder, 'options');
-                    let chart = window.echarts.init($echartLineTotalOrder); // Default options
-
-                    let getDefaultOptions = function getDefaultOptions() {
-                        return {
-                            tooltip: {
-                                triggerOn: 'mousemove',
-                                trigger: 'axis',
-                                padding: [7, 10],
-                                formatter: '{b0}: {c0}',
-                                backgroundColor: utils.getGrays()['100'],
-                                borderColor: utils.getGrays()['300'],
-                                textStyle: {
-                                    color: utils.getColors().dark
-                                },
-                                borderWidth: 1,
-                                transitionDuration: 0,
-                                position: function position(pos, params, dom, rect, size) {
-                                    return getPosition(pos, params, dom, rect, size);
-                                }
-                            },
-                            xAxis: {
-                                type: 'category',
-                                data: data.labels,
-                                boundaryGap: false,
-                                splitLine: {
-                                    show: false
-                                },
-                                axisLine: {
-                                    show: false,
-                                    lineStyle: {
-                                        color: utils.getGrays()['300'],
-                                        type: 'dashed'
-                                    }
-                                },
-                                axisLabel: {
-                                    show: false
-                                },
-                                axisTick: {
-                                    show: false
-                                },
-                                axisPointer: {
-                                    type: 'none'
-                                }
-                            },
-                            yAxis: {
-                                type: 'value',
-                                splitLine: {
-                                    show: false
-                                },
-                                axisLine: {
-                                    show: false
-                                },
-                                axisLabel: {
-                                    show: false
-                                },
-                                axisTick: {
-                                    show: false
-                                },
-                                axisPointer: {
-                                    show: true
-                                }
-                            },
-                            series: [{
-                                type: 'line',
-                                lineStyle: {
-                                    color: utils.getColors().primary,
-                                    width: 3
-                                },
-                                itemStyle: {
-                                    color: utils.getGrays().white,
-                                    borderColor: utils.getColors().primary,
-                                    borderWidth: 2
-                                },
-                                hoverAnimation: true,
-                                data: data.datasets,
-                                // connectNulls: true,
-                                smooth: 0.6,
-                                smoothMonotone: 'x',
-                                showSymbol: false,
-                                symbol: 'circle',
-                                symbolSize: 8,
-                                areaStyle: {
-                                    color: {
-                                        type: 'linear',
-                                        x: 0,
-                                        y: 0,
-                                        x2: 0,
-                                        y2: 1,
-                                        colorStops: [{
-                                            offset: 0,
-                                            color: utils.rgbaColor(utils.getColors().primary, 0.25)
-                                        }, {
-                                            offset: 1,
-                                            color: utils.rgbaColor(utils.getColors().primary, 0)
-                                        }]
-                                    }
-                                }
-                            }],
-                            grid: {
-                                bottom: '2%',
-                                top: '0%',
-                                right: '10px',
-                                left: '10px'
-                            }
-                        };
-                    };
-
-                    echartSetOption(chart, userOptions, getDefaultOptions);
-                }
-            }
-
             $.ajax({
                 url: '<?= route_to('admin.users.orders.chart', $user->id) ?>',
                 dataType: 'json',
                 success: response => {
-                    initWeeklyOrders(response)
+                    InitWeeklyOrders(response.weekly_purchases)
 
-                    let countUp = new window.countUp.CountUp($('#count-up').get(0), response.total, {
+                    let countUp = new window.countUp.CountUp($('#count-up').get(0), response.weekly_purchases.total, {
                         duration: 7
                     });
 

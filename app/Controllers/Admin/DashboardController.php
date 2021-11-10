@@ -19,17 +19,21 @@ class DashboardController extends BaseController {
         return view('Admin/dashboard', $data);
     }
 
+    /**
+     * @throws Exception
+     */
     public function dashStats(): bool|string {
         $data = [
             "total_orders" => Order::count(),
-            "weekly_sales" => $this->weeklyOrders(),
+            "weekly_sales" => $this->weeklySales(),
             "popular_products" => $this->popularProducts(),
+            'weekly_orders' => ChartAid::weeklyOrders()
         ];
 
         return json_encode($data);
     }
 
-    public function weeklyOrders() {
+    public function weeklySales() {
         $frequency = 'weekly';
 
         try {

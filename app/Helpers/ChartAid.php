@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Order;
+use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use JetBrains\PhpStorm\ArrayShape;
@@ -24,6 +26,28 @@ class ChartAid {
         $this->frequency = $frequency;
         $this->aggregateType = $aggregateType;
         $this->aggregateColumn = $aggregateColumn;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function weeklyOrders($userId = null): array {
+        $frequency = 'weekly';
+
+        $orders = Order::whereBetween('created_at', [chartStartDate($frequency), now()]);
+
+        if($userId) {
+            $orders->where('user_id', $userId);
+        }
+
+        $orders = $orders->get(['created_at'])->groupBy(function($item) use ($frequency) {
+            return chartDateFormat($item->created_at, $frequency);
+        });
+
+        $orders = chartDataSet($orders, $frequency);
+        $orders['total'] = array_sum($orders['datasets']);
+
+        return $orders;
     }
 
 

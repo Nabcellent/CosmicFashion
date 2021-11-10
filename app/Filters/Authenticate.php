@@ -7,7 +7,8 @@ use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Authenticate implements FilterInterface {
+class Authenticate implements FilterInterface
+{
     /**
      * Do whatever processing this filter needs to do.
      * By default it should not return anything during
@@ -23,9 +24,9 @@ class Authenticate implements FilterInterface {
      *
      * @return RedirectResponse|void
      */
-    public function before(RequestInterface $request, $arguments = null)
-    {
+    public function before(RequestInterface $request, $arguments = null) {
         $authenticate = service('authentication');
+
         if(!$authenticate->check()) {
             return redirect('login');
         }

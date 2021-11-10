@@ -11,9 +11,6 @@
 
 <script src="/js/admin/polyfill.min58be.js?features=window.scroll"></script>
 <script src="/vendor/admin/list.js/list.min.js"></script>
-
-<?= $this->renderSection('scripts') ?>
-
 <script src="/js/admin/theme.js"></script>
 
 <!--    AOS    -->
@@ -21,3 +18,6 @@
 <!--    SweetAlert2     -->
 <script src="/vendor/sweetalert/sweetalert.js"></script>
 <script src="/js/global.js"></script>
+<script src="/js/index.js"></script>
+
+<?= $this->renderSection('scripts') ?>

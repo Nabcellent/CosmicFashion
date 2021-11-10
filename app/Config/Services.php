@@ -2,7 +2,11 @@
 
 namespace Config;
 
+use App\Models\Login;
+use App\Models\User;
 use CodeIgniter\Config\BaseService;
+use CodeIgniter\Model;
+use Myth\Auth\Config\Auth as AuthConfig;
 
 /**
  * Services Configuration file.
@@ -19,14 +23,21 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
-     *
-     *     return new \CodeIgniter\Example();
-     * }
-     */
+    public static function authentication(string $lib = 'local', Model $userModel = null, Model $loginModel = null, bool $getShared = true) {
+        service('eloquent');
+
+        if($getShared) {
+            return self::getSharedInstance('authentication', $lib, $userModel, $loginModel);
+        }
+        
+        $userModel = $userModel ?? new User();
+        $loginModel = $loginModel ?? new Login();
+
+        /** @var AuthConfig $config */
+        $config = config('Auth');
+        $class = $config->authenticationLibs[$lib];
+        $instance = new $class($config);
+
+        return $instance->setUserModel($userModel)->setLoginModel($loginModel);
+    }
 }

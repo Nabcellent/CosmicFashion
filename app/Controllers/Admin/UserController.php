@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Helpers\ChartAid;
 use App\Models\Order;
 use App\Models\Role;
 use App\Models\User;
@@ -146,22 +147,9 @@ class UserController extends BaseController
         }
     }
 
-
-
-    /**
-     * @throws Exception
-     */
-    public function weeklyOrders($id): bool|string {
-        $frequency = 'weekly';
-
-        $orders = Order::where('user_id', $id)->whereBetween('created_at', [chartStartDate($frequency), now()])
-            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
-                return chartDateFormat($item->created_at, $frequency);
-            });
-
-        $orders = chartDataSet($orders, $frequency);
-        $orders['total'] = array_sum($orders['datasets']);
-
-        return json_encode($orders);
+    public function userStats($id) {
+        return json_encode([
+            'weekly_purchases' => ChartAid::weeklyOrders($id)
+        ]);
     }
 }
