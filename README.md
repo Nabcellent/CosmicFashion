@@ -5,7 +5,7 @@
 ## What is [`CosmicFashion`](https://cosmicfashion.nosterlab.com/).?
 
 [`CosmicFashion`](https://cosmicfashion.nosterlab.com/). is online fashion store built using codeigniter 4 which is a
-php framework. The websites' API<i>{`work in progress😎🔥`}</i> will allow you<i>{`An API user`}</i> to access data from the platform.
+php framework. The websites' API<i>{`work in progress😎🔥`}</i> will allow you<i>{`An API user🙂`}</i> to access data from the platform.
 
 The following are some of the libraries and packages used to create the web app:
 
