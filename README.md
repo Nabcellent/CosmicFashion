@@ -39,7 +39,7 @@ The following are some of the libraries and packages used to create the web app:
 ### BACKEND PACKAGES
 
 * [nabcellent/codeigniter4-eloquent](https://packagist.org/packages/nabcellent/codeigniter4-eloquent) - A package that
-  imitates Laravel's [<i>Eloquent (ORM)</i>](https://laravel.com/docs/8.x/eloquent)
+  imitates Laravel's [<i>`Eloquent (ORM)`</i>](https://laravel.com/docs/8.x/eloquent)
 * [lonnieezell/myth-auth](https://github.com/lonnieezell/myth-auth) - For authentication.
 * [amrshawky/laravel-currency](https://github.com/amrshawky/laravel-currency) - A currency converter.
 * [dompdf/dompdf](https://github.com/dompdf/dompdf) - HTML to PDF converter.
