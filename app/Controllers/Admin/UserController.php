@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Helpers\ChartAid;
-use App\Models\Order;
+use App\Models\ApiUser;
 use App\Models\Role;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -61,7 +61,7 @@ class UserController extends BaseController
             'first_name'            => 'required|min_length[2]|max_length[50]',
             'last_name'             => 'required|min_length[2]|max_length[50]',
             'email'                 => 'required|valid_email|is_unique[users.email]',
-            'gender'                => 'required',
+            'gender'                => 'required|in_list[male,female]',
             'password'              => 'required|min_length[7]|max_length[20]',
             'password_confirmation' => 'required|matches[password]',
         ];
@@ -89,10 +89,46 @@ class UserController extends BaseController
         try {
             User::create($data);
 
-            return createOk('User created successful! ✔', 'admin.user.index');
+            return createOk('User created successfully! ✔', 'admin.user.index');
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return createFail('Error creating user ❗', 'admin.user.create');
+        }
+    }
+
+    /**
+     * Return a new resource object, with default properties
+     *
+     * @return mixed
+     */
+    public function storeApi() {
+        $rules = ['user_id' => 'required'];
+        $messages = [
+            'user_id' => [
+                'required' => "Can't find existing user for creation."
+            ]
+        ];
+
+        if(!$this->validate($rules, $messages)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = $this->request->getVar();
+        $data['key'] = empty($data['key'])
+            ? null
+            : $data['key'];
+
+        try {
+            $user = User::find($data['user_id']);
+
+            $data['username'] = $this->request->getVar('username') ?? $user->email;
+
+            $user->updateOrcreate(['user_id' => $data['user_id']], $data);
+
+            return createOk('Registration successful! ✔');
+        } catch (Exception $e) {
+            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
+            return createFail('Error creating api user! ❌');
         }
     }
 
@@ -115,7 +151,7 @@ class UserController extends BaseController
             'first_name' => 'required|min_length[2]|max_length[50]',
             'last_name'  => 'required|min_length[2]|max_length[50]',
             'email'      => "required|valid_email|is_unique[users.email,id,$id]",
-            'gender'     => 'required',
+            'gender'     => 'required|in_list[male,female]',
         ];
         $messages = [
             'email' => ['is_unique' => 'The email provided is already in use.']
@@ -140,7 +176,7 @@ class UserController extends BaseController
         try {
             $user->update($data);
 
-            return updateOk('User updated successful! ✔', 'admin.user.index');
+            return updateOk('User updated successfully! ✔', 'admin.user.index');
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return updateFail('Unable to update user!');

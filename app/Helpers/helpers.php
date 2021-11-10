@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use JetBrains\PhpStorm\ArrayShape;
 
 if(!function_exists('cartDetails')) {
     function cartDetails(string $detail = null) {
@@ -97,5 +98,22 @@ if(!function_exists('now')) {
      */
     function now(): Carbon {
         return Carbon::now();
+    }
+}
+
+
+
+
+/**
+ *  ===========================================================================    API HELPERS
+ */
+if(!function_exists('invalidForm')) {
+    /**
+     * @param array $errorMessages
+     * @return string[]
+     */
+    #[ArrayShape(['msg' => "string", 'errors' => "array"])]
+    function invalidForm(array $errorMessages): array {
+        return ['msg' => 'Invalid request input.', 'errors' => $errorMessages];
     }
 }

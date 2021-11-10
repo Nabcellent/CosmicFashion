@@ -2,9 +2,8 @@
 
 namespace App\Libraries\OAuth;
 
-use OAuth2\GrantType\UserCredentials;
+    use OAuth2\GrantType\UserCredentials;
 use OAuth2\Server;
-use OAuth2\Storage\Pdo;
 
 class OAuth
 {
@@ -22,7 +21,7 @@ class OAuth
             'password' => env('database.default.password'),
         ];
 
-        $storage = new Pdo($connection);
+        $storage = new Storage($connection);
         $this->server = new Server($storage);
         $this->server->addGrantType(new UserCredentials($storage));
     }

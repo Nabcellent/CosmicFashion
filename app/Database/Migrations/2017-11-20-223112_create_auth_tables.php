@@ -2,7 +2,8 @@
 
 use CodeIgniter\Database\Migration;
 
-class CreateAuthTables extends Migration {
+class CreateAuthTables extends Migration
+{
     public function up() {
         /*
          * Users
@@ -12,22 +13,22 @@ class CreateAuthTables extends Migration {
             'role_id'          => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => false],
             'first_name'       => ['type' => 'VARCHAR', 'constraint' => '25'],
             'last_name'        => ['type' => 'VARCHAR', 'constraint' => '25'],
-            'email'            => ['type' => 'varchar', 'constraint' => 60, 'unique' => true],
-            'username'         => ['type' => 'varchar', 'constraint' => 30, 'null' => true, 'unique' => true],
+            'email'            => ['type' => 'VARCHAR', 'constraint' => 60, 'unique' => true],
+            'username'         => ['type' => 'VARCHAR', 'constraint' => 30, 'unique' => true],
             'gender'           => ['type' => 'ENUM', 'constraint' => ['male', 'female']],
-            'image'            => ['type' => 'VARCHAR', 'constraint' => '40', 'null' => true,],
-            'password'         => ['type' => 'varchar', 'constraint' => 255],
-            'reset_hash'       => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'reset_at'         => ['type' => 'datetime', 'null' => true],
-            'reset_expires'    => ['type' => 'datetime', 'null' => true],
-            'activate_hash'    => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'status'           => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'status_message'   => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'image'            => ['type' => 'VARCHAR', 'constraint' => '40',],
+            'password'         => ['type' => 'VARCHAR', 'constraint' => 255],
+            'reset_hash'       => ['type' => 'VARCHAR', 'constraint' => 255],
+            'reset_at'         => ['type' => 'datetime'],
+            'reset_expires'    => ['type' => 'datetime'],
+            'activate_hash'    => ['type' => 'varchar', 'constraint' => 255],
+            'status'           => ['type' => 'varchar', 'constraint' => 255],
+            'status_message'   => ['type' => 'varchar', 'constraint' => 255],
             'active'           => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             'force_pass_reset' => ['type' => 'tinyint', 'constraint' => 1, 'null' => 0, 'default' => 0],
             'created_at datetime default current_timestamp',
             'updated_at datetime DEFAULT current_timestamp ON UPDATE current_timestamp',
-            'deleted_at'       => ['type' => 'datetime', 'null' => true],
+            'deleted_at'       => ['type' => 'datetime'],
         ]);
 
         $this->forge->addKey('id', true);
@@ -39,9 +40,9 @@ class CreateAuthTables extends Migration {
          */
         $this->forge->addField([
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
-            'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'null' => true], // Only for successful logins
-            'email'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
-            'ip_address' => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'user_id'    => ['type' => 'int', 'constraint' => 11, 'unsigned' => true], // Only for successful logins
+            'email'      => ['type' => 'varchar', 'constraint' => 255],
+            'ip_address' => ['type' => 'varchar', 'constraint' => 255],
             'success'    => ['type' => 'tinyint', 'constraint' => 1],
             'logged_in_at datetime default current_timestamp',
             'logged_out_at datetime',
@@ -77,7 +78,7 @@ class CreateAuthTables extends Migration {
             'email'      => ['type' => 'varchar', 'constraint' => 255],
             'ip_address' => ['type' => 'varchar', 'constraint' => 255],
             'user_agent' => ['type' => 'varchar', 'constraint' => 255],
-            'token'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'token'      => ['type' => 'varchar', 'constraint' => 255],
             'created_at' => ['type' => 'datetime', 'null' => false],
         ]);
         $this->forge->addKey('id', true);
@@ -90,7 +91,7 @@ class CreateAuthTables extends Migration {
             'id'         => ['type' => 'int', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
             'ip_address' => ['type' => 'varchar', 'constraint' => 255],
             'user_agent' => ['type' => 'varchar', 'constraint' => 255],
-            'token'      => ['type' => 'varchar', 'constraint' => 255, 'null' => true],
+            'token'      => ['type' => 'varchar', 'constraint' => 255],
             'created_at' => ['type' => 'datetime', 'null' => false],
         ]);
         $this->forge->addKey('id', true);

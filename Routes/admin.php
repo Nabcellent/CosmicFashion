@@ -44,6 +44,7 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
         $routes->get('/', 'UserController', ['as' => 'admin.user.index']);
         $routes->get('create', 'UserController::create', ['as' => 'admin.user.create']);
         $routes->post('store', 'UserController::store', ['as' => 'admin.user.store']);
+        $routes->post('store-api', 'UserController::storeApi', ['as' => 'admin.user.api.store']);
         $routes->get('profile/(:num)', 'UserController::show/$1', ['as' => 'admin.user.profile']);
         $routes->get('edit/(:num)', 'UserController::edit/$1', ['as' => 'admin.user.edit']);
         $routes->put('update/(:num)', 'UserController::update/$1', ['as' => 'admin.user.update']);

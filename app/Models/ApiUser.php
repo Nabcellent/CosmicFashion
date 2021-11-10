@@ -19,4 +19,11 @@ class ApiUser extends Model
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * RELATIONSHIP FUNCTIONS
+     */
+    public static function findByUsername($username): ApiUser|bool {
+        return self::whereUsername($username)->first() ?? false;
+    }
 }

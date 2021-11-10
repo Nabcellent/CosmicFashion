@@ -331,12 +331,12 @@
 					        data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body py-4 px-5">
-					<form action="<?= route_to('api.user.store') ?>" method="POST">
+					<form action="<?= route_to('admin.user.api.store') ?>" method="POST">
                         <?= csrf_field() ?>
 						<div class="mb-3">
 							<label class="form-label" for="username">Username</label>
-							<input class="form-control" type="text" placeholder="Username" name="username" id="username"
-							       required/>
+							<input class="form-control" type="text" placeholder="Username" name="username"
+							       id="username"/>
 						</div>
 						<label class="form-label" for="key">Api key <small><i>(optional)</i></small></label>
 						<div class="input-group mb-3">

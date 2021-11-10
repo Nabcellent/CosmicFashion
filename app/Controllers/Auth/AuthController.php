@@ -180,7 +180,7 @@ class AuthController extends Controller
             'first_name' => 'required|min_length[2]|max_length[50]',
             'last_name'  => 'required|min_length[2]|max_length[50]',
             'email'      => 'required|valid_email|is_unique[users.email]',
-            'gender'     => 'required',
+            'gender'     => 'required|in_list[male,female]',
         ];
 
         $messages = [
