@@ -2,13 +2,11 @@
 
 namespace App\Controllers\API;
 
-use App\Models\ApiUser;
-use App\Models\User;
+use App\Models\Product;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Services;
-use Exception;
 
-class UserController extends ResourceController
+class ProductController extends ResourceController
 {
     protected $format = 'json';
 
@@ -20,9 +18,9 @@ class UserController extends ResourceController
      * @return mixed
      */
     public function index(): mixed {
-        $users = User::all();
+        $products = Product::all();
 
-        return $this->respond($users);
+        return $this->respond($products);
     }
 
     /**
@@ -32,38 +30,6 @@ class UserController extends ResourceController
      */
     public function show($id = null) {
         //
-    }
-
-    /**
-     * Return a new resource object, with default properties
-     *
-     * @return mixed
-     */
-    public function store() {
-        $rules = ['user_id' => 'required', 'username' => 'required'];
-        $messages = [
-            'user_id' => [
-                'required' => "Can't find existing user for creation."
-            ]
-        ];
-
-        if(!$this->validate($rules, $messages)) {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-        }
-
-        $data = $this->request->getVar();
-        $data['key'] = empty($data['key'])
-            ? null
-            : $data['key'];
-
-        try {
-            ApiUser::updateOrcreate(['user_id' => $data['user_id']], $data);
-
-            return createOk('Registration successful! ✔');
-        } catch (Exception $e) {
-            log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
-            return createFail('Error creating api user! ❌');
-        }
     }
 
     /**

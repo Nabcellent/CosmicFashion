@@ -5,6 +5,7 @@ namespace Config;
 use App\Filters\Admin;
 use App\Filters\Authenticate;
 use App\Filters\LoginFilter;
+use App\Filters\OAuthFilter;
 use App\Filters\PermissionFilter;
 use App\Filters\RedirectIfAuthenticated;
 use App\Filters\RoleFilter;
@@ -31,6 +32,7 @@ class Filters extends BaseConfig
         'login'      => LoginFilter::class,
         'role'       => RoleFilter::class,
         'permission' => PermissionFilter::class,
+        'oauth'      => OAuthFilter::class
     ];
 
     /**
@@ -42,7 +44,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             // 'honeypot',
-//            'csrf'  => ['except' => 'api/'],
+            //            'csrf'  => ['except' => 'api/'],
             'login' => [
                 'except' => [
                     '',
@@ -76,8 +78,7 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public array $methods = [
-//        'post' => ['csrf']
+    public array $methods = [//        'post' => ['csrf']
     ];
 
     /**
@@ -90,6 +91,7 @@ class Filters extends BaseConfig
      * @var array
      */
     public array $filters = [
-        'auth' => ['before' => ['admin*', 'account*', 'profile*']]
+        'auth' => ['before' => ['admin*', 'account*', 'profile*']],
+        'oauth' => ['before' => ['api/users*', 'api/']]
     ];
 }
