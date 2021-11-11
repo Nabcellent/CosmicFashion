@@ -1,8 +1,8 @@
 <?php namespace App\Controllers\Auth;
 
-use App\Entities\User;
 use App\Models\Cart;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RedirectResponse;
@@ -94,7 +94,7 @@ class AuthController extends Controller
             return json_encode(['status' => false, 'message' => $this->auth->error() ?? lang('Auth.badAttempt')]);
         }
 
-        $userCart = \App\Models\User::find($this->auth->user()->id)->cart();
+        $userCart = User::find($this->auth->user()->id)->cart();
 
         if($userCart->exists()) {
             $cart = session('cart') ?? [];
@@ -223,7 +223,7 @@ class AuthController extends Controller
 
         $newUser['password'] = Password::hash($newUser['password']);
 
-        \App\Models\User::create($newUser);
+        User::create($newUser);
 
         // Success!
         Services::session()->setFlashdata('toast_success', 'Registration successful! ✔');

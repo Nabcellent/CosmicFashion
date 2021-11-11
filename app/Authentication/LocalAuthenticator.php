@@ -163,7 +163,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         // Handle user-specific tasks
         if($user = $this->user()) {
             // Take care of any remember me functionality
-            $this->loginModel->purgeRememberTokens($user->id);
             $this->loginModel->updateLogoutTime($user->id);
 
             // Trigger logout event
