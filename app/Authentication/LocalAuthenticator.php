@@ -1,16 +1,15 @@
 <?php namespace App\Authentication;
 
-use App\Models\LoginModel;
 use App\Models\User;
 use CodeIgniter\Events\Events;
-use CodeIgniter\Router\Exceptions\RedirectException;
 use Exception;
 use Illuminate\Support\Carbon;
 use Myth\Auth\Exceptions\AuthException;
 use Myth\Auth\Password;
 use ReflectionException;
 
-class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInterface {
+class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInterface
+{
     /**
      * Attempts to validate the credentials and log a user in.
      *
@@ -26,7 +25,8 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         if(empty($this->user)) {
             // Always record a login attempt, whether success or not.
             $ipAddress = service('request')->getIPAddress();
-            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
+            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress,
+                $this->user->id ?? null, false);
 
             $this->user = null;
             return false;
@@ -35,7 +35,8 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
         if($this->user->isBanned()) {
             // Always record a login attempt, whether success or not.
             $ipAddress = service('request')->getIPAddress();
-            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
+            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress,
+                $this->user->id ?? null, false);
 
             $this->error = lang('Auth.userIsBanned');
 
@@ -50,16 +51,10 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
      * Checks to see if the user is logged in or not.
      *
      * @return bool
-     * @throws RedirectException
      * @throws Exception
      */
     public function check(): bool {
         if($this->isLoggedIn()) {
-            // Do we need to force the user to reset their password?
-            if($this->user && $this->user->force_pass_reset) {
-                throw new RedirectException(route_to('reset-password') . '?token=' . $this->user->reset_hash);
-            }
-
             return true;
         }
 
@@ -67,31 +62,11 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-        [$selector, $validator] = explode(':', $remember);
-        $validator = hash('sha256', $validator);
-
-        $token = $this->loginModel->getRememberToken($selector);
-
-        if(empty($token)) {
-            return false;
-        }
-
-        if(!hash_equals($token->hashedValidator, $validator)) {
-            return false;
-        }
-
-        // Yay! We were remembered!
-        $user = User::find($token->user_id);
-
         if(empty($user)) {
             return false;
         }
 
         $this->login($user);
-
-        // We only want our remember me tokens to be valid
-        // for a single use.
-        $this->refreshRemember($user->id, $selector);
 
         return true;
     }
@@ -142,7 +117,9 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             $this->user->save();
         }
 
-        return $returnUser ? $user : true;
+        return $returnUser
+            ? $user
+            : true;
     }
 
     /**

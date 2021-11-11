@@ -91,17 +91,6 @@ class AuthenticationBase
         // When logged in, ensure cache control headers are in place
         service('response')->noCache();
 
-        if($remember && $this->config->allowRemembering) {
-            $this->rememberUser($this->user->id);
-        }
-
-        // We'll give a 20% chance to need to do a purge since we
-        // don't need to purge THAT often, it's just a maintenance issue.
-        // to keep the table from getting out of control.
-        if(mt_rand(1, 100) < 20) {
-            $this->loginModel->purgeOldRememberTokens();
-        }
-
         // trigger login event, in case anyone cares
         Events::trigger('login', $user);
 
@@ -163,17 +152,6 @@ class AuthenticationBase
 
         // Remove the cookie
         delete_cookie("remember");
-
-        // Handle user-specific tasks
-        if($user = $this->user()) {
-            // Take care of any remember me functionality
-            $this->loginModel->purgeRememberTokens($user->id);
-
-            // Trigger logout event
-            Events::trigger('logout', $user);
-
-            $this->user = null;
-        }
     }
 
     /**
@@ -197,78 +175,6 @@ class AuthenticationBase
             'success'    => (int)$success
         ]);
     }
-
-    /**
-     * Generates a timing-attack safe remember me token
-     * and stores the necessary info in the db and a cookie.
-     *
-     * @see https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence
-     *
-     * @param int $userID
-     *
-     * @throws \Exception
-     */
-    public function rememberUser(int $userID) {
-        $selector = bin2hex(random_bytes(12));
-        $validator = bin2hex(random_bytes(20));
-        $expires = date('Y-m-d H:i:s', time() + $this->config->rememberLength);
-
-        $token = $selector . ':' . $validator;
-
-        // Store it in the database
-        $this->loginModel->rememberUser($userID, $selector, hash('sha256', $validator), $expires);
-
-        // Save it to the user's browser in a cookie.
-        $appConfig = config('App');
-        $response = service('response');
-
-        // Create the cookie
-        $response->setCookie('remember',                                // Cookie Name
-            $token,                                    // Value
-            $this->config->rememberLength,            // # Seconds until it expires
-            $appConfig->cookieDomain, $appConfig->cookiePath, $appConfig->cookiePrefix, $appConfig->cookieSecure,
-            // Only send over HTTPS?
-            true                                        // Hide from Javascript?
-        );
-    }
-
-    /**
-     * Sets a new validator for this user/selector. This allows
-     * a one-time use of remember-me tokens, but still allows
-     * a user to be remembered on multiple browsers/devices.
-     *
-     * @param int    $userID
-     * @param string $selector
-     * @throws Exception
-     */
-    public function refreshRemember(int $userID, string $selector) {
-        $existing = $this->loginModel->getRememberToken($selector);
-
-        // No matching record? Shouldn't happen, but remember the user now.
-        if(empty($existing)) {
-            return $this->rememberUser($userID);
-        }
-
-        // Update the validator in the database and the session
-        $validator = bin2hex(random_bytes(20));
-
-        $this->loginModel->updateRememberValidator($selector, $validator);
-
-        // Save it to the user's browser in a cookie.
-        helper('cookie');
-
-        $appConfig = config('App');
-
-        // Create the cookie
-        set_cookie('remember',                            // Cookie Name
-            $selector . ':' . $validator,                // Value
-            (string)$this->config->rememberLength, // # Seconds until it expires
-            $appConfig->cookieDomain, $appConfig->cookiePath, $appConfig->cookiePrefix, $appConfig->cookieSecure,
-            // Only send over HTTPS?
-            true                                    // Hide from Javascript?
-        );
-    }
-
 
     /**
      * Returns the User ID for the current logged in user.

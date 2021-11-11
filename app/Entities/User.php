@@ -37,25 +37,26 @@ class User extends Entity
 
     /**
      * Per-user permissions cache
+     *
      * @var array
      */
     protected $permissions = [];
 
     /**
      * Per-user roles cache
+     *
      * @var array
      */
     protected $roles = [];
 
-	/**
-	 * Automatically hashes the password when set.
-	 *
-	 * @see https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence
-	 *
-	 * @param string $password
-	 */
-	public function setPassword(string $password)
-	{
+    /**
+     * Automatically hashes the password when set.
+     *
+     * @see https://paragonie.com/blog/2015/04/secure-authentication-php-with-long-term-persistence
+     *
+     * @param string $password
+     */
+    public function setPassword(string $password) {
         $this->attributes['password'] = Password::hash($password);
 
         /*
@@ -70,18 +71,17 @@ class User extends Entity
         $this->attributes['reset_hash'] = null;
         $this->attributes['reset_at'] = null;
         $this->attributes['reset_expires'] = null;
-	}
+    }
 
     /**
      * Force a user to reset their password on next page refresh
      * or login. Checked in the LocalAuthenticator's check() method.
      *
+     * @return $this
      * @throws \Exception
      *
-     * @return $this
      */
-    public function forcePasswordReset()
-    {
+    public function forcePasswordReset() {
         $this->generateResetHash();
         $this->attributes['force_pass_reset'] = 1;
 
@@ -95,13 +95,12 @@ class User extends Entity
      * @return $this
      * @throws \Exception
      */
-	public function generateResetHash()
-	{
-		$this->attributes['reset_hash'] = bin2hex(random_bytes(16));
-		$this->attributes['reset_expires'] = date('Y-m-d H:i:s', time() + config('Auth')->resetTime);
+    public function generateResetHash() {
+        $this->attributes['reset_hash'] = bin2hex(random_bytes(16));
+        $this->attributes['reset_expires'] = date('Y-m-d H:i:s', time() + config('Auth')->resetTime);
 
-		return $this;
-	}
+        return $this;
+    }
 
     /**
      * Generates a secure random hash to use for account activation.
@@ -109,20 +108,18 @@ class User extends Entity
      * @return $this
      * @throws \Exception
      */
-	public function generateActivateHash()
-	{
-		$this->attributes['activate_hash'] = bin2hex(random_bytes(16));
+    public function generateActivateHash() {
+        $this->attributes['activate_hash'] = bin2hex(random_bytes(16));
 
-		return $this;
-	}
+        return $this;
+    }
 
     /**
      * Activate user.
      *
      * @return $this
      */
-    public function activate()
-    {
+    public function activate() {
         $this->attributes['active'] = 1;
         $this->attributes['activate_hash'] = null;
 
@@ -134,8 +131,7 @@ class User extends Entity
      *
      * @return $this
      */
-    public function deactivate()
-    {
+    public function deactivate() {
         $this->attributes['active'] = 0;
 
         return $this;
@@ -146,47 +142,43 @@ class User extends Entity
      *
      * @return bool
      */
-    public function isActivated(): bool
-    {
+    public function isActivated(): bool {
         return isset($this->attributes['active']) && $this->attributes['active'] == true;
     }
 
-	/**
-	 * Bans a user.
-	 *
-	 * @param string $reason
-	 *
-	 * @return $this
-	 */
-	public function ban(string $reason)
-	{
-		$this->attributes['status'] = 'banned';
-		$this->attributes['status_message'] = $reason;
+    /**
+     * Bans a user.
+     *
+     * @param string $reason
+     *
+     * @return $this
+     */
+    public function ban(string $reason) {
+        $this->attributes['status'] = 'banned';
+        $this->attributes['status_message'] = $reason;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Removes a ban from a user.
-	 *
-	 * @return $this
-	 */
-	public function unBan()
-	{
-		$this->attributes['status'] = $this->status_message = '';
+    /**
+     * Removes a ban from a user.
+     *
+     * @return $this
+     */
+    public function unBan() {
+        $this->attributes['status'] = $this->status_message = '';
 
-		return $this;
-	}
+        return $this;
+    }
 
-	/**
-	 * Checks to see if a user has been banned.
-	 *
-	 * @return bool
-	 */
-	public function isBanned(): bool
-	{
-		return isset($this->attributes['status']) && $this->attributes['status'] === 'banned';
-	}
+    /**
+     * Checks to see if a user has been banned.
+     *
+     * @return bool
+     */
+    public function isBanned(): bool {
+        return isset($this->attributes['status']) && $this->attributes['status'] === 'banned';
+    }
 
     /**
      * Determines whether the user has the appropriate permission,
@@ -196,10 +188,9 @@ class User extends Entity
      *
      * @return bool
      */
-    public function can(string $permission)
-    {
+    public function can(string $permission) {
         return in_array(strtolower($permission), $this->getPermissions());
-	}
+    }
 
     /**
      * Returns the user's permissions, formatted for simple checking:
@@ -211,50 +202,17 @@ class User extends Entity
      *
      * @return array|mixed
      */
-    public function getPermissions()
-    {
-        if (empty($this->id))
-        {
+    public function getPermissions() {
+        if(empty($this->id)) {
             throw new \RuntimeException('Users must be created before getting permissions.');
         }
 
-        if (empty($this->permissions))
-        {
+        if(empty($this->permissions)) {
             $this->permissions = model(PermissionModel::class)->getPermissionsForUser($this->id);
         }
 
         return $this->permissions;
     }
-
-    /**
-     * Returns the user's roles, formatted for simple checking:
-     *
-     * [
-     *    id => name,
-     *    id => name,
-     * ]
-     *
-     * @return array|mixed
-     */
-    public function getRoles()
-    {
-        if (empty($this->id))
-        {
-            throw new \RuntimeException('Users must be created before getting roles.');
-        }
-
-        if (empty($this->roles))
-        {
-            $groups = model(GroupModel::class)->getGroupsForUser($this->id);
-
-            foreach ($groups as $group)
-            {
-                $this->roles[$group['group_id']] = strtolower($group['name']);
-            }
-        }
-
-        return $this->roles;
-	}
 
     /**
      * Warns the developer it won't work, so they don't spend
@@ -264,8 +222,7 @@ class User extends Entity
      *
      * @return $this
      */
-    public function setPermissions(array $permissions = null)
-    {
+    public function setPermissions(array $permissions = null) {
         throw new \RuntimeException('User entity does not support saving permissions directly.');
-	}
+    }
 }

@@ -101,8 +101,8 @@
                         data: data,
                         url: `<?= route_to('login') ?>`,
                         method: 'POST',
-                       /* beforeSend: () => submitButton.prop('disabled', true).html(`Signing In...
-										<span class="ld ld-ring ld-spin"></span>`).addClass('running'),*/
+                        beforeSend: () => submitButton.prop('disabled', true).html(`Signing In...
+										<span class="ld ld-ring ld-spin"></span>`).addClass('running'),
                         success: response => {
                             const result = JSON.parse(response)
 

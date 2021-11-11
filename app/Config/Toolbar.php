@@ -33,7 +33,7 @@ class Toolbar extends BaseConfig
      *
      * @var string[]
      */
-    public $collectors = [
+    public array $collectors = [
         Timers::class,
         Database::class,
         Logs::class,
@@ -42,7 +42,7 @@ class Toolbar extends BaseConfig
         Files::class,
         Routes::class,
         Events::class,
-        \Myth\Auth\Collectors\Auth::class,
+        \App\Authentication\Collectors\Auth::class
     ];
 
     /**
