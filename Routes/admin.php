@@ -61,16 +61,17 @@ $routes->group('/admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'a
             ['as' => 'admin.orders.purchases.chart']);
     });
 
-    $routes->group('payments', function($routes) {
-        $routes->post('stk_requests', 'PaymentController::initiateStkPush');
-        $routes->get('stk_status/(:segment)', 'PaymentController::stkStatus/$1');
-        $routes->post('paypal-callback', 'PaymentController::paypalCallback');
-    });
-
     $routes->group('analytics', function($routes) {
         $routes->get('/', 'AnalyticController::index', ['as' => 'admin.stats.index']);
         $routes->get('fetch', 'AnalyticController::init', ['as' => 'admin.stats.init']);
     });
+});
+
+$routes->group('payments', function($routes) {
+    $routes->post('stk-requests', 'PaymentController::initiateStkPush');
+    $routes->get('stk-status/(:segment)', 'PaymentController::stkStatus/$1');
+    $routes->get('stk-query-status', 'PaymentController::queryStatus');
+    $routes->post('paypal-callback', 'PaymentController::paypalCallback');
 });
 
 $routes->get('/check-email', 'UserController::checkEmailExists');

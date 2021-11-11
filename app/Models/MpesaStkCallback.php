@@ -9,7 +9,17 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class MpesaStkCallback extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'checkout_request_id',
+        'merchant_request_id',
+        'result_code',
+        'result_desc',
+        'amount',
+        'phone',
+        'balance',
+        'mpesa_receipt_number',
+        'transaction_date',
+    ];
 
     public function request(): BelongsTo {
         return $this->belongsTo(MpesaStkRequest::class, 'checkout_request_id', 'checkout_request_id');

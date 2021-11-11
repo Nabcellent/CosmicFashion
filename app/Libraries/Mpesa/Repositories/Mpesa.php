@@ -4,9 +4,11 @@ namespace App\Libraries\Mpesa\Repositories;
 
 use App\Models\MpesaStkCallback;
 use App\Models\MpesaStkRequest;
+use CodeIgniter\Config\Services;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Model;
+use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * Class Mpesa
@@ -15,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Mpesa
 {
+    public function __construct() {
+        Services::eloquent();
+    }
+
     /**
      * @param string $json
      * @return $this|array|Model
@@ -28,6 +34,7 @@ class Mpesa
             'checkout_request_id' => $data->CheckoutRequestID,
             'result_code'         => $data->ResultCode,
             'result_desc'         => $data->ResultDesc,
+            'type'                => 'payment',
         ];
 
         if($data->ResultCode == 0) {
@@ -38,7 +45,7 @@ class Mpesa
         }
 
         $callback = MpesaStkCallback::create($real_data);
-        $this->updateStkRequest($callback);
+        $this->updateStkRequest($callback, $real_data);
 
         return $callback;
     }
@@ -46,6 +53,7 @@ class Mpesa
     /**
      * @return array
      */
+    #[ArrayShape(['successful' => "array", 'errors' => "array"])]
     public function queryStkStatus(): array {
         /** @var MpesaStkRequest[] $stk */
         $stk = MpesaStkRequest::whereDoesntHave('response')->get();
@@ -53,9 +61,10 @@ class Mpesa
 
         foreach($stk as $item) {
             try {
-                $status = mpesa_stk_status($item->id);
+                $status = mpesa_stk_status($item->checkout_request_id);
+
                 if(isset($status->errorMessage)) {
-                    $errors[$item->CheckoutRequestID] = $status->errorMessage;
+                    $errors[$item->checkout_request_id] = $status->errorMessage;
                     continue;
                 }
 
@@ -65,15 +74,17 @@ class Mpesa
                     'result_code'         => $status->ResultCode,
                     'result_desc'         => $status->ResultDesc,
                     'amount'              => $item->amount,
+                    'transaction_date'    => $item->created_at,
+                    'type'                => 'payment',
                 ];
 
-                $success[$item->CheckoutRequestID] = $status->ResultDesc;
+                $success[$status->CheckoutRequestID] = $status->ResultDesc;
 
                 $callback = MpesaStkCallback::create($attributes);
 
-                $this->updateStkRequest($callback, get_object_vars($status));
-            } catch (Exception|GuzzleException $e) {
-                $errors[$item->CheckoutRequestID] = $e->getMessage();
+                $this->updateStkRequest($callback, $attributes);
+            } catch (Exception | GuzzleException $e) {
+                $errors[$item->checkout_request_id] = $e->getMessage();
             }
         }
 
@@ -82,13 +93,18 @@ class Mpesa
 
     /**
      * @param MpesaStkCallback $stkCallback
+     * @param                  $attributes
      * @return void
      */
-    private function updateStkRequest(MpesaStkCallback $stkCallback): void {
+    private function updateStkRequest(MpesaStkCallback $stkCallback, $attributes): void {
         if($stkCallback->result_code == 0) {
-            $stkCallback->request()->update(['status' => 'Paid']);
+            $status = 'paid';
         } else {
-            $stkCallback->request()->update(['status' => 'Failed']);
+            $status = 'failed';
         }
+        $attributes['status'] = $status;
+
+        $stkCallback->request()->update(['status' => $status]);
+        $stkCallback->transaction()->create($attributes);
     }
 }

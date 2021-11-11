@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Controllers\Admin;
+namespace App\Controllers;
 
 use AmrShawky\Currency;
-use App\Controllers\BaseController;
 use App\Libraries\Mpesa\Repositories\Mpesa;
 use App\Libraries\Mpesa\Static\STK;
 use App\Models\MpesaStkRequest;
@@ -12,13 +11,27 @@ use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class PaymentController extends BaseController
 {
     public function initiateStkPush(): bool|string {
-        $phone = $this->request->getVar('phone');
+        $rules = [
+            'phone' => 'required',
+        ];
+        $messages = [
+            'phone' => ['required' => 'Phone number is required.']
+        ];
 
+        if(!$this->validate($rules, $messages)) {
+            return json_encode([
+                'status' => false,
+                'msg'    => Arr::first($this->validator->getErrors()),
+            ]);
+        }
+
+        $phone = $this->request->getVar('phone');
         $phone = "254" . (Str::length($phone) > 9
                 ? Str::substr($phone, -9)
                 : $phone);
@@ -26,7 +39,7 @@ class PaymentController extends BaseController
         try {
             $stkRequest = mpesa_request($phone, 1, 'CosmicFashion.', 'Payment made to CosmicFashion.');
 
-            if($order = \App\Controllers\OrderController::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+            if($order = OrderController::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
                 $stkRequest->order_id = $order->id;
                 $stkRequest->save();
             }
@@ -36,8 +49,9 @@ class PaymentController extends BaseController
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
 
             return json_encode([
-                'status' => false,
-                'msg'    => 'unable to complete payment.'
+                'status'      => false,
+                'msg'         => 'unable to complete payment.',
+                'description' => $e->getMessage()
             ]);
         }
     }
@@ -47,7 +61,7 @@ class PaymentController extends BaseController
             (new Mpesa())->queryStkStatus();
 
             return updateOk('Missing Requests have been queried successfully...');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return toastError($e->getMessage(), 'Unable to query status💔');
         }
@@ -57,7 +71,7 @@ class PaymentController extends BaseController
      * @param $reference
      * @return false|string
      */
-    public function stkStatus($reference) {
+    public function stkStatus($reference): bool|string {
         try {
             $stkStatus = STK::validate($reference);
             $url = "";
@@ -114,7 +128,7 @@ class PaymentController extends BaseController
     }
 
 
-    public function paypalCallback() {
+    public function paypalCallback(): bool|string {
         $payLoad = $this->request->getVar('payload');
 
         try {
@@ -129,10 +143,12 @@ class PaymentController extends BaseController
                 $data['updated_at'] = $payLoad['update_time'];
 
                 $callback = PayPalCallback::create($data);
+                $data['type'] = 'payment';
+                $callback->transaction()->create($data);
 
                 $url = route_to('orders.thanks');
 
-                if($order = \App\Controllers\OrderController::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
+                if($order = OrderController::storeCart(['payment_type_id' => $this->request->getVar('payment_method')])) {
                     $callback->order_id = $order->id;
                     $callback->save();
 
@@ -147,7 +163,7 @@ class PaymentController extends BaseController
             }
 
             return json_encode(['status' => true, 'url' => $url]);
-        } catch(QueryException | Exception $e) {
+        } catch (QueryException | Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
 
             return json_encode(['status' => false, 'message' => 'Something went wrong', 'content' => $e->getMessage()]);
@@ -158,7 +174,6 @@ class PaymentController extends BaseController
      * @throws Exception
      */
     private function dollarsToKSH($amount): float {
-        return Currency::convert()
-            ->from('USD')->to('KES')->amount($amount)->round(2)->get();
+        return Currency::convert()->from('USD')->to('KES')->amount($amount)->round(2)->get();
     }
 }

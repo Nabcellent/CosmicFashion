@@ -36,13 +36,18 @@ class OrderController extends BaseController
             $userWallet = User::find(user_id())->wallet;
 
             if($userWallet && $userWallet->amount >= cartDetails('total')) {
-                $userWallet->amount -= cartDetails('total');
+                $amount = cartDetails('total');
+                $userWallet->amount -= $amount;
                 $userWallet->save();
 
                 $orderData['is_paid'] = true;
                 $orderData['status'] = 'paid';
+                $orderData['type'] = 'payment';
+                $orderData['amount'] = $amount;
+                $userWallet->transaction()->create($orderData);
             } else {
-                return goWithInfo('Sorry! Your wallet balance is insufficient to complete the order.');
+                $balance = $userWallet->balance ?? 0;
+                return goWithInfo("Sorry! Your wallet balance($balance) is insufficient to complete the order.");
             }
         }
 

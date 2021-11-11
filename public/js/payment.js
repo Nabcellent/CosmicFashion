@@ -1,3 +1,5 @@
+const PAYPAL_CALLBACK_URL = '/payments/paypal-callback';
+
 function payWithMpesa(amount, formData) {
     Swal.fire({
         input: 'tel',
@@ -14,7 +16,7 @@ function payWithMpesa(amount, formData) {
                 return $.ajax({
                     data: formData,
                     method: 'POST',
-                    url: `/admin/payments/stk_requests`,
+                    url: `/payments/stk-requests`,
                     dataType: 'json',
                     beforeSend: () => showLoader('Processing payment...'),
                     statusCode: {
@@ -56,7 +58,7 @@ class STK {
             showCancelButton: true,
             preConfirm: () => {
                 return $.ajax({
-                    url: '/admin/payments/stk_status/' + this.CHECKOUT_REQUEST_ID,
+                    url: '/payments/stk-status/' + this.CHECKOUT_REQUEST_ID,
                     type: 'GET',
                     dataType: 'json',
                     success: response => {
@@ -84,7 +86,7 @@ class STK {
     }
 
     async fetchStkStatus() {
-        return await fetch('/admin/payments/callbacks/stk_status/' + this.CHECKOUT_REQUEST_ID)
+        return await fetch('/payments/stk-status/' + this.CHECKOUT_REQUEST_ID)
             .then(response => response.json())
             .then(data => {
                 return data;
@@ -167,7 +169,7 @@ if ($('#paypal_payment_button').length) {
                 $.ajax({
                     data: formData,
                     type: 'POST',
-                    url: '/admin/payments/paypal-callback',
+                    url: PAYPAL_CALLBACK_URL,
                     dataType: 'json',
                     beforeSend: () => showLoader('Processing payment...'),
                     statusCode: {
@@ -201,7 +203,7 @@ if ($('#paypal_payment_button').length) {
             $.ajax({
                 data: formData,
                 type: 'POST',
-                url: '/admin/payments/paypal-callback',
+                url: PAYPAL_CALLBACK_URL,
                 dataType: 'json',
             })
 
