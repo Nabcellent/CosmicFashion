@@ -2,12 +2,13 @@
 
 namespace App\Controllers\API;
 
-use App\Models\ApiUser;
 use App\Models\Role;
 use App\Models\User;
+use Carbon\Carbon;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Services;
 use Exception;
+use Illuminate\Support\Arr;
 use Myth\Auth\Password;
 
 class UserController extends ResourceController
@@ -22,9 +23,82 @@ class UserController extends ResourceController
      * @return mixed
      */
     public function index(): mixed {
-        $users = User::all();
+        $options = $this->request->getVar();
+        $orderByCol = $options['order_by'] ?? 'id';
+        $orderByDir = $options['order_direction'] ?? 'asc';
 
-        return $this->respond($users);
+        try {
+            $users = User::all();
+
+            //  FILTERING
+            //  List of all users who purchased a specific item, or item in a subcategory/ category
+            if(Arr::hasAny($options, ['product', 'category', 'sub_category'])) {
+                $users = User::whereHas('orders', function($query) use ($options) {
+                    $query->whereHas('ordersDetails', function($query) use ($options) {
+                        $query->whereHas('product', function($query) use ($options) {
+                            if(Arr::hasAny($options, ['sub_category', 'category'])) {
+                                $query->whereHas('subCategory', function($query) use ($options) {
+                                    if(Arr::has($options, 'category')) {
+                                        $query->whereHas('category', function($query) use ($options) {
+                                            return $query->whereName($options['category']);
+                                        });
+                                    }
+
+                                    if(Arr::has($options, 'sub_category')) {
+                                        return $query->whereName($options['sub_category']);
+                                    }
+                                });
+                            }
+
+                            if(Arr::has($options, 'product')) {
+                                return $query->whereName($options['product']);
+                            }
+                        });
+                    });
+                })->get();
+            }
+
+            if(isset($options['filter_by'])) {
+                $date = Carbon::createFromFormat('d-m-Y', $options['filter_value'])->format('Y-m-d');
+
+                //  List of all users who purchased an item on a specific date
+                $users = User::whereHas('orders', function($query) use ($date, $orderByDir) {
+                    $query->whereDate('created_at', $date);
+                })->get();
+            }
+
+            if(isset($options['filter_gender'])) {
+                $users = $users->filter(function($user) use ($options) {
+                    return $user->gender === ucfirst($options['filter_gender']);
+                });
+            }
+
+            //  SORTING
+            if($orderByCol === 'purchase_date') {
+                $users->load([
+                    'orders' => function($query) use ($orderByDir) {
+                        $query->orderBy('created_at', $orderByDir);
+                    }
+                ]);
+            } else if($orderByCol === 'login_time') {
+                $users->load([
+                    'logins' => function($query) use ($orderByDir) {
+                        $query->orderBy('logged_in_at', $orderByDir);
+                    }
+                ]);
+            } else {
+                $sortDir = "sortBy" . (str_contains($orderByDir, 'desc')
+                        ? ucfirst($orderByDir)
+                        : '');
+                $users = $users->$sortDir($orderByCol);
+            }
+
+            $users->prepend($users->count(), 'count');
+
+            return $this->respond($users);
+        } catch (Exception $e) {
+            return $this->failServerError($e->getMessage());
+        }
     }
 
     /**
@@ -35,7 +109,9 @@ class UserController extends ResourceController
      */
     public function show($id = null): mixed {
         try {
-            $user = is_numeric($id) ? User::findOrFail($id) : User::findEmail($id);
+            $user = is_numeric($id)
+                ? User::findOrFail($id)
+                : User::findEmail($id);
 
             return $this->respond($user);
         } catch (Exception $e) {
