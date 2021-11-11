@@ -4,7 +4,9 @@ namespace Config;
 
 use App\Filters\Admin;
 use App\Filters\Authenticate;
+use App\Filters\BasicAuthFilter;
 use App\Filters\LoginFilter;
+use App\Filters\LogRequestFilter;
 use App\Filters\OAuthFilter;
 use App\Filters\PermissionFilter;
 use App\Filters\RedirectIfAuthenticated;
@@ -23,16 +25,18 @@ class Filters extends BaseConfig
      * @var array
      */
     public array $aliases = [
-        'csrf'       => CSRF::class,
-        'toolbar'    => DebugToolbar::class,
-        'honeypot'   => Honeypot::class,
-        'admin'      => Admin::class,
-        'auth'       => Authenticate::class,
-        'guest'      => RedirectIfAuthenticated::class,
-        'login'      => LoginFilter::class,
-        'role'       => RoleFilter::class,
-        'permission' => PermissionFilter::class,
-        'oauth'      => OAuthFilter::class
+        'csrf'        => CSRF::class,
+        'toolbar'     => DebugToolbar::class,
+        'honeypot'    => Honeypot::class,
+        'admin'       => Admin::class,
+        'auth'        => Authenticate::class,
+        'guest'       => RedirectIfAuthenticated::class,
+        'login'       => LoginFilter::class,
+        'role'        => RoleFilter::class,
+        'permission'  => PermissionFilter::class,
+        'oauth'       => OAuthFilter::class,
+        'log_request' => LogRequestFilter::class,
+        'basic_auth'  => BasicAuthFilter::class,
     ];
 
     /**
@@ -78,7 +82,8 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public array $methods = [//        'post' => ['csrf']
+    public array $methods = [
+        // 'post' => ['csrf']
     ];
 
     /**
@@ -91,7 +96,9 @@ class Filters extends BaseConfig
      * @var array
      */
     public array $filters = [
-        'auth' => ['before' => ['admin*', 'account*', 'profile*']],
-        'oauth' => ['before' => ['api/users*', 'api/']]
+        'auth'        => ['before' => ['admin*', 'account*', 'profile*']],
+        'oauth'       => ['before' => ['api/users*', 'api/']],
+        'log_request' => ['after' => ['api*']],
+        'basic_auth'  => ['before' => ['api/products*']]
     ];
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -21,6 +22,7 @@ class User extends Model
         'gender',
         'role_id',
         'email',
+        'username',
         'image',
         'password',
     ];
@@ -104,5 +106,15 @@ class User extends Model
      */
     public function isBanned(): bool {
         return $this->status === 'banned';
+    }
+
+    public static function findEmail($email) {
+        $user = User::whereEmail($email)->first();
+
+        if(!is_null($user)) return $user;
+
+        throw (new ModelNotFoundException)->setModel(
+            __CLASS__, $email
+        );
     }
 }

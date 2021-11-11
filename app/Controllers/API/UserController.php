@@ -35,7 +35,7 @@ class UserController extends ResourceController
      */
     public function show($id = null): mixed {
         try {
-            $user = User::findOrFail($id);
+            $user = is_numeric($id) ? User::findOrFail($id) : User::findEmail($id);
 
             return $this->respond($user);
         } catch (Exception $e) {

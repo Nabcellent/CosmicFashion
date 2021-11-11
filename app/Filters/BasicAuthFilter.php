@@ -2,13 +2,14 @@
 
 namespace App\Filters;
 
-use App\Libraries\OAuth\OAuth;
+use App\Models\User;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
-use OAuth2\Request;
+use Config\Services;
+use Exception;
 
-class OAuthFilter implements FilterInterface
+class BasicAuthFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -23,15 +24,28 @@ class OAuthFilter implements FilterInterface
      * @param RequestInterface $request
      * @param array|null       $arguments
      *
+     * @throws Exception
      */
     public function before(RequestInterface $request, $arguments = null) {
-        $oAuth = new OAuth();
-        $request = Request::createFromGlobals();
+        $username = $_SERVER['PHP_AUTH_USER'] ?? "";
+        $password = $_SERVER['PHP_AUTH_PW'] ?? "";
 
-        if(!$oAuth->server->verifyResourceRequest($request)) {
-            $oAuth->server->getResponse()->send();
-            die();
+        $auth = Services::authentication();
+
+        $type = filter_var($username, FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'username';
+
+        if(!$auth->attempt([$type => $username, 'password' => $password], false)) {
+            header('Content-Type: application/json');
+            echo json_encode([
+                'status'  => false,
+                'message' => $auth->error() ?? lang('Auth.badAttempt')
+            ]);
+            die;
         }
+
+        session()->set('user_id', User::findEmail($username)->id);
     }
 
     /**
@@ -44,6 +58,7 @@ class OAuthFilter implements FilterInterface
      * @param ResponseInterface $response
      * @param array|null        $arguments
      *
+     * @return mixed
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
         //

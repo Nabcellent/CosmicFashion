@@ -3,12 +3,13 @@
 namespace App\Filters;
 
 use App\Libraries\OAuth\OAuth;
+use App\Models\ApiProductPath;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use OAuth2\Request;
 
-class OAuthFilter implements FilterInterface
+class LogRequestFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -23,15 +24,10 @@ class OAuthFilter implements FilterInterface
      * @param RequestInterface $request
      * @param array|null       $arguments
      *
+     * @return mixed
      */
     public function before(RequestInterface $request, $arguments = null) {
-        $oAuth = new OAuth();
-        $request = Request::createFromGlobals();
-
-        if(!$oAuth->server->verifyResourceRequest($request)) {
-            $oAuth->server->getResponse()->send();
-            die();
-        }
+        //
     }
 
     /**
@@ -46,6 +42,23 @@ class OAuthFilter implements FilterInterface
      *
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
-        //
+        $server = (new OAuth())->server;
+        $authRequest = Request::createFromGlobals();
+
+        $data['path'] = match (true) {
+            str_contains($request->getPath(), 'users') => 'userdetails',
+            str_contains($request->getPath(), 'products') => 'products',
+            str_contains($request->getPath(), 'auth') => 'auth',
+            default => 'transactions',
+        };
+
+        if($server->verifyResourceRequest($authRequest)) {
+            $data['user_id'] = $server->getAccessTokenData($authRequest)['user_id'];
+        } else if(session()->has('user_id')) {
+            $data['user_id'] = session('user_id');
+            session()->remove('user_id');
+        }
+
+        ApiProductPath::create($data);
     }
 }
