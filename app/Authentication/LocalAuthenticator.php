@@ -43,22 +43,6 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-//        TODO: Find out how this works - checks if user is activated.
-        /*if(!$this->user->isActivated()) {
-            // Always record a login attempt, whether success or not.
-            $ipAddress = service('request')->getIPAddress();
-            $this->recordLoginAttempt($credentials['email'] ?? $credentials['username'], $ipAddress, $this->user->id ?? null, false);
-
-            $param = http_build_query([
-                'login' => urlencode($credentials['email'] ?? $credentials['username'])
-            ]);
-
-            $this->error = lang('Auth.notActivated') . ' ' . anchor(route_to('resend-activate-account') . '?' . $param, lang('Auth.activationResend'));
-
-            $this->user = null;
-            return false;
-        }*/
-
         return $this->login($this->user, $remember);
     }
 

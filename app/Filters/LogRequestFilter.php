@@ -42,6 +42,8 @@ class LogRequestFilter implements FilterInterface
      *
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null) {
+        helper('auth');
+
         $server = (new OAuth())->server;
         $authRequest = Request::createFromGlobals();
 
@@ -54,9 +56,8 @@ class LogRequestFilter implements FilterInterface
 
         if($server->verifyResourceRequest($authRequest)) {
             $data['user_id'] = $server->getAccessTokenData($authRequest)['user_id'];
-        } else if(session()->has('user_id')) {
-            $data['user_id'] = session('user_id');
-            session()->remove('user_id');
+        } else if(logged_in()) {
+            $data['user_id'] = user_id();
         }
 
         ApiProductPath::create($data);

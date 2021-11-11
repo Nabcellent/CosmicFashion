@@ -125,7 +125,7 @@ class UserController extends ResourceController
      * @return mixed
      */
     public function new() {
-        //
+
     }
 
     /**

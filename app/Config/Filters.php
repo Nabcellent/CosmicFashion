@@ -68,7 +68,7 @@ class Filters extends BaseConfig
             ],
         ],
         'after'  => [
-            'toolbar',
+            'toolbar' => ['except' => ['api*']],
             // 'honeypot',
         ],
     ];
@@ -99,6 +99,6 @@ class Filters extends BaseConfig
         'auth'        => ['before' => ['admin*', 'account*', 'profile*']],
         'oauth'       => ['before' => ['api/users*', 'api/']],
         'log_request' => ['after' => ['api*']],
-        'basic_auth'  => ['before' => ['api/products*']]
+        'basic_auth'  => ['before' => ['api/products']]
     ];
 }

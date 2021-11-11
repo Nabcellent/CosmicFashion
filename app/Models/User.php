@@ -81,6 +81,10 @@ class User extends Model
         return $this->hasMany(MpesaStkRequest::class);
     }
 
+    public function products(): HasMany {
+        return $this->hasMany(Product::class);
+    }
+
     public function orders(): HasMany {
         return $this->hasMany(Order::class);
     }

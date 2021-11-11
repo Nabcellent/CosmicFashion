@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Config\Services;
 use Exception;
+use Myth\Auth\Password;
 
 class BasicAuthFilter implements FilterInterface
 {
@@ -44,8 +45,6 @@ class BasicAuthFilter implements FilterInterface
             ]);
             die;
         }
-
-        session()->set('user_id', User::findEmail($username)->id);
     }
 
     /**
