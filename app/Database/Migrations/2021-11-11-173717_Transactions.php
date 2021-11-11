@@ -20,6 +20,8 @@ class Transactions extends Migration
             'status'       => ['type' => 'VARCHAR', 'constraint' => 10, 'default' => 'pending'],
             'type'         => ['type' => 'VARCHAR', 'constraint' => 10], // Payment or Withdrawal... ?? Transfer 🤷🏽
             'description'  => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
+            'created_at timestamp',
+            'updated_at timestamp ON UPDATE current_timestamp',
         ]);
 
         $this->forge->addPrimaryKey('id');
