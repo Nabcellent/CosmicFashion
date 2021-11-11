@@ -37,10 +37,20 @@ class BasicAuthFilter implements FilterInterface
             ? 'email'
             : 'username';
 
-        if(!$auth->attempt([$type => $username, 'password' => $password], false)) {
-            header('Content-Type: application/json');
+        header('Content-Type: application/json');
+        if(empty($username) || empty($password)) {
             echo json_encode([
                 'status'  => false,
+                'code'  => 401,
+                'message' => "Unauthorized access"
+            ]);
+            die;
+        }
+
+        if(!$auth->attempt([$type => $username, 'password' => $password], false)) {
+            echo json_encode([
+                'status'  => false,
+                'code'  => 401,
                 'message' => $auth->error() ?? lang('Auth.badAttempt')
             ]);
             die;

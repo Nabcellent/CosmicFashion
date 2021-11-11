@@ -2,8 +2,10 @@
 
 namespace App\Controllers\API;
 
+use App\Models\Category;
 use App\Models\OrdersDetail;
 use App\Models\Product;
+use App\Models\SubCategory;
 use App\Models\User;
 use CodeIgniter\RESTful\ResourceController;
 use Config\Services;
@@ -29,6 +31,20 @@ class ProductController extends ResourceController
             $products = Product::all();
 
             if(Arr::hasAny($options, ['filter_category', 'filter_sub_category'])) {
+                $rules = [
+                    'filter_category'     => "permit_empty|in_list[" . implode(',',
+                            Category::pluck('name')->toArray()) . "]",
+                    'filter_sub_category' => "permit_empty|in_list[" . implode(',',
+                            SubCategory::pluck('name')->toArray()) . "]",
+                ];
+                $messages = [
+                    'email' => ['is_unique' => 'The email provided is already in use.']
+                ];
+
+                if(!$this->validate($rules, $messages)) {
+                    return $this->failValidationErrors($this->validator->getErrors());
+                }
+
                 $products = Product::whereHas('subCategory', function($query) use ($options) {
                     if(Arr::has($options, 'filter_category')) {
                         $query->whereHas('category', function($query) use ($options) {
@@ -48,7 +64,10 @@ class ProductController extends ResourceController
                 });
             }
 
-            $products->prepend($products->count(), 'count');
+            $count = count($products);
+            $products->prepend($count, 'count');
+
+            if(!$count) $products['message'] = 'No products found matching your query';
 
             return $this->respond($products);
         } catch (Exception $e) {
@@ -93,8 +112,8 @@ class ProductController extends ResourceController
     public function salesVolume() {
         try {
             $products = OrdersDetail::join('products', 'orders_details.product_id', '=', 'products.id')
-                ->select(['product_id', 'name', DB::raw("SUM(quantity) as sales")])
-                ->groupBy('product_id')->latest('sales')->get();
+                ->select(['product_id', 'name', DB::raw("SUM(quantity) as sales")])->groupBy('product_id')
+                ->latest('sales')->get();
 
             return $this->respond($products);
         } catch (Exception $e) {

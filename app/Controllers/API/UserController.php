@@ -201,9 +201,10 @@ class UserController extends ResourceController
 
             $data = $this->request->getRawInput();
 
-            $user = User::findOrFail($id)->update($data);
+            User::findOrFail($id)->update($data);
 
-            return $this->respondUpdated($user, 'User updated successfully! ✔');
+            $message = 'User updated successfully! ✔';
+            return $this->respondUpdated(['status' => true, 'message' => $message], $message);
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);
             return $this->failServerError($e->getMessage());
@@ -217,9 +218,10 @@ class UserController extends ResourceController
      */
     public function delete($id = null) {
         try {
-            $user = User::findOrFail($id)->delete();
+            User::findOrFail($id)->delete();
 
-            return $this->respondDeleted($user);
+            $message = 'User deleted! ✔';
+            return $this->respondDeleted(['status' => true, 'message' => $message], $message);
         } catch (Exception $e) {
             return $this->failNotFound('User not found.');
         }
