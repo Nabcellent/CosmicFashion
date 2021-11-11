@@ -36,22 +36,19 @@ class OrderController extends BaseController
             $userWallet = User::find(user_id())->wallet;
 
             if($userWallet && $userWallet->amount >= cartDetails('total')) {
-                $amount = cartDetails('total');
-                $userWallet->amount -= $amount;
+                $userWallet->amount -= cartDetails('total');
                 $userWallet->save();
 
                 $orderData['is_paid'] = true;
                 $orderData['status'] = 'paid';
                 $orderData['type'] = 'payment';
-                $orderData['amount'] = $amount;
-                $userWallet->transaction()->create($orderData);
             } else {
                 $balance = $userWallet->balance ?? 0;
                 return goWithInfo("Sorry! Your wallet balance($balance) is insufficient to complete the order.");
             }
         }
 
-        if(self::storeCart($orderData)) {
+        if(self::storeCart($orderData, $userWallet ?? null)) {
             emptyCart();
 
             return redirect('orders.thanks');
@@ -69,15 +66,16 @@ class OrderController extends BaseController
         return view('thanks', $data);
     }
 
-    public static function storeCart(array $data): bool|Order {
+    public static function storeCart(array $data, $wallet = null): bool|Order {
         $cart = session('cart');
 
         $data['amount'] = cartDetails('total');
         $data['user_id'] = user_id();
 
         try {
-            return DB::transaction(function() use ($cart, $data) {
+            return DB::transaction(function() use ($wallet, $cart, $data) {
                 $order = Order::create($data);
+                $data['order_id'] = $order->id;
 
                 foreach($cart as $productId => $item) {
                     $order->ordersDetails()->create([
@@ -87,6 +85,10 @@ class OrderController extends BaseController
                         'total'      => $item['sub_total'],
                         'created_at' => $item['created_at']
                     ]);
+                }
+
+                if(isset($wallet)) {
+                    $wallet->transaction()->create($data);
                 }
 
                 return $order;

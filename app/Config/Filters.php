@@ -97,7 +97,7 @@ class Filters extends BaseConfig
      */
     public array $filters = [
         'auth'        => ['before' => ['admin*', 'account*', 'profile*']],
-        'oauth'       => ['before' => ['api/users*', 'api/']],
+        'oauth'       => ['before' => ['api/users*', 'api/transactions*']],
         'log_request' => ['after' => ['api*']],
         'basic_auth'  => ['before' => ['api/products']]
     ];

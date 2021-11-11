@@ -24,4 +24,11 @@ $routes->group('/api', ['namespace' => 'App\Controllers\API'], function($routes)
         $routes->get('user/(:num)', 'ProductController::userProducts/$1', ['filter' => 'oauth']);
         $routes->get('sales-volume', 'ProductController::salesVolume', ['filter' => 'oauth']);
     });
+
+    $routes->group('transactions', function($routes) {
+        $routes->get('/', 'TransactionController::index');
+        $routes->get('(:num)', 'TransactionController::show/$1');
+        $routes->get('user/(:num)', 'TransactionController::userProducts/$1');
+        $routes->get('sales-volume', 'TransactionController::salesVolume');
+    });
 });

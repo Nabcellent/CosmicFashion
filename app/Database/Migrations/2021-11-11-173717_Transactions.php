@@ -14,7 +14,8 @@ class Transactions extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true
             ],
-            'payable_id'   => ['type' => 'INT', 'constraint' => 5],
+            'order_id'     => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'payable_id'   => ['type' => 'INT', 'constraint' => 11],
             'payable_type' => ['type' => 'varchar', 'constraint' => 255],
             'amount'       => ['type' => 'DOUBLE', 'unsigned' => true, 'null' => true],
             'status'       => ['type' => 'VARCHAR', 'constraint' => 10, 'default' => 'pending'],
@@ -25,6 +26,7 @@ class Transactions extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('order_id', 'orders', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('transactions');
     }
 
