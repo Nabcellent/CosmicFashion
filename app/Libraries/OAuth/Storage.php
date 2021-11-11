@@ -5,6 +5,7 @@ namespace App\Libraries\OAuth;
 use App\Models\ApiUser;
 use InvalidArgumentException;
 use Myth\Auth\Password;
+use OAuth2\OpenID\Storage\UserClaimsInterface;
 use OAuth2\Storage\AccessTokenInterface;
 use OAuth2\Storage\AuthorizationCodeInterface;
 use OAuth2\Storage\ClientCredentialsInterface;
@@ -27,7 +28,7 @@ use PDO;
  *
  * @author Brent Shaffer <bshafs at gmail dot com>
  */
-class Storage implements AuthorizationCodeInterface, AccessTokenInterface, ClientCredentialsInterface, UserCredentialsInterface, RefreshTokenInterface, JwtBearerInterface, ScopeInterface, PublicKeyInterface
+class Storage implements AuthorizationCodeInterface, AccessTokenInterface, ClientCredentialsInterface, UserCredentialsInterface, RefreshTokenInterface, JwtBearerInterface, ScopeInterface, PublicKeyInterface, UserClaimsInterface
 {
     /**
      * @var PDO
@@ -72,7 +73,7 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
 
         $this->config = array_merge([
             'client_table'        => 'oauth_clients',
-            'access_token_table'  => 'oauth_access_tokens',
+            'access_token_table'  => 'api_tokens',
             'refresh_token_table' => 'oauth_refresh_tokens',
             'code_table'          => 'oauth_authorization_codes',
             'user_table'          => 'api_users',
@@ -170,11 +171,11 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
      * @return array|bool|mixed|null
      */
     public function getAccessToken($access_token): mixed {
-        $stmt = $this->db->prepare(sprintf('SELECT * from %s where access_token = :access_token',
+        $stmt = $this->db->prepare(sprintf('SELECT * from %s where token = :access_token',
             $this->config['access_token_table']));
-
+        
         $token = $stmt->execute(compact('access_token'));
-        if($token = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        if($token = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // convert date string back to timestamp
             $token['expires'] = strtotime($token['expires']);
         }
@@ -190,20 +191,20 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
      * @param string $scope
      * @return bool
      */
-    public function setAccessToken($access_token, $client_id, $user_id, $expires, $scope = null): bool {
-        // convert expires to datestring
-        $expires = date('Y-m-d H:i:s', $expires);
+    public function setAccessToken($access_token, $client_id, $user_id, $expires_at, $scope = null): bool {
+        // convert expires_at to datestring
+        $expires_at = date('Y-m-d H:i:s', $expires_at);
 
         // if it exists, update it.
         if($this->getAccessToken($access_token)) {
-            $stmt = $this->db->prepare(sprintf('UPDATE %s SET client_id=:client_id, expires=:expires, user_id=:user_id, scope=:scope where access_token=:access_token',
+            $stmt = $this->db->prepare(sprintf('UPDATE %s SET client_id=:client_id, expires_at=:expires_at, user_id=:user_id, scope=:scope where token=:access_token',
                 $this->config['access_token_table']));
         } else {
-            $stmt = $this->db->prepare(sprintf('INSERT INTO %s (access_token, client_id, expires, user_id, scope) VALUES (:access_token, :client_id, :expires, :user_id, :scope)',
+            $stmt = $this->db->prepare(sprintf('INSERT INTO %s (token, client_id, expires_at, user_id, scope) VALUES (:access_token, :client_id, :expires_at, :user_id, :scope)',
                 $this->config['access_token_table']));
         }
 
-        return $stmt->execute(compact('access_token', 'client_id', 'user_id', 'expires', 'scope'));
+        return $stmt->execute(compact('access_token', 'client_id', 'user_id', 'expires_at', 'scope'));
     }
 
     /**
@@ -211,7 +212,7 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
      * @return bool
      */
     public function unsetAccessToken($access_token): bool {
-        $stmt = $this->db->prepare(sprintf('DELETE FROM %s WHERE access_token = :access_token',
+        $stmt = $this->db->prepare(sprintf('DELETE FROM %s WHERE token = :access_token',
             $this->config['access_token_table']));
 
         $stmt->execute(compact('access_token'));
@@ -331,7 +332,7 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
      * @param string $claims
      * @return array|bool
      */
-    public function getUserClaims(mixed $user_id, string $claims): bool|array {
+    public function getUserClaims(mixed $user_id, mixed $claims): bool|array {
         if(!$userDetails = $this->getUserDetails($user_id)) {
             return false;
         }
@@ -459,7 +460,6 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
     public function setUser(string $username, string $password, string $firstName = null, string $lastName = null): bool {
         // do not store in plaintext
         $password = Password::hash($password);
-
 
         // if it exists, update it.
         if($this->getUser($username)) {
@@ -648,12 +648,12 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
         );
 
             CREATE TABLE {$this->config['access_token_table']} (
-              access_token         VARCHAR(40)    NOT NULL,
+              token         VARCHAR(40)    NOT NULL,
               client_id            VARCHAR(80)    NOT NULL,
               user_id              VARCHAR(80),
               expires              TIMESTAMP      NOT NULL,
               scope                VARCHAR(4000),
-              PRIMARY KEY (access_token)
+              PRIMARY KEY (token)
             );
 
             CREATE TABLE {$this->config['code_table']} (
