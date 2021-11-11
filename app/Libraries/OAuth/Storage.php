@@ -173,11 +173,11 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
     public function getAccessToken($access_token): mixed {
         $stmt = $this->db->prepare(sprintf('SELECT * from %s where token = :access_token',
             $this->config['access_token_table']));
-        
+
         $token = $stmt->execute(compact('access_token'));
         if($token = $stmt->fetch(PDO::FETCH_ASSOC)) {
             // convert date string back to timestamp
-            $token['expires'] = strtotime($token['expires']);
+            $token['expires'] = strtotime($token['expires_at']);
         }
 
         return $token;
@@ -187,8 +187,8 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
      * @param string $access_token
      * @param mixed  $client_id
      * @param mixed  $user_id
-     * @param int    $expires
-     * @param string $scope
+     * @param        $expires_at
+     * @param null   $scope
      * @return bool
      */
     public function setAccessToken($access_token, $client_id, $user_id, $expires_at, $scope = null): bool {
@@ -651,7 +651,7 @@ class Storage implements AuthorizationCodeInterface, AccessTokenInterface, Clien
               token         VARCHAR(40)    NOT NULL,
               client_id            VARCHAR(80)    NOT NULL,
               user_id              VARCHAR(80),
-              expires              TIMESTAMP      NOT NULL,
+              expires_at           TIMESTAMP      NOT NULL,
               scope                VARCHAR(4000),
               PRIMARY KEY (token)
             );
