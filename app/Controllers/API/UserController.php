@@ -39,7 +39,9 @@ class UserController extends ResourceController
             }
 
             if(isset($options['filter_by'])) {
-                $date = Carbon::createFromFormat('d-m-Y', $options['filter_value'])->format('Y-m-d');
+                $date = isset($options['filter_value'])
+                    ? Carbon::createFromFormat('d-m-Y', $options['filter_value'])->format('Y-m-d')
+                    : now();
 
                 //  List of all users who purchased an item on a specific date
                 $users = User::whereHas('orders', function($query) use ($date, $orderByDir) {

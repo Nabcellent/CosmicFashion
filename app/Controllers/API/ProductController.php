@@ -32,7 +32,7 @@ class ProductController extends ResourceController
 
             if(Arr::hasAny($options, ['filter_category', 'filter_sub_category'])) {
                 $rules = [
-                    'filter_category' => "permit_empty|in_list[" . implode(',',
+                    'filter_category'     => "permit_empty|in_list[" . implode(',',
                             Category::pluck('name')->toArray()) . "]",
                     'filter_sub_category' => "permit_empty|in_list[" . SubCategory::pluck('name')->unique()->sort()
                             ->implode(',') . "]",
@@ -83,11 +83,15 @@ class ProductController extends ResourceController
      */
     public function show($id = null): mixed {
         try {
-            $product = Product::with(['subCategory' => function($query) {
-                $query->with(['category' => function($query) {
-                    $query->select(['id', 'name']);
-                }])->select(['id', 'category_id', 'name']);
-            }])->findOrFail($id);
+            $product = Product::with([
+                'subCategory' => function($query) {
+                    $query->with([
+                        'category' => function($query) {
+                            $query->select(['id', 'name']);
+                        }
+                    ])->select(['id', 'category_id', 'name']);
+                }
+            ])->findOrFail($id);
 
             return $this->respond($product);
         } catch (Exception $e) {
@@ -129,10 +133,10 @@ class ProductController extends ResourceController
                     $query->whereStatus($status);
                 }
             })->join('products', 'orders_details.product_id', '=', 'products.id')->select([
-                    'product_id',
-                    'name',
-                    DB::raw("SUM(quantity) as sales")
-                ])->groupBy('product_id')->latest('sales')->get();
+                'product_id',
+                'name',
+                DB::raw("SUM(quantity) as sales")
+            ])->groupBy('product_id')->latest('sales')->get();
 
             $products->prepend(count($products), 'count');
 
