@@ -32,10 +32,10 @@ class ProductController extends ResourceController
 
             if(Arr::hasAny($options, ['filter_category', 'filter_sub_category'])) {
                 $rules = [
-                    'filter_category'     => "permit_empty|in_list[" . implode(',',
+                    'filter_category' => "permit_empty|in_list[" . implode(',',
                             Category::pluck('name')->toArray()) . "]",
-                    'filter_sub_category' => "permit_empty|in_list[" . implode(',',
-                            SubCategory::pluck('name')->toArray()) . "]",
+                    'filter_sub_category' => "permit_empty|in_list[" . SubCategory::pluck('name')->unique()->sort()
+                            ->implode(',') . "]",
                 ];
                 $messages = [
                     'email' => ['is_unique' => 'The email provided is already in use.']
@@ -110,10 +110,27 @@ class ProductController extends ResourceController
     }
 
     public function salesVolume() {
+        $status = $this->request->getVar('status') ?? 'all';
+
+        $rules = [
+            'status' => 'permit_empty|in_list[paid,pending,pending payment]'
+        ];
+        if(!$this->validate($rules)) {
+            return $this->failValidationErrors($this->validator->getErrors());
+        }
+
         try {
-            $products = OrdersDetail::join('products', 'orders_details.product_id', '=', 'products.id')
-                ->select(['product_id', 'name', DB::raw("SUM(quantity) as sales")])->groupBy('product_id')
-                ->latest('sales')->get();
+            $products = OrdersDetail::whereHas('order', function($query) use ($status) {
+                if($status !== 'all') {
+                    $query->whereStatus($status);
+                }
+            })->join('products', 'orders_details.product_id', '=', 'products.id')->select([
+                    'product_id',
+                    'name',
+                    DB::raw("SUM(quantity) as sales")
+                ])->groupBy('product_id')->latest('sales')->get();
+
+            $products->prepend(count($products), 'count');
 
             return $this->respond($products);
         } catch (Exception $e) {

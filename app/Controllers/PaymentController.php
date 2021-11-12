@@ -91,6 +91,7 @@ class PaymentController extends BaseController
                     try {
                         $order = MpesaStkRequest::where('checkout_request_id', $reference)->first()->order;
                         $order->is_paid = true;
+                        $order->status = 'paid';
                         $order->save();
 
                         emptyCart();
@@ -152,7 +153,7 @@ class PaymentController extends BaseController
                     $callback->order_id = $order->id;
                     $callback->save();
 
-                    $callback->order()->update(['is_paid' => true]);
+                    $callback->order()->update(['is_paid' => true, 'status' => 'paid']);
 
                     emptyCart();
                 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Transaction extends Model
@@ -22,5 +23,9 @@ class Transaction extends Model
      */
     public function payable(): MorphTo {
         return $this->morphTo();
+    }
+
+    public function order(): BelongsTo {
+        return $this->belongsTo(Order::class);
     }
 }

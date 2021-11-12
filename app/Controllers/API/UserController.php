@@ -34,27 +34,7 @@ class UserController extends ResourceController
             //  List of all users who purchased a specific item, or item in a subcategory/ category
             if(Arr::hasAny($options, ['product', 'category', 'sub_category'])) {
                 $users = User::whereHas('orders', function($query) use ($options) {
-                    $query->whereHas('ordersDetails', function($query) use ($options) {
-                        $query->whereHas('product', function($query) use ($options) {
-                            if(Arr::hasAny($options, ['sub_category', 'category'])) {
-                                $query->whereHas('subCategory', function($query) use ($options) {
-                                    if(Arr::has($options, 'category')) {
-                                        $query->whereHas('category', function($query) use ($options) {
-                                            return $query->whereName($options['category']);
-                                        });
-                                    }
-
-                                    if(Arr::has($options, 'sub_category')) {
-                                        return $query->whereName($options['sub_category']);
-                                    }
-                                });
-                            }
-
-                            if(Arr::has($options, 'product')) {
-                                return $query->whereName($options['product']);
-                            }
-                        });
-                    });
+                    TransactionController::filterCategories($query, $options);
                 })->get();
             }
 

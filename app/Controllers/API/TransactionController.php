@@ -11,6 +11,7 @@ use CodeIgniter\RESTful\ResourceController;
 use Config\Services;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Arr;
 
 class TransactionController extends ResourceController
 {
@@ -27,32 +28,35 @@ class TransactionController extends ResourceController
         $options = $this->request->getVar();
 
         try {
+            $transactionFields = [
+                'payable_id',
+                'payable_type',
+                'type',
+                'id',
+                'status',
+                'created_at',
+            ];
+
             $transactions = [
                 'wallet' => Transaction::with([
                     'payable' => function(MorphTo $morphTo) {
                         $morphTo->morphWith([Wallet::class])->select(['id', 'amount']);
                     }
-                ])->whereHasMorph('payable', [Wallet::class])->get([
+                ])->whereHasMorph('payable', [Wallet::class])->whereHas('order', function($query) use ($options) {
+                    return self::filterCategories($query, $options);
+                })->get([
                     'order_id',
-                    'payable_id',
-                    'payable_type',
-                    'type',
-                    'id',
-                    'status',
-                    'created_at',
+                    ...$transactionFields
                 ]),
                 'paypal' => Transaction::with([
                     'payable' => function(MorphTo $morphTo) {
                         $morphTo->morphWith([PayPalCallback::class])->select(['id', 'order_id', 'amount']);
                     }
-                ])->whereHasMorph('payable', [PayPalCallback::class])->get([
-                    'payable_id',
-                    'payable_type',
-                    'type',
-                    'id',
-                    'status',
-                    'created_at',
-                ]),
+                ])->whereHasMorph('payable', [PayPalCallback::class], function($query) use ($options) {
+                    $query->whereHas('order', function($query) use ($options) {
+                        return $this->filterCategories($query, $options);
+                    });
+                })->get($transactionFields),
                 'mpesa'  => Transaction::with([
                     'payable' => function(MorphTo $morphTo) {
                         $morphTo->morphWith([
@@ -63,14 +67,13 @@ class TransactionController extends ResourceController
                             ]
                         ])->select(['id', 'checkout_request_id', 'result_code', 'amount', 'transaction_date']);
                     }
-                ])->whereHasMorph('payable', [MpesaStkCallback::class])->get([
-                    'payable_id',
-                    'payable_type',
-                    'type',
-                    'id',
-                    'status',
-                    'created_at',
-                ]),
+                ])->whereHasMorph('payable', [MpesaStkCallback::class], function($query) use ($options) {
+                    $query->whereHas('request', function($query) use ($options) {
+                        $query->whereHas('order', function($query) use ($options) {
+                            return $this->filterCategories($query, $options);
+                        });
+                    });
+                })->get($transactionFields),
             ];
 
             $transactions = collect($transactions)->map(function($transaction) use ($options) {
@@ -113,9 +116,31 @@ class TransactionController extends ResourceController
     /**
      * Return the properties of a resource object
      *
+     * @param $query
+     * @param $options
      * @return mixed
      */
-    public function show($id = null) {
-        //
+    public static function filterCategories($query, $options): mixed {
+        return $query->whereHas('ordersDetails', function($query) use ($options) {
+            $query->whereHas('product', function($query) use ($options) {
+                if(Arr::hasAny($options, ['sub_category', 'category'])) {
+                    $query->whereHas('subCategory', function($query) use ($options) {
+                        if(Arr::has($options, 'category')) {
+                            $query->whereHas('category', function($query) use ($options) {
+                                return $query->whereName($options['category']);
+                            });
+                        }
+
+                        if(Arr::has($options, 'sub_category')) {
+                            return $query->whereName($options['sub_category']);
+                        }
+                    });
+                }
+
+                if(Arr::has($options, 'product')) {
+                    return $query->whereName($options['product']);
+                }
+            });
+        });
     }
 }
