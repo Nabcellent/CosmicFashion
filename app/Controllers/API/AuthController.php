@@ -48,6 +48,7 @@ class AuthController extends BaseController
         try {
             $data['role_id'] = Role::whereName('Api User')->value('id');
             $data['username'] = $this->request->getVar('email');
+            $data['key'] = uniqid('cf_api-', true);
 
             if(!$this->validate($rules, $messages)) {
                 return $this->failValidationErrors($this->validator->getErrors());

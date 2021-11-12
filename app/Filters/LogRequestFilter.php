@@ -4,6 +4,7 @@ namespace App\Filters;
 
 use App\Libraries\OAuth\OAuth;
 use App\Models\ApiProductPath;
+use App\Models\ApiUser;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -54,7 +55,9 @@ class LogRequestFilter implements FilterInterface
             default => 'transactions',
         };
 
-        if($server->verifyResourceRequest($authRequest)) {
+        if($apiKey = $authRequest->headers('cf_api_key')) {
+            $data['user_id'] = ApiUser::where('key', $apiKey)->first()->user_id;
+        } else if($server->verifyResourceRequest($authRequest)) {
             $data['user_id'] = $server->getAccessTokenData($authRequest)['user_id'];
         } else if(logged_in()) {
             $data['user_id'] = user_id();

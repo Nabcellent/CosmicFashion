@@ -3,9 +3,11 @@
 namespace App\Filters;
 
 use App\Libraries\OAuth\OAuth;
+use App\Models\ApiUser;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use Config\Services;
 use OAuth2\Request;
 
 class OAuthFilter implements FilterInterface
@@ -28,9 +30,38 @@ class OAuthFilter implements FilterInterface
         $oAuth = new OAuth();
         $request = Request::createFromGlobals();
 
-        if(!$oAuth->server->verifyResourceRequest($request)) {
+        Services::eloquent();
+        header('Content-Type: application/json');
+
+        $apiKey = $request->headers('cf_api_key');
+        $accessToken = $request->headers('authorization');
+
+        if(!isset($apiKey) && !isset($accessToken)) {
+            echo json_encode([
+                'status'  => false,
+                'code'  => 401,
+                'message' => "Unauthorized access!"
+            ]);
+            die;
+        }
+
+        if($apiKey && !ApiUser::where('key', $apiKey)->exists()) {
+            echo json_encode([
+                'status'  => false,
+                'code'  => 400,
+                'message' => "Invalid api key!"
+            ]);
+            die;
+        }
+
+        if(!$apiKey && !$oAuth->server->verifyResourceRequest($request)) {
             $oAuth->server->getResponse()->send();
-            die();
+            echo json_encode([
+                'status'  => false,
+                'code'  => 400,
+                'message' => "Invalid access token!"
+            ]);
+            die;
         }
     }
 
