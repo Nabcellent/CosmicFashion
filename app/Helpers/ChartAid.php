@@ -3,12 +3,14 @@
 namespace App\Helpers;
 
 use App\Models\Order;
+use App\Models\OrdersDetail;
 use Exception;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use JetBrains\PhpStorm\ArrayShape;
 
-class ChartAid {
+class ChartAid
+{
     private mixed $aggregateType;
     /**
      * @var mixed|null
@@ -50,6 +52,31 @@ class ChartAid {
         return $orders;
     }
 
+    /**
+     * @throws Exception
+     */
+    public static function weeklySales($productId = null): array {
+        $frequency = 'daily';
+
+        $purchases = OrdersDetail::whereHas('order', function($query) {
+            $query->where('is_paid', true);
+        });
+
+        if($productId) {
+            $purchases->where('product_id', $productId);
+        }
+
+        $purchases = $purchases->whereBetween('created_at', [chartStartDate($frequency), now()])->get(['created_at'])
+            ->groupBy(function($item) use ($frequency) {
+                return chartDateFormat($item->created_at, $frequency);
+            });
+
+        $purchases = chartDataSet($purchases, $frequency);
+        $purchases['total'] = array_sum($purchases['datasets']);
+
+        return $purchases;
+    }
+
 
     /**
      * @param Collection $models
@@ -75,12 +102,15 @@ class ChartAid {
             $data[$dateString] = $this->aggregate($dateString);
 
             switch($freqCount) {
-                case 4: $date->subWeek();
+                case 4:
+                    $date->subWeek();
                     break;
                 case 12:
-                case 3: $date->subMonth();
+                case 3:
+                    $date->subMonth();
                     break;
-                default: $date->subDay();
+                default:
+                    $date->subDay();
             }
         }
 
@@ -96,15 +126,19 @@ class ChartAid {
         }
 
         return [
-            'labels' => $data->keys()->toArray(),
+            'labels'   => $data->keys()->toArray(),
             'datasets' => $data->values()->toArray()
         ];
     }
 
     public function aggregate($dateString): int {
         return match ($this->aggregateType) {
-            'sum' => isset($this->models[$dateString]) ? $this->models[$dateString]->sum($this->aggregateColumn) : 0,
-            default => isset($this->models[$dateString]) ? $this->models[$dateString]->count() : 0,
+            'sum' => isset($this->models[$dateString])
+                ? $this->models[$dateString]->sum($this->aggregateColumn)
+                : 0,
+            default => isset($this->models[$dateString])
+                ? $this->models[$dateString]->count()
+                : 0,
         };
     }
 
@@ -120,7 +154,7 @@ class ChartAid {
         if($this->frequency === 'yearly') {
             if($date->isCurrentYear()) {
                 $name = 'This year';
-            } else if ($date->isLastYear()) {
+            } else if($date->isLastYear()) {
                 $name = 'Last year';
             } else {
                 $name = $date->year;
@@ -128,7 +162,7 @@ class ChartAid {
         } else if($this->frequency === 'monthly') {
             if($date->isCurrentMonth()) {
                 $name = 'This month';
-            } else if ($date->isLastMonth()) {
+            } else if($date->isLastMonth()) {
                 $name = 'Last month';
             } else {
                 $name = $date->shortMonthName;
@@ -139,7 +173,9 @@ class ChartAid {
             } else if($date->isLastWeek()) {
                 $name = 'Last week';
             } else {
-                $name = "{$date->diffInWeeks()} week" . ($date->diffInWeeks() > 1 ? 's' : '') . " ago";
+                $name = "{$date->diffInWeeks()} week" . ($date->diffInWeeks() > 1
+                        ? 's'
+                        : '') . " ago";
             }
         } else {
             if($date->isCurrentDay()) {
@@ -164,8 +200,9 @@ class ChartAid {
             default => Carbon::parse($date)->toDateString()
         };
     }
+
     public function chartStartDate(): Carbon {
-        return match($this->frequency) {
+        return match ($this->frequency) {
             'yearly' => now()->subYear(),
             'monthly' => now()->subMonths(3),
             'weekly' => now()->subWeeks(4),

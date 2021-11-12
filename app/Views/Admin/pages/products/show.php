@@ -163,109 +163,16 @@
 	<script src="/vendor/swiper/swiper.min.js"></script>
 	<script src="/vendor/admin/rater-js/index.js"></script>
 	<script src="/vendor/admin/countup/countUp.umd.js"></script>
+	<script src="/js/admin/chart.js"></script>
 	<script>
         $(() => {
             $('#table_id').DataTable({});
-
-            function initWeeklySales(chartData) {
-                let ECHART_BAR_WEEKLY_SALES = '.weekly-sales';
-                let $echartBarWeeklySales = document.querySelector(ECHART_BAR_WEEKLY_SALES);
-
-                if ($echartBarWeeklySales) {
-                    // Get options from data attribute
-                    let userOptions = utils.getData($echartBarWeeklySales, 'options');
-                    let data = chartData.datasets; // Max value of data
-                    let chart = window.echarts.init($echartBarWeeklySales); // Default options
-
-                    let getDefaultOptions = function getDefaultOptions() {
-                        return {
-                            tooltip: {
-                                trigger: 'axis',
-                                padding: [7, 10],
-                                formatter: '{b0} : {c0}',
-                                transitionDuration: 0,
-                                backgroundColor: utils.getGrays()['100'],
-                                borderColor: utils.getGrays()['300'],
-                                textStyle: {
-                                    color: utils.getColors().dark
-                                },
-                                borderWidth: 1,
-                                position: function position(pos, params, dom, rect, size) {
-                                    return getPosition(pos, params, dom, rect, size);
-                                }
-                            },
-                            xAxis: {
-                                type: 'category',
-                                data: chartData.labels,
-                                boundaryGap: false,
-                                axisLine: {
-                                    show: false
-                                },
-                                axisLabel: {
-                                    show: false
-                                },
-                                axisTick: {
-                                    show: false
-                                },
-                                axisPointer: {
-                                    type: 'none'
-                                }
-                            },
-                            yAxis: {
-                                type: 'value',
-                                splitLine: {
-                                    show: false
-                                },
-                                axisLine: {
-                                    show: false
-                                },
-                                axisLabel: {
-                                    show: false
-                                },
-                                axisTick: {
-                                    show: false
-                                },
-                                axisPointer: {
-                                    type: 'none'
-                                }
-                            },
-                            series: [{
-                                type: 'bar',
-                                showBackground: true,
-                                backgroundStyle: {
-                                    borderRadius: 10
-                                },
-                                barWidth: '5px',
-                                itemStyle: {
-                                    barBorderRadius: 10,
-                                    color: utils.getColors().primary
-                                },
-                                data: data,
-                                z: 10,
-                                emphasis: {
-                                    itemStyle: {
-                                        color: utils.getColors().primary
-                                    }
-                                }
-                            }],
-                            grid: {
-                                right: 5,
-                                left: 10,
-                                top: 0,
-                                bottom: 0
-                            }
-                        };
-                    };
-
-                    echartSetOption(chart, userOptions, getDefaultOptions);
-                }
-            }
 
             $.ajax({
                 url: '<?= route_to('admin.product.purchases.chart', $product->id) ?>',
                 dataType: 'json',
                 success: response => {
-                    initWeeklySales(response)
+                    InitWeeklySales(response)
 
                     let countUp = new window.countUp.CountUp($('#count-up').get(0), response.total, {
                         duration: 7

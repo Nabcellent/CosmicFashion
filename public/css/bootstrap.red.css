@@ -1,0 +1,104 @@
+
+/*=== === === === === === === === === === === === === === === === === === === === ===  BY BOOTSTRAP  */
+.text-orange{
+	color:var(--cf-orange)!important;
+}
+.text-orange-dark{
+	color:var(--cf-orange-dark)!important;
+}
+.text-blue-dark {
+	color:var(--cf-dark-blue) !important;
+}
+.text-blue-light {
+	color:var(--cf-light-blue) !important;
+}
+.text-red {
+	color: #900 !important;
+}
+
+.text-blue {
+	color: rgb(173, 216, 230) !important;
+}
+
+
+
+.link-orange{
+	color: rgb(255, 165, 0);
+}
+.link-orange:focus,
+.link-orange:hover{
+	color:rgb(225, 135, 0);
+}
+.link-orange-dark {
+	color: #ff4500;
+}
+.link-orange-dark:hover,
+.link-orange-dark:focus {
+	color: rgb(230, 40, 0);
+}
+
+.bg-orange-light {
+	background-color: var(--cf-orange) !important;
+}
+.bg-orange-dark {
+	background-color: var(--cf-orange-dark) !important;
+}
+.bg-danger-trans {
+	background-color:rgba(255, 0, 0, .3) !important;
+}
+
+.bg-blue-dark {
+	background-color: var(--cf-dark-blue) !important;
+}
+.bg-blue-light {
+	background-color: var(--cf-light-blue) !important;
+}
+
+.btn-orange {
+	color: #fff!important;
+	background-color: var(--cf-orange)!important;
+	border-color: var(--cf-orange)!important;
+}
+.btn-orange:hover {
+	color: #fff!important;
+	background-color: rgb(255, 125, 0) !important;
+	border-color: rgb(255, 125, 0) !important;
+}
+.btn-orange-dark {
+	color: #fff!important;
+	background-color: rgb(255, 80, 0)!important;
+	border-color: rgb(255, 80, 0)!important;
+}
+.btn-orange-dark:hover {
+	color: #fff!important;
+	background-color: rgb(215, 59, 0)!important;
+	border-color: rgb(215, 59, 0)!important;
+}
+
+.btn-outline-orange {
+	color: var(--cf-orange)!important;
+	border-color: var(--cf-orange)!important;
+}
+.btn-outline-orange:hover {
+	color: #fff!important;
+	background-color: rgb(255, 135, 0);!important;
+	border-color: rgb(255, 135, 0);!important;
+}
+.btn-outline-orange-dark {
+	color: var(--cf-orange-dark)!important;
+	border-color: var(--cf-orange-dark)!important;
+}
+.btn-outline-orange-dark:hover {
+	color: #fff!important;
+	background-color: rgb(215, 59, 0)!important;
+	border-color: rgb(215, 59, 0)!important;
+}
+.btn-outline-blue-light {
+	color: var(--cf-light-blue)!important;
+	border-color: var(--cf-light-blue)!important;
+}
+.btn-outline-blue-light:hover {
+	color: var(--cf-dark-blue)!important;
+	background-color: rgb(158, 178, 207)!important;
+	border-color: rgb(158, 178, 207)!important;
+}

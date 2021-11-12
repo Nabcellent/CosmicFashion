@@ -22,7 +22,7 @@
 							<span class="badge badge-soft-success rounded-pill fs--2">+3.5%</span>
 						</div>
 						<div class="col-auto ps-0">
-							<div class="echart-bar-weekly-sales h-100"></div>
+							<div class="weekly-sales h-100" style="width:8.5rem"></div>
 						</div>
 					</div>
 				</div>
@@ -167,7 +167,7 @@
 	</div>
 	<div class="row g-0">
 		<div class="col-sm-5 col-xxl-4 pe-sm-2 mb-3">
-			<div class="card">
+			<div class="card h-lg-100">
 				<div class="card-header d-flex flex-between-center bg-light py-2">
 					<h6 class="mb-0">Active Users</h6>
 					<div class="dropdown btn-reveal-trigger">
@@ -186,60 +186,33 @@
 					</div>
 				</div>
 				<div class="card-body py-2">
-					<div class="d-flex align-items-center position-relative mb-3">
-						<div class="avatar avatar-2xl status-online">
-							<img class="rounded-circle" src="/images/dash/team/1.jpg" alt=""/>
+
+                    <?php foreach($activeUsers as $login): ?>
+						<div class="d-flex align-items-center position-relative mb-3">
+							<div class="avatar avatar-2xl status-online">
+
+								<?php if(isset($login->user->image)): ?>
+									<img class="rounded-circle" src="/images/users/<?= $login->user->image ?>" alt=""/>
+                                <?php else: ?>
+									<img class="rounded-circle" src="/images/dash/team/1.jpg" alt=""/>
+                                <?php endif; ?>
+
+							</div>
+							<div class="flex-1 ms-3">
+								<h6 class="mb-0 fw-semi-bold">
+									<a class="stretched-link text-900"
+									   href="pages/user/profile.html"><?= $login->user->full_name ?></a></h6>
+								<p class="text-500 fs--2 mb-0"><?= $login->user->role->name ?></p>
+							</div>
 						</div>
-						<div class="flex-1 ms-3">
-							<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
-							                                 href="pages/user/profile.html">Emma Watson</a></h6>
-							<p class="text-500 fs--2 mb-0">Admin</p>
-						</div>
-					</div>
-					<div class="d-flex align-items-center position-relative mb-3">
-						<div class="avatar avatar-2xl status-online">
-							<img class="rounded-circle" src="/images/dash/team/2.jpg" alt=""/>
-						</div>
-						<div class="flex-1 ms-3">
-							<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
-							                                 href="pages/user/profile.html">Antony Hopkins</a></h6>
-							<p class="text-500 fs--2 mb-0">Moderator</p>
-						</div>
-					</div>
-					<div class="d-flex align-items-center position-relative mb-3">
-						<div class="avatar avatar-2xl status-away">
-							<img class="rounded-circle" src="/images/dash/team/3.jpg" alt=""/>
-						</div>
-						<div class="flex-1 ms-3">
-							<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
-							                                 href="pages/user/profile.html">Anna Karinina</a></h6>
-							<p class="text-500 fs--2 mb-0">Editor</p>
-						</div>
-					</div>
-					<div class="d-flex align-items-center position-relative mb-3">
-						<div class="avatar avatar-2xl status-offline">
-							<img class="rounded-circle" src="/images/dash/team/4.jpg" alt=""/>
-						</div>
-						<div class="flex-1 ms-3">
-							<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
-							                                 href="pages/user/profile.html">John Lee</a></h6>
-							<p class="text-500 fs--2 mb-0">Admin</p>
-						</div>
-					</div>
-					<div class="d-flex align-items-center position-relative false">
-						<div class="avatar avatar-2xl status-offline">
-							<img class="rounded-circle" src="/images/dash/team/5.jpg" alt=""/>
-						</div>
-						<div class="flex-1 ms-3">
-							<h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
-							                                 href="pages/user/profile.html">Rowen Atkinson</a></h6>
-							<p class="text-500 fs--2 mb-0">Editor</p>
-						</div>
-					</div>
+                    <?php endforeach; ?>
+
 				</div>
-				<div class="card-footer bg-light p-0"><a class="btn btn-sm btn-link d-block w-100 py-2"
-				                                         href="app/social/followers.html">All active
-						users<span class="fas fa-chevron-right ms-1 fs--2"></span></a></div>
+				<div class="card-footer bg-light p-0">
+					<a class="btn btn-sm btn-link d-block w-100 py-2" href="app/social/followers.html">
+						All active users<span class="fas fa-chevron-right ms-1 fs--2"></span>
+					</a>
+				</div>
 			</div>
 		</div>
 		<div class="col-sm-7 col-xxl-8 mb-3">
@@ -281,131 +254,50 @@
 							<thead class="bg-light">
 							<tr class="text-900">
 								<th>Best Selling Products</th>
-								<th class="text-end">Revenue ($3333)</th>
+								<th class="text-end">
+									Revenue (<span
+											data-countup='{"endValue":<?= $bSProducts->totalRevenue ?>,"duration":10,"prefix":"KSH."}'>0</span>)
+								</th>
 								<th class="pe-card text-end" style="width: 8rem">Revenue (%)</th>
 							</tr>
 							</thead>
 							<tbody>
-							<tr class="border-bottom border-200">
-								<td>
-									<div class="d-flex align-items-center position-relative"><img
-												class="rounded-1 border border-200"
-												src="assets/img/products/12.png" width="60" alt=""/>
-										<div class="flex-1 ms-3">
-											<h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link" href="#!">Raven
-													Pro</a></h6>
-											<p class="fw-semi-bold mb-0 text-500">Landing</p>
+                            <?php
+                            foreach($bSProducts as $product):
+                                $percentage = round(($product->revenue / $bSProducts->totalRevenue) * 100, 2);
+                                ?>
+								<tr class="border-bottom border-200">
+									<td>
+										<div class="d-flex align-items-center position-relative">
+											<img class="rounded-1 border border-200"
+											     src="/images/products/<?= $product->image ?>" width="60" alt=""/>
+											<div class="flex-1 ms-3">
+												<h6 class="mb-1 fw-semi-bold">
+													<a class="text-dark stretched-link" href="#!">
+                                                        <?= $product->name ?>
+													</a></h6>
+												<p class="fw-semi-bold mb-0 text-500">
+                                                    <?= "{$product->product->subCategory->category->name} ~ {$product->product->subCategory->name}" ?>
+												</p>
+											</div>
 										</div>
-									</div>
-								</td>
-								<td class="align-middle text-end fw-semi-bold">$1311</td>
-								<td class="align-middle pe-card">
-									<div class="d-flex align-items-center">
-										<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
-											<div class="progress-bar rounded-pill" role="progressbar"
-											     style="width: 39%;" aria-valuenow="39"
-											     aria-valuemin="0" aria-valuemax="100"></div>
+									</td>
+									<td class="align-middle text-end fw-semi-bold">KSH.<?= $product->revenue ?></td>
+									<td class="align-middle pe-card">
+										<div class="d-flex align-items-center">
+											<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
+												<div class="progress-bar rounded-pill" role="progressbar"
+												     style="width: <?= $percentage ?>%;" aria-valuenow="39"
+												     aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+											<div class="fw-semi-bold ms-2">
+                                                <?= $percentage ?>%
+											</div>
 										</div>
-										<div class="fw-semi-bold ms-2">39%</div>
-									</div>
-								</td>
-							</tr>
-							<tr class="border-bottom border-200">
-								<td>
-									<div class="d-flex align-items-center position-relative"><img
-												class="rounded-1 border border-200"
-												src="assets/img/products/10.png" width="60" alt=""/>
-										<div class="flex-1 ms-3">
-											<h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link" href="#!">Boots4</a>
-											</h6>
-											<p class="fw-semi-bold mb-0 text-500">Portfolio</p>
-										</div>
-									</div>
-								</td>
-								<td class="align-middle text-end fw-semi-bold">$860</td>
-								<td class="align-middle pe-card">
-									<div class="d-flex align-items-center">
-										<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
-											<div class="progress-bar rounded-pill" role="progressbar"
-											     style="width: 26%;" aria-valuenow="26"
-											     aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<div class="fw-semi-bold ms-2">26%</div>
-									</div>
-								</td>
-							</tr>
-							<tr class="border-bottom border-200">
-								<td>
-									<div class="d-flex align-items-center position-relative"><img
-												class="rounded-1 border border-200"
-												src="assets/img/products/11.png" width="60" alt=""/>
-										<div class="flex-1 ms-3">
-											<h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link" href="#!">Falcon</a>
-											</h6>
-											<p class="fw-semi-bold mb-0 text-500">Admin</p>
-										</div>
-									</div>
-								</td>
-								<td class="align-middle text-end fw-semi-bold">$539</td>
-								<td class="align-middle pe-card">
-									<div class="d-flex align-items-center">
-										<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
-											<div class="progress-bar rounded-pill" role="progressbar"
-											     style="width: 16%;" aria-valuenow="16"
-											     aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<div class="fw-semi-bold ms-2">16%</div>
-									</div>
-								</td>
-							</tr>
-							<tr class="border-bottom border-200">
-								<td>
-									<div class="d-flex align-items-center position-relative"><img
-												class="rounded-1 border border-200"
-												src="assets/img/products/14.png" width="60" alt=""/>
-										<div class="flex-1 ms-3">
-											<h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link" href="#!">Slick</a>
-											</h6>
-											<p class="fw-semi-bold mb-0 text-500">Builder</p>
-										</div>
-									</div>
-								</td>
-								<td class="align-middle text-end fw-semi-bold">$343</td>
-								<td class="align-middle pe-card">
-									<div class="d-flex align-items-center">
-										<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
-											<div class="progress-bar rounded-pill" role="progressbar"
-											     style="width: 10%;" aria-valuenow="10"
-											     aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<div class="fw-semi-bold ms-2">10%</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<div class="d-flex align-items-center position-relative"><img
-												class="rounded-1 border border-200"
-												src="assets/img/products/13.png" width="60" alt=""/>
-										<div class="flex-1 ms-3">
-											<h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link" href="#!">Reign
-													Pro</a></h6>
-											<p class="fw-semi-bold mb-0 text-500">Agency</p>
-										</div>
-									</div>
-								</td>
-								<td class="align-middle text-end fw-semi-bold">$280</td>
-								<td class="align-middle pe-card">
-									<div class="d-flex align-items-center">
-										<div class="progress me-3 rounded-3 bg-200" style="height: 5px;width:80px">
-											<div class="progress-bar rounded-pill" role="progressbar" style="width: 8%;"
-											     aria-valuenow="8"
-											     aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-										<div class="fw-semi-bold ms-2">8%</div>
-									</div>
-								</td>
-							</tr>
+									</td>
+								</tr>
+                            <?php endforeach; ?>
+
 							</tbody>
 						</table>
 					</div>
@@ -435,7 +327,8 @@
             url: '<?= route_to('dashboard.stats') ?>',
             dataType: 'json',
             success: response => {
-                InitCountUp($('#weekly-sales-cu').get(0), response.weekly_sales, {prefix: 'KSH.'})
+                InitWeeklySales(response.weekly_sales.chart)
+                InitCountUp($('#weekly-sales-cu').get(0), response.weekly_sales.amount, {prefix: 'KSH.'})
                 InitCountUp($('#total-orders-cu').get(0), response.total_orders)
 
                 InitPopularProducts(response.popular_products)
@@ -445,7 +338,6 @@
             },
             error: error => console.log(error)
         })
-
 
 
         /*==========================================================================    WEATHER SETUP
@@ -462,7 +354,7 @@
                 }@4x.png`;
 
             InitCountUp($('#current-temp-cu').get(0), tempInCelsius)
-	        $('#weather-icon').prop('src', icon)
+            $('#weather-icon').prop('src', icon)
             $('#temp-name').html(name)
             $('#temp-condition').html(condition)
             AOS.refreshHard()

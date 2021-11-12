@@ -17,7 +17,9 @@ if(!function_exists('cartDetails')) {
             'total' => collect(session('cart'))->sum('sub_total')
         ];
 
-        return $detail ? $cart[$detail] : $cart;
+        return $detail
+            ? $cart[$detail]
+            : $cart;
     }
 }
 
@@ -50,7 +52,6 @@ if(!function_exists('isAdmin')) {
 }
 
 
-
 if(!function_exists('differenceForHumans')) {
     function differenceForHumans($date): string {
         return Carbon::parse($date)->diffForHumans();
@@ -77,11 +78,10 @@ if(!function_exists('getModel')) {
 }
 
 
-
 /**
  *  ===========================================================================    LARAVEL HELPERS
  */
-if (! function_exists('collect')) {
+if(!function_exists('collect')) {
     /**
      * Create a collection from the given value.
      *
@@ -100,8 +100,36 @@ if(!function_exists('now')) {
         return Carbon::now();
     }
 }
+if(!function_exists('random_elem')) {
+    function random_elem($array) {
+        return collect($array)->random();
+    }
+}
+if(!function_exists('random_shop_icon')) {
+    /**
+     * @param string|null $gender
+     * @param array|null  $array
+     */
+    function random_shop_icon(string $gender = null, array $array = null) {
+        helper('auth');
 
+        $iconCollection = [
+            'male'    => ["👞", "👖", "🕴"],
+            'female'  => ["👗", "👠"],
+            'general' => ['🏷️', '📋️', '📅️', '🎁', '🛒', '🛍', '👕', '👒', "🐕", "🐈"],
+        ];
+        if(isset($array)) {
+            $iconCollection['general'] = [...$array, ...$iconCollection['general']];
+        }
 
+        $icons = $iconCollection['general'];
+        if($gender) {
+            $icons = array_merge($icons, $iconCollection[strtolower($gender)]);
+        }
+
+        return random_elem($icons);
+    }
+}
 
 
 /**

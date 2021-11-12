@@ -68,39 +68,31 @@ class User extends Model
     public function role(): BelongsTo {
         return $this->belongsTo(Role::class);
     }
-
     public function logins(): HasMany {
         return $this->hasMany(Login::class);
     }
-
     public function cart(): HasMany {
         return $this->hasMany(Cart::class);
     }
-
     public function mpesaStkRequests(): HasMany {
         return $this->hasMany(MpesaStkRequest::class);
     }
-
     public function products(): HasMany {
         return $this->hasMany(Product::class);
     }
-
     public function orders(): HasMany {
         return $this->hasMany(Order::class);
     }
-
     public function ordersDetails(): HasManyThrough {
         return $this->hasManyThrough(OrdersDetail::class, Order::class);
     }
-
     public function wallet(): HasOne {
         return $this->hasOne(Wallet::class);
     }
-
-
     public function apiUser(): HasOne {
         return $this->hasOne(ApiUser::class);
     }
+
 
 
     /**

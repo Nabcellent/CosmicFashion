@@ -38,6 +38,20 @@
 					<button class="btn btn-falcon-primary btn-sm px-3" type="button">Email</button>
 					<button class="btn btn-falcon-default btn-sm px-3 ms-2" type="button">Message</button>
 					<div class="border-dashed-bottom my-4 d-lg-none"></div>
+                    <?php if(isset($user->apiUser)): ?>
+						<pre class="scrollbar mt-2 language-html py-1 fs-12"><code class=" language-html"><span
+										class="token tag"><span class="token tag"><span
+												class="token punctuation">&lt;</span>Api-key</span><span
+											class="token attr-name"> value</span><span class="token attr-value"><span
+												class="token punctuation attr-equals">=</span><span
+												class="token punctuation">"</span><?= $user->apiUser->key ?><span
+												class="token punctuation">"</span></span><span
+											class="token punctuation">&gt;</span></span><span
+										class="token script"></span><span class="token tag"><span
+											class="token tag"><span
+												class="token punctuation">&lt;/</span>Api-key</span><span
+											class="token punctuation">&gt;</span></span></code></pre>
+                    <?php endif; ?>
 				</div>
 				<div class="col ps-2 ps-lg-3">
 
@@ -88,58 +102,57 @@
 		<div class="col-lg-8 pe-lg-2">
 			<div class="card mb-3">
 				<div class="card-header bg-light d-flex justify-content-between">
-					<h5 class="mb-0">Orders</h5><a href="../../app/social/activity-log.html">All
-						orders</a>
+					<h5 class="mb-0">Orders</h5>
+					<a href="<?= route_to('admin.orders.index') ?>">All orders</a>
 				</div>
 				<div class="card-body fs--1 p-0">
-					<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
-						<div class="notification-avatar">
-							<div class="avatar avatar-xl me-3">
-								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">🏷️</span>
-								</div>
-							</div>
-						</div>
-						<div class="notification-body">
-							<p class="mb-1">
-								<strong>California Institute of Technology</strong> tagged
-								<strong>Anthony Hopkins</strong> in a post.
-							</p>
-							<span class="notification-time">November 8, 5:00 PM</span>
-						</div>
-					</a>
 
-					<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
-						<div class="notification-avatar">
-							<div class="avatar avatar-xl me-3">
-								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📋️</span>
-								</div>
-							</div>
-						</div>
-						<div class="notification-body">
-							<p class="mb-1">
-								<strong>Anthony Hopkins</strong> joined
-								<strong>Victory day cultural Program</strong> with
-								<strong>Tony Stark</strong>
-							</p>
-							<span class="notification-time">November 01, 11:30 AM</span>
-						</div>
-					</a>
+                    <?php
+                    foreach($user->orders as $order):
+                        $status = match ($order->status) {
+                            'paid' => [
+                                'icon'  => 'check',
+                                'color' => 'success'
+                            ],
+                            'pending' => [
+                                'icon'  => 'stream',
+                                'color' => 'warning'
+                            ],
+                            'pending payment' => [
+                                'icon'  => 'redo',
+                                'color' => 'primary'
+                            ]
+                        }
+                        ?>
 
-					<a class="notification border-x-0 border-bottom-0 border-300 rounded-top-0" href="#!">
-						<div class="notification-avatar">
-							<div class="avatar avatar-xl me-3">
-								<div class="avatar-emoji rounded-circle "><span role="img" aria-label="Emoji">📅️</span>
+						<a class="border-bottom-0 notification rounded-0 border-x-0 border border-300"
+						   href="<?= route_to('admin.orders.show', $order->id) ?>">
+							<div class="notification-avatar">
+								<div class="avatar avatar-xl me-3">
+									<div class="avatar-emoji rounded-circle ">
+										<span role="img" aria-label="Emoji">
+											<?= random_shop_icon($user->gender) ?>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="notification-body">
-							<p class="mb-1">
-								<strong>Massachusetts Institute of Technology</strong> invited
-								<strong>Anthony Hopkin</strong> to an event.
-							</p>
-							<span class="notification-time">October 28, 12:00 PM</span>
-						</div>
-					</a>
+							<div class="notification-body">
+								<p class="mb-1">
+									Payment Method: <strong
+											class="text-blue-dark"><?= $order->paymentType->name ?></strong> |
+									amount: <strong class="text-danger">KSH.<?= number_format($order->amount,
+                                            2) ?></strong> |
+									status: <strong class="badge badge rounded-pill badge-soft-<?= $status['color'] ?>">
+                                        <?= ucwords($order->status) ?>
+										<strong class="ms-1 fas fa-<?= $status['icon'] ?>"
+										        data-fa-transform="shrink-2"></strong>
+									</strong>
+								</p>
+								<span class="notification-time"><?= date('F jS, Y, g:i A') ?></span>
+							</div>
+						</a>
+                    <?php endforeach; ?>
+
 				</div>
 			</div>
 			<div class="card mb-3">
@@ -247,10 +260,38 @@
 				</div>
 				<div class="card mb-3">
 					<div class="card-header bg-light">
-						<h5 class="mb-0">Products</h5>
+						<h5 class="mb-0">Popular Products</h5>
 					</div>
 					<div class="card-body fs--1">
-						<div class="d-flex"><a href="#!">
+
+                        <?php foreach($popularProducts as $product): ?>
+							<div class="d-flex">
+								<a href="#!">
+									<div class="avatar avatar-3xl">
+										<img class="img-fluid rounded-circle" src="/images/products/<?= $product->image ?>" alt="" width="56"/>
+									</div>
+								</a>
+								<div class="flex-1 position-relative ps-3">
+									<h6 class="fs-0 mb-0">
+										<a href="#!">
+											<?= $product->name ?>
+											<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified">
+											<small class="fa fa-check-circle text-primary"
+											       data-fa-transform="shrink-4 down-2"></small>
+										</span>
+										</a>
+									</h6>
+									<p class="mb-1 text-truncate" style="max-width: 250px;"><?= $product->description ?></p>
+									<p class="text-1000 mb-0">KSH.<?= number_format($product->price, 2) ?>/-</p>
+									<div class="border-dashed-bottom my-3"></div>
+								</div>
+							</div>
+                        <?php endforeach; ?>
+
+						<hr>
+
+						<div class="d-flex">
+							<a href="#!">
 								<div class="avatar avatar-3xl">
 									<div class="avatar-name rounded-circle"><span>SU</span></div>
 								</div>
@@ -267,47 +308,8 @@
 								</h6>
 								<p class="mb-1">Computer Science and Engineering</p>
 								<p class="text-1000 mb-0">2010 - 2014 • 4 yrs</p>
-								<p class="text-1000 mb-0">California, USA</p>
+								<p class="text-1000 mb-0">Nairobi, Kenya</p>
 								<div class="border-dashed-bottom my-3"></div>
-							</div>
-						</div>
-						<div class="d-flex">
-							<a href="#!">
-								<img class="img-fluid" src="/images/dash/logos/staten.png" alt="" width="56"/></a>
-							<div class="flex-1 position-relative ps-3">
-								<h6 class="fs-0 mb-0">
-									<a href="#!">
-										Stanford High School
-										<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified">
-											<small class="fa fa-check-circle text-primary"
-											       data-fa-transform="shrink-4 down-2">
-											</small>
-										</span>
-									</a>
-								</h6>
-								<p class="mb-1">Higher Secondary School Certificate, Science</p>
-								<p class="text-1000 mb-0">2008 - 2010 &bull; 2 yrs</p>
-								<p class="text-1000 mb-0">New York, USA</p>
-								<div class="border-dashed-bottom my-3"></div>
-							</div>
-						</div>
-						<div class="d-flex">
-							<a href="#!">
-								<img class="img-fluid" src="/images/dash/logos/tj-heigh-school.png" alt="" width="56"/>
-							</a>
-							<div class="flex-1 position-relative ps-3">
-								<h6 class="fs-0 mb-0">
-									<a href="#!">
-										Thomas Jefferson High School for Science and Technology
-										<span data-bs-toggle="tooltip" data-bs-placement="top" title="Verified">
-											<small class="fa fa-check-circle text-primary"
-											       data-fa-transform="shrink-4 down-2"></small>
-										</span>
-									</a>
-								</h6>
-								<p class="mb-1">Secondary School Certificate, Science</p>
-								<p class="text-1000 mb-0">2003 - 2008 &bull; 5 yrs</p>
-								<p class="text-1000 mb-0">Alexandria, USA</p>
 							</div>
 						</div>
 					</div>
@@ -334,7 +336,7 @@
 					<form action="<?= route_to('admin.user.api.store') ?>" method="POST">
                         <?= csrf_field() ?>
 						<div class="mb-3">
-							<label class="form-label" for="username">Username</label>
+							<label class="form-label" for="username">Username <small><i>(optional)</i></small></label>
 							<input class="form-control" type="text" placeholder="Username" name="username"
 							       id="username"/>
 						</div>
@@ -387,7 +389,7 @@
          * Generate new key and insert into input value
          */
         $('#keygen').on('click', function () {
-            $('#apikey').val(generateUUID());
+            $('#apikey').val(uniqid('cf_api-', true));
         });
 
         $(() => {

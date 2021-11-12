@@ -1,8 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import 'bootstrap.red.css';
 
 :root {
 	--cf-prmiary: rgb(153, 0, 0);
-	--cf-primary: rgb(173, 10, 10)
+	--cf-primary: rgb(173, 10, 10);
+
+	--cf-orange: rgb(255, 165, 0);
+	--cf-orange-dark: rgb(255, 69, 0);
+	--cf-blue: rgb(45, 73, 157);
+	--cf-dark-blue: rgb(39, 46, 72);
+	--cf-light-blue: rgb(188, 208, 247);
 }
 
 body {
@@ -80,14 +87,6 @@ img {
 
 .fw-semibold {
 	font-weight: 600
-}
-
-.text-red {
-	color: #900 !important;
-}
-
-.text-blue {
-	color: rgb(173, 216, 230) !important;
 }
 
 

@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Helpers\ChartAid;
 use App\Models\Category;
 use App\Models\OrdersDetail;
 use App\Models\Product;
@@ -62,19 +63,7 @@ class ProductController extends BaseController
      * @throws Exception
      */
     public function dailyPurchases($id): bool|string {
-        $frequency = 'daily';
-
-        $purchases = OrdersDetail::where('product_id', $id)->whereHas('order', function($query) {
-            $query->where('is_paid', true);
-        })->whereBetween('created_at', [chartStartDate($frequency), now()])
-            ->get(['created_at'])->groupBy(function($item) use ($frequency) {
-                return chartDateFormat($item->created_at, $frequency);
-            });
-
-        $purchases = chartDataSet($purchases, $frequency);
-        $purchases['total'] = array_sum($purchases['datasets']);
-
-        return json_encode($purchases);
+        return json_encode(ChartAid::weeklySales());
     }
 
     public function create(): string {

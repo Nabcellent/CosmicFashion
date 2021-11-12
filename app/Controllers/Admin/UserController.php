@@ -4,12 +4,13 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Helpers\ChartAid;
-use App\Models\ApiUser;
+use App\Models\OrdersDetail;
 use App\Models\Role;
 use App\Models\User;
 use CodeIgniter\HTTP\RedirectResponse;
 use Exception;
 use Myth\Auth\Password;
+use Nabz\Models\DB;
 
 class UserController extends BaseController
 {
@@ -23,13 +24,28 @@ class UserController extends BaseController
 
     public function show($id): string|RedirectResponse {
         try {
-            $data['user'] = User::with([
-                'role',
-                'logins' => function($query) {
-                    $query->take(3);
-                },
-                'apiUser'
-            ])->withCount(['ordersDetails as total_items_ordered', 'orders'])->findOrFail($id);
+            $data = [
+                'user'            => User::with([
+                    'role',
+                    'apiUser',
+                    'logins' => function($query) {
+                        $query->take(3);
+                    },
+                    'orders' => function($query) {
+                        $query->with('paymentType');
+                    },
+                ])->withCount(['ordersDetails as total_items_ordered', 'orders'])->findOrFail($id),
+                'popularProducts' => OrdersDetail::whereHas('order', function($query) use ($id) {
+                    $query->whereUserId($id);
+                })->join('products', 'orders_details.product_id', '=', 'products.id')->select([
+                    'image',
+                    'products.price',
+                    'description',
+                    'product_id',
+                    'name',
+                    DB::raw("SUM(quantity) as sales")
+                ])->groupBy('product_id')->latest('sales')->take(5)->get(),
+            ];
 
             return view('Admin/pages/users/profile', $data);
         } catch (Exception $e) {
@@ -42,8 +58,6 @@ class UserController extends BaseController
         $data['users'] = User::whereHas('role', function($query) {
             $query->where('name', 'Customer');
         })->with('role')->get();
-
-//        dd($data['users']);
 
         return view('Admin/pages/users/index', $data);
     }
@@ -99,13 +113,15 @@ class UserController extends BaseController
     /**
      * Return a new resource object, with default properties
      *
-     * @return mixed
      */
-    public function storeApi() {
-        $rules = ['user_id' => 'required'];
+    public function storeApi(): RedirectResponse {
+        $rules = [
+            'user_id' => 'required',
+            'key'     => 'permit_empty|is_unique[api_users.key]'
+        ];
         $messages = [
             'user_id' => [
-                'required' => "Can't find existing user for creation."
+                'required' => "Unable to user for creation! Kindly contact admin."
             ]
         ];
 
@@ -114,16 +130,14 @@ class UserController extends BaseController
         }
 
         $data = $this->request->getVar();
-        $data['key'] = empty($data['key'])
-            ? null
-            : $data['key'];
+        $data['key'] = $data['key'] ?? uniqid('cf_api-', true);
 
         try {
             $user = User::find($data['user_id']);
 
             $data['username'] = $this->request->getVar('username') ?? $user->email;
 
-            $user->updateOrcreate(['user_id' => $data['user_id']], $data);
+            $user->apiUser()->create($data);
 
             return createOk('Registration successful! ✔');
         } catch (Exception $e) {
@@ -183,7 +197,10 @@ class UserController extends BaseController
         }
     }
 
-    public function userStats($id) {
+    /**
+     * @throws Exception
+     */
+    public function userStats($id): bool|string {
         return json_encode([
             'weekly_purchases' => ChartAid::weeklyOrders($id)
         ]);
