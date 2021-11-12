@@ -55,7 +55,8 @@ class LogRequestFilter implements FilterInterface
             default => 'transactions',
         };
 
-        if($apiKey = $authRequest->headers('cf_api_key')) {
+        $apiKey = $authRequest->headers('cf_api_key');
+        if(isset($apiKey) && ApiUser::where('key', $apiKey)->exists()) {
             $data['user_id'] = ApiUser::where('key', $apiKey)->first()->user_id;
         } else if($server->verifyResourceRequest($authRequest)) {
             $data['user_id'] = $server->getAccessTokenData($authRequest)['user_id'];
