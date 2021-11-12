@@ -19,7 +19,7 @@ class MpesaStkCallbacks extends Migration
             'result_code'          => ['type' => 'INTEGER'],
             'result_desc'          => ['type' => 'VARCHAR', 'constraint' => 255],
             'amount'               => ['type' => 'DOUBLE', 'unsigned' => true, 'null' => true],
-            'phone'                => ['type' => 'BIGINTEGER', 'constraint' => 12, 'null' => true],
+            'phone'                => ['type' => 'VARCHAR', 'constraint' => 12, 'null' => true],
             'balance'              => ['type' => 'INTEGER', 'null' => true],
             'mpesa_receipt_number' => ['type' => 'VARCHAR', 'constraint' => 255, 'null' => true],
             'transaction_date timestamp default current_timestamp null',

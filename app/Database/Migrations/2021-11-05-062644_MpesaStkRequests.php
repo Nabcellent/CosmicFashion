@@ -10,8 +10,8 @@ class MpesaStkRequests extends Migration
         $this->forge->addField([
             'id'                  => ['type' => 'INT', 'constraint' => 5, 'unsigned' => true, 'auto_increment' => true],
             'user_id'             => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
-            'order_id'             => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
-            'phone'               => ['type' => 'BIGINTEGER', 'constraint' => 12],
+            'order_id'            => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => true],
+            'phone'               => ['type' => 'VARCHAR', 'constraint' => 12],
             'amount'              => ['type' => 'DOUBLE', 'unsigned' => true],
             'reference'           => ['type' => 'VARCHAR', 'constraint' => 255],
             'description'         => ['type' => 'VARCHAR', 'constraint' => 255],

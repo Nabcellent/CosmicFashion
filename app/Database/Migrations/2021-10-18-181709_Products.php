@@ -13,7 +13,7 @@ class Products extends Migration {
             'name'            => ['type' => 'VARCHAR', 'constraint' => '25'],
             'price'           => ['type' => 'DOUBLE', 'unsigned' => true],
             'stock'           => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'default' => 1],
-            'discount'        => ['type' => 'TINYINT', 'default' => 0,],
+            'discount'        => ['type' => 'TINYINT', 'default' => 0],
             'image'           => ['type' => 'VARCHAR', 'constraint' => '40', 'null' => true, 'unique' => true],
             'description'     => ['type' => 'TEXT', 'null' => true],
             'status'          => ['type' => 'BOOLEAN', 'default' => true],
