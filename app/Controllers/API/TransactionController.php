@@ -76,7 +76,7 @@ class TransactionController extends ResourceController
                 })->get($transactionFields),
             ];
 
-            $transactions = collect($transactions)->map(function($transaction) use ($options) {
+            $transactions = collect($transactions)->map(function($transaction, $key) use ($options) {
                 if(isset($options['from_date'])) {
                     $fromDate = Carbon::createFromFormat('d-m-Y', $options['from_date'])->format('Y-m-d h:i:s');
                     $toDate = isset($options['to_date'])
@@ -85,7 +85,10 @@ class TransactionController extends ResourceController
                     $transaction = $transaction->whereBetween('created_at', [$fromDate, $toDate]);
                 }
 
-                $transaction->prepend(count($transaction), 'count');
+                $count = count($transaction);
+                $transaction->prepend($count, 'count');
+
+                if(!$count) $transaction['message'] = 'No transaction found matching your query.';
 
                 return $transaction;
             });

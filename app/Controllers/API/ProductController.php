@@ -67,7 +67,7 @@ class ProductController extends ResourceController
             $count = count($products);
             $products->prepend($count, 'count');
 
-            if(!$count) $products['message'] = 'No products found matching your query';
+            if(!$count) $products['message'] = 'No products found matching your query.';
 
             return $this->respond($products);
         } catch (Exception $e) {
@@ -104,10 +104,8 @@ class ProductController extends ResourceController
             $products = User::findOrFail($id)->products;
 
             $count = count($products);
+            if(!$count) return $this->respond(['msg' => 'This user has no products.']);
 
-            if(!$count) {
-                return $this->respond(['msg' => 'This user has no products.']);
-            }
 
             $products->prepend($count, 'count');
 
@@ -138,7 +136,10 @@ class ProductController extends ResourceController
                 DB::raw("SUM(quantity) as sales")
             ])->groupBy('product_id')->latest('sales')->get();
 
-            $products->prepend(count($products), 'count');
+            $count = count($products);
+            $products->prepend($count, 'count');
+
+            if(!$count) $products['message'] = 'No products found matching your query.';
 
             return $this->respond($products);
         } catch (Exception $e) {
