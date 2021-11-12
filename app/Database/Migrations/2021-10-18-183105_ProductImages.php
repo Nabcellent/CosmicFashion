@@ -14,7 +14,7 @@ class ProductImages extends Migration {
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('product_id', 'products', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('product_images', true);
     }
 

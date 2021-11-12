@@ -83,7 +83,11 @@ class ProductController extends ResourceController
      */
     public function show($id = null): mixed {
         try {
-            $product = Product::findOrFail($id);
+            $product = Product::with(['subCategory' => function($query) {
+                $query->with(['category' => function($query) {
+                    $query->select(['id', 'name']);
+                }])->select(['id', 'category_id', 'name']);
+            }])->findOrFail($id);
 
             return $this->respond($product);
         } catch (Exception $e) {

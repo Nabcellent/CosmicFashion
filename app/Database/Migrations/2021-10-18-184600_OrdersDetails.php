@@ -19,8 +19,8 @@ class OrdersDetails extends Migration {
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('order_id', 'orders', 'id', '', 'CASCADE');
-        $this->forge->addForeignKey('product_id', 'products', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('order_id', 'orders', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('orders_details', true);
     }
 

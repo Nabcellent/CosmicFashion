@@ -24,7 +24,7 @@ class MpesaStkRequests extends Migration
         ]);
 
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('user_id', 'users', 'id', '', 'CASCADE');
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('order_id', 'orders', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('mpesa_stk_requests');
     }
