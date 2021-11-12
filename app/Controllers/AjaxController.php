@@ -71,10 +71,10 @@ class AjaxController extends BaseController
             $path = "images/products/{$name}";
         } else if($table === 'users') {
             $name = User::find($id)->image;
-            $path = 'images/users/' . $name;
+            $path = "images/users/{$name}";
         }
 
-        if(file_exists($path)) unlink($path);
+        if(isset($name) && file_exists($path)) unlink($path);
 
         return DB::transaction(function() use ($id, $model) {
             if($model::destroy($id)) return json_encode(['success' => true]);
