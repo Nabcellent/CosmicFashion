@@ -59,3 +59,7 @@ be found
 ## Installation and other documentation.
 
 ### Coming soon!
+
+## API Documentation
+
+### [Link to the Api Documentation Wiki](https://github.com/Nabcellent/CosmicFashion/wiki)
