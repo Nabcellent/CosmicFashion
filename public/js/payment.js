@@ -73,7 +73,7 @@ class STK {
                     position: 'top-end',
                     icon: 'info',
                     title: 'Payment Cancelled',
-                    text: 'RewAd',
+                    text: 'CosmicFashion.',
                     timer: 3000,
                     showConfirmButton: false
                 }).then(() => hideLoader())
@@ -101,7 +101,7 @@ class STK {
                 position: 'top-end',
                 icon: data.icon,
                 title: data.message,
-                text: 'RewAd',
+                text: 'CosmicFashion.',
                 timer: 3000,
                 showConfirmButton: false
             }).then(() => {
@@ -179,7 +179,7 @@ if ($('#paypal_payment_button').length) {
                                     position: 'top-end',
                                     icon: 'success',
                                     title: 'Payment Successful!',
-                                    text: 'RewAd',
+                                    text: 'CosmicFashion.',
                                     timer: 3000,
                                     showConfirmButton: false
                                 }).then(() => {
@@ -211,7 +211,7 @@ if ($('#paypal_payment_button').length) {
                 title: 'Payment Cancelled.',
                 position: 'top-end',
                 icon: 'info',
-                text: 'RewAd',
+                text: 'CosmicFashion.',
                 timer: 3000,
                 showConfirmButton: false
             })

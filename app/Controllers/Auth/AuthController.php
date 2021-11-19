@@ -170,11 +170,6 @@ class AuthController extends Controller
      * Attempt to register a new user.
      */
     public function attemptRegister(): bool|string|RedirectResponse {
-        // Check if registration is allowed
-        if(!$this->config->allowRegistration) {
-            return json_encode(['status' => false, 'message' => lang('Auth.registerDisabled')]);
-        }
-
         // Validate basics first since some password rules rely on these fields
         $rules = [
             'first_name' => 'required|min_length[2]|max_length[50]',
@@ -209,18 +204,6 @@ class AuthController extends Controller
             ['role_id']);
         $newUser = $this->request->getPost($allowedPostFields);
         $newUser['role_id'] = Role::where('name', 'Customer')->first()->id;
-
-        $user = new User($newUser);
-
-        try {
-            $this->config->requireActivation === null
-                ? $user->activate()
-                : $user->generateActivateHash();
-        } catch (Exception $e) {
-            return redirect()->back()->withInput()
-                ->with('error', 'Unable to activate account. Kindly contact Admin' ?? lang('Auth.unknownError'));
-        }
-
         $newUser['password'] = Password::hash($newUser['password']);
 
         User::create($newUser);
