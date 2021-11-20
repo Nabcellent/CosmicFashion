@@ -101,15 +101,14 @@
                         data: data,
                         url: `<?= route_to('login') ?>`,
                         method: 'POST',
+	                    dataType: 'json',
                         beforeSend: () => submitButton.prop('disabled', true).html(`Signing In...
 										<span class="ld ld-ring ld-spin"></span>`).addClass('running'),
                         success: response => {
-                            const result = JSON.parse(response)
-
-                            if (result.status) {
-                                location.href = result.url
-                            } else if (result.message) {
-                                toast({msg: result.message, type: 'warning', duration: 10, position: 'left'})
+                            if (response.status) {
+                                location.href = response.url
+                            } else if (response.message) {
+                                toast({msg: response.message, type: 'warning', duration: 10, position: 'left'})
                             } else {
                                 toast({
                                     msg: `Error: unable to log you in. Kindly contact admin.`,
