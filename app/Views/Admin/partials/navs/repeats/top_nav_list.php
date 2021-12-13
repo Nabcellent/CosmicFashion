@@ -61,39 +61,6 @@
 		</li>
 
 		<!--
-        ========================================================================================    TOP PAGES
-        -->
-
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-			   aria-expanded="false" id="pagess">Pages</a>
-			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
-				<div class="card navbar-card-pages shadow-none dark__bg-1000">
-					<div class="card-body scrollbar max-h-dropdown">
-						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png"
-						     width="130" alt=""/>
-						<div class="row">
-							<div class="col-6 col-xxl-3">
-								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">User</p>
-									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/profile.html">Profile</a>
-									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
-								</div>
-							</div>
-							<div class="col-6 col-xxl-3">
-								<div class="nav flex-column">
-									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p>
-									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-default.html">Pricing default</a>
-									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</li>
-
-		<!--
         ========================================================================================    TOP API
         -->
 
@@ -121,6 +88,39 @@
 									<p class="nav-link text-700 mb-0 fw-bold">Api users</p>
 									<a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customers.html">Users list</a>
 									<a class="nav-link py-1 link-600 fw-medium" href="app/e-commerce/customer-details.html">User details</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+
+		<!--
+        ========================================================================================    TOP ADMIN
+        -->
+
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+			   aria-expanded="false" id="pagess">Pages</a>
+			<div class="dropdown-menu dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
+				<div class="card navbar-card-pages shadow-none dark__bg-1000">
+					<div class="card-body scrollbar max-h-dropdown">
+						<img class="img-dropdown" src="/images/dash/icons/spot-illustrations/authentication-corner.png"
+						     width="130" alt=""/>
+						<div class="row">
+							<div class="col-6 col-xxl-3">
+								<div class="nav flex-column">
+									<p class="nav-link text-700 mb-0 fw-bold">User</p>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/profile.html">Profile</a>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/user/settings.html">Settings</a>
+								</div>
+							</div>
+							<div class="col-6 col-xxl-3">
+								<div class="nav flex-column">
+									<p class="nav-link text-700 mb-0 fw-bold">Pricing</p>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-default.html">Pricing default</a>
+									<a class="nav-link py-1 link-600 fw-medium" href="pages/pricing/pricing-alt.html">Pricing alt</a>
 								</div>
 							</div>
 						</div>
