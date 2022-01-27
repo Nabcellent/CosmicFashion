@@ -1,0 +1,70 @@
+.btn.btn-outline-success,
+.btn.btn-outline-danger,
+.btn.btn-outline-warning {
+	position: relative;
+	transition: all .3s ease;
+}
+
+.btn.btn-outline-success {
+	color: #21ae8c;
+	border: 1px solid #21ae8c;
+}
+
+.btn.btn-outline-danger {
+	color: #fd5f00;
+	border: 1px solid #fd5f00;
+}
+
+.btn.btn-outline-warning {
+	color: #fda700;
+	border: 1px solid #fda700;
+}
+
+.btn.btn-outline-success:focus:after,
+.btn.btn-outline-success:hover:after,
+.btn.btn-outline-warning:focus:after,
+.btn.btn-outline-warning:hover:after,
+.btn.btn-outline-danger:focus:after,
+.btn.btn-outline-danger:hover:after {
+	width: 100%;
+	transition: all .3s ease
+}
+
+.btn.btn-outline-success:focus,
+.btn.btn-outline-success:hover,
+.btn.btn-outline-danger:focus,
+.btn.btn-outline-danger:hover,
+.btn.btn-outline-warning:focus,
+.btn.btn-outline-warning:hover {
+	color: #fff !important
+}
+
+.btn.btn-outline-success:after,
+.btn.btn-outline-warning:after,
+.btn.btn-outline-danger:after {
+	content: '';
+	position: absolute;
+	transition: all .3s ease;
+	z-index: -1;
+	width: 0;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.btn.btn-outline-success:after {
+	background: #21ae8c
+}
+
+.btn.btn-outline-danger:after {
+	background: #fd5f00
+}
+
+.btn.btn-outline-warning:after {
+	background: #fda700
+}
+
+.btn-check:checked+.btn-outline-danger {
+	background-color:  #fd5f00;
+	border-color:  #fd5f00;
+}

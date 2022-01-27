@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import 'bootstrap.red.css';
+
+:root {
+	--cf-prmiary: rgb(153, 0, 0);
+	--cf-primary: rgb(173, 10, 10);
+
+	--cf-orange: rgb(255, 165, 0);
+	--cf-orange-dark: rgb(255, 69, 0);
+	--cf-blue: rgb(45, 73, 157);
+	--cf-dark-blue: rgb(39, 46, 72);
+	--cf-light-blue: rgb(188, 208, 247);
+}
+
+body {
+	font-family: 'Varela Round', cursive !important;
+}
+
+
+img {
+	object-fit: cover !important;
+}
+
+.fs-9 {
+	font-size: 9px !important
+}
+
+.fs-10 {
+	font-size: 10px !important
+}
+
+.fs-11 {
+	font-size: 11px !important
+}
+
+.fs-12 {
+	font-size: 12px !important
+}
+
+.fs-13 {
+	font-size: 13px !important
+}
+
+.fs-14 {
+	font-size: 14px !important
+}
+
+.fs-15 {
+	font-size: 15px !important
+}
+
+.fs-16 {
+	font-size: 16px !important
+}
+
+.fs-17 {
+	font-size: 17px !important
+}
+
+.fs-18 {
+	font-size: 18px !important
+}
+
+.fs-20 {
+	font-size: 20px !important
+}
+
+.fs-22 {
+	font-size: 22px !important
+}
+
+.fs-24 {
+	font-size: 24px !important
+}
+
+.fs-32 {
+	font-size: 32px !important
+}
+
+.fs-48 {
+	font-size: 48px !important
+}
+
+.fw-medium {
+	font-weight: 500
+}
+
+.fw-semibold {
+	font-weight: 600
+}
+
+
+.toastify {
+	font-weight: bolder;
+}
+
+.toastify.success {
+	background: linear-gradient(30deg, rgb(10, 170, 30), rgba(10, 170, 100, .8), #73a5ff);
+}
+
+.toastify.info {
+	background: linear-gradient(30deg, rgb(37, 157, 138), rgba(37, 157, 138, .8), #73a5ff);
+}
+
+.toastify.warning {
+	background: linear-gradient(30deg, rgb(235, 166, 18), rgba(235, 166, 18, .8), #73a5ff);
+	color: rgb(30, 30, 30);
+}
+
+.toastify.danger {
+	background: linear-gradient(30deg, rgb(200, 20, 10), rgba(1200, 20, 10, .8), #73a5ff);
+}
+
+
+/* ==========================================================================================    GLOBALS  */
+
+.card {
+	-webkit-box-shadow: var(--falcon-box-shadow);
+	box-shadow: var(--falcon-box-shadow)
+}
+
+.bg-holder {position: absolute;
+	width: 100%;
+	min-height: 100%;
+	top: 0;
+	left: 0;
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+	will-change: transform, opacity, filter;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	background-repeat: no-repeat;
+	z-index: 0
+}
+
+.bg-card {
+	background-size: contain;
+	background-position: right;
+	border-top-right-radius: .375rem;
+	border-bottom-right-radius: .375rem
+}
+
+.form-control {display: block;
+	width: 100%;
+	padding: .3125rem 1rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--falcon-input-color);
+	background-color: var(--falcon-input-bg);
+	background-clip: padding-box;
+	border: 1px solid var(--falcon-input-border-color);
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border-radius: .25rem;
+	-webkit-box-shadow: var(--falcon-box-shadow-inset);
+	box-shadow: var(--falcon-box-shadow-inset);
+	-webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+	-o-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
+}
+
+.btn,
+[data-list] .page,
+.tox .tox-menu__footer .tox-button:last-child,
+.tox .tox-dialog__footer .tox-button:last-child,
+.tox .tox-menu__footer .tox-button--secondary,
+.tox .tox-dialog__footer .tox-button--secondary {
+	display: inline-block;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #5e6e82;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	-webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+	-o-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out
+}
+
+.btn-primary, .navbar-vertical .btn-purchase, .tox .tox-menu__footer .tox-button:last-child, .tox .tox-dialog__footer .tox-button:last-child {
+	color: #fff;
+	background-color: #2c7be5;
+	border-color: #2c7be5;
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.btn-outline-primary {color: #2c7be5;border-color: #2c7be5}
+
+.rounded-7 {
+	border-radius: .7rem;
+}
+
+.bg-shape {position: relative;overflow: hidden;background-color: var(--falcon-bg-shape-bg)}
+
+.bg-shape:after, .bg-shape:before {position: absolute;content: '';border-radius: 50%}
+
+.bg-shape:after {background-image: var(--falcon-bg-shape-bg-ltd)}
+
+.bg-shape:before {background-image: var(--falcon-bg-shape-bg-dtl)}
+
+.bg-circle-shape:after {height: 15.625rem;width: 115%;left: 32%;top: -188%}
+
+.bg-circle-shape:before {height: 332%;width: 45%;left: -9%;top: .5625rem}
+
+.z-index-1 {z-index: 1 !important}
+
+.z-index-2 {z-index: 2 !important}
+
+.card-header:first-child {border-radius: calc(0.375rem - 0px) calc(0.375rem - 0px) 0 0}

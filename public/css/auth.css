@@ -1,0 +1,43 @@
+.Login_backgroundImage__2j-eI {
+	background-image: url(/images/flatlogic/pexels-artem-beliaikin-994523.jpg);
+	background-size: cover;
+}
+
+@media (max-width: 1280px) {
+	.Login_button__28f5q {
+		padding: 14px 37px !important
+	}
+}
+
+.Login_formGroup__3wtgQ {
+	position: relative
+}
+
+.Login_viewPassword__7GpV6 {
+	cursor: pointer;
+	position: absolute;
+	right: 8px;
+	top: 36px
+}
+.auth_footer {
+	margin-top: 70px
+}
+.auth_footer > a {
+	margin-right: 15px
+}
+
+.Register_backgroundImage__3ZLed {
+	background-image: url(/images/pexels-tembela-bohle-1884581.jpg);
+	background-size: cover
+}
+
+.Register_formGroup__6wvMB {
+	position: relative
+}
+
+.Register_viewPassword__1bVZC {
+	cursor: pointer;
+	position: absolute;
+	right: 8px;
+	top: 36px
+}

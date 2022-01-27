@@ -1,0 +1,181 @@
+* {
+    font-family: 'Varela Round', cursive;
+}
+
+a {
+    text-decoration: none
+}
+
+td p.detail {
+    margin: 0;
+    padding: 0
+}
+
+#receipt {
+    padding: 5rem 10rem;
+}
+
+.receipt {
+    position: relative;
+    background-color: #fff;
+    min-height: 680px;
+    padding: 15px
+}
+
+.receipt header {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #9f1910FF
+}
+
+.receipt .company-details {
+    text-align: right
+}
+
+.receipt .company-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.receipt .contacts {
+    margin-bottom: 20px
+}
+
+.receipt .receipt-to {
+    text-align: left
+}
+
+.receipt .receipt-to .to {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.receipt .receipt-details {
+    text-align: right
+}
+
+.receipt .receipt-details .receipt-id {
+    margin: 0;
+    color: rgb(0, 0, 208)
+}
+
+.receipt main {
+    padding-bottom: 50px
+}
+
+.receipt main .thanks {
+    margin-top: -50px;
+    font-size: 1.5rem;
+    margin-bottom: 50px
+}
+
+.receipt main .notices {
+    padding-left: 6px;
+    border-left: 6px solid #3989c6
+}
+
+.receipt main .notices .notice {
+    font-size: 1em
+}
+
+.receipt table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px
+}
+
+.receipt table td, .receipt table th {
+    padding: 5px 10px;
+    background: #eee;
+    border-bottom: 1px solid #fff
+}
+
+.receipt table th {
+    white-space: nowrap;
+    font-weight: 400;
+    font-size: 16px
+}
+
+.receipt table td h3 {
+    margin: 0;
+    font-weight: 400;
+    color: #3989c6;
+    font-size: 1em
+}
+
+.receipt table .qty, .receipt table .total, .receipt table .unit {
+    text-align: right;
+    font-size: 1em
+}
+
+.receipt table .no {
+    color: #fff;
+    font-size: 1em;
+    background: #990000
+}
+
+.receipt table .unit {
+    background: #ddd
+}
+
+.receipt table .total {
+    background: darkgoldenrod;
+    color: #fff
+}
+
+.receipt table tbody tr:last-child td {
+    border: none
+}
+
+.receipt table tfoot td {
+    background: 0 0;
+    border-bottom: none;
+    white-space: nowrap;
+    text-align: right;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-top: 1px solid #aaa
+}
+
+.receipt table tfoot tr:first-child td {
+    border-top: none
+}
+
+.receipt table tfoot tr:last-child td {
+    color: #990000;
+    font-size: 1.2em;
+    border-top: 1px solid darkgoldenrod
+}
+
+.receipt table tfoot tr td:first-child {
+    border: none
+}
+
+.receipt-footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: #777;
+    border-top: 1px solid darkgoldenrod;
+    padding: 8px 0
+}
+
+@media print {
+    .receipt {
+        font-size: 11px !important;
+        overflow: hidden !important
+    }
+
+    .receipt footer {
+        position: absolute;
+        bottom: 10px;
+        page-break-after: always
+    }
+
+    .receipt > div:last-child {
+        page-break-before: always
+    }
+
+    @page { size: landscape; }
+}
