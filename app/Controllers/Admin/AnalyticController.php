@@ -9,14 +9,16 @@ use JetBrains\PhpStorm\ArrayShape;
 
 class AnalyticController extends BaseController
 {
-    public function index() {
+    public function index()
+    {
         return view('Admin/pages/analytics/index');
     }
 
     /**
      * @throws Exception
      */
-    public function init(): bool|string {
+    public function init(): bool|string
+    {
         $frequency = $this->request->getVar('frequency') ?? 'all-time';
 
         $data = [
@@ -26,9 +28,13 @@ class AnalyticController extends BaseController
         return json_encode($data);
     }
 
-    public function ordersPerGender(): array {
+    #[ArrayShape(['datasets' => "mixed", 'percent' => "array"])]
+    public function ordersPerGender(): array
+    {
         $data = Order::join('users', 'orders.user_id', '=', 'users.id')
-            ->selectRaw('gender as name, count(*) as value')->groupBy('users.gender')->get();
+            ->selectRaw('gender as name, count(*) as value')
+            ->groupBy('users.gender')
+            ->get();
 
         $total = $data->sum('value');
         $percentages = [];
@@ -37,9 +43,20 @@ class AnalyticController extends BaseController
             $percentages[$gender->name] = ($gender->value / $total) * 100;
         }
 
+        if(!count($data->toArray())) $data = collect([
+            [
+                "name"  => "male",
+                "value" => 0
+            ],
+            [
+                "name"  => "female",
+                "value" => 0
+            ]
+        ]);
+
         return [
             'datasets' => $data->toArray(),
-            'percent' => $percentages
+            'percent'  => $percentages
         ];
     }
 }

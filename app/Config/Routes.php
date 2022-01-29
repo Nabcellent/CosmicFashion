@@ -5,8 +5,7 @@ namespace Config;
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
-// Load the system's routing file first, so that the app and ENVIRONMENT
-// can override as needed.
+// Load the system's routing file first, so that the app and ENVIRONMENT can override as needed.
 if (file_exists(SYSTEMPATH . 'Config/Routes.php')) {
     require SYSTEMPATH . 'Config/Routes.php';
 }
@@ -20,9 +19,6 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-/*$routes->set404Override(function () {
-    return view('errors/html/error');
-});*/
 $routes->setAutoRoute(true);
 
 /*
@@ -103,12 +99,6 @@ $routes->group('/user', function ($route) {
     $route->get('account', 'UserController::account', ['as' => 'user.account']);
     $route->post('wallet', 'UserController::loadWallet', ['as' => 'user.wallet']);
 });
-
-
-
-
-$routes->get('/test', 'HomeController::test', ['as' => 'test']);
-
 
 
 require_once ROOTPATH."/Routes/admin.php";

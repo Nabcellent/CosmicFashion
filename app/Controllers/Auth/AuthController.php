@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Support\Arr;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Password;
+use ReflectionException;
 
 class AuthController extends Controller
 {
@@ -280,6 +281,7 @@ class AuthController extends Controller
      * if they all pass validation.
      *
      * @return mixed
+     * @throws ReflectionException
      */
     public function attemptReset(): mixed {
         if($this->config->activeResetter === null) {
@@ -330,6 +332,7 @@ class AuthController extends Controller
      * Activate account.
      *
      * @return mixed
+     * @throws ReflectionException
      */
     public function activateAccount(): mixed {
         $users = model(UserModel::class);
@@ -397,10 +400,10 @@ class AuthController extends Controller
 
         // Success!
         return redirect()->route('login')->with('message', lang('Auth.activationSuccess'));
-
     }
 
-    protected function _render(string $view, array $data = []) {
+    protected function _render(string $view, array $data = []): string
+    {
         return view($view, $data);
     }
 }

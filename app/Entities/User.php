@@ -6,6 +6,7 @@ use CodeIgniter\Entity\Entity;
 use Myth\Auth\Authorization\GroupModel;
 use Myth\Auth\Authorization\PermissionModel;
 use Myth\Auth\Password;
+use RuntimeException;
 
 class User extends Entity
 {
@@ -188,7 +189,8 @@ class User extends Entity
      *
      * @return bool
      */
-    public function can(string $permission) {
+    public function can(string $permission): bool
+    {
         return in_array(strtolower($permission), $this->getPermissions());
     }
 
@@ -202,7 +204,8 @@ class User extends Entity
      *
      * @return array|mixed
      */
-    public function getPermissions() {
+    public function getPermissions(): mixed
+    {
         if(empty($this->id)) {
             throw new \RuntimeException('Users must be created before getting permissions.');
         }
@@ -223,6 +226,6 @@ class User extends Entity
      * @return $this
      */
     public function setPermissions(array $permissions = null) {
-        throw new \RuntimeException('User entity does not support saving permissions directly.');
+        throw new RuntimeException('User entity does not support saving permissions directly.');
     }
 }

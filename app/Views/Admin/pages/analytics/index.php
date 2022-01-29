@@ -230,8 +230,8 @@
                 purchasesPerGender(ordersPerGender.datasets)
 
                 //  ------------------------------------    COUNT UPS
-                InitCountUp($('#male-count-up').get(0), ordersPerGender.percent.male)
-                InitCountUp($('#female-count-up').get(0), ordersPerGender.percent.female)
+                InitCountUp($('#male-count-up').get(0), ordersPerGender.percent.male ?? 0)
+                InitCountUp($('#female-count-up').get(0), ordersPerGender.percent.female ?? 0)
             },
             error: error => console.log(error)
         })

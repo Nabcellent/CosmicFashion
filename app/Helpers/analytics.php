@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use JetBrains\PhpStorm\ArrayShape;
 
 /**
  *  ===========================================================================    CHARTS / ANALYTICS
@@ -31,6 +32,7 @@ function chartStartDate($frequency): Carbon {
  * @return array
  * @throws Exception
  */
+#[ArrayShape(['labels' => "array", 'datasets' => "array"])]
 function chartDataSet(Collection $models, string $frequency = 'daily' | 'weekly' | 'monthly'): array {
     $frequency = $frequency ?? 'daily';
 

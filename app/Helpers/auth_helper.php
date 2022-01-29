@@ -8,7 +8,8 @@ if(!function_exists('logged_in')) {
      *
      * @return bool
      */
-    function logged_in() {
+    function logged_in(): bool
+    {
         return service('authentication')->check();
     }
 }
@@ -19,7 +20,8 @@ if(!function_exists('user')) {
      *
      * @return User|null
      */
-    function user() {
+    function user(): ?User
+    {
         $authenticate = service('authentication');
         $authenticate->check();
         return $authenticate->user();
@@ -32,7 +34,8 @@ if(!function_exists('user_id')) {
      *
      * @return int|null
      */
-    function user_id() {
+    function user_id(): ?int
+    {
         $authenticate = service('authentication');
         $authenticate->check();
         return $authenticate->id();
@@ -55,7 +58,7 @@ if(!function_exists('in_groups')) {
      *
      * @return bool
      */
-    function in_groups($groups): bool {
+    function in_groups(mixed $groups): bool {
         $authenticate = service('authentication');
         $authorize = service('authorization');
 
@@ -76,7 +79,7 @@ if(!function_exists('has_permission')) {
      *
      * @return bool
      */
-    function has_permission($permission): bool {
+    function has_permission(int|string $permission): bool {
         $authenticate = service('authentication');
         $authorize = service('authorization');
 

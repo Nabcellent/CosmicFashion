@@ -5,6 +5,9 @@ use Config\Services;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+/**
+ * @throws Exception
+ */
 function getJWTFromRequest($authenticationHeader): string
 {
     if (is_null($authenticationHeader)) { //JWT is absent

@@ -140,9 +140,7 @@ class TransactionController extends ResourceController
                     });
                 }
 
-                if(Arr::has($options, 'product')) {
-                    return $query->whereName($options['product']);
-                }
+                if(Arr::has($options, 'product')) return $query->whereName($options['product']);
             });
         });
     }

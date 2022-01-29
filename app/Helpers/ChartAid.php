@@ -22,8 +22,10 @@ class ChartAid
     private string $frequency;
     private Collection $models;
 
-    //  Frequencies - daily, weekly, monthly, yearly
-    //  Aggregate Types - count, sum
+    /**
+     * Frequencies - daily, weekly, monthly, yearly
+     * Aggregate Types - count, sum
+    */
     public function __construct(string $frequency = 'daily' | 'weekly' | 'monthly', string $aggregateType = 'count', string $aggregateColumn = null) {
         $this->frequency = $frequency;
         $this->aggregateType = $aggregateType;
@@ -33,6 +35,7 @@ class ChartAid
     /**
      * @throws Exception
      */
+    #[ArrayShape(['labels' => "array", 'datasets' => "array", 'total' => "float|int"])]
     public static function weeklyOrders($userId = null): array {
         $frequency = 'weekly';
 
@@ -55,6 +58,7 @@ class ChartAid
     /**
      * @throws Exception
      */
+    #[ArrayShape(['labels' => "array", 'datasets' => "array", 'total' => "float|int"])]
     public static function weeklySales($productId = null): array {
         $frequency = 'daily';
 
@@ -81,6 +85,7 @@ class ChartAid
     /**
      * @param Collection $models
      * @return array
+     * @throws Exception
      */
     #[ArrayShape(['labels' => "array", 'datasets' => "array"])]
     public function chartDataSet(Collection $models): array {
@@ -142,6 +147,9 @@ class ChartAid
         };
     }
 
+    /**
+     * @throws Exception
+     */
     public function parseCarbonDate($rawDate): Carbon {
         return match ($this->frequency) {
             'weekly' => Carbon::now()->setISODate(now()->year, $rawDate),
@@ -201,6 +209,9 @@ class ChartAid
         };
     }
 
+    /**
+     * @throws Exception
+     */
     public function chartStartDate(): Carbon {
         return match ($this->frequency) {
             'yearly' => now()->subYear(),

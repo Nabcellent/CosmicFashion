@@ -45,7 +45,5 @@ class BaseController extends Controller {
 
         // Preload any models, libraries, etc, here.
         service('eloquent');
-
-        // E.g.: $this->session = \Config\Services::session();
     }
 }

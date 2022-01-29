@@ -7,7 +7,8 @@ use Exception;
 
 class UserController extends BaseController
 {
-    public function index(): string {
+    public function index(): string
+    {
         $data = [
             'title' => "My Profile",
         ];
@@ -15,7 +16,8 @@ class UserController extends BaseController
         return view('profile', $data);
     }
 
-    public function account(): string {
+    public function account(): string
+    {
         $data = [
             'title' => "My Account",
             'user'  => User::with([
@@ -34,15 +36,8 @@ class UserController extends BaseController
         return view('account', $data);
     }
 
-    public function update() {
-        $rules = [
-//            'username' => 'alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
-'username' => 'required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username,id,{id}]',
-'email'    => 'required|valid_email|is_unique[users.email]',
-        ];
-    }
-
-    public function loadWallet(): bool|string {
+    public function loadWallet(): bool|string
+    {
         try {
             $user = User::findOrFail(user_id());
 
@@ -50,7 +45,8 @@ class UserController extends BaseController
                 $wallet = $user->wallet;
                 $wallet->amount += (float)$this->request->getVar('amount');
                 $wallet->save();
-            } else {
+            }
+            else {
                 $wallet = $user->wallet()->create($this->request->getVar());
             }
 
@@ -66,7 +62,8 @@ class UserController extends BaseController
     }
 
 
-    public function checkEmailExists(): string {
+    public function checkEmailExists(): string
+    {
         $exists = User::where('email', $this->request->getVar('email'))->exists();
 
         return $exists

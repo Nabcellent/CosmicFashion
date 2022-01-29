@@ -138,8 +138,7 @@ class AuthenticationBase
     public function logout() {
         helper('cookie');
 
-        // Destroy the session data - but ensure a session is still
-        // available for flash messages, etc.
+        // Destroy the session data - but ensure a session is still available for flash messages, etc.
         if(isset($_SESSION)) {
             foreach($_SESSION as $key => $value) {
                 $_SESSION[$key] = NULL;

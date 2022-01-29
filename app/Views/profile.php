@@ -72,8 +72,8 @@
 					<h3 class="fw-bold mb-4">My Profile</h3>
 					<div class="row">
 						<form class="">
-							<div class="row">
-								<div class="form-group col">
+							<div class="row mb-3">
+								<div class="col">
 									<label for="exampleEmail" class="fw-bold text-muted">First name</label>
 									<input type="text" name="text" id="exampleEmail" value="<?= user()->first_name ?>" class="w-100 form-control"/>
 								</div>
@@ -82,12 +82,12 @@
 									<input type="text" name="text" id="exampleEmail" value="<?= user()->last_name ?>" class="w-100 form-control"/>
 								</div>
 							</div>
-							<div class="d-flex form-group">
-								<div class="flex-fill mr-5">
+							<div class="row mb-3">
+								<div class="col">
 									<label for="gender" class="fw-bold text-muted">Gender</label>
 									<input type="text" disabled name="gender" value="<?= ucfirst(user()->gender) ?>" id="gender" class="form-control"/>
 								</div>
-								<div class="flex-fill">
+								<div class="col">
 									<label for="exampleEmail" class="fw-bold text-muted">Username</label>
 									<input type="tel" name="text" id="exampleEmail" value="<?= user()->username ?>" class="form-control"/>
 								</div>

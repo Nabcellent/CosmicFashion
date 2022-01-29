@@ -14,7 +14,8 @@ use Nabz\Models\DB;
 
 class UserController extends BaseController
 {
-    public function index(): string {
+    public function index(): string
+    {
         $data['users'] = User::whereHas('role', function($query) {
             $query->where('name', '<>', 'red');
         })->with('role')->get();
@@ -22,7 +23,8 @@ class UserController extends BaseController
         return view('Admin/pages/users/index', $data);
     }
 
-    public function show($id): string|RedirectResponse {
+    public function show($id): string|RedirectResponse
+    {
         try {
             $data = [
                 'user'            => User::with([
@@ -54,7 +56,8 @@ class UserController extends BaseController
         }
     }
 
-    public function showCustomers(): string {
+    public function showCustomers(): string
+    {
         $data['users'] = User::whereHas('role', function($query) {
             $query->where('name', 'Customer');
         })->with('role')->get();
@@ -62,7 +65,8 @@ class UserController extends BaseController
         return view('Admin/pages/users/index', $data);
     }
 
-    public function create(): string {
+    public function create(): string
+    {
         $data = [
             'roles' => Role::where('name', '<>', 'red')->get(),
         ];
@@ -70,7 +74,8 @@ class UserController extends BaseController
         return view('Admin/pages/users/upsert', $data);
     }
 
-    public function store(): RedirectResponse {
+    public function store(): RedirectResponse
+    {
         $rules = [
             'first_name'            => 'required|min_length[2]|max_length[50]',
             'last_name'             => 'required|min_length[2]|max_length[50]',
@@ -101,7 +106,14 @@ class UserController extends BaseController
         $data['password'] = Password::hash($this->request->getVar('password'));
 
         try {
-            User::create($data);
+            $user = User::create($data);
+
+            if(Role::find($data['role_id'])['name'] === 'Api User') {
+                $data['username'] = $data['email'];
+                $data['key'] = uniqid('cf_api-', true);;
+
+                $user->apiUser()->create($data);
+            }
 
             return createOk('User created successfully! ✔', 'admin.user.index');
         } catch (Exception $e) {
@@ -114,7 +126,8 @@ class UserController extends BaseController
      * Return a new resource object, with default properties
      *
      */
-    public function storeApi(): RedirectResponse {
+    public function storeApi(): RedirectResponse
+    {
         $rules = [
             'user_id' => 'required',
             'key'     => 'permit_empty|is_unique[api_users.key]'
@@ -146,7 +159,8 @@ class UserController extends BaseController
         }
     }
 
-    public function edit($id): string|RedirectResponse {
+    public function edit($id): string|RedirectResponse
+    {
         try {
             $data = [
                 'user'  => User::findOrFail($id),
@@ -160,7 +174,8 @@ class UserController extends BaseController
         }
     }
 
-    public function update($id): RedirectResponse {
+    public function update($id): RedirectResponse
+    {
         $rules = [
             'first_name' => 'required|min_length[2]|max_length[50]',
             'last_name'  => 'required|min_length[2]|max_length[50]',
@@ -200,7 +215,8 @@ class UserController extends BaseController
     /**
      * @throws Exception
      */
-    public function userStats($id): bool|string {
+    public function userStats($id): bool|string
+    {
         return json_encode([
             'weekly_purchases' => ChartAid::weeklyOrders($id)
         ]);

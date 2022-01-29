@@ -36,7 +36,7 @@ class RoleFilter implements FilterInterface
 
 		$authenticate = service('authentication');
 
-		// if no user is logged in then send to the login form
+		// If no user is logged in then send to the login form
 		if (! $authenticate->check())
 		{
 			session()->set('redirect_url', current_url());

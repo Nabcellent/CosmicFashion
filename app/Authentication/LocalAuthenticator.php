@@ -108,10 +108,8 @@ class LocalAuthenticator extends AuthenticationBase implements AuthenticatorInte
             return false;
         }
 
-        // Check to see if the password needs to be rehashed.
-        // This would be due to the hash algorithm or hash
-        // cost changing since the last time that a user
-        // logged in.
+        // Check to see if the password needs to be rehashed. This would be due to the hash algorithm or hash
+        // cost changing since the last time that a user logged in.
         if(Password::needsRehash($user->password, $this->config->hashAlgorithm)) {
             $user->password = $password;
             $this->user->save();

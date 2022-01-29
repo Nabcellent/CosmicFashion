@@ -49,8 +49,6 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            //            'csrf'  => ['except' => 'api/'],
             'login' => [
                 'except' => [
                     '',
@@ -71,7 +69,6 @@ class Filters extends BaseConfig
         ],
         'after'  => [
             'toolbar' => ['except' => ['api*']],
-            // 'honeypot',
         ],
     ];
 
@@ -84,8 +81,7 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public array $methods = [// 'post' => ['csrf']
-    ];
+    public array $methods = [];
 
     /**
      * List of filter aliases that should run on any

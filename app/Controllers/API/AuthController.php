@@ -3,7 +3,6 @@
 namespace App\Controllers\API;
 
 use App\Controllers\BaseController;
-use App\Libraries\OAuth\OAuth;
 use App\Models\Role;
 use App\Models\User;
 use CodeIgniter\API\ResponseTrait;
@@ -12,8 +11,6 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Exception;
 use JetBrains\PhpStorm\ArrayShape;
 use Myth\Auth\Password;
-use OAuth2\Request;
-use function PHPUnit\Framework\throwException;
 
 class AuthController extends BaseController
 {
@@ -39,7 +36,10 @@ class AuthController extends BaseController
         $user = User::findEmail($email);
 
         if(!Password::verify($password, $user['password']))
-            return $this->respond(lang('Auth.badAttempt'), ResponseInterface::HTTP_BAD_REQUEST);
+            return $this->respond(['error' => "Invalid credentials!"], ResponseInterface::HTTP_BAD_REQUEST);
+
+        if(!$user->apiUser)
+            return $this->respond(['error' => "Invalid credentials!"], ResponseInterface::HTTP_BAD_REQUEST);
 
         return $this->respond($this->getJWTForUser($email), 200);
     }
@@ -99,7 +99,7 @@ class AuthController extends BaseController
 
             return [
                 'message'      => 'User authenticated successfully',
-                'user'         => $user,
+                'user'         => $user->apiUser,
                 'access_token' => getSignedJWTForUser($emailAddress)
             ];
         } catch (Exception $exception) {

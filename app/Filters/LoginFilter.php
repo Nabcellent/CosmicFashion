@@ -39,7 +39,7 @@ class LoginFilter implements FilterInterface
             return;
         }
 
-        // if no user is logged in then send to the login form
+        // If no user is logged in then send to the login form
         $authenticate = service('authentication');
 
         if(!$authenticate->check()) {
