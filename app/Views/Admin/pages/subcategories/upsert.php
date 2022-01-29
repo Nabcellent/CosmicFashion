@@ -18,20 +18,6 @@ if(isset($subCategory)) {
 		<div class="bg-holder d-none d-lg-block bg-card"
 		     style="background-image:url(/images/dash/icons/spot-illustrations/corner-4.png);"></div>
 		<!--/.bg-holder-->
-		<div class="card-body position-relative">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3>Validation</h3>
-					<p class="mb-0">Provide valuable, actionable feedback to your users with HTML5 form validation, via
-						browser default behaviors or
-						custom styles and JavaScript.</p>
-					<a class="btn btn-link btn-sm ps-0 mt-2" href="https://getbootstrap.com/docs/5.1/forms/validation"
-					   target="_blank">
-						Validation on Bootstrap<span class="fas fa-chevron-right ms-1 fs--2"></span>
-					</a>
-				</div>
-			</div>
-		</div>
 	</div>
 
 	<div class="row justify-content-center">

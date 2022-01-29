@@ -17,7 +17,8 @@
     "illuminate/notifications": "^8.69",
     "dompdf/dompdf": "^1.0",
     "bshaffer/oauth2-server-php": "^1.10",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-mysqli": "*"
   },
   "require-dev": {
     "fakerphp/faker": "^1.9",
