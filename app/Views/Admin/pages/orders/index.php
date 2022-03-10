@@ -8,16 +8,7 @@
 		<div class="bg-holder d-none d-lg-block bg-card"
 		     style="background-image:url(../../assets/img/icons/spot-illustrations/corner-4.png);"></div>
 		<div class="card-body position-relative">
-			<div class="row">
-				<div class="col-lg-8">
-					<h3>Bulk Select</h3>
-					<p class="mb-0">
-						Bulk select allows users to check multiple checkboxes at once and toggles a UI for bulk actions
-						to be performed
-						for the selected items.
-					</p>
-				</div>
-			</div>
+			<div class="row"></div>
 		</div>
 	</div>
 

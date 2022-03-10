@@ -35,8 +35,8 @@ class OrderController extends BaseController
         if((int)$this->request->getVar('payment_method') === $walletPaymentId) {
             $userWallet = User::find(user_id())->wallet;
 
-            if($userWallet && $userWallet->amount >= cartDetails('total')) {
-                $userWallet->amount -= cartDetails('total');
+            if($userWallet && $userWallet->balance >= cartDetails('total')) {
+                $userWallet->balance -= cartDetails('total');
                 $userWallet->save();
 
                 $orderData['is_paid'] = true;

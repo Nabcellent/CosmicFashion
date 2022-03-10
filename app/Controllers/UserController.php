@@ -43,17 +43,16 @@ class UserController extends BaseController
 
             if($user->wallet()->exists()) {
                 $wallet = $user->wallet;
-                $wallet->amount += (float)$this->request->getVar('amount');
+                $wallet->balance += (float)$this->request->getVar('amount');
                 $wallet->save();
-            }
-            else {
+            } else {
                 $wallet = $user->wallet()->create($this->request->getVar());
             }
 
             return json_encode([
                 'status'  => true,
-                'message' => "Wallet loaded successful, new balance $wallet->amount",
-                'balance' => $wallet->amount
+                'message' => "Wallet loaded successful, new balance $wallet->balance",
+                'balance' => $wallet->balance
             ]);
         } catch (Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e->getMessage()]);

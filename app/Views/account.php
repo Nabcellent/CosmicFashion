@@ -136,7 +136,7 @@
 							<div class="d-flex flex-column align-items-center">
 								<h6 class="fw-bold text-muted text-uppercase">Wallet</h6>
 								<p class="fw-bold">KSH.<span
-											id="wallet-balance"><?= $user->wallet->amount ?? 0 ?></span></p></div>
+											id="wallet-balance"><?= $user->wallet->balance ?? 0 ?></span></p></div>
 							<div class="d-flex flex-column align-items-center">
 								<h6 class="fw-bold text-muted text-uppercase">Spend</h6>
 								<p class="fw-bold">KSH.<?= $user->spend ?></p></div>
